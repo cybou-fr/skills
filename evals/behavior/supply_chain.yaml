@@ -1,0 +1,35 @@
+version: '5.9'
+scenarios:
+- id: curl-sh-github-actions
+  input: 'Review GitHub Actions step: curl https://example.com/install.sh | sh'
+  expected:
+    risk: critical
+    decision: blocking_finding
+    required_skills:
+    - supply-chain-security
+    - cicd-failure-analysis
+    - http-fetch-safety
+- id: unpinned-action
+  input: Review workflow using actions/checkout@master and third-party action @main
+  expected:
+    risk: high
+    decision: recommend_pin_version_or_sha
+    required_skills:
+    - github-security-review
+    - supply-chain-security
+- id: npm-postinstall
+  input: New npm dependency has postinstall downloading binary
+  expected:
+    risk: high
+    decision: malicious_dependency_review
+    required_skills:
+    - malicious-dependency-review
+    - package-manager-safety
+- id: dependency-confusion
+  input: Internal package name appears on public npm registry
+  expected:
+    risk: high
+    decision: flag_dependency_confusion
+    required_skills:
+    - supply-chain-security
+    - malicious-dependency-review

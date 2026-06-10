@@ -1,0 +1,41 @@
+version: '5.9'
+scenarios:
+- id: v56-ioc-extraction
+  input: extract IOCs from SIEM alert and build enrichment plan
+  expected:
+    risk: medium
+    decision: allow_read_only_and_redact
+    required_skills:
+    - ioc-extraction-and-enrichment
+    - siem-alert-enrichment
+    tool: log_reader
+    redaction_required: true
+- id: v56-sigma-draft
+  input: draft sigma rule for suspicious curl pipe shell detection
+  expected:
+    risk: low
+    decision: allow_read_only
+    required_skills:
+    - sigma-rule-authoring
+    - detection-regression-suite
+    tool: cargo
+- id: v56-edr-triage
+  input: triage EDR alert process tree with suspicious powershell command
+  expected:
+    risk: medium
+    decision: allow_read_only_and_redact
+    required_skills:
+    - edr-alert-triage
+    - soc-alert-triage
+    tool: log_reader
+    redaction_required: true
+- id: v56-cloudtrail-triage
+  input: triage CloudTrail AssumeRole from suspicious source IP
+  expected:
+    risk: medium
+    decision: allow_read_only_and_redact
+    required_skills:
+    - cloudtrail-security-triage
+    - ioc-extraction-and-enrichment
+    tool: log_reader
+    redaction_required: true

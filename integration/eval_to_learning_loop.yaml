@@ -1,0 +1,17 @@
+version: '6.0'
+role: Testing-as-Learning corpus
+mapping:
+  successful_eval: SkillLibrary candidate after vetting
+  failed_eval: Lessons / Reflexion candidate
+  unsafe_behavior: immunity regression test
+  cross_task_success: knowledge graph synthesis candidate
+eval_dirs:
+- evals/behavior
+- evals/normalizer
+- evals/approval
+- evals/audit
+- evals/sandbox
+- evals/secops_detection
+- evals/cloud_secops
+- evals/identity_secrets
+- evals/forensics

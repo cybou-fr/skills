@@ -1,0 +1,26 @@
+version: '6.0'
+operational_verdicts:
+- Allow
+- Deny
+- NeedsApproval
+unknown_decision_policy: validation_error
+target_modules:
+  immunity.rs:
+  - compile policy_rules to deterministic checks
+  - map rich labels to Allow/Deny/NeedsApproval
+  - reject dangerous commands before guest dispatch
+  risk.rs:
+  - destructive detection
+  - auto-checkpoint trigger
+  dryrun.rs:
+  - simulate package-manager mutations
+  - summarize predicted diff
+  approval.rs:
+  - structured ApprovalRequest with task/run/step/action fingerprint
+  audit.rs:
+  - SkillSelected/PolicyMatched/ApprovalRequested/ApprovalDecision events
+critical_requirements:
+- no LLM safety self-assessment as authority
+- detect nested interpreters
+- detect remote-pipe-to-shell
+- detect sensitive target paths

@@ -1,0 +1,44 @@
+version: '6.0'
+pack_role: external_skills_policies_templates_evals_corpus
+target_project: Cybou
+authoritative_runtime: cybou-core Rust worker + cybou-guest MicroVM + cybou-proto vsock protocol
+not_authoritative_runtime:
+- runtime_prototype/*.py
+- scripts/*_cli.py from v5 reference prototypes
+target_crates:
+  cybou-core:
+  - memory/skills.rs
+  - memory/vetting.rs
+  - decision.rs
+  - agent/mod.rs
+  - immunity.rs
+  - risk.rs
+  - dryrun.rs
+  - snapshot.rs
+  - approval.rs
+  - audit.rs
+  - event.rs
+  - worker.rs
+  - guest.rs
+  - web.rs
+  cybou-guest:
+  - guest shell execution daemon inside MicroVM
+  cybou-proto:
+  - host-guest framed protocol
+pack_to_core_mapping:
+  registry.yaml: SkillLibrary metadata catalog
+  SKILL.md frontmatter: compact prompt metadata
+  SKILL.md body: vetted on-demand excerpt only
+  policy_rules: immunity.rs / risk.rs deterministic policy tables
+  activity_policies: decision.rs constitution and immunity context
+  tool_adapters: host/guest tool category metadata, not direct execution
+  output_templates: CybouDecision/report hints
+  evals: Testing-as-Learning corpus
+  approval concepts: approval.rs / Approver trait
+  audit concepts: audit.rs / AgentEvent
+security_principles:
+- assistant text must never become direct tool execution
+- Rust immunity is the runtime source of truth
+- MicroVM is the primary execution boundary
+- external skills are untrusted until vetted
+- full skill bodies are not prompt-injected by default

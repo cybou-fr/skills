@@ -1,0 +1,36 @@
+version: '5.2'
+scenarios:
+- id: docker-privileged
+  input: docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock alpine
+  expected_normalized_action:
+    tool: docker
+    operation: run
+    side_effects_contains:
+    - write
+    - privileged_container
+    - docker_socket_mount
+- id: git-force-push
+  input: git push --force origin main
+  expected_normalized_action:
+    tool: git
+    operation: push
+    side_effects_contains:
+    - write
+    - history_rewrite
+- id: db-drop
+  input: DROP DATABASE cybou_prod
+  expected_normalized_action:
+    tool: database
+    operation: drop
+    side_effects_contains:
+    - destructive
+    - write
+- id: http-post
+  input: 'curl -X POST https://api.example.com/items -H ''Authorization: Bearer token123456789'''
+  expected_normalized_action:
+    tool: http_fetch
+    operation: post
+    target: api.example.com
+    side_effects_contains:
+    - write
+    sensitive_data_possible: true

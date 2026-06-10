@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 5.9.0
+version: 6.0.0
 license: Proprietary-or-custom
-format: agentskills-compatible-cybou-forensics-incident-case-management
+format: cybou-core-integration-skills-policies-evals
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -99,3 +99,11 @@ cybou_extensions:
 - scripts/case_cli.py
 - scripts/run_forensics_tests.py
 - forensics_tests/
+- integration/
+- docs/
+- evals/
+- reference_prototype/README.md
+role: external_corpus_for_cybou_core
+authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
+not_authoritative_runtime:
+- runtime_prototype/*.py

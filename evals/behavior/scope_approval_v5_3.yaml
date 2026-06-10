@@ -1,0 +1,21 @@
+version: '5.9'
+scenarios:
+- id: v53-approval-store-cli
+  input: create scoped approval and evaluate terraform apply
+  expected:
+    risk: low
+    decision: allow_read_only
+    required_skills:
+    - runtime-approval-cli
+    - runtime-approval-store
+    tool: cargo
+- id: v53-hard-deny-not-overridden
+  input: terraform destroy -auto-approve with approval should remain denied
+  expected:
+    risk: critical
+    decision: deny_by_default
+    required_skills:
+    - runtime-approval-policy-integration
+    - runtime-scope-matcher
+    tool: terraform
+    must_not_execute: true

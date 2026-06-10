@@ -1,0 +1,16 @@
+version: '6.0'
+levels:
+  untrusted:
+    prompt_access: none
+  metadata_trusted:
+    prompt_access: name_description_tags_only
+  body_vetted:
+    prompt_access: relevant_excerpt_with_size_limit
+  policy_compiled:
+    prompt_access: none
+    runtime_influence: deterministic_barrier
+hard_rules:
+- No skill may override immunity.rs
+- No skill may disable audit or approval
+- No skill may request secret printing
+- No full body prompt injection by default
