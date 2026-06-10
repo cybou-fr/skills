@@ -1,0 +1,22 @@
+tool: aws_kms
+version: '5.8'
+adapter_type: key_management
+decision_inputs:
+- account
+- region
+- key_id
+- policy
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_keys
+- describe_key
+- get_key_policy
+- list_grants
+approval_required:
+- schedule_key_deletion
+- disable_key
+- put_key_policy
+- create_grant
+- enable_key_rotation

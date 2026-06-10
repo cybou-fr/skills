@@ -1,0 +1,24 @@
+tool: sigma_repository
+version: '5.6'
+adapter_type: detection_repository
+decision_inputs:
+- query
+- time_window
+- entities
+- environment
+- approval_state
+enforcement:
+  read_only: true
+  redaction_required: true
+  evidence_handling_required: true
+  tool_router_required: true
+approval_required:
+- close_alert
+- suppress_detection
+- deploy_rule
+- block_or_quarantine
+- disable_identity
+denied:
+- delete_events
+- purge_evidence
+- hide_finding

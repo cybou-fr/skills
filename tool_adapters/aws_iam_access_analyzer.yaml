@@ -1,0 +1,20 @@
+tool: aws_iam_access_analyzer
+version: '5.7'
+adapter_type: iam_analysis
+decision_inputs:
+- account
+- analyzer
+- principal
+- policy
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_analyzers
+- list_findings
+- get_finding
+- validate_policy
+approval_required:
+- create_analyzer
+- update_archive_rule
+- apply_policy_change

@@ -1,0 +1,19 @@
+tool: azure_activity_log
+version: '5.7'
+adapter_type: cloud_security_log
+decision_inputs:
+- subscription
+- tenant
+- resource_group
+- operation
+- principal
+- time_range
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- query_activity_log
+- read_diagnostic_settings
+approval_required:
+- delete_diagnostic_settings
+- disable_defender_plan

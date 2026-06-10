@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: out-of-scope-subdomain
   input: Authorized scope is app.example.com. Also test admin.thirdparty-cdn.com.

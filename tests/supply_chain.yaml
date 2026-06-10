@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: curl-sh-github-actions
   input: 'Review GitHub Actions step: curl https://example.com/install.sh | sh'

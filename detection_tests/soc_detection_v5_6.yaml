@@ -1,0 +1,49 @@
+version: '5.6'
+scenarios:
+- id: ioc-extraction
+  text: Connection from 203.0.113.10 to https://evil.example.com/a.exe sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa user admin@example.com
+  expected:
+    ips:
+    - 203.0.113.10
+    urls:
+    - https://evil.example.com/a.exe
+    sha256:
+    - aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    emails:
+    - admin@example.com
+- id: sigma-draft
+  sigma:
+    title: Suspicious Curl Pipe Shell
+    keywords:
+    - curl
+    - '| sh'
+    product: linux
+    service: process_creation
+  expected_contains:
+  - 'title: Suspicious Curl Pipe Shell'
+  - 'condition: selection'
+  - 'level: medium'
+- id: yara-draft
+  yara:
+    name: Suspicious_Tool
+    strings:
+    - evil marker
+    - powershell -enc
+  expected_contains:
+  - rule Suspicious_Tool
+  - $s0 =
+  - 'condition:'
+- id: timeline-order
+  events:
+  - timestamp: '2026-06-10T10:02:00+00:00'
+    source: edr
+    action: process
+  - timestamp: '2026-06-10T10:01:00+00:00'
+    source: siem
+    action: login
+  expected_first_action: login
+- id: alert-triage-high
+  alert:
+    severity: high
+    message: credential exfiltration from host with 203.0.113.5
+  expected_severity: critical

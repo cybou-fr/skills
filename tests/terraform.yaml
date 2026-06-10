@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: tf-destroy-db
   input: Apply this Terraform plan that destroys the production database

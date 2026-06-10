@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 name: cybou-runtime-integration
 description: Runtime integration contract for CYBOU DevOps/SecOps/Pentest Agent Skills Pack.
 boot_sequence:
@@ -51,6 +51,18 @@ runtime_components:
   execution_boundary: runtime_prototype/execution_boundary.py
   tool_router_cli: scripts/tool_router_cli.py
   sandbox_test_runner: scripts/run_sandbox_tests.py
+  ioc_extractor: runtime_prototype/ioc_extractor.py
+  detection_rules: runtime_prototype/detection_rules.py
+  incident_timeline: runtime_prototype/incident_timeline.py
+  soc_triage: runtime_prototype/soc_triage.py
+  soc_cli: scripts/soc_cli.py
+  detection_test_runner: scripts/run_detection_tests.py
+  cloud_secops: runtime_prototype/cloud_secops.py
+  cloud_secops_cli: scripts/cloud_secops_cli.py
+  cloud_secops_test_runner: scripts/run_cloud_secops_tests.py
+  identity_secrets: runtime_prototype/identity_secrets.py
+  identity_secrets_cli: scripts/identity_secrets_cli.py
+  identity_secrets_test_runner: scripts/run_identity_secrets_tests.py
 hard_requirements:
 - tool calls must be intercepted before execution
 - policy decision must be computed before execution
@@ -91,3 +103,16 @@ hard_requirements:
 - blocked/approval-required actions must not execute
 - stdout/stderr must be bounded and redacted
 - execution result must be captured as evidence
+- SOC actions must be read-only by default
+- detection deployment/suppression/containment requires approval
+- IOC/evidence outputs must be redaction-aware
+- detection rules are drafts until approved
+- case closure requires approval
+- cloud security actions must be read-only by default
+- mutating cloud containment actions require approval
+- cloud alert triage must preserve evidence
+- IAM changes must be proposed as least-privilege diff, not directly applied
+- secret values must never be printed in findings
+- identity and secret mutating actions require approval
+- hard deny must protect secret exfiltration and evidence deletion
+- KMS/key deletion and policy updates require approval

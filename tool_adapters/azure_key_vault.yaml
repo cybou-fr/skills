@@ -1,0 +1,21 @@
+tool: azure_key_vault
+version: '5.8'
+adapter_type: secrets_and_keys
+decision_inputs:
+- tenant
+- subscription
+- vault
+- secret_or_key
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_properties
+- get_policy_metadata
+- list_versions
+approval_required:
+- set_secret
+- delete_secret
+- purge_secret
+- update_access_policy
+- delete_key

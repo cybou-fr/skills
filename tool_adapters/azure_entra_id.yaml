@@ -1,0 +1,22 @@
+tool: azure_entra_id
+version: '5.7'
+adapter_type: identity_security_log
+decision_inputs:
+- tenant
+- user
+- app
+- sign_in_id
+- audit_event
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_sign_ins
+- read_audit_logs
+- read_risky_users
+- read_app_consents
+approval_required:
+- disable_user
+- revoke_sessions
+- remove_app_consent
+- reset_password

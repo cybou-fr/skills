@@ -1,6 +1,105 @@
 # Changelog
 
 
+## v5.8.0 — Identity, Secrets & Key Management Deepening
+
+### Added
+
+- Identity/secrets runtime helpers:
+  - `runtime_prototype/identity_secrets.py`
+- Identity/secrets CLI:
+  - `scripts/identity_secrets_cli.py`
+- Identity/secrets tests:
+  - `identity_secrets_tests/`
+  - `scripts/run_identity_secrets_tests.py`
+- New adapters:
+  - AWS Secrets Manager
+  - AWS KMS
+  - Azure Key Vault
+  - GCP Secret Manager
+  - GCP KMS
+  - HashiCorp Vault
+  - OAuth app inventory
+  - Identity provider
+- New skills for identity lifecycle, privileged access, service account keys, OAuth app consent, secrets exposure, rotation planning, vault review, KMS/key policy review, access key hygiene, session token review, MFA/conditional access and identity containment.
+
+### Improved
+
+- Secret classification avoids printing raw values.
+- OAuth app review flags high-risk scopes and insecure redirects.
+- KMS/key policy review flags wildcards and destructive key-management permissions.
+- Identity review flags privileged users without MFA, stale principals and stale service account keys.
+
+### Limitation
+
+This is still a prototype. Production needs real IdP/secrets manager APIs, tenant-aware authorization, secret-scanner coverage expansion and controlled rotation workflows.
+
+
+
+## v5.7.0 — Cloud SecOps Deepening
+
+### Added
+
+- Cloud SecOps runtime helpers:
+  - `runtime_prototype/cloud_secops.py`
+- Cloud SecOps CLI:
+  - `scripts/cloud_secops_cli.py`
+- Cloud SecOps tests:
+  - `cloud_secops_tests/`
+  - `scripts/run_cloud_secops_tests.py`
+- Cloud provider adapters:
+  - AWS CloudTrail
+  - AWS GuardDuty
+  - AWS Security Hub
+  - AWS IAM Access Analyzer
+  - Azure Activity Log
+  - Azure Entra ID
+  - Azure Defender
+  - GCP Audit Logs
+  - GCP Security Command Center
+- New SecOps skills for AWS/Azure/GCP triage, IAM least-privilege review, logging control-plane review, exposure review and containment planning.
+
+### Improved
+
+- Cloud security events can be triaged with provider/action/identity/resource extraction.
+- Cloud IAM policies can be reviewed for wildcard and privilege escalation risks.
+- Cloud SecOps results are linked to audit/evidence store through CLI.
+
+### Limitation
+
+This is still a prototype. Production needs real cloud APIs, tenant-aware scoping, identity binding, cloud-native parsers and provider-specific enrichment.
+
+
+
+## v5.6.0 — SOC & Detection Engineering Layer
+
+### Added
+
+- SOC/detection runtime modules:
+  - `runtime_prototype/ioc_extractor.py`
+  - `runtime_prototype/detection_rules.py`
+  - `runtime_prototype/incident_timeline.py`
+  - `runtime_prototype/soc_triage.py`
+- SOC CLI:
+  - `scripts/soc_cli.py`
+- Detection regression tests:
+  - `detection_tests/`
+  - `scripts/run_detection_tests.py`
+- New adapters:
+  - EDR, threat intel, case management, Sigma/YARA repositories, CloudTrail, GuardDuty, Entra ID and GCP audit logs.
+- New skills for alert triage, IOC extraction, Sigma/YARA drafting, EDR/cloud triage, threat hunting, case workflow and evidence packs.
+
+### Improved
+
+- CYBOU now covers SOC alert triage, IOC extraction, detection rule drafts, timeline reconstruction and safe case workflow.
+- Detection deployment, alert suppression, blocking and containment remain approval-gated.
+
+### Limitation
+
+This is a SOC/detection prototype. Production requires real SIEM/EDR/cloud connectors, rule validation pipelines, case management integration, ATT&CK mapping depth and detection-as-code review workflows.
+
+
+
 ## v5.5.0 — Sandbox & Tool Execution Boundary Prototype
 
 ### Added

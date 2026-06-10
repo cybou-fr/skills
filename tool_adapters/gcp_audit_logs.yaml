@@ -1,0 +1,21 @@
+tool: gcp_audit_logs
+version: '5.7'
+adapter_type: cloud_security_log
+decision_inputs:
+- organization
+- folder
+- project
+- principal
+- method
+- time_range
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- query_admin_activity
+- query_data_access
+- read_log_sinks
+approval_required:
+- delete_sink
+- disable_audit_log
+- modify_iam_policy

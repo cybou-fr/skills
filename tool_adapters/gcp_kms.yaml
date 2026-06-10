@@ -1,0 +1,19 @@
+tool: gcp_kms
+version: '5.8'
+adapter_type: key_management
+decision_inputs:
+- project
+- location
+- key_ring
+- crypto_key
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_keys
+- get_key
+- get_iam_policy
+approval_required:
+- destroy_key_version
+- set_iam_policy
+- update_rotation_schedule

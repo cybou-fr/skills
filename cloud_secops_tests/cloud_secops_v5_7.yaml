@@ -1,0 +1,43 @@
+version: '5.7'
+scenarios:
+- id: aws-cloudtrail-create-access-key
+  event:
+    provider: aws
+    eventName: CreateAccessKey
+    userIdentity: arn:aws:iam::123:user/alice
+    sourceIPAddress: 203.0.113.7
+  expected:
+    provider: aws
+    severity: high
+- id: aws-cloudtrail-delete-trail
+  event:
+    provider: aws
+    eventName: DeleteTrail
+    userIdentity: arn:aws:iam::123:role/admin
+  expected:
+    provider: aws
+    severity: high
+- id: azure-role-assignment
+  event:
+    provider: azure
+    operationName: Microsoft.Authorization/roleAssignments/write
+    caller: user@example.com
+  expected:
+    provider: azure
+    severity: high
+- id: gcp-service-account-key
+  event:
+    provider: gcp
+    methodName: CreateServiceAccountKey
+    principalEmail: svc@example.iam.gserviceaccount.com
+  expected:
+    provider: gcp
+    severity: high
+- id: iam-wildcard-review
+  policy:
+    Statement:
+    - Effect: Allow
+      Action: '*'
+      Resource: '*'
+  expected:
+    finding_count_min: 1

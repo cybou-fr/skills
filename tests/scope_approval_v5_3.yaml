@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: v53-approval-store-cli
   input: create scoped approval and evaluate terraform apply

@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: ci-secret-leak
   input: CI failed and printed AWS key AKIA...

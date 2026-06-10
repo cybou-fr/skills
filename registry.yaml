@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 package: cybou-devops-secops-agent-skills
 description: AgentSkills-compatible runtime-oriented DevOps/SecOps skill library for CYBOU or other AI workers.
 default_mode: read_only
@@ -3891,6 +3891,1465 @@ skills:
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
+- id: soc-alert-triage
+  path: secops/soc-alert-triage/SKILL.md
+  category: secops
+  triggers:
+  - soc alert triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: incident-timeline-builder
+  path: secops/incident-timeline-builder/SKILL.md
+  category: secops
+  triggers:
+  - incident timeline builder
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: ioc-extraction-and-enrichment
+  path: secops/ioc-extraction-and-enrichment/SKILL.md
+  category: secops
+  triggers:
+  - ioc extraction and enrichment
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: sigma-rule-authoring
+  path: secops/sigma-rule-authoring/SKILL.md
+  category: secops
+  triggers:
+  - sigma rule authoring
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: yara-rule-authoring
+  path: secops/yara-rule-authoring/SKILL.md
+  category: secops
+  triggers:
+  - yara rule authoring
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: edr-alert-triage
+  path: secops/edr-alert-triage/SKILL.md
+  category: secops
+  triggers:
+  - edr alert triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: cloudtrail-security-triage
+  path: secops/cloudtrail-security-triage/SKILL.md
+  category: secops
+  triggers:
+  - cloudtrail security triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: guardduty-finding-triage
+  path: secops/guardduty-finding-triage/SKILL.md
+  category: secops
+  triggers:
+  - guardduty finding triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: azure-entra-id-alert-triage
+  path: secops/azure-entra-id-alert-triage/SKILL.md
+  category: secops
+  triggers:
+  - azure entra id alert triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - azure_entra_id
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: gcp-audit-log-triage
+  path: secops/gcp-audit-log-triage/SKILL.md
+  category: secops
+  triggers:
+  - gcp audit log triage
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - gcp_audit_logs
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: threat-hunting-query-builder
+  path: secops/threat-hunting-query-builder/SKILL.md
+  category: secops
+  triggers:
+  - threat hunting query builder
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: case-management-workflow
+  path: secops/case-management-workflow/SKILL.md
+  category: secops
+  triggers:
+  - case management workflow
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: post-incident-evidence-pack
+  path: secops/post-incident-evidence-pack/SKILL.md
+  category: secops
+  triggers:
+  - post incident evidence pack
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: detection-regression-suite
+  path: secops/detection-regression-suite/SKILL.md
+  category: secops
+  triggers:
+  - detection regression suite
+  - soc
+  - detection
+  - alert triage
+  - ioc
+  - sigma
+  - yara
+  - edr
+  - cloudtrail
+  - threat hunting
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - siem
+  input_types:
+  - security_alert
+  - log_event
+  - ioc
+  - case_note
+  output_template: soc_detection_report
+  related_skills:
+  - security-log-review
+  - siem-alert-enrichment
+  - secops-incident-response
+  - runtime-evidence-store
+  do_not_use_for:
+  - deploying detections without approval
+  - closing alerts without approval
+  - blocking IPs/users without approval
+  - malware generation
+  - evasion guidance
+  autonomy_level: 2
+- id: aws-cloudtrail-triage
+  path: secops/aws-cloudtrail-triage/SKILL.md
+  category: secops
+  triggers:
+  - aws cloudtrail triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_cloudtrail
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: aws-guardduty-triage
+  path: secops/aws-guardduty-triage/SKILL.md
+  category: secops
+  triggers:
+  - aws guardduty triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_guardduty
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: aws-iam-privilege-path-review
+  path: secops/aws-iam-privilege-path-review/SKILL.md
+  category: secops
+  triggers:
+  - aws iam privilege path review
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_iam_access_analyzer
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: aws-securityhub-finding-triage
+  path: secops/aws-securityhub-finding-triage/SKILL.md
+  category: secops
+  triggers:
+  - aws securityhub finding triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_securityhub
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: azure-activity-log-triage
+  path: secops/azure-activity-log-triage/SKILL.md
+  category: secops
+  triggers:
+  - azure activity log triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - azure_activity_log
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: azure-defender-finding-triage
+  path: secops/azure-defender-finding-triage/SKILL.md
+  category: secops
+  triggers:
+  - azure defender finding triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - azure_defender
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: gcp-security-command-center-triage
+  path: secops/gcp-security-command-center-triage/SKILL.md
+  category: secops
+  triggers:
+  - gcp security command center triage
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - gcp_security_command_center
+  - siem
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: cloud-iam-least-privilege-diff
+  path: secops/cloud-iam-least-privilege-diff/SKILL.md
+  category: secops
+  triggers:
+  - cloud iam least privilege diff
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_iam_access_analyzer
+  - azure_entra_id
+  - gcp_audit_logs
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: cloud-logging-control-plane-review
+  path: secops/cloud-logging-control-plane-review/SKILL.md
+  category: secops
+  triggers:
+  - cloud logging control plane review
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_cloudtrail
+  - azure_activity_log
+  - gcp_audit_logs
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: cloud-incident-containment-plan
+  path: secops/cloud-incident-containment-plan/SKILL.md
+  category: secops
+  triggers:
+  - cloud incident containment plan
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_guardduty
+  - azure_defender
+  - gcp_security_command_center
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: cloud-asset-exposure-review
+  path: secops/cloud-asset-exposure-review/SKILL.md
+  category: secops
+  triggers:
+  - cloud asset exposure review
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_securityhub
+  - azure_defender
+  - gcp_security_command_center
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: cloud-secops-regression-suite
+  path: secops/cloud-secops-regression-suite/SKILL.md
+  category: secops
+  triggers:
+  - cloud secops regression suite
+  - cloud secops
+  - aws
+  - azure
+  - gcp
+  - iam
+  - cloudtrail
+  - guardduty
+  - entra
+  - security command center
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_cloudtrail
+  - azure_activity_log
+  - gcp_audit_logs
+  input_types:
+  - cloud_alert
+  - cloud_audit_log
+  - iam_policy
+  - security_finding
+  output_template: cloud_secops_triage_report
+  related_skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - runtime-durable-audit-store
+  do_not_use_for:
+  - modifying IAM without approval
+  - disabling logging
+  - suppressing findings
+  - deleting evidence
+  - mutating cloud resources without approval
+  autonomy_level: 1
+- id: identity-lifecycle-risk-review
+  path: secops/identity-lifecycle-risk-review/SKILL.md
+  category: secops
+  triggers:
+  - identity lifecycle risk review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - siem
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: privileged-access-review
+  path: secops/privileged-access-review/SKILL.md
+  category: secops
+  triggers:
+  - privileged access review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - aws_iam_access_analyzer
+  - azure_entra_id
+  - gcp_audit_logs
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: service-account-key-review
+  path: secops/service-account-key-review/SKILL.md
+  category: secops
+  triggers:
+  - service account key review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - gcp_secret_manager
+  - aws_iam_access_analyzer
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: oauth-app-consent-review
+  path: secops/oauth-app-consent-review/SKILL.md
+  category: secops
+  triggers:
+  - oauth app consent review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - oauth_app_inventory
+  - azure_entra_id
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: secrets-exposure-triage
+  path: secops/secrets-exposure-triage/SKILL.md
+  category: secops
+  triggers:
+  - secrets exposure triage
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - secrets_manager
+  - siem
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: secrets-rotation-orchestration-plan
+  path: secops/secrets-rotation-orchestration-plan/SKILL.md
+  category: secops
+  triggers:
+  - secrets rotation orchestration plan
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_secrets_manager
+  - azure_key_vault
+  - gcp_secret_manager
+  - hashicorp_vault
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: vault-and-secrets-manager-review
+  path: secops/vault-and-secrets-manager-review/SKILL.md
+  category: secops
+  triggers:
+  - vault and secrets manager review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_secrets_manager
+  - azure_key_vault
+  - gcp_secret_manager
+  - hashicorp_vault
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: kms-key-policy-review
+  path: secops/kms-key-policy-review/SKILL.md
+  category: secops
+  triggers:
+  - kms key policy review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - aws_kms
+  - azure_key_vault
+  - gcp_kms
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: access-key-hygiene-review
+  path: secops/access-key-hygiene-review/SKILL.md
+  category: secops
+  triggers:
+  - access key hygiene review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - aws_iam_access_analyzer
+  - siem
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: session-token-and-cookie-review
+  path: secops/session-token-and-cookie-review/SKILL.md
+  category: secops
+  triggers:
+  - session token and cookie review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - azure_entra_id
+  - siem
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: mfa-and-conditional-access-review
+  path: secops/mfa-and-conditional-access-review/SKILL.md
+  category: secops
+  triggers:
+  - mfa and conditional access review
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - azure_entra_id
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: identity-incident-containment-plan
+  path: secops/identity-incident-containment-plan/SKILL.md
+  category: secops
+  triggers:
+  - identity incident containment plan
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - siem
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
+- id: secrets-and-identity-regression-suite
+  path: secops/secrets-and-identity-regression-suite/SKILL.md
+  category: secops
+  triggers:
+  - secrets and identity regression suite
+  - identity
+  - secret
+  - kms
+  - key management
+  - oauth
+  - service account
+  - mfa
+  - conditional access
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - identity_provider
+  - secrets_manager
+  - aws_kms
+  input_types:
+  - identity_inventory
+  - secret_finding
+  - key_policy
+  - oauth_grant
+  - access_key_report
+  output_template: identity_secret_key_review_report
+  related_skills:
+  - secret-detection
+  - secret-rotation-playbook
+  - iam-review
+  - cloud-iam-least-privilege-diff
+  - runtime-redaction-boundary
+  do_not_use_for:
+  - printing secrets
+  - rotating secrets without approval
+  - revoking sessions without approval
+  - deleting keys without approval
+  - modifying IAM without approval
+  autonomy_level: 1
 activity_policies:
   penetration_testing: activity_policies/penetration_testing.yaml
   ai_security_assessment: activity_policies/ai_security_assessment.yaml

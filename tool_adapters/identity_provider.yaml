@@ -1,0 +1,23 @@
+tool: identity_provider
+version: '5.8'
+adapter_type: identity_directory
+decision_inputs:
+- tenant
+- principal
+- role
+- risk
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_users
+- read_groups
+- read_roles
+- read_signins
+- read_risky_users
+approval_required:
+- disable_user
+- reset_password
+- revoke_sessions
+- remove_role
+- remove_guest

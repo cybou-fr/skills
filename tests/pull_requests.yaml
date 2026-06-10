@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: pr-docker-privileged
   input: 'Review PR adding privileged: true to deployment'

@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: rustfmt-clippy-gate
   input: Add CI gate for cargo fmt and cargo clippy -D warnings

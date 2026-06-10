@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 description: Skill relationship graph for CYBOU runtime routing and co-loading.
 global_always_consider:
 - task-classification
@@ -1755,3 +1755,523 @@ skills:
     - risk-and-approval
     may_escalate_to: *id128
     output_template: sandbox_execution_report
+  soc-alert-triage:
+    path: secops/soc-alert-triage/SKILL.md
+    category: secops
+    related: &id129
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id129
+    output_template: soc_detection_report
+  incident-timeline-builder:
+    path: secops/incident-timeline-builder/SKILL.md
+    category: secops
+    related: &id130
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id130
+    output_template: soc_detection_report
+  ioc-extraction-and-enrichment:
+    path: secops/ioc-extraction-and-enrichment/SKILL.md
+    category: secops
+    related: &id131
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id131
+    output_template: soc_detection_report
+  sigma-rule-authoring:
+    path: secops/sigma-rule-authoring/SKILL.md
+    category: secops
+    related: &id132
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id132
+    output_template: soc_detection_report
+  yara-rule-authoring:
+    path: secops/yara-rule-authoring/SKILL.md
+    category: secops
+    related: &id133
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id133
+    output_template: soc_detection_report
+  edr-alert-triage:
+    path: secops/edr-alert-triage/SKILL.md
+    category: secops
+    related: &id134
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id134
+    output_template: soc_detection_report
+  cloudtrail-security-triage:
+    path: secops/cloudtrail-security-triage/SKILL.md
+    category: secops
+    related: &id135
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id135
+    output_template: soc_detection_report
+  guardduty-finding-triage:
+    path: secops/guardduty-finding-triage/SKILL.md
+    category: secops
+    related: &id136
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id136
+    output_template: soc_detection_report
+  azure-entra-id-alert-triage:
+    path: secops/azure-entra-id-alert-triage/SKILL.md
+    category: secops
+    related: &id137
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id137
+    output_template: soc_detection_report
+  gcp-audit-log-triage:
+    path: secops/gcp-audit-log-triage/SKILL.md
+    category: secops
+    related: &id138
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id138
+    output_template: soc_detection_report
+  threat-hunting-query-builder:
+    path: secops/threat-hunting-query-builder/SKILL.md
+    category: secops
+    related: &id139
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id139
+    output_template: soc_detection_report
+  case-management-workflow:
+    path: secops/case-management-workflow/SKILL.md
+    category: secops
+    related: &id140
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id140
+    output_template: soc_detection_report
+  post-incident-evidence-pack:
+    path: secops/post-incident-evidence-pack/SKILL.md
+    category: secops
+    related: &id141
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id141
+    output_template: soc_detection_report
+  detection-regression-suite:
+    path: secops/detection-regression-suite/SKILL.md
+    category: secops
+    related: &id142
+    - security-log-review
+    - siem-alert-enrichment
+    - secops-incident-response
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id142
+    output_template: soc_detection_report
+  aws-cloudtrail-triage:
+    path: secops/aws-cloudtrail-triage/SKILL.md
+    category: secops
+    related: &id143
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id143
+    output_template: cloud_secops_triage_report
+  aws-guardduty-triage:
+    path: secops/aws-guardduty-triage/SKILL.md
+    category: secops
+    related: &id144
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id144
+    output_template: cloud_secops_triage_report
+  aws-iam-privilege-path-review:
+    path: secops/aws-iam-privilege-path-review/SKILL.md
+    category: secops
+    related: &id145
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id145
+    output_template: cloud_secops_triage_report
+  aws-securityhub-finding-triage:
+    path: secops/aws-securityhub-finding-triage/SKILL.md
+    category: secops
+    related: &id146
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id146
+    output_template: cloud_secops_triage_report
+  azure-activity-log-triage:
+    path: secops/azure-activity-log-triage/SKILL.md
+    category: secops
+    related: &id147
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id147
+    output_template: cloud_secops_triage_report
+  azure-defender-finding-triage:
+    path: secops/azure-defender-finding-triage/SKILL.md
+    category: secops
+    related: &id148
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id148
+    output_template: cloud_secops_triage_report
+  gcp-security-command-center-triage:
+    path: secops/gcp-security-command-center-triage/SKILL.md
+    category: secops
+    related: &id149
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id149
+    output_template: cloud_secops_triage_report
+  cloud-iam-least-privilege-diff:
+    path: secops/cloud-iam-least-privilege-diff/SKILL.md
+    category: secops
+    related: &id150
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id150
+    output_template: cloud_secops_triage_report
+  cloud-logging-control-plane-review:
+    path: secops/cloud-logging-control-plane-review/SKILL.md
+    category: secops
+    related: &id151
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id151
+    output_template: cloud_secops_triage_report
+  cloud-incident-containment-plan:
+    path: secops/cloud-incident-containment-plan/SKILL.md
+    category: secops
+    related: &id152
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id152
+    output_template: cloud_secops_triage_report
+  cloud-asset-exposure-review:
+    path: secops/cloud-asset-exposure-review/SKILL.md
+    category: secops
+    related: &id153
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id153
+    output_template: cloud_secops_triage_report
+  cloud-secops-regression-suite:
+    path: secops/cloud-secops-regression-suite/SKILL.md
+    category: secops
+    related: &id154
+    - soc-alert-triage
+    - incident-timeline-builder
+    - ioc-extraction-and-enrichment
+    - runtime-durable-audit-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id154
+    output_template: cloud_secops_triage_report
+  identity-lifecycle-risk-review:
+    path: secops/identity-lifecycle-risk-review/SKILL.md
+    category: secops
+    related: &id155
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id155
+    output_template: identity_secret_key_review_report
+  privileged-access-review:
+    path: secops/privileged-access-review/SKILL.md
+    category: secops
+    related: &id156
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id156
+    output_template: identity_secret_key_review_report
+  service-account-key-review:
+    path: secops/service-account-key-review/SKILL.md
+    category: secops
+    related: &id157
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id157
+    output_template: identity_secret_key_review_report
+  oauth-app-consent-review:
+    path: secops/oauth-app-consent-review/SKILL.md
+    category: secops
+    related: &id158
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id158
+    output_template: identity_secret_key_review_report
+  secrets-exposure-triage:
+    path: secops/secrets-exposure-triage/SKILL.md
+    category: secops
+    related: &id159
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id159
+    output_template: identity_secret_key_review_report
+  secrets-rotation-orchestration-plan:
+    path: secops/secrets-rotation-orchestration-plan/SKILL.md
+    category: secops
+    related: &id160
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id160
+    output_template: identity_secret_key_review_report
+  vault-and-secrets-manager-review:
+    path: secops/vault-and-secrets-manager-review/SKILL.md
+    category: secops
+    related: &id161
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id161
+    output_template: identity_secret_key_review_report
+  kms-key-policy-review:
+    path: secops/kms-key-policy-review/SKILL.md
+    category: secops
+    related: &id162
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id162
+    output_template: identity_secret_key_review_report
+  access-key-hygiene-review:
+    path: secops/access-key-hygiene-review/SKILL.md
+    category: secops
+    related: &id163
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id163
+    output_template: identity_secret_key_review_report
+  session-token-and-cookie-review:
+    path: secops/session-token-and-cookie-review/SKILL.md
+    category: secops
+    related: &id164
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id164
+    output_template: identity_secret_key_review_report
+  mfa-and-conditional-access-review:
+    path: secops/mfa-and-conditional-access-review/SKILL.md
+    category: secops
+    related: &id165
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id165
+    output_template: identity_secret_key_review_report
+  identity-incident-containment-plan:
+    path: secops/identity-incident-containment-plan/SKILL.md
+    category: secops
+    related: &id166
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id166
+    output_template: identity_secret_key_review_report
+  secrets-and-identity-regression-suite:
+    path: secops/secrets-and-identity-regression-suite/SKILL.md
+    category: secops
+    related: &id167
+    - secret-detection
+    - secret-rotation-playbook
+    - iam-review
+    - cloud-iam-least-privilege-diff
+    - runtime-redaction-boundary
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id167
+    output_template: identity_secret_key_review_report

@@ -1,0 +1,126 @@
+{
+  "aws_create_access_key": {
+    "provider": "aws",
+    "severity": "high",
+    "identity": "arn:aws:iam::123:user/alice",
+    "resource": null,
+    "action": "CreateAccessKey",
+    "iocs": {
+      "ips": [
+        "203.0.113.7"
+      ],
+      "domains": [],
+      "urls": [],
+      "sha256": [],
+      "sha1": [],
+      "md5": [],
+      "emails": [],
+      "aws_arns": [
+        "arn:aws:iam::123:user/alice"
+      ]
+    },
+    "reasons": [
+      "aws_high_risk_action:CreateAccessKey",
+      "suspicious_keyword"
+    ],
+    "read_only_next_steps": [
+      "collect related audit events in the same time window",
+      "verify MFA/session context and source IP reputation",
+      "check related IAM/role changes",
+      "preserve evidence and build incident timeline"
+    ],
+    "approval_required_actions": [
+      "disable identity or revoke sessions",
+      "change IAM/RBAC policy",
+      "quarantine resource",
+      "suppress/archive finding",
+      "delete or modify logging configuration"
+    ]
+  },
+  "azure_role_assignment": {
+    "provider": "azure",
+    "severity": "high",
+    "identity": "user@example.com",
+    "resource": null,
+    "action": "Microsoft.Authorization/roleAssignments/write",
+    "iocs": {
+      "ips": [],
+      "domains": [
+        "example.com"
+      ],
+      "urls": [],
+      "sha256": [],
+      "sha1": [],
+      "md5": [],
+      "emails": [
+        "user@example.com"
+      ],
+      "aws_arns": []
+    },
+    "reasons": [
+      "azure_high_risk_action:Microsoft.Authorization/roleAssignments/write"
+    ],
+    "read_only_next_steps": [
+      "collect related audit events in the same time window",
+      "verify MFA/session context and source IP reputation",
+      "check related IAM/role changes",
+      "preserve evidence and build incident timeline"
+    ],
+    "approval_required_actions": [
+      "disable identity or revoke sessions",
+      "change IAM/RBAC policy",
+      "quarantine resource",
+      "suppress/archive finding",
+      "delete or modify logging configuration"
+    ]
+  },
+  "gcp_service_account_key": {
+    "provider": "gcp",
+    "severity": "high",
+    "identity": "svc@example.iam.gserviceaccount.com",
+    "resource": null,
+    "action": "CreateServiceAccountKey",
+    "iocs": {
+      "ips": [],
+      "domains": [
+        "example.iam.gserviceaccount.com"
+      ],
+      "urls": [],
+      "sha256": [],
+      "sha1": [],
+      "md5": [],
+      "emails": [
+        "svc@example.iam.gserviceaccount.com"
+      ],
+      "aws_arns": []
+    },
+    "reasons": [
+      "gcp_high_risk_action:CreateServiceAccountKey"
+    ],
+    "read_only_next_steps": [
+      "collect related audit events in the same time window",
+      "verify MFA/session context and source IP reputation",
+      "check related IAM/role changes",
+      "preserve evidence and build incident timeline"
+    ],
+    "approval_required_actions": [
+      "disable identity or revoke sessions",
+      "change IAM/RBAC policy",
+      "quarantine resource",
+      "suppress/archive finding",
+      "delete or modify logging configuration"
+    ]
+  },
+  "iam_wildcard": {
+    "finding_count": 1,
+    "findings": [
+      {
+        "risk": "high",
+        "issue": "wildcard_permission_or_resource"
+      }
+    ],
+    "recommendation": "draft least-privilege diff; do not mutate IAM without approval"
+  },
+  "audit_valid": true,
+  "evidence_valid": true
+}

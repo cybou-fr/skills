@@ -1,0 +1,21 @@
+tool: aws_cloudtrail
+version: '5.7'
+adapter_type: cloud_security_log
+decision_inputs:
+- account
+- region
+- event_name
+- principal
+- source_ip
+- time_range
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- lookup_events
+- query_lake
+- get_event_selectors
+approval_required:
+- stop_logging
+- delete_trail
+- put_event_selectors

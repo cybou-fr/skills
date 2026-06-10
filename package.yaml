@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 5.5.0
+version: 5.8.0
 license: Proprietary-or-custom
-format: agentskills-compatible-cybou-sandbox-tool-execution-boundary
+format: agentskills-compatible-cybou-identity-secrets-key-management
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -80,3 +80,18 @@ cybou_extensions:
 - scripts/tool_router_cli.py
 - scripts/run_sandbox_tests.py
 - sandbox_tests/
+- runtime_prototype/ioc_extractor.py
+- runtime_prototype/detection_rules.py
+- runtime_prototype/incident_timeline.py
+- runtime_prototype/soc_triage.py
+- scripts/soc_cli.py
+- scripts/run_detection_tests.py
+- detection_tests/
+- runtime_prototype/cloud_secops.py
+- scripts/cloud_secops_cli.py
+- scripts/run_cloud_secops_tests.py
+- cloud_secops_tests/
+- runtime_prototype/identity_secrets.py
+- scripts/identity_secrets_cli.py
+- scripts/run_identity_secrets_tests.py
+- identity_secrets_tests/

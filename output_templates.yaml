@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 templates:
   generic_task_report: '## Summary
 
@@ -1930,3 +1930,167 @@ templates:
     Redaction applied:
 
     Audit record:'
+  soc_detection_report: '## SOC / Detection report
+
+    Alert/source context:
+
+    Entities / IOCs:
+
+    Timeline:
+
+    Detection logic:
+
+    Severity / confidence:
+
+    Evidence references:
+
+    Recommended response:
+
+    Approval required:'
+  ioc_extraction_report: '## IOC extraction
+
+    Source:
+
+    IPs:
+
+    Domains:
+
+    URLs:
+
+    Hashes:
+
+    Emails/users:
+
+    Cloud resources:
+
+    Enrichment plan:
+
+    Redaction notes:'
+  detection_rule_report: '## Detection rule draft
+
+    Rule type:
+
+    Purpose:
+
+    Log source:
+
+    Detection logic:
+
+    False positives:
+
+    Severity:
+
+    Validation tests:
+
+    Deployment approval:'
+  incident_timeline_report: '## Incident timeline
+
+    Incident ID:
+
+    Time window:
+
+    Events:
+
+    Initial access hypothesis:
+
+    Affected assets:
+
+    Evidence refs:
+
+    Gaps:'
+  cloud_secops_triage_report: '## Cloud SecOps triage
+
+    Provider:
+
+    Scope:
+
+    Finding/event:
+
+    Identity/resource:
+
+    Evidence:
+
+    Severity/risk:
+
+    Timeline:
+
+    Read-only next steps:
+
+    Approval-required actions:'
+  cloud_iam_review_report: '## Cloud IAM review
+
+    Provider:
+
+    Principal:
+
+    Permissions:
+
+    Privilege paths:
+
+    Risky grants:
+
+    Least-privilege diff:
+
+    Approval-required changes:'
+  cloud_containment_plan: '## Cloud containment plan
+
+    Incident:
+
+    Affected assets:
+
+    Immediate read-only checks:
+
+    Containment options:
+
+    Approval boundaries:
+
+    Rollback:
+
+    Evidence:'
+  identity_secret_key_review_report: '## Identity / secrets / key review
+
+    Scope:
+
+    Principal/secret/key:
+
+    Risk:
+
+    Evidence:
+
+    Blast radius:
+
+    Redaction status:
+
+    Read-only next steps:
+
+    Approval-required actions:'
+  secret_exposure_triage_report: '## Secret exposure triage
+
+    Secret class:
+
+    Location:
+
+    Value exposed?: no/raw value not shown
+
+    Blast radius:
+
+    Rotation plan:
+
+    Audit/evidence:
+
+    Approval-required actions:'
+  kms_key_review_report: '## KMS/key policy review
+
+    Provider:
+
+    Key:
+
+    Policy/grants:
+
+    Rotation/deletion:
+
+    Cross-account exposure:
+
+    Risk:
+
+    Approval-required changes:'

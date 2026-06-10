@@ -1,0 +1,18 @@
+tool: aws_securityhub
+version: '5.7'
+adapter_type: cloud_security_finding
+decision_inputs:
+- account
+- region
+- finding_id
+- standard
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- get_findings
+- describe_standards
+- describe_hub
+approval_required:
+- batch_update_findings
+- disable_security_hub

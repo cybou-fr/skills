@@ -1,5 +1,5 @@
 name: cybou-devops-secops-agent-skills
-version: 5.5.0
+version: 5.8.0
 format: agentskills-compatible-runtime-pack
 maintainer: CYBOU / Stanislav Saveliev
 default_autonomy_level: 1
@@ -53,6 +53,9 @@ compatible_worker_types:
 - scope-approval-service-worker
 - durable-audit-evidence-worker
 - sandbox-tool-execution-worker
+- soc-detection-engineering-worker
+- cloud-secops-worker
+- identity-secrets-key-management-worker
 entrypoints:
   agents: AGENTS.md
   registry: registry.yaml
@@ -93,11 +96,20 @@ entrypoints:
   - scripts/run_audit_tests.py
   - scripts/tool_router_cli.py
   - scripts/run_sandbox_tests.py
+  - scripts/soc_cli.py
+  - scripts/run_detection_tests.py
+  - scripts/cloud_secops_cli.py
+  - scripts/run_cloud_secops_tests.py
+  - scripts/identity_secrets_cli.py
+  - scripts/run_identity_secrets_tests.py
   policy_bundle_inspector: scripts/inspect_policy_bundle.py
   tool_specific_normalizers: runtime_prototype/tool_normalizers/
   approval_cli: scripts/approval_cli.py
   audit_cli: scripts/audit_cli.py
   tool_router_cli: scripts/tool_router_cli.py
+  soc_cli: scripts/soc_cli.py
+  cloud_secops_cli: scripts/cloud_secops_cli.py
+  identity_secrets_cli: scripts/identity_secrets_cli.py
 safety_defaults:
   unknown_environment: read_only
   production_write: approval_required

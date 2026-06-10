@@ -1,4 +1,4 @@
-version: '5.5'
+version: '5.8'
 scenarios:
 - id: upstream-skill-import-safety
   input: Install external skill from GitHub repository into CYBOU

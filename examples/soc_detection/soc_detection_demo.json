@@ -1,0 +1,76 @@
+{
+  "ioc_summary": {
+    "ioc_count": 4,
+    "iocs": {
+      "ips": [
+        "203.0.113.10"
+      ],
+      "domains": [],
+      "urls": [
+        "https://evil.example.com/a.exe"
+      ],
+      "sha256": [
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "sha1": [],
+      "md5": [],
+      "emails": [
+        "admin@example.com"
+      ],
+      "aws_arns": []
+    }
+  },
+  "sigma_rule": "title: Suspicious Curl Pipe Shell\nid: draft-generated-by-cybou\nstatus: experimental\ndescription: Defensive detection draft generated from reviewed evidence.\nlogsource:\n  product: linux\n  service: process_creation\ndetection:\n  selection:\n    Keywords|contains:\n      - \"curl\"\n      - \"| sh\"\n  condition: selection\nfalsepositives:\n  - Administrative activity\nlevel: medium\n",
+  "yara_rule": "rule Suspicious_Tool {\n  meta:\n    description = \"Defensive YARA draft generated from reviewed indicators\"\n    author = \"CYBOU\"\n  strings:\n    $s0 = \"evil marker\" nocase\n    $s1 = \"powershell -enc\" nocase\n  condition:\n    any of them\n}\n",
+  "timeline": {
+    "event_count": 2,
+    "timeline": [
+      {
+        "timestamp": "2026-06-10T10:01:00+00:00",
+        "source": "siem",
+        "actor": "unknown",
+        "asset": "unknown",
+        "action": "login",
+        "severity": "unknown",
+        "evidence_ref": null
+      },
+      {
+        "timestamp": "2026-06-10T10:02:00+00:00",
+        "source": "edr",
+        "actor": "unknown",
+        "asset": "unknown",
+        "action": "process",
+        "severity": "unknown",
+        "evidence_ref": null
+      }
+    ]
+  },
+  "triage": {
+    "severity": "critical",
+    "confidence": "medium",
+    "iocs": {
+      "ips": [
+        "203.0.113.5"
+      ],
+      "domains": [],
+      "urls": [],
+      "sha256": [],
+      "sha1": [],
+      "md5": [],
+      "emails": [],
+      "aws_arns": []
+    },
+    "recommendations": [
+      "preserve evidence",
+      "validate affected assets",
+      "check related alerts",
+      "consider containment with approval"
+    ],
+    "approval_required_for": [
+      "containment",
+      "blocking",
+      "disable_user",
+      "close_alert"
+    ]
+  }
+}

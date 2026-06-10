@@ -1,0 +1,18 @@
+tool: azure_defender
+version: '5.7'
+adapter_type: cloud_security_finding
+decision_inputs:
+- subscription
+- resource
+- alert_id
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_alerts
+- get_alert
+- list_secure_score
+approval_required:
+- dismiss_alert
+- change_pricing
+- apply_remediation

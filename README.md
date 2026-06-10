@@ -514,3 +514,139 @@ python scripts/run_sandbox_tests.py
 ```
 
 Limitations: this is still a Python prototype. Production requires OS/container sandboxing, seccomp/AppArmor or equivalent, credential isolation, WORM audit storage and Rust implementation.
+
+
+## v5.6 SOC & Detection Engineering Layer
+
+This release adds SOC alert triage and detection engineering prototype capabilities.
+
+Summary:
+
+- Total files: 436
+- Skills: 170
+- Registry skills: 170
+- Output templates: 131
+- Policy rule files: 13
+- Activity policy files: 2
+- Tool adapter files: 53
+- Scope object files: 6
+- Schema files: 19
+- Test scenario files: 26
+- Test scenarios: 159
+- Detection scenarios: 5
+
+New modules:
+
+```text
+runtime_prototype/ioc_extractor.py
+runtime_prototype/detection_rules.py
+runtime_prototype/incident_timeline.py
+runtime_prototype/soc_triage.py
+```
+
+New command:
+
+```bash
+python scripts/soc_cli.py extract-iocs --text "login from 203.0.113.10 to https://evil.example.com/a.exe"
+python scripts/run_detection_tests.py
+```
+
+Limitations: production requires real SIEM/EDR/cloud connectors, detection-as-code review, ATT&CK mapping depth and case management integration.
+
+
+## v5.7 Cloud SecOps Deepening
+
+This release deepens Cloud SecOps for AWS, Azure and GCP.
+
+Summary:
+
+- Total files: 463
+- Skills: 182
+- Registry skills: 182
+- Output templates: 134
+- Policy rule files: 13
+- Activity policy files: 2
+- Tool adapter files: 61
+- Scope object files: 6
+- Schema files: 19
+- Test scenario files: 27
+- Test scenarios: 163
+- Cloud SecOps scenarios: 5
+
+New module:
+
+```text
+runtime_prototype/cloud_secops.py
+```
+
+New command:
+
+```bash
+python scripts/cloud_secops_cli.py triage-event --event-json '{"provider":"aws","eventName":"CreateAccessKey"}'
+python scripts/run_cloud_secops_tests.py
+```
+
+Supported provider areas:
+
+```text
+AWS CloudTrail / GuardDuty / Security Hub / IAM Access Analyzer
+Azure Activity Log / Entra ID / Defender for Cloud
+GCP Audit Logs / Security Command Center
+Cloud IAM least-privilege review
+Cloud logging control-plane review
+Cloud containment planning
+```
+
+Limitations: this is still a prototype. Production needs real cloud APIs, tenant-aware scoping, identity binding, cloud-native parsers and provider-specific enrichment.
+
+
+## v5.8 Identity, Secrets & Key Management Deepening
+
+This release deepens identity security, secrets handling and key-management workflows.
+
+Summary:
+
+- Total files: 491
+- Skills: 195
+- Registry skills: 195
+- Output templates: 137
+- Policy rule files: 13
+- Activity policy files: 2
+- Tool adapter files: 69
+- Scope object files: 6
+- Schema files: 19
+- Test scenario files: 28
+- Test scenarios: 167
+- Identity/secrets scenarios: 6
+
+New module:
+
+```text
+runtime_prototype/identity_secrets.py
+```
+
+New command:
+
+```bash
+python scripts/identity_secrets_cli.py classify-secret --text "token=abc123456789SECRET"
+python scripts/run_identity_secrets_tests.py
+```
+
+Supported areas:
+
+```text
+Identity lifecycle risk
+Privileged access review
+Service account key review
+OAuth/OIDC app consent review
+Secrets exposure triage
+Secrets rotation orchestration planning
+Vault / Secrets Manager review
+KMS / key policy review
+Access key hygiene
+Session token and cookie review
+MFA / conditional access review
+Identity incident containment planning
+```
+
+Limitations: this is still a prototype. Production needs real IdP/secrets manager APIs, tenant-aware authorization, secret-scanner coverage expansion and controlled rotation workflows.

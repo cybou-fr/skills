@@ -1,0 +1,21 @@
+tool: hashicorp_vault
+version: '5.8'
+adapter_type: secrets_management
+decision_inputs:
+- namespace
+- mount
+- path
+- policy
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_mounts
+- read_policy
+- read_metadata
+approval_required:
+- write_secret
+- delete_secret
+- rotate_root
+- revoke_lease
+- update_policy

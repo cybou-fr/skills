@@ -1,0 +1,19 @@
+tool: aws_guardduty
+version: '5.7'
+adapter_type: cloud_security_finding
+decision_inputs:
+- account
+- region
+- finding_id
+- detector_id
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_findings
+- get_findings
+- list_detectors
+approval_required:
+- archive_findings
+- update_findings_feedback
+- create_filter

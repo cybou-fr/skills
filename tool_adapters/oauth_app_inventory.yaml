@@ -1,0 +1,19 @@
+tool: oauth_app_inventory
+version: '5.8'
+adapter_type: identity_application
+decision_inputs:
+- tenant
+- app_id
+- publisher
+- scopes
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_apps
+- read_grants
+- read_redirect_uris
+approval_required:
+- remove_consent
+- disable_app
+- delete_credential

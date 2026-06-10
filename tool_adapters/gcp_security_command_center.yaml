@@ -1,0 +1,19 @@
+tool: gcp_security_command_center
+version: '5.7'
+adapter_type: cloud_security_finding
+decision_inputs:
+- organization
+- project
+- finding
+- source
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_findings
+- get_finding
+- list_sources
+approval_required:
+- mute_finding
+- update_finding_state
+- apply_remediation

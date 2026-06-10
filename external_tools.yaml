@@ -1,4 +1,4 @@
-version: '4.5'
+version: '5.8'
 description: Catalog of abstract/external tools used by skills but not necessarily implemented as direct command tools.
 defaults:
   read_only: true
@@ -295,3 +295,284 @@ tools:
     - install_tool
     - run_on_untrusted_code
     - publish_or_upload_results
+  edr:
+    type: security_data_reader
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/edr.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  threat_intel:
+    type: enrichment_api
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/threat_intel.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  case_management:
+    type: case_api
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/case_management.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  sigma_repository:
+    type: detection_repository
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/sigma_repository.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  yara_repository:
+    type: detection_repository
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/yara_repository.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  cloudtrail:
+    type: cloud_security_logs
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/cloudtrail.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  guardduty:
+    type: cloud_security_findings
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/guardduty.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  entra_id:
+    type: identity_security_logs
+    read_only: true
+    redaction_required: true
+    audit_required: true
+    adapter: tool_adapters/entra_id.yaml
+    approval_required_for:
+    - close_alert
+    - suppress_detection
+    - block_ip
+    - disable_user
+    - quarantine_host
+    - deploy_rule
+    - delete_evidence
+  gcp_audit_logs:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/gcp_audit_logs.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  aws_cloudtrail:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_cloudtrail.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  aws_guardduty:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_guardduty.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  aws_securityhub:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_securityhub.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  aws_iam_access_analyzer:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_iam_access_analyzer.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  azure_activity_log:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/azure_activity_log.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  azure_entra_id:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/azure_entra_id.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  azure_defender:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/azure_defender.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  gcp_security_command_center:
+    type: cloud_security
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/gcp_security_command_center.yaml
+    approval_required_for:
+    - mutating_actions
+    - suppress_or_delete_findings
+    - disable_logging
+  aws_secrets_manager:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_secrets_manager.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  aws_kms:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/aws_kms.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  azure_key_vault:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/azure_key_vault.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  gcp_secret_manager:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/gcp_secret_manager.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  gcp_kms:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/gcp_kms.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  hashicorp_vault:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/hashicorp_vault.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  oauth_app_inventory:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/oauth_app_inventory.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
+  identity_provider:
+    type: identity_secrets_key_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/identity_provider.yaml
+    approval_required_for:
+    - mutating_actions
+    - secret_rotation
+    - session_revocation
+    - key_deletion
+    - policy_update
