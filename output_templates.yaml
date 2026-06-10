@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 templates:
   generic_task_report: '## Summary
 
@@ -1985,19 +1985,19 @@ templates:
     Deployment approval:'
   incident_timeline_report: '## Incident timeline
 
-    Incident ID:
+    Case ID:
 
     Time window:
 
     Events:
 
-    Initial access hypothesis:
+    Sources:
 
-    Affected assets:
+    Confidence:
 
-    Evidence refs:
+    Gaps:
 
-    Gaps:'
+    Next evidence to collect:'
   cloud_secops_triage_report: '## Cloud SecOps triage
 
     Provider:
@@ -2094,3 +2094,41 @@ templates:
     Risk:
 
     Approval-required changes:'
+  forensics_case_report: '## Forensics / incident case report
+
+    Case ID:
+
+    Phase/status:
+
+    Severity:
+
+    Affected assets:
+
+    Evidence/artifacts:
+
+    Chain of custody:
+
+    Timeline:
+
+    Open questions:
+
+    Read-only next steps:
+
+    Approval-required actions:'
+  chain_of_custody_report: '## Chain of custody report
+
+    Evidence ID:
+
+    Source:
+
+    Collector:
+
+    Collected at:
+
+    Hash:
+
+    Transfers:
+
+    Tamper status:
+
+    Gaps:'

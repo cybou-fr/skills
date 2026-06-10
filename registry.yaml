@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 package: cybou-devops-secops-agent-skills
 description: AgentSkills-compatible runtime-oriented DevOps/SecOps skill library for CYBOU or other AI workers.
 default_mode: read_only
@@ -5349,6 +5349,426 @@ skills:
   - revoking sessions without approval
   - deleting keys without approval
   - modifying IAM without approval
+  autonomy_level: 1
+- id: incident-case-record-management
+  path: secops/incident-case-record-management/SKILL.md
+  category: secops
+  triggers:
+  - incident case record management
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: forensic-artifact-inventory
+  path: secops/forensic-artifact-inventory/SKILL.md
+  category: secops
+  triggers:
+  - forensic artifact inventory
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: chain-of-custody-review
+  path: secops/chain-of-custody-review/SKILL.md
+  category: secops
+  triggers:
+  - chain of custody review
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: incident-timeline-reconstruction
+  path: secops/incident-timeline-reconstruction/SKILL.md
+  category: secops
+  triggers:
+  - incident timeline reconstruction
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: forensic-log-triage
+  path: secops/forensic-log-triage/SKILL.md
+  category: secops
+  triggers:
+  - forensic log triage
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: host-forensics-triage-plan
+  path: secops/host-forensics-triage-plan/SKILL.md
+  category: secops
+  triggers:
+  - host forensics triage plan
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: cloud-forensics-evidence-pack
+  path: secops/cloud-forensics-evidence-pack/SKILL.md
+  category: secops
+  triggers:
+  - cloud forensics evidence pack
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: edr-forensics-evidence-pack
+  path: secops/edr-forensics-evidence-pack/SKILL.md
+  category: secops
+  triggers:
+  - edr forensics evidence pack
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: post-incident-case-summary
+  path: secops/post-incident-case-summary/SKILL.md
+  category: secops
+  triggers:
+  - post incident case summary
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: legal-hold-and-retention-plan
+  path: secops/legal-hold-and-retention-plan/SKILL.md
+  category: secops
+  triggers:
+  - legal hold and retention plan
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: case-management-integration-review
+  path: secops/case-management-integration-review/SKILL.md
+  category: secops
+  triggers:
+  - case management integration review
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
+  autonomy_level: 1
+- id: forensics-regression-suite
+  path: secops/forensics-regression-suite/SKILL.md
+  category: secops
+  triggers:
+  - forensics regression suite
+  - forensics
+  - incident case
+  - case management
+  - chain of custody
+  - timeline
+  - evidence pack
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - case_management
+  - siem
+  input_types:
+  - incident_case
+  - forensic_artifact
+  - audit_log
+  - edr_event
+  - cloud_audit_log
+  - case_note
+  output_template: forensics_case_report
+  related_skills:
+  - incident-timeline-builder
+  - post-incident-evidence-pack
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - deleting evidence
+  - altering audit history
+  - suppressing alerts
+  - destructive forensic collection without approval
   autonomy_level: 1
 activity_policies:
   penetration_testing: activity_policies/penetration_testing.yaml

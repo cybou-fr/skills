@@ -1,393 +1,109 @@
-# CYBOU DevOps/SecOps Agent Skills Pack v4
+# CYBOU Agent Skills Pack v5.9
 
-Runtime-oriented, AgentSkills-compatible DevOps/SecOps skill library for CYBOU Worker or another autonomous/semi-autonomous AI worker.
+**Version:** 5.9.0  
+**Codename:** Forensics & Incident Case Management Layer  
+**Status:** Prototype / specification pack for a controlled DevOps + SecOps + SOC + Cloud SecOps + Identity + Forensics AI worker runtime.
 
-v3 keeps the portable AgentSkills structure:
+This README has been refreshed for v5.9. It replaces the older v4-oriented README text and is the current entrypoint for the package.
 
-```text
-skill-name/
-  SKILL.md
-  references/
-  templates/
-  scripts/
-```
+## What this pack is
 
-Each skill directory contains a required `SKILL.md` with YAML frontmatter:
+CYBOU v5.9 is a structured agent-skills and runtime-prototype package for building an enterprise AI worker that can assist with:
 
-```yaml
----
-name: skill-name
-description: Skill routing description
----
-```
+- DevOps and Rust engineering review;
+- SecOps and AI-security review;
+- SOC alert triage and detection engineering;
+- Cloud SecOps across AWS, Azure and GCP;
+- identity, secrets and key-management review;
+- incident forensics and case management;
+- controlled tool execution with policy, approval, sandboxing, audit and evidence capture.
 
-v3 also adds CYBOU runtime metadata and validation assets:
+The core security principle is:
 
 ```text
-registry.yaml
-risk_matrix.yaml
-tool_policies.yaml
-output_templates.yaml
-cybou.yaml
-schemas/
-policy_rules/
-tests/
-shared/
+assistant text must never become direct tool execution
 ```
 
-## What changed in v3
-
-Compared to v2:
-
-1. Added richer `registry.yaml`:
-   - `requires_tools`;
-   - `input_types`;
-   - `output_template`;
-   - `related_skills`;
-   - `do_not_use_for`;
-   - `autonomy_level`.
-
-2. Added stricter policy rules:
-   - `policy_rules/shell.yaml`;
-   - `policy_rules/kubectl.yaml`;
-   - `policy_rules/terraform.yaml`;
-   - `policy_rules/docker.yaml`;
-   - `policy_rules/git.yaml`;
-   - `policy_rules/database.yaml`;
-   - `policy_rules/cloud.yaml`;
-   - `policy_rules/package_managers.yaml`;
-   - `policy_rules/http_fetch.yaml`.
-
-3. Added machine-readable tests:
-   - destructive commands;
-   - prompt injection;
-   - secrets;
-   - Kubernetes;
-   - Terraform;
-   - database;
-   - CI/CD;
-   - pull requests.
-
-4. Added schemas:
-   - registry schema;
-   - tool policy schema;
-   - risk matrix schema;
-   - output templates schema;
-   - test scenarios schema.
-
-5. Added new skills:
-   - Helm read-only triage;
-   - Prometheus alert analysis;
-   - Kubernetes security review;
-   - GitHub security review;
-   - SIEM alert enrichment;
-   - package manager safety;
-   - HTTP fetch safety.
-
-## Runtime model
+Every potentially operational action should pass through:
 
 ```text
-User task
-  -> AGENTS.md global constraints
-  -> registry.yaml candidate skill routing
-  -> core/task-classification
-  -> core/environment-detection
-  -> risk_matrix.yaml risk calculation
-  -> selected skill SKILL.md
-  -> policy_rules + tool_policies.yaml enforcement
-  -> approval-request if required
-  -> tool execution or draft
+raw input
+  -> tool-specific normalizer
+  -> NormalizedAction
+  -> data-driven policy engine
+  -> scope / approval check
+  -> sandbox profile selection
+  -> execution boundary
+  -> bounded output
   -> redaction
-  -> output_templates.yaml report
-  -> audit trace
+  -> audit store
+  -> evidence store
+  -> case / forensic workflow when relevant
 ```
 
-## Core rule
+## Current package statistics
 
-`SKILL.md` guides behavior.  
-The runtime Tool Router enforces behavior.
-
-Never rely on text instructions alone to block dangerous actions.
-
-
-## v3.2 Penetration Testing Extension
-
-This release adds authorized defensive penetration testing support.
-
-Summary:
-
-- Skills: 45
-- Registry skills: 45
-- Output templates: 40
-- Policy rule files: 10
-- Test scenario files: 12
-- Test scenarios: 54
-
-Penetration testing is allowed only when explicit authorization, target scope, rules of engagement, and stop conditions are known.
-
-
-## v3.3 Pentest Hardening
-
-This release adds a dedicated penetration testing activity policy, scope schema/template, severity model, retest validation, evidence redaction and severity rating skills.
-
-Summary:
-
-- Skills: 48
-- Registry skills: 48
-- Output templates: 43
-- Policy rule files: 10
-- Activity policy files: 1
-- Test scenario files: 13
-- Test scenarios: 70
-
-Penetration testing remains defensive, authorized, scope-bound, and policy-gated.
-
-
-## v4 Runtime Integration
-
-This release turns the package into a CYBOU runtime integration pack.
-
-Summary:
-
-- Skills: 48
-- Registry skills: 48
-- Output templates: 43
-- Policy rule files: 10
-- Activity policy files: 1
-- Tool adapter files: 10
-- Scope object files: 3
-- Test scenario files: 14
-- Test scenarios: 76
-- Behavior scenarios checked: 76
-
-v4 adds tool adapters, autonomy profiles, scope objects, approval/audit schemas, skill graph and a behavior test runner scaffold.
-
-
-## v4.1 AI Security / LLM AppSec Extension
-
-This release adds defensive AI security skills for jailbreak defense, indirect prompt injection assessment, AI agent tool abuse review, RAG poisoning defense, model data leakage, model DoS/cost abuse, AI supply chain, AI memory/context safety and insecure output handling.
-
-Summary:
-
-- Skills: 58
-- Registry skills: 58
-- Output templates: 54
-- Policy rule files: 11
-- Activity policy files: 2
-- Tool adapter files: 11
-- Scope object files: 3
-- Test scenario files: 15
-- Test scenarios: 88
-- Behavior scenarios checked: 88
-
-AI security testing is defensive-only, scope-bound, and based on synthetic fixtures unless special authorization exists.
-
-
-## v4.2 Runtime Completeness
-
-This release focuses on runtime completeness rather than adding many new skills.
-
-Summary:
-
-- Total files: 160
-- Skills: 58
-- Registry skills: 58
-- Output templates: 54
-- Policy rule files: 11
-- Activity policy files: 2
-- Tool adapter files: 23
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 16
-- Test scenarios: 96
-- Behavior scenarios checked: 96
-
-v4.2 adds external tool cataloging, missing tool adapters, normalized action and policy decision schemas, task/tool-call state schemas, AI security scope objects, a profile decision matrix and stronger behavior-test scaffolding.
-
-
-## v4.3 Upstream Catalog Adapters
-
-This release adds CYBOU-native adapters inspired by public Anthropic and OpenAI Agent Skills catalogs. It does not vendor or copy upstream SKILL.md files.
-
-Summary:
-
-- Total files: 201
-- Skills: 91
-- Registry skills: 91
-- Output templates: 87
-- Policy rule files: 11
-- Activity policy files: 2
-- Tool adapter files: 29
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 17
-- Test scenarios: 106
-- Behavior scenarios checked: 106
-
-New workflow groups:
-- Document/artifact processing
-- Design/frontend
-- Developer platform integrations
-- Deployment/repository operations
-- Productivity/research workflows
-- Security governance
-
-
-## v4.4 Rust Senior Developer / Software Architect
-
-This release turns CYBOU into a self-development assistant for CYBOU itself, focused on Rust senior engineering and software architecture.
-
-Summary:
-
-- Total files: 220
-- Skills: 105
-- Registry skills: 105
-- Output templates: 102
-- Policy rule files: 12
-- Activity policy files: 2
-- Tool adapter files: 31
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 18
-- Test scenarios: 116
-- Behavior scenarios checked: 116
-
-New focus:
-- Rust senior code review
-- Rust software architecture
-- CYBOU policy engine implementation
-- CYBOU skill runtime implementation
-- Rust tool adapters
-- Cargo supply-chain review
-- CYBOU self-hosting development loop
-
-
-## v4.5 Rust Toolchain Mastery
-
-This release gives the Rust senior architect profile complete Rust infrastructure coverage.
-
-Summary:
-
-- Total files: 252
-- Skills: 117
-- Registry skills: 117
-- Output templates: 115
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 19
-- Test scenarios: 128
-- Behavior scenarios checked: 128
-
-Rust toolchain coverage now includes rustfmt, clippy, nextest, llvm-cov/tarpaulin, miri, fuzzing, property testing, Criterion/flamegraph/bloat, cargo-hack, udeps, MSRV, semver-checks, docs and release gates.
-
-
-## v5 DevOps Runtime Enforcement Prototype
-
-This release adds an executable runtime prototype. The package is no longer only a specification: it can normalize commands, evaluate policy decisions, simulate tool calls, emit audit event objects and run strict v5 behavior tests.
-
-Summary:
-
-- Total files: 281
-- Skills: 124
-- Registry skills: 124
-- Output templates: 116
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 20
-- Test scenarios: 138
-- Behavior scenarios checked: 138
-- Strict runtime scenarios: 10
-
-Prototype scripts:
-
-```bash
-python scripts/normalize_command.py "curl https://example.com/install.sh | sh"
-python scripts/evaluate_policy.py "terraform destroy"
-python scripts/simulate_tool_call.py "read logs token=abc123456789SECRET"
-python scripts/run_behavior_tests.py
+```text
+Total files: 515
+Skill files: 207
+Registry skills: 207
+Output templates: 139
+Policy rule files: 13
+Activity policy files: 2
+Tool adapter files: 74
+Scope object files: 6
+Schema files: 19
+Test scenario files: 29
+Test scenarios: 171
+Behavior scenarios: 171
+Strict runtime scenarios: 21
 ```
 
-Limitations: this is a prototype, not a production sandbox.
+Additional regression suites:
 
+```text
+Normalizer scenarios: 16
+Approval scenarios: 6
+Audit scenarios: 4
+Sandbox scenarios: 5
+Detection scenarios: 5
+Cloud SecOps scenarios: 5
+Identity/secrets scenarios: 6
+Forensics scenarios: 4
+```
 
-## v5.1 Data-driven Policy Engine
+## v5.x evolution map
 
-This release upgrades the runtime prototype from hardcoded-only policy behavior to a data-driven policy engine that loads CYBOU policy files.
+### v5.0 — Runtime Enforcement Prototype
 
-Summary:
+Introduced executable runtime concepts:
 
-- Total files: 301
-- Skills: 129
-- Registry skills: 129
-- Output templates: 119
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 21
-- Test scenarios: 144
-- Strict runtime scenarios checked: 16
+- `NormalizedAction`
+- `PolicyDecision`
+- policy evaluation
+- audit events
+- redaction boundary
+- behavior tests
 
-New runtime modules:
+### v5.1 — Data-driven Policy Engine
+
+Moved from hardcoded-only policy behavior toward data-driven policy.
+
+Key files:
 
 ```text
 runtime_prototype/policy_loader.py
 runtime_prototype/rule_matcher.py
 runtime_prototype/risk_engine.py
 runtime_prototype/profile_engine.py
+scripts/inspect_policy_bundle.py
 ```
 
-New command:
+### v5.2 — Tool-specific Normalizers
 
-```bash
-python scripts/inspect_policy_bundle.py
-```
+Replaced one general heuristic parser with tool-specific modules.
 
-The policy evaluator now loads `risk_matrix.yaml`, `tool_policies.yaml`, `policy_rules/`, `activity_policies/`, `autonomy_profiles.yaml`, `profile_decision_matrix.yaml` and `scope_objects/`.
-
-Limitations: this is still a prototype. Production implementation should move this logic into Rust crates and replace regex-only matching with tool-specific AST-like normalizers.
-
-
-## v5.2 Tool-specific Normalizers
-
-This release moves normalization from a single general heuristic parser into tool-specific modules.
-
-Summary:
-
-- Total files: 349
-- Skills: 138
-- Registry skills: 138
-- Output templates: 121
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 22
-- Test scenarios: 149
-- Normalizer scenarios: 16
-- Strict runtime scenarios checked: 21
-
-New package:
-
-```text
-runtime_prototype/tool_normalizers/
-```
-
-New command:
-
-```bash
-python scripts/run_normalizer_tests.py
-```
-
-Supported tool-specific normalizers:
+Supported normalizers:
 
 ```text
 shell
@@ -400,253 +116,437 @@ database
 http_fetch
 ```
 
-Limitations: this is still a Python prototype. Production implementation should port normalizers to Rust and make shell/kubectl/terraform parsers AST-like where possible.
-
-
-## v5.3 Scope & Approval Service Prototype
-
-This release adds scoped approval service prototype.
-
-Summary:
-
-- Total files: 365
-- Skills: 143
-- Registry skills: 143
-- Output templates: 123
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 23
-- Test scenarios: 151
-- Approval scenarios: 6
-
-New modules:
+Key directory:
 
 ```text
-runtime_prototype/scope_matcher.py
+runtime_prototype/tool_normalizers/
+```
+
+### v5.3 — Scope & Approval Service Prototype
+
+Added scoped approvals:
+
+- local approval store;
+- approval CLI;
+- expiration;
+- revocation;
+- action/scope matching;
+- `approval_required -> allow_with_approval` only when valid;
+- hard-deny decisions cannot be overridden by approval.
+
+Key files:
+
+```text
 runtime_prototype/approval_store.py
+runtime_prototype/scope_matcher.py
+scripts/approval_cli.py
+scripts/run_approval_tests.py
 ```
 
-New commands:
+### v5.4 — Durable Audit & Evidence Store Prototype
 
-```bash
-python scripts/approval_cli.py create --scope terraform_workspace --actions apply --ttl 900 --by operator
-python scripts/approval_cli.py evaluate "terraform apply"
-python scripts/run_approval_tests.py
-```
+Added durable/tamper-evident audit and evidence handling:
 
-Limitations: this is a local JSON approval-store prototype. Production needs authenticated durable approval service, signed audit trail and UI/API approval flow.
+- append-only audit JSONL;
+- sequence numbers;
+- previous hash;
+- record hash;
+- verification;
+- redacted evidence capture;
+- evidence SHA-256 metadata.
 
-
-## v5.4 Durable Audit & Evidence Store Prototype
-
-This release adds append-only audit and redaction-aware evidence store prototype.
-
-Summary:
-
-- Total files: 381
-- Skills: 149
-- Registry skills: 149
-- Output templates: 125
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 24
-- Test scenarios: 153
-- Audit scenarios: 4
-
-New modules:
+Key files:
 
 ```text
 runtime_prototype/audit_store.py
 runtime_prototype/evidence_store.py
+scripts/audit_cli.py
+scripts/run_audit_tests.py
 ```
 
-New commands:
+### v5.5 — Sandbox & Tool Execution Boundary Prototype
 
-```bash
-python scripts/audit_cli.py append --message "manual event"
-python scripts/audit_cli.py capture-evidence --text "token=abc123456789SECRET failed"
-python scripts/audit_cli.py verify
-python scripts/run_audit_tests.py
-```
+Added controlled execution boundary:
 
-Limitations: this is a prototype. Production needs authenticated durable storage, WORM/append-only controls, signed audit records, retention policies and secure export controls.
+- sandbox profiles;
+- dry-run default;
+- allowlisted low-risk execution;
+- timeout and output caps;
+- network/filesystem boundary concepts;
+- execution result evidence capture.
 
-
-## v5.5 Sandbox & Tool Execution Boundary Prototype
-
-This release adds sandbox profile selection and a central tool execution boundary prototype.
-
-Summary:
-
-- Total files: 400
-- Skills: 156
-- Registry skills: 156
-- Output templates: 127
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 44
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 25
-- Test scenarios: 155
-- Sandbox scenarios: 5
-
-New modules:
+Key files:
 
 ```text
+sandbox_profiles.yaml
 runtime_prototype/sandbox_profiles.py
 runtime_prototype/execution_boundary.py
 runtime_prototype/tool_router.py
+scripts/tool_router_cli.py
+scripts/run_sandbox_tests.py
 ```
 
-New commands:
+### v5.6 — SOC & Detection Engineering Layer
 
-```bash
-python scripts/tool_router_cli.py "cargo clippy --workspace"
-python scripts/tool_router_cli.py "terraform apply"
-python scripts/run_sandbox_tests.py
-```
+Added SOC/detection engineering layer:
 
-Limitations: this is still a Python prototype. Production requires OS/container sandboxing, seccomp/AppArmor or equivalent, credential isolation, WORM audit storage and Rust implementation.
+- IOC extraction;
+- alert triage;
+- Sigma draft generation;
+- YARA draft generation;
+- threat hunting query drafts;
+- timeline support;
+- case workflow foundation.
 
-
-## v5.6 SOC & Detection Engineering Layer
-
-This release adds SOC alert triage and detection engineering prototype capabilities.
-
-Summary:
-
-- Total files: 436
-- Skills: 170
-- Registry skills: 170
-- Output templates: 131
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 53
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 26
-- Test scenarios: 159
-- Detection scenarios: 5
-
-New modules:
+Key files:
 
 ```text
 runtime_prototype/ioc_extractor.py
 runtime_prototype/detection_rules.py
 runtime_prototype/incident_timeline.py
 runtime_prototype/soc_triage.py
+scripts/soc_cli.py
+scripts/run_detection_tests.py
 ```
 
-New command:
+### v5.7 — Cloud SecOps Deepening
 
-```bash
-python scripts/soc_cli.py extract-iocs --text "login from 203.0.113.10 to https://evil.example.com/a.exe"
-python scripts/run_detection_tests.py
+Added provider-specific cloud security coverage:
+
+```text
+AWS CloudTrail
+AWS GuardDuty
+AWS Security Hub
+AWS IAM Access Analyzer
+Azure Activity Log
+Azure Entra ID
+Azure Defender
+GCP Audit Logs
+GCP Security Command Center
 ```
 
-Limitations: production requires real SIEM/EDR/cloud connectors, detection-as-code review, ATT&CK mapping depth and case management integration.
-
-
-## v5.7 Cloud SecOps Deepening
-
-This release deepens Cloud SecOps for AWS, Azure and GCP.
-
-Summary:
-
-- Total files: 463
-- Skills: 182
-- Registry skills: 182
-- Output templates: 134
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 61
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 27
-- Test scenarios: 163
-- Cloud SecOps scenarios: 5
-
-New module:
+Key files:
 
 ```text
 runtime_prototype/cloud_secops.py
+scripts/cloud_secops_cli.py
+scripts/run_cloud_secops_tests.py
 ```
 
-New command:
+### v5.8 — Identity, Secrets & Key Management Deepening
 
-```bash
-python scripts/cloud_secops_cli.py triage-event --event-json '{"provider":"aws","eventName":"CreateAccessKey"}'
-python scripts/run_cloud_secops_tests.py
-```
+Added identity, secrets and key-management workflows:
 
-Supported provider areas:
+- identity lifecycle risk;
+- privileged access review;
+- OAuth app consent review;
+- secrets exposure triage;
+- secret rotation planning;
+- Vault / Secrets Manager review;
+- KMS/key policy review;
+- access key hygiene;
+- session token/cookie review;
+- MFA/conditional access review.
 
-```text
-AWS CloudTrail / GuardDuty / Security Hub / IAM Access Analyzer
-Azure Activity Log / Entra ID / Defender for Cloud
-GCP Audit Logs / Security Command Center
-Cloud IAM least-privilege review
-Cloud logging control-plane review
-Cloud containment planning
-```
-
-Limitations: this is still a prototype. Production needs real cloud APIs, tenant-aware scoping, identity binding, cloud-native parsers and provider-specific enrichment.
-
-
-## v5.8 Identity, Secrets & Key Management Deepening
-
-This release deepens identity security, secrets handling and key-management workflows.
-
-Summary:
-
-- Total files: 491
-- Skills: 195
-- Registry skills: 195
-- Output templates: 137
-- Policy rule files: 13
-- Activity policy files: 2
-- Tool adapter files: 69
-- Scope object files: 6
-- Schema files: 19
-- Test scenario files: 28
-- Test scenarios: 167
-- Identity/secrets scenarios: 6
-
-New module:
+Key files:
 
 ```text
 runtime_prototype/identity_secrets.py
+scripts/identity_secrets_cli.py
+scripts/run_identity_secrets_tests.py
 ```
 
-New command:
+### v5.9 — Forensics & Incident Case Management Layer
+
+Added incident case and forensic workflow prototype:
+
+- case records;
+- forensic artifact inventory;
+- chain-of-custody metadata;
+- redacted evidence attachment;
+- timeline reconstruction;
+- post-incident evidence pack;
+- legal hold / retention planning.
+
+Key files:
+
+```text
+runtime_prototype/forensics_case.py
+scripts/case_cli.py
+scripts/run_forensics_tests.py
+```
+
+## Important runtime semantics
+
+### Policy before execution
+
+```text
+raw command
+  -> normalize
+  -> evaluate policy
+  -> apply approval/scope
+  -> select sandbox
+  -> execute only if allowed
+```
+
+### Approval is scoped
+
+Approval can satisfy `approval_required` only when scope, action and expiration match.
+
+```text
+terraform apply + valid approval(scope=terraform_workspace, actions=apply)
+  -> allow_with_approval
+```
+
+Approval must not override hard deny:
+
+```text
+terraform destroy -auto-approve + approval(scope=terraform_workspace, actions=destroy)
+  -> deny_by_default
+```
+
+### Dry-run is default
+
+The tool router defaults to dry-run. In reports:
+
+```text
+would_execute=true
+```
+
+does not mean the command actually ran. Actual execution is only for allowlisted low-risk commands when explicitly enabled.
+
+### Secret values must not be exposed
+
+Secret-bearing evidence must be redacted before model exposure, audit/evidence storage or case export.
+
+```text
+token=abc123456789SECRET
+  -> <REDACTED>
+```
+
+### Audit/evidence must be verifiable
+
+Audit records use a simple hash-chain prototype:
+
+```text
+sequence
+previous_hash
+record_hash
+```
+
+Evidence records include metadata and content digests.
+
+### Forensics must preserve custody
+
+Case evidence includes:
+
+```text
+evidence_id
+source
+collector
+timestamp
+sha256
+redaction_applied
+chain_of_custody
+iocs
+```
+
+## Main directories
+
+```text
+core/
+devops/
+secops/
+productivity/
+runtime_prototype/
+scripts/
+templates/
+policy_rules/
+activity_policies/
+tool_adapters/
+scope_objects/
+schemas/
+tests/
+normalizer_tests/
+approval_tests/
+audit_tests/
+sandbox_tests/
+detection_tests/
+cloud_secops_tests/
+identity_secrets_tests/
+forensics_tests/
+examples/
+```
+
+## Main runtime prototype modules
+
+```text
+runtime_prototype/models.py
+runtime_prototype/normalizers.py
+runtime_prototype/tool_normalizers/
+runtime_prototype/policy_loader.py
+runtime_prototype/rule_matcher.py
+runtime_prototype/risk_engine.py
+runtime_prototype/profile_engine.py
+runtime_prototype/policy.py
+runtime_prototype/approval_store.py
+runtime_prototype/scope_matcher.py
+runtime_prototype/audit.py
+runtime_prototype/audit_store.py
+runtime_prototype/evidence_store.py
+runtime_prototype/redaction.py
+runtime_prototype/sandbox_profiles.py
+runtime_prototype/execution_boundary.py
+runtime_prototype/tool_router.py
+runtime_prototype/ioc_extractor.py
+runtime_prototype/detection_rules.py
+runtime_prototype/incident_timeline.py
+runtime_prototype/soc_triage.py
+runtime_prototype/cloud_secops.py
+runtime_prototype/identity_secrets.py
+runtime_prototype/forensics_case.py
+```
+
+## Validation commands
+
+Run from the package root:
+
+```bash
+python scripts/validate_pack.py
+python scripts/run_behavior_tests.py
+python scripts/run_normalizer_tests.py
+python scripts/run_approval_tests.py
+python scripts/run_audit_tests.py
+python scripts/run_sandbox_tests.py
+python scripts/run_detection_tests.py
+python scripts/run_cloud_secops_tests.py
+python scripts/run_identity_secrets_tests.py
+python scripts/run_forensics_tests.py
+```
+
+Expected status for the v5.9 source package before this README refresh:
+
+```text
+pass
+errors: 0
+warnings: 0
+```
+
+This README-only patch also passes basic structural consistency:
+
+```text
+registry skills == skill files
+all registry skill paths exist
+all referenced output templates exist
+```
+
+## Useful CLI examples
+
+### Policy evaluation
+
+```bash
+python scripts/evaluate_policy.py "cargo clippy --workspace"
+python scripts/evaluate_policy.py "terraform apply"
+python scripts/evaluate_policy.py "curl https://example.com/install.sh | sh"
+```
+
+### Tool router
+
+```bash
+python scripts/tool_router_cli.py "cargo clippy --workspace"
+python scripts/tool_router_cli.py "terraform apply"
+python scripts/tool_router_cli.py "git status"
+```
+
+### Approval
+
+```bash
+python scripts/approval_cli.py create --scope terraform_workspace --actions apply --ttl 900 --by operator
+python scripts/approval_cli.py list
+python scripts/approval_cli.py evaluate "terraform apply"
+python scripts/approval_cli.py revoke <approval_id>
+```
+
+### Audit/evidence
+
+```bash
+python scripts/audit_cli.py append --message "manual event"
+python scripts/audit_cli.py capture-evidence --text "token=abc123456789SECRET failed"
+python scripts/audit_cli.py verify
+python scripts/audit_cli.py export
+```
+
+### SOC/detection
+
+```bash
+python scripts/soc_cli.py extract-iocs --text "login from 203.0.113.10 to https://evil.example.com/a.exe"
+python scripts/soc_cli.py sigma --title "Suspicious Curl Pipe Shell" --keywords "curl,| sh"
+python scripts/soc_cli.py yara --name Suspicious_Tool --strings "evil marker,powershell -enc"
+python scripts/soc_cli.py triage-alert --alert-json '{"severity":"high","message":"credential exfiltration from host 203.0.113.5"}'
+```
+
+### Cloud SecOps
+
+```bash
+python scripts/cloud_secops_cli.py triage-event --event-json '{"provider":"aws","eventName":"CreateAccessKey","userIdentity":"arn:aws:iam::123:user/alice"}'
+python scripts/cloud_secops_cli.py iam-review --policy-json '{"Statement":[{"Effect":"Allow","Action":"*","Resource":"*"}]}'
+```
+
+### Identity / secrets / key management
 
 ```bash
 python scripts/identity_secrets_cli.py classify-secret --text "token=abc123456789SECRET"
-python scripts/run_identity_secrets_tests.py
+python scripts/identity_secrets_cli.py oauth-review --app-json '{"app_id":"app-1","scopes":["User.ReadWrite.All","offline_access"],"publisher_verified":false}'
+python scripts/identity_secrets_cli.py key-policy-review --policy-json '{"Statement":[{"Effect":"Allow","Principal":"*","Action":"kms:*","Resource":"*"}]}'
+python scripts/identity_secrets_cli.py identity-review --principal-json '{"id":"admin@example.com","privileged":true,"mfa_enabled":false}'
 ```
 
-Supported areas:
+### Forensics / case management
+
+```bash
+python scripts/case_cli.py create --title "Suspicious IAM Activity" --severity high --owner soc
+python scripts/case_cli.py evidence --case-id <case_id> --source cloudtrail --content "2026-06-10T12:00:00Z CreateAccessKey from 203.0.113.7"
+python scripts/case_cli.py timeline --case-id <case_id> --summary "CreateAccessKey event" --source cloudtrail
+python scripts/case_cli.py export --case-id <case_id>
+```
+
+## Security boundaries
+
+This package should be treated as a prototype/specification pack, not as a production sandbox.
+
+Production implementation still requires:
+
+- Rust runtime implementation;
+- OS/container sandboxing;
+- seccomp/AppArmor/SELinux or equivalent;
+- credential isolation;
+- tenant-aware authorization;
+- durable authenticated approval service;
+- WORM or signed audit storage;
+- real cloud/IdP/SIEM/EDR integrations;
+- stronger secret and PII detection;
+- signed case/evidence custody;
+- deployment hardening and operational monitoring.
+
+## Recommended next step
+
+The v5.x specification/prototype line is now broad enough. The next major milestone should be:
 
 ```text
-Identity lifecycle risk
-Privileged access review
-Service account key review
-OAuth/OIDC app consent review
-Secrets exposure triage
-Secrets rotation orchestration planning
-Vault / Secrets Manager review
-KMS / key policy review
-Access key hygiene
-Session token and cookie review
-MFA / conditional access review
-Identity incident containment planning
+v6 — Rust Runtime Skeleton
 ```
 
-Limitations: this is still a prototype. Production needs real IdP/secrets manager APIs, tenant-aware authorization, secret-scanner coverage expansion and controlled rotation workflows.
+Recommended v6 crates:
+
+```text
+cybou-core
+cybou-policy
+cybou-tools
+cybou-runtime
+cybou-audit
+cybou-skills
+cybou-cli
+cybou-agent
+```
+
+v6 should port the runtime contracts into Rust while keeping this v5.9 pack as the behavioral/specification corpus.

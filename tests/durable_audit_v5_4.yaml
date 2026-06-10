@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: v54-audit-cli
   input: append list verify export durable audit events

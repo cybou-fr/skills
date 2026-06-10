@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: crashloop-prod
   input: Production pod api is CrashLoopBackOff after deploy

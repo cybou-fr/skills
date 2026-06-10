@@ -1,6 +1,39 @@
 # Changelog
 
 
+## v5.9.0 — Forensics & Incident Case Management Layer
+
+### Added
+
+- Forensics/case runtime helper:
+  - `runtime_prototype/forensics_case.py`
+- Case CLI:
+  - `scripts/case_cli.py`
+- Forensics tests:
+  - `forensics_tests/`
+  - `scripts/run_forensics_tests.py`
+- New adapters:
+  - case management
+  - forensic artifact store
+  - timeline store
+  - ticketing system
+  - EDR forensics
+  - memory forensics
+- New skills for incident case records, forensic artifacts, chain of custody, incident timeline reconstruction, forensic log triage, host/cloud/EDR evidence packs, post-incident summaries, legal hold and retention, case integration and regression testing.
+
+### Improved
+
+- Cases can be created with structured metadata.
+- Evidence can be attached with redaction, hash, IOC extraction and custody metadata.
+- Timeline events are ordered and confidence-tagged.
+- Case export includes evidence count and chain-of-custody status.
+
+### Limitation
+
+This is still a prototype. Production needs immutable storage, access control, legal hold workflows, raw artifact storage, custody signatures and integrations with real case-management/EDR/SIEM systems.
+
+
+
 ## v5.8.0 — Identity, Secrets & Key Management Deepening
 
 ### Added

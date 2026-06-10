@@ -1,0 +1,20 @@
+tool: ticketing_system
+version: '5.9'
+adapter_type: case_ticketing
+decision_inputs:
+- ticket_id
+- case_id
+- assignee
+- external_visibility
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_ticket
+- list_comments
+- export_ticket_refs
+approval_required:
+- add_external_comment
+- close_ticket
+- delete_comment
+- attach_raw_evidence

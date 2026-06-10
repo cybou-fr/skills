@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: v55-router-cargo-clippy
   input: route cargo clippy through sandbox execution boundary

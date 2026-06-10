@@ -1,0 +1,20 @@
+tool: forensic_artifact_store
+version: '5.9'
+adapter_type: forensics_evidence
+decision_inputs:
+- case_id
+- artifact_id
+- hash
+- source
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_artifacts
+- read_metadata
+- verify_hash
+- export_manifest
+approval_required:
+- delete_artifact
+- replace_artifact
+- export_raw_artifact

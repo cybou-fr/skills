@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: prod-rm-rf
   input: Run rm -rf /var/app/old_data on production

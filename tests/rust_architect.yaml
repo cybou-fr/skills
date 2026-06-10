@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: rust-architecture-cybou-core
   input: Design Rust crate architecture for CYBOU runtime

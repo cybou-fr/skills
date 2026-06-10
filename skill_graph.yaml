@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 description: Skill relationship graph for CYBOU runtime routing and co-loading.
 global_always_consider:
 - task-classification
@@ -2275,3 +2275,159 @@ skills:
     - risk-and-approval
     may_escalate_to: *id167
     output_template: identity_secret_key_review_report
+  incident-case-record-management:
+    path: secops/incident-case-record-management/SKILL.md
+    category: secops
+    related: &id168
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id168
+    output_template: forensics_case_report
+  forensic-artifact-inventory:
+    path: secops/forensic-artifact-inventory/SKILL.md
+    category: secops
+    related: &id169
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id169
+    output_template: forensics_case_report
+  chain-of-custody-review:
+    path: secops/chain-of-custody-review/SKILL.md
+    category: secops
+    related: &id170
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id170
+    output_template: forensics_case_report
+  incident-timeline-reconstruction:
+    path: secops/incident-timeline-reconstruction/SKILL.md
+    category: secops
+    related: &id171
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id171
+    output_template: forensics_case_report
+  forensic-log-triage:
+    path: secops/forensic-log-triage/SKILL.md
+    category: secops
+    related: &id172
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id172
+    output_template: forensics_case_report
+  host-forensics-triage-plan:
+    path: secops/host-forensics-triage-plan/SKILL.md
+    category: secops
+    related: &id173
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id173
+    output_template: forensics_case_report
+  cloud-forensics-evidence-pack:
+    path: secops/cloud-forensics-evidence-pack/SKILL.md
+    category: secops
+    related: &id174
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id174
+    output_template: forensics_case_report
+  edr-forensics-evidence-pack:
+    path: secops/edr-forensics-evidence-pack/SKILL.md
+    category: secops
+    related: &id175
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id175
+    output_template: forensics_case_report
+  post-incident-case-summary:
+    path: secops/post-incident-case-summary/SKILL.md
+    category: secops
+    related: &id176
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id176
+    output_template: forensics_case_report
+  legal-hold-and-retention-plan:
+    path: secops/legal-hold-and-retention-plan/SKILL.md
+    category: secops
+    related: &id177
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id177
+    output_template: forensics_case_report
+  case-management-integration-review:
+    path: secops/case-management-integration-review/SKILL.md
+    category: secops
+    related: &id178
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id178
+    output_template: forensics_case_report
+  forensics-regression-suite:
+    path: secops/forensics-regression-suite/SKILL.md
+    category: secops
+    related: &id179
+    - incident-timeline-builder
+    - post-incident-evidence-pack
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id179
+    output_template: forensics_case_report

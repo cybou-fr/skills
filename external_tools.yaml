@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 description: Catalog of abstract/external tools used by skills but not necessarily implemented as direct command tools.
 defaults:
   read_only: true
@@ -324,19 +324,15 @@ tools:
     - deploy_rule
     - delete_evidence
   case_management:
-    type: case_api
+    type: forensics_case_management
     read_only: true
     redaction_required: true
-    audit_required: true
     adapter: tool_adapters/case_management.yaml
     approval_required_for:
-    - close_alert
-    - suppress_detection
-    - block_ip
-    - disable_user
-    - quarantine_host
-    - deploy_rule
-    - delete_evidence
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure
   sigma_repository:
     type: detection_repository
     read_only: true
@@ -576,3 +572,53 @@ tools:
     - session_revocation
     - key_deletion
     - policy_update
+  forensic_artifact_store:
+    type: forensics_case_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/forensic_artifact_store.yaml
+    approval_required_for:
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure
+  timeline_store:
+    type: forensics_case_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/timeline_store.yaml
+    approval_required_for:
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure
+  ticketing_system:
+    type: forensics_case_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/ticketing_system.yaml
+    approval_required_for:
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure
+  edr_forensics:
+    type: forensics_case_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/edr_forensics.yaml
+    approval_required_for:
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure
+  memory_forensics:
+    type: forensics_case_management
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/memory_forensics.yaml
+    approval_required_for:
+    - delete_or_modify_evidence
+    - external_export
+    - destructive_collection
+    - case_closure

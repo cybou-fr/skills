@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: v56-ioc-extraction
   input: extract IOCs from SIEM alert and build enrichment plan

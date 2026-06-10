@@ -1,0 +1,21 @@
+tool: edr_forensics
+version: '5.9'
+adapter_type: endpoint_forensics
+decision_inputs:
+- host
+- process
+- file_hash
+- time_range
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_process_tree
+- read_file_events
+- read_network_events
+- export_detection_metadata
+approval_required:
+- isolate_host
+- kill_process
+- delete_file
+- collect_full_disk_image

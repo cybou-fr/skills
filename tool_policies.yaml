@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 default_policy: deny_write_without_approval
 policy_rule_directory: policy_rules/
 enforcement_note: Runtime Tool Router must enforce these rules. SKILL.md is guidance only.

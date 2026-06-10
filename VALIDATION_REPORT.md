@@ -1,20 +1,35 @@
 # Validation Report
 
-Generated: 2026-06-10T20:25:57.667647+00:00
+Generated: 2026-06-10T21:02:05.111663+00:00
+
+README was refreshed for v5.9 and no longer presents v4 as the current package.
+
+## README patch validation
+
+- Missing registry skill paths: 0
+- Missing output templates: 0
+- Registry skills: 207
+- Skill files: 207
+- Source package previous validation: errors 0, warnings 0
+
+
+# Validation Report
+
+Generated: 2026-06-10T20:55:18.337224+00:00
 
 ## Structural validation
 
-- Total files: 491
-- Skill files: 195
-- Registry skills: 195
-- Output templates: 137
+- Total files: 515
+- Skill files: 207
+- Registry skills: 207
+- Output templates: 139
 - Policy rule files: 13
 - Activity policy files: 2
-- Tool adapter files: 69
+- Tool adapter files: 74
 - Scope object files: 6
 - Schema files: 19
-- Test scenario files: 28
-- Test scenarios: 167
+- Test scenario files: 29
+- Test scenarios: 171
 - Validation errors: 0
 - Validation warnings: 0
 
@@ -27,106 +42,32 @@ Generated: 2026-06-10T20:25:57.667647+00:00
 - Detection scenarios: 5
 - Cloud SecOps scenarios: 5
 - Identity/secrets scenarios: 6
-- Behavior scenarios: 167
+- Forensics scenarios: 4
+- Behavior scenarios: 171
 - Strict runtime scenarios: 21
 
-## Demo Identity/Secrets/KMS
+## Demo Forensics Case
 
 ```json
 {
-  "secret_aws_key": {
-    "finding_count": 1,
-    "severity": "critical",
-    "findings": [
-      {
-        "kind": "aws_access_key_id",
-        "start": 8,
-        "end": 28,
-        "value_redacted": true,
-        "preview": "<REDACTED>"
-      }
-    ],
-    "read_only_next_steps": [
-      "identify storage location and exposure window",
-      "map consumers/dependencies",
-      "check recent use logs without printing secret",
-      "prepare rotation/revocation plan"
-    ],
-    "approval_required_actions": [
-      "rotate secret",
-      "revoke session/token",
-      "delete exposed credential",
-      "update dependent applications"
-    ]
-  },
-  "oauth_high_risk": {
-    "app_id": "app-1",
-    "publisher": "Unknown",
-    "severity": "high",
-    "risky_scopes": [
-      "User.ReadWrite.All",
-      "offline_access"
-    ],
-    "reasons": [
-      "high_risk_scopes",
-      "insecure_redirect_uri",
-      "unverified_publisher"
-    ],
-    "approval_required_actions": [
-      "remove consent",
-      "disable app",
-      "delete app credential"
-    ]
-  },
-  "kms_wildcard": {
-    "severity": "high",
-    "finding_count": 2,
-    "findings": [
-      {
-        "risk": "high",
-        "issue": "wildcard_principal_or_action"
-      },
-      {
-        "risk": "high",
-        "issue": "kms:*"
-      }
-    ],
-    "read_only_next_steps": [
-      "collect key usage metadata",
-      "review grants/bindings",
-      "verify rotation and deletion window"
-    ],
-    "approval_required_actions": [
-      "change key policy",
-      "disable/delete key",
-      "revoke grant",
-      "change rotation schedule"
-    ]
-  },
-  "identity_admin_no_mfa": {
-    "principal": "admin@example.com",
-    "severity": "high",
-    "reasons": [
-      "privileged_without_mfa"
-    ],
-    "approval_required_actions": [
-      "disable principal",
-      "remove role",
-      "revoke sessions",
-      "rotate/delete service account key"
-    ]
-  },
+  "case_id": "7c36e022-5558-42b3-bd7a-85d5f78f9186",
+  "evidence_id": "75a8526b-3c83-4e4d-bf7c-e5dd330ec666",
+  "evidence_redaction_applied": true,
+  "note_redaction_applied": true,
+  "timeline_event_count": 1,
+  "evidence_count": 1,
+  "chain_of_custody_valid": true,
   "audit_valid": true,
-  "evidence_valid": true
+  "evidence_store_valid": true
 }
 ```
 
 ## Commands
 
 ```bash
-python scripts/identity_secrets_cli.py classify-secret --text "token=abc123456789SECRET"
-python scripts/identity_secrets_cli.py oauth-review --app-json '{"app_id":"app-1","scopes":["User.ReadWrite.All","offline_access"],"publisher_verified":false}'
-python scripts/identity_secrets_cli.py key-policy-review --policy-json '{"Statement":[{"Effect":"Allow","Principal":"*","Action":"kms:*","Resource":"*"}]}'
-python scripts/identity_secrets_cli.py identity-review --principal-json '{"id":"admin@example.com","privileged":true,"mfa_enabled":false}'
-python scripts/run_identity_secrets_tests.py
+python scripts/case_cli.py create --title "Suspicious IAM Activity" --severity high --owner soc
+python scripts/case_cli.py evidence --case-id <case_id> --source cloudtrail --content "2026-06-10T12:00:00Z CreateAccessKey from 203.0.113.7"
+python scripts/case_cli.py timeline --case-id <case_id> --summary "CreateAccessKey event" --source cloudtrail
+python scripts/case_cli.py export --case-id <case_id>
+python scripts/run_forensics_tests.py
 ```

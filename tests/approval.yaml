@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 scenarios:
 - id: vague-approval
   input: User says 'yes fix it' after a high-risk production issue

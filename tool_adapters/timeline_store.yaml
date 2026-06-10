@@ -1,0 +1,18 @@
+tool: timeline_store
+version: '5.9'
+adapter_type: incident_timeline
+decision_inputs:
+- case_id
+- event_id
+- source
+- confidence
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- list_events
+- read_timeline
+- export_timeline
+approval_required:
+- delete_event
+- modify_confirmed_event

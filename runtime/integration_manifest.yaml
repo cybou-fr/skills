@@ -1,4 +1,4 @@
-version: '5.8'
+version: '5.9'
 name: cybou-runtime-integration
 description: Runtime integration contract for CYBOU DevOps/SecOps/Pentest Agent Skills Pack.
 boot_sequence:
@@ -63,6 +63,9 @@ runtime_components:
   identity_secrets: runtime_prototype/identity_secrets.py
   identity_secrets_cli: scripts/identity_secrets_cli.py
   identity_secrets_test_runner: scripts/run_identity_secrets_tests.py
+  forensics_case: runtime_prototype/forensics_case.py
+  case_cli: scripts/case_cli.py
+  forensics_test_runner: scripts/run_forensics_tests.py
 hard_requirements:
 - tool calls must be intercepted before execution
 - policy decision must be computed before execution
@@ -116,3 +119,8 @@ hard_requirements:
 - identity and secret mutating actions require approval
 - hard deny must protect secret exfiltration and evidence deletion
 - KMS/key deletion and policy updates require approval
+- forensic evidence must preserve chain-of-custody metadata
+- case notes must distinguish analysis from confirmed facts
+- evidence content must be redacted before model exposure
+- deleting or altering evidence must be denied or approval-gated
+- case exports must include custody status

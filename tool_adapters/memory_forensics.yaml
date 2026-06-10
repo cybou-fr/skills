@@ -1,0 +1,19 @@
+tool: memory_forensics
+version: '5.9'
+adapter_type: host_forensics
+decision_inputs:
+- host
+- image_id
+- hash
+- collector
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_metadata
+- verify_hash
+- list_strings_summary
+approval_required:
+- collect_memory_image
+- export_raw_memory
+- delete_image

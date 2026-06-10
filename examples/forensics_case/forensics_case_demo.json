@@ -1,0 +1,11 @@
+{
+  "case_id": "7c36e022-5558-42b3-bd7a-85d5f78f9186",
+  "evidence_id": "75a8526b-3c83-4e4d-bf7c-e5dd330ec666",
+  "evidence_redaction_applied": true,
+  "note_redaction_applied": true,
+  "timeline_event_count": 1,
+  "evidence_count": 1,
+  "chain_of_custody_valid": true,
+  "audit_valid": true,
+  "evidence_store_valid": true
+}
