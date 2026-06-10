@@ -1,0 +1,59 @@
+version: '5.5'
+profiles:
+  no_execution:
+    description: No execution allowed; return blocked/simulated result only.
+    network: deny
+    filesystem: none
+    max_seconds: 0
+    max_output_bytes: 0
+    execution: deny
+  readonly_local:
+    description: Safe local read-only commands.
+    network: deny
+    filesystem: read_only_workdir
+    max_seconds: 10
+    max_output_bytes: 65536
+    execution: dry_run_or_allowlisted
+  repo_quality:
+    description: Repository quality commands such as cargo check/test/fmt/clippy in local workspace.
+    network: deny
+    filesystem: workspace_read_write_limited
+    max_seconds: 120
+    max_output_bytes: 262144
+    execution: allowlisted
+  network_fetch_restricted:
+    description: Restricted HTTP fetch without shell piping.
+    network: allowlisted_hosts_only
+    filesystem: temp_only
+    max_seconds: 20
+    max_output_bytes: 131072
+    execution: allowlisted
+  approval_required_execution:
+    description: Reserved profile for approved high-risk operations; prototype remains simulation-only.
+    network: deny_by_default
+    filesystem: scoped
+    max_seconds: 30
+    max_output_bytes: 131072
+    execution: simulate_only_in_prototype
+  blocked:
+    description: Blocked/denied operation.
+    network: deny
+    filesystem: none
+    max_seconds: 0
+    max_output_bytes: 0
+    execution: deny
+denied_paths:
+- /
+- /etc
+- /var/run/docker.sock
+- /root
+- /home
+- /var/lib
+- /proc
+- /sys
+default_environment_allowlist:
+- PATH
+- HOME
+- USER
+- LANG
+- LC_ALL

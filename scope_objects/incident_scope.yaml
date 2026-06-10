@@ -1,0 +1,14 @@
+scope_type: incident_response
+owner: ''
+environment: unknown
+targets: []
+allowed_actions:
+- read_only_evidence_collection
+- timeline_building
+- containment_plan_draft
+denied_actions:
+- delete_logs
+- purge_evidence
+- external_notification_without_authorization
+time_window: ''
+approval_reference: ''

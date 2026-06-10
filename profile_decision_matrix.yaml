@@ -1,0 +1,37 @@
+version: '4.2'
+description: Profile-level action matrix. Runtime should combine this with risk matrix and tool policies.
+profiles:
+  readonly_copilot:
+    default: read_only_only
+    write_actions: deny
+    external_side_effects: deny
+    secret_output: deny
+  production_assistant:
+    kubectl:
+      get: allow_read_only
+      describe: allow_read_only
+      logs: allow_read_only_and_redact
+      rollout_restart: approval_required
+      delete: deny_by_default
+    terraform:
+      plan: allow_read_only
+      apply: approval_required
+      destroy: deny_by_default
+    database:
+      select: allow_read_only_with_limit_and_redaction
+      write: approval_required
+      drop: deny_by_default
+  authorized_pentest_assistant:
+    passive_recon: allow_if_scoped
+    safe_web_api_checks: allow_if_scoped
+    active_scan: approval_required_with_scope_and_rate_limit
+    dos: deny_by_default
+    credential_capture: deny_by_default
+    out_of_scope_testing: deny_by_default
+  ai_security_reviewer:
+    design_review: allow_draft
+    benign_eval: allow_if_scoped
+    tool_abuse_simulation: mock_or_dry_run_only
+    jailbreak_generation: deny_by_default
+    bypass_instructions: deny_by_default
+    third_party_testing: deny_without_authorization

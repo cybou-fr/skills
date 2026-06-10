@@ -1,0 +1,1932 @@
+version: '5.5'
+templates:
+  generic_task_report: '## Summary
+
+    ...
+
+
+    ## Classification
+
+    Task type:
+
+    Environment:
+
+    Risk level:
+
+    Mode:
+
+
+    ## Evidence
+
+    ...
+
+
+    ## Findings
+
+    ...
+
+
+    ## Actions taken
+
+    ...
+
+
+    ## Recommended next steps
+
+    1.
+
+    2.
+
+    3.
+
+
+    ## Approval required
+
+    ...'
+  approval_request: '## Approval required
+
+
+    Target:
+
+    ...
+
+
+    Proposed action:
+
+    ...
+
+
+    Approval scope:
+
+    ...
+
+
+    Reason:
+
+    ...
+
+
+    Evidence:
+
+    ...
+
+
+    Risk:
+
+    ...
+
+
+    Rollback:
+
+    ...
+
+
+    Safer alternative:
+
+    ...
+
+
+    Please confirm explicitly before I proceed.'
+  kubernetes_triage_report: '## Kubernetes triage
+
+    Namespace:
+
+    Resource:
+
+    Symptom:
+
+    Likely cause:
+
+    Evidence:
+
+    Safe next command:
+
+    Fix proposal:
+
+    Approval required:'
+  terraform_plan_review: '## Terraform plan review
+
+    Environment:
+
+    Risk level:
+
+    Action counts:
+
+    Blast radius:
+
+    Dangerous changes:
+
+    Data loss risk:
+
+    Downtime risk:
+
+    Recommendation:
+
+    Approval required:'
+  cicd_failure_report: '## CI/CD failure analysis
+
+    Failed job:
+
+    Failure type:
+
+    Root cause:
+
+    Evidence:
+
+    Suggested fix:
+
+    Security concerns:
+
+    Next action:'
+  docker_diagnostics_report: '## Docker diagnostics
+
+    Target:
+
+    Symptom:
+
+    Evidence:
+
+    Likely cause:
+
+    Security notes:
+
+    Recommended next steps:
+
+    Approval required:'
+  linux_diagnostics_report: '## Linux diagnostics
+
+    Host:
+
+    Symptom:
+
+    Evidence:
+
+    Likely cause:
+
+    Safe next step:
+
+    Approval required:'
+  database_review_report: '## Database review
+
+    Target:
+
+    Operation:
+
+    Risk level:
+
+    Data loss risk:
+
+    Locking/downtime risk:
+
+    Backup required:
+
+    Recommendation:
+
+    Approval required:'
+  iam_review_report: '## IAM review
+
+    Identity:
+
+    Purpose:
+
+    Excessive permissions:
+
+    Privilege escalation risk:
+
+    Least-privilege recommendation:
+
+    Approval required:'
+  pull_request_review: '## PR review summary
+
+    Blocking findings:
+
+    High findings:
+
+    Medium findings:
+
+    Questions:
+
+    Suggested tests:'
+  supply_chain_review: '## Supply chain review
+
+    Scope:
+
+    Critical risks:
+
+    Suspicious dependencies:
+
+    CI/CD risks:
+
+    Recommended remediation:'
+  security_log_review: '## Security log review
+
+    Time window:
+
+    Suspicious actor:
+
+    Events:
+
+    Impact:
+
+    Confidence:
+
+    Recommended containment:
+
+    Recommended investigation:'
+  secret_leak_report: '## Secret exposure report
+
+    Secret type:
+
+    Location:
+
+    Confidence:
+
+    Full value shown: no
+
+    Exposure risk:
+
+    Immediate action:
+
+    Follow-up actions:'
+  secret_rotation_plan: '## Secret rotation plan
+
+    Secret type:
+
+    Affected systems:
+
+    Exposure window:
+
+    Dependencies:
+
+    Rotation steps:
+
+    Validation:
+
+    Rollback:
+
+    Approval required:'
+  incident_report: '## Incident summary
+
+    Severity:
+
+    Affected service:
+
+    Start time:
+
+    Current status:
+
+
+    ## Timeline
+
+    ...
+
+
+    ## Evidence
+
+    ...
+
+
+    ## Likely cause
+
+    ...
+
+
+    ## Mitigation options
+
+    ...
+
+
+    ## Recommended action
+
+    ...
+
+
+    ## Approval required
+
+    ...'
+  postmortem: '## Postmortem
+
+    Incident:
+
+    Date:
+
+    Severity:
+
+    Impact:
+
+    Timeline:
+
+    Root cause:
+
+    Contributing factors:
+
+    What went well:
+
+    What went wrong:
+
+    Action items:'
+  alert_analysis_report: '## Alert analysis
+
+    Alert:
+
+    Severity:
+
+    Service:
+
+    Likely impact:
+
+    Evidence:
+
+    Suggested diagnostics:
+
+    Approval required:'
+  helm_triage_report: '## Helm triage
+
+    Namespace:
+
+    Release:
+
+    Chart:
+
+    Current revision:
+
+    Status:
+
+    Recent history:
+
+    Likely issue:
+
+    Safe next step:
+
+    Approval required:'
+  log_analysis_report: '## Log analysis
+
+    Time window:
+
+    Sources:
+
+    Main patterns:
+
+    Reliability indicators:
+
+    Security indicators:
+
+    Likely root cause:
+
+    Evidence:
+
+    Recommended next steps:
+
+    Approval required:'
+  deployment_plan: '## Deployment plan
+
+    Service:
+
+    Environment:
+
+    Version/commit/image:
+
+    Strategy:
+
+    Risk level:
+
+    Deployment gates:
+
+    Pre-checks:
+
+    Deployment steps:
+
+    Post-checks:
+
+    Rollback plan:
+
+    Approval required:'
+  network_diagnostics_report: '## Network diagnostics
+
+    Source:
+
+    Destination:
+
+    Symptom:
+
+    Layer suspected:
+
+    DNS evidence:
+
+    TLS evidence:
+
+    Port/connectivity evidence:
+
+    Likely cause:
+
+    Safe next step:
+
+    Approval required:'
+  git_repository_review: '## Git repository review
+
+    Repository:
+
+    Branch:
+
+    Working tree state:
+
+    Changed files:
+
+    Risky changes:
+
+    Secrets/sensitive files:
+
+    Recommended next steps:
+
+    Approval required:'
+  backup_restore_review: '## Backup/restore review
+
+    System:
+
+    Environment:
+
+    Last backup:
+
+    Restore tested:
+
+    RPO:
+
+    RTO:
+
+    Data loss risk:
+
+    Recommendation:
+
+    Approval required:'
+  package_manager_safety_report: '## Package manager safety review
+
+    Package/operation:
+
+    Environment:
+
+    Risk level:
+
+    Lockfile impact:
+
+    Install script risk:
+
+    Supply-chain concerns:
+
+    Recommendation:
+
+    Approval required:'
+  vulnerability_triage_report: '## Vulnerability triage
+
+    CVE/finding:
+
+    Component:
+
+    Installed version:
+
+    Fixed version:
+
+    Severity:
+
+    Exploitability:
+
+    Exposure:
+
+    Runtime relevance:
+
+    Priority:
+
+    Recommended remediation:
+
+    Temporary mitigation:
+
+    Approval required:'
+  prompt_injection_report: '## Prompt injection check
+
+    Source:
+
+    Suspicious instruction type:
+
+    Risk:
+
+    Action taken:
+
+    Safe interpretation:
+
+    Tool escalation blocked:
+
+    Recommended next step:'
+  container_security_review: '## Container security review
+
+    Target:
+
+    Critical findings:
+
+    High findings:
+
+    Medium findings:
+
+    Runtime risks:
+
+    Recommended changes:
+
+    Safe patch draft:
+
+    Approval required:'
+  kubernetes_security_review: '## Kubernetes security review
+
+    Namespace/resource:
+
+    Critical findings:
+
+    High findings:
+
+    Medium findings:
+
+    RBAC concerns:
+
+    NetworkPolicy concerns:
+
+    Workload hardening:
+
+    Recommended changes:
+
+    Approval required:'
+  cloud_triage_report: '## Cloud triage
+
+    Provider:
+
+    Account/project/subscription:
+
+    Environment:
+
+    Suspicious event/configuration:
+
+    Evidence:
+
+    Impact:
+
+    Recommended containment:
+
+    Approval required:'
+  malicious_dependency_review: '## Malicious dependency review
+
+    Package:
+
+    Version:
+
+    Ecosystem:
+
+    Risk signals:
+
+    Evidence:
+
+    Likely impact:
+
+    Recommended action:
+
+    Approval required:'
+  github_security_review: '## GitHub security review
+
+    Repository/organization:
+
+    Critical findings:
+
+    High findings:
+
+    Branch protection:
+
+    Actions security:
+
+    Secrets/deploy keys:
+
+    Recommended changes:
+
+    Approval required:'
+  siem_alert_enrichment: '## SIEM alert enrichment
+
+    Alert:
+
+    Severity:
+
+    Entities:
+
+    Context:
+
+    Correlated events:
+
+    Confidence:
+
+    Recommended action:
+
+    Approval required:'
+  http_fetch_safety_report: '## HTTP fetch safety review
+
+    URL:
+
+    Method:
+
+    Authentication involved:
+
+    Risk level:
+
+    Allowed action:
+
+    Blocked patterns:
+
+    Redaction required:
+
+    Safer alternative:
+
+    Approval required:'
+  pentest_scope_report: '## Pentest authorization check
+
+    Authorized:
+
+    Requester:
+
+    Owner:
+
+    Scope:
+
+    Excluded assets:
+
+    Time window:
+
+    Allowed techniques:
+
+    Disallowed techniques:
+
+    Stop conditions:
+
+    Default mode:
+
+    Approval required:'
+  passive_recon_report: '## Passive reconnaissance summary
+
+    Scope:
+
+    Assets reviewed:
+
+    Sources:
+
+    Public exposure:
+
+    Potential risks:
+
+    Recommended safe next checks:
+
+    Approval required:'
+  vulnerability_validation_report: '## Vulnerability validation
+
+    Finding:
+
+    Scope:
+
+    Validation method:
+
+    Evidence:
+
+    Exploitability confidence:
+
+    Impact:
+
+    Remediation:
+
+    Approval required:'
+  web_app_security_check_report: '## Web application security check
+
+    Target:
+
+    Scope:
+
+    Checks performed:
+
+    Findings:
+
+    Evidence:
+
+    Risk:
+
+    Recommended remediation:
+
+    Approval required:'
+  api_security_check_report: '## API security check
+
+    API:
+
+    Scope:
+
+    Auth context:
+
+    Checks performed:
+
+    Findings:
+
+    Evidence:
+
+    Risk:
+
+    Recommended remediation:
+
+    Approval required:'
+  pentest_finding_report: '## Finding
+
+    Title:
+
+    Severity:
+
+    Affected asset:
+
+    Scope:
+
+    Description:
+
+    Evidence:
+
+    Impact:
+
+    Remediation:
+
+    Retest:
+
+    Limitations:'
+  pentest_retainer_triage_report: '## Security report triage
+
+    In scope:
+
+    Affected asset:
+
+    Vulnerability type:
+
+    Evidence quality:
+
+    Estimated severity:
+
+    Safe validation plan:
+
+    Missing information:
+
+    Recommended owner:'
+  pentest_retest_validation_report: '## Retest validation
+
+    Finding:
+
+    Target:
+
+    Scope:
+
+    Retest method:
+
+    Result:
+
+    Evidence:
+
+    Residual risk:
+
+    Recommended status:
+
+    Approval required:'
+  pentest_evidence_redaction_report: '## Evidence redaction summary
+
+    Evidence type:
+
+    Sensitive data found:
+
+    Redaction applied:
+
+    Residual risk:
+
+    Safe to share:
+
+    Notes:'
+  pentest_severity_rating_report: '## Severity rating
+
+    Finding:
+
+    Severity:
+
+    Confidence:
+
+    Factors:
+
+    Risk floor applied:
+
+    Business impact:
+
+    Remediation priority:'
+  ai_security_assessment_report: '## AI security assessment
+
+    System:
+
+    Scope:
+
+    Assessment category:
+
+    Findings:
+
+    Risk:
+
+    Evidence:
+
+    Recommended controls:
+
+    Regression tests:
+
+    Approval required:'
+  ai_jailbreak_defense_report: '## AI jailbreak defense assessment
+
+    System:
+
+    Scope:
+
+    Instruction hierarchy reviewed:
+
+    Benign tests used:
+
+    Observed weaknesses:
+
+    Risk:
+
+    Recommended controls:
+
+    Regression tests:'
+  indirect_prompt_injection_report: '## Indirect prompt injection assessment
+
+    Channels tested:
+
+    Fixtures:
+
+    Observed behavior:
+
+    Tool escalation blocked:
+
+    Risk:
+
+    Recommended controls:'
+  ai_agent_tool_abuse_report: '## AI agent tool abuse review
+
+    Agent:
+
+    Tools reviewed:
+
+    High-risk tools:
+
+    Simulations:
+
+    Blocked actions:
+
+    Gaps:
+
+    Recommended controls:'
+  rag_poisoning_defense_report: '## RAG poisoning defense review
+
+    Corpus:
+
+    Sources:
+
+    Trust boundaries:
+
+    Poisoning risks:
+
+    Sensitive data risks:
+
+    Evidence:
+
+    Recommended controls:'
+  model_data_leakage_report: '## Model data leakage review
+
+    System:
+
+    Sensitive data classes:
+
+    Leakage channels:
+
+    Findings:
+
+    Evidence:
+
+    Recommended controls:
+
+    Approval required:'
+  model_dos_cost_abuse_report: '## Model DoS / cost abuse review
+
+    System:
+
+    Budget controls:
+
+    Risk patterns:
+
+    Findings:
+
+    Recommended limits:
+
+    Monitoring:
+
+    Approval required:'
+  ai_supply_chain_review: '## AI supply chain review
+
+    System:
+
+    Components:
+
+    Provenance gaps:
+
+    High-risk dependencies:
+
+    Dataset/RAG risks:
+
+    Recommended controls:
+
+    Approval required:'
+  ai_evaluation_redteam_report: '## AI security evaluation report
+
+    System:
+
+    Scope:
+
+    Test categories:
+
+    Findings:
+
+    Severity summary:
+
+    Controls:
+
+    Regression tests:
+
+    Remediation:
+
+    Residual risk:'
+  ai_memory_context_safety_report: '## AI memory/context safety review
+
+    System:
+
+    Memory types:
+
+    Isolation model:
+
+    Leakage risks:
+
+    Persistence risks:
+
+    Recommended controls:
+
+    Approval required:'
+  ai_output_handling_review: '## AI output handling review
+
+    System:
+
+    Output sinks:
+
+    High-risk sinks:
+
+    Validation:
+
+    Approval gates:
+
+    Findings:
+
+    Recommended controls:'
+  document_processing_report: '## Document processing report
+
+    Artifact type:
+
+    Requested operation:
+
+    Selected workflow:
+
+    Risks:
+
+    Next steps:'
+  document_workflow_report: '## Document workflow report
+
+    Document:
+
+    Operation:
+
+    Structure:
+
+    Changes:
+
+    Checks:
+
+    Risks:
+
+    Next steps:'
+  pdf_workflow_report: '## PDF workflow report
+
+    PDF:
+
+    Pages/sections:
+
+    Extraction mode:
+
+    Findings:
+
+    Redaction needs:
+
+    Uncertainty:
+
+    Next steps:'
+  presentation_workflow_report: '## Presentation workflow report
+
+    Audience:
+
+    Goal:
+
+    Deck structure:
+
+    Slide plan:
+
+    Design notes:
+
+    Next steps:'
+  spreadsheet_workflow_report: '## Spreadsheet workflow report
+
+    Workbook:
+
+    Data schema:
+
+    Calculations:
+
+    Validation checks:
+
+    Risks:
+
+    Next steps:'
+  screenshot_analysis_report: '## Screenshot analysis report
+
+    Image:
+
+    Visible evidence:
+
+    Sensitive data redacted:
+
+    Findings:
+
+    Next steps:'
+  brand_guidelines_report: '## Brand guidelines report
+
+    Brand source:
+
+    Applied rules:
+
+    Output changes:
+
+    Assumptions:
+
+    Next steps:'
+  frontend_design_review: '## Frontend design review
+
+    Target:
+
+    Blocking findings:
+
+    High findings:
+
+    Medium findings:
+
+    Polish:
+
+    Recommended changes:'
+  web_artifact_report: '## Web artifact report
+
+    Artifact:
+
+    Stack:
+
+    Files/sections:
+
+    Security notes:
+
+    Deployment notes:
+
+    Next steps:'
+  design_system_report: '## Design system report
+
+    Principles:
+
+    Tokens:
+
+    Components:
+
+    Accessibility:
+
+    Implementation notes:'
+  figma_handoff_report: '## Figma handoff report
+
+    Source:
+
+    Components:
+
+    Tokens:
+
+    Implementation checklist:
+
+    Open questions:'
+  image_generation_brief: '## Image generation brief
+
+    Purpose:
+
+    Subject:
+
+    Style:
+
+    Composition:
+
+    Constraints:
+
+    Variations:'
+  mcp_server_builder_report: '## MCP server builder report
+
+    Use case:
+
+    Tools/resources:
+
+    Auth model:
+
+    Schemas:
+
+    Safety controls:
+
+    Tests:'
+  skill_creator_report: '## Skill creator report
+
+    Skill:
+
+    Purpose:
+
+    Files:
+
+    Safety boundaries:
+
+    Tests:
+
+    Registry changes:'
+  skill_installer_report: '## Skill installer report
+
+    Source:
+
+    License notes:
+
+    Safety review:
+
+    Compatibility:
+
+    Import decision:'
+  cli_creator_report: '## CLI creator report
+
+    CLI goal:
+
+    Commands:
+
+    Arguments:
+
+    Safety defaults:
+
+    Tests:
+
+    Packaging:'
+  openai_docs_integration_report: '## OpenAI docs integration report
+
+    API area:
+
+    Design:
+
+    Auth/secrets:
+
+    Rate/cost controls:
+
+    Evals:
+
+    Next steps:'
+  claude_api_integration_report: '## Claude API integration report
+
+    API area:
+
+    Design:
+
+    Auth/secrets:
+
+    Rate/cost controls:
+
+    Evals:
+
+    Next steps:'
+  chatgpt_apps_report: '## ChatGPT apps workflow report
+
+    App:
+
+    Data flows:
+
+    Tools:
+
+    Auth:
+
+    Privacy:
+
+    Tests:
+
+    Deployment:'
+  static_platform_deploy_report: '## Static platform deploy report
+
+    Platform:
+
+    Project:
+
+    Build:
+
+    Environment variables:
+
+    Preview:
+
+    Rollback:
+
+    Approval required:'
+  github_comment_triage_report: '## GitHub comment triage
+
+    Thread:
+
+    Actionable items:
+
+    Unsafe instructions:
+
+    Draft response:
+
+    Next steps:'
+  ci_fix_proposal_report: '## CI fix proposal
+
+    Failed job:
+
+    Cause:
+
+    Minimal fix:
+
+    Tests:
+
+    Security concerns:'
+  sentry_issue_triage_report: '## Sentry issue triage
+
+    Issue:
+
+    Environment:
+
+    Release:
+
+    Impact:
+
+    Likely cause:
+
+    Next steps:'
+  issue_tracker_report: '## Issue tracker report
+
+    Title:
+
+    Description:
+
+    Acceptance criteria:
+
+    Labels:
+
+    Priority:
+
+    Owner:'
+  goal_definition_report: '## Goal definition
+
+    Goal:
+
+    Non-goals:
+
+    Constraints:
+
+    Success criteria:
+
+    Milestones:
+
+    Next step:'
+  meeting_intelligence_report: '## Meeting intelligence
+
+    Summary:
+
+    Decisions:
+
+    Action items:
+
+    Risks:
+
+    Open questions:'
+  knowledge_capture_report: '## Knowledge capture
+
+    Summary:
+
+    Facts:
+
+    Decisions:
+
+    Procedures:
+
+    Open questions:
+
+    Tags:'
+  research_documentation_report: '## Research documentation
+
+    Question:
+
+    Sources:
+
+    Findings:
+
+    Uncertainty:
+
+    Recommendations:'
+  notebook_analysis_report: '## Notebook analysis
+
+    Purpose:
+
+    Execution state:
+
+    Dependencies:
+
+    Data risks:
+
+    Findings:
+
+    Reproducibility fixes:'
+  speech_transcription_report: '## Speech/transcription report
+
+    Language:
+
+    Speakers:
+
+    Summary:
+
+    Action items:
+
+    Redactions:
+
+    Next steps:'
+  security_best_practices_report: '## Security best practices review
+
+    Scope:
+
+    Critical gaps:
+
+    High gaps:
+
+    Quick wins:
+
+    Long-term controls:'
+  security_ownership_map_report: '## Security ownership map
+
+    Assets:
+
+    Owners:
+
+    Data classes:
+
+    Controls:
+
+    Gaps:'
+  security_threat_model_report: '## Threat model
+
+    System:
+
+    Assets:
+
+    Data flows:
+
+    Trust boundaries:
+
+    Threats:
+
+    Controls:
+
+    Tests:'
+  rust_development_report: '## Rust development report
+
+    Decision:
+
+    Affected modules:
+
+    Patch plan:
+
+    Tests:
+
+    Security/performance risks:
+
+    Review checklist:
+
+    Approval required:'
+  rust_code_review_report: '## Rust code review
+
+    Blocking issues:
+
+    High issues:
+
+    Medium issues:
+
+    Maintainability notes:
+
+    Suggested patch plan:
+
+    Tests required:'
+  rust_architecture_report: '## Rust architecture report
+
+    System:
+
+    Crates/modules:
+
+    Dependency direction:
+
+    Interfaces:
+
+    State model:
+
+    Trade-offs:
+
+    Migration plan:'
+  rust_workspace_design_report: '## Rust workspace design
+
+    Workspace:
+
+    Crates:
+
+    Dependency direction:
+
+    Feature flags:
+
+    Public APIs:
+
+    Risks:'
+  rust_async_runtime_report: '## Rust async runtime report
+
+    Runtime topology:
+
+    Concurrency risks:
+
+    Timeouts/backpressure:
+
+    Shutdown plan:
+
+    Tests:'
+  rust_observability_report: '## Rust observability report
+
+    Error model:
+
+    Tracing:
+
+    Metrics:
+
+    Audit events:
+
+    Redaction:
+
+    Implementation plan:'
+  rust_api_design_report: '## Rust API design
+
+    API/traits:
+
+    Request/response types:
+
+    Errors:
+
+    Auth/authorization:
+
+    Compatibility:
+
+    Tests:'
+  rust_security_hardening_report: '## Rust security hardening
+
+    Findings:
+
+    Unsafe/dependency risks:
+
+    Input boundaries:
+
+    Secret handling:
+
+    Required changes:
+
+    Tests:'
+  rust_performance_report: '## Rust performance report
+
+    Bottlenecks:
+
+    Measurement plan:
+
+    Benchmarks:
+
+    Patch suggestions:
+
+    Regression tests:'
+  rust_testing_strategy_report: '## Rust testing strategy
+
+    Test layers:
+
+    Fixtures:
+
+    Mock strategy:
+
+    CI commands:
+
+    Coverage gaps:'
+  rust_dependency_review_report: '## Rust dependency review
+
+    Direct risks:
+
+    Transitive risks:
+
+    Feature changes:
+
+    License notes:
+
+    Approval required:'
+  rust_tool_adapter_report: '## Rust tool adapter report
+
+    Adapter:
+
+    Request/output types:
+
+    Normalization:
+
+    Policy integration:
+
+    Audit/redaction:
+
+    Tests:'
+  cybou_policy_engine_report: '## CYBOU policy engine report
+
+    Inputs:
+
+    Decision model:
+
+    Rule evaluation:
+
+    Approval model:
+
+    Risk floors:
+
+    Tests:'
+  cybou_skill_runtime_report: '## CYBOU skill runtime report
+
+    Loader:
+
+    Registry parsing:
+
+    Skill graph:
+
+    Validation:
+
+    Routing:
+
+    Tests:'
+  cybou_self_hosting_report: '## CYBOU self-hosting report
+
+    Task:
+
+    Selected skills:
+
+    Patch plan:
+
+    Tests:
+
+    Review checklist:
+
+    Release notes:'
+  rust_toolchain_report: '## Rust toolchain report
+
+    Decision:
+
+    Files affected:
+
+    Commands:
+
+    CI gates:
+
+    Risks:
+
+    Approval required:'
+  rust_toolchain_management_report: '## Rust toolchain management
+
+    Channel/MSRV:
+
+    Components:
+
+    Targets:
+
+    Files:
+
+    CI matrix:
+
+    Upgrade policy:'
+  rust_linting_formatting_report: '## Rust linting/formatting
+
+    rustfmt:
+
+    clippy:
+
+    Config files:
+
+    Exceptions:
+
+    CI gate:
+
+    Required fixes:'
+  rust_test_infrastructure_report: '## Rust test infrastructure
+
+    Test layers:
+
+    Commands:
+
+    Fixtures:
+
+    Mock strategy:
+
+    CI gates:
+
+    Gaps:'
+  rust_coverage_workflow_report: '## Rust coverage workflow
+
+    Tool:
+
+    Command:
+
+    Threshold:
+
+    Exclusions:
+
+    Artifacts:
+
+    Coverage gaps:'
+  rust_benchmarking_report: '## Rust benchmarking/profiling
+
+    Targets:
+
+    Benchmarks:
+
+    Profiling plan:
+
+    Performance budget:
+
+    Regression checks:'
+  rust_fuzzing_property_report: '## Rust fuzzing/property testing
+
+    Targets:
+
+    Tools:
+
+    Properties:
+
+    Corpus:
+
+    Safety limits:
+
+    Crash handling:'
+  rust_miri_unsafe_report: '## Rust Miri/unsafe validation
+
+    Unsafe inventory:
+
+    Invariants:
+
+    Miri plan:
+
+    Findings:
+
+    Required changes:'
+  rust_ci_quality_gates_report: '## Rust CI quality gates
+
+    Baseline gates:
+
+    Advanced gates:
+
+    Crate-specific gates:
+
+    Release gates:
+
+    Approval required:'
+  rust_docs_api_contracts_report: '## Rust docs/API contracts
+
+    Public APIs:
+
+    Docs:
+
+    Doc tests:
+
+    ADRs:
+
+    Examples:
+
+    Gaps:'
+  rust_release_semver_report: '## Rust release/semver
+
+    Version bump:
+
+    API changes:
+
+    MSRV impact:
+
+    Release gates:
+
+    Changelog:
+
+    Approval required:'
+  rust_feature_matrix_report: '## Rust feature matrix
+
+    Features:
+
+    Combinations:
+
+    Cargo-hack plan:
+
+    Risks:
+
+    CI gate:'
+  rust_dependency_hygiene_report: '## Rust dependency hygiene
+
+    Unused deps:
+
+    Duplicate deps:
+
+    Dead code:
+
+    Feature cleanup:
+
+    Patch plan:'
+  runtime_enforcement_report: '## Runtime enforcement report
+
+    Component:
+
+    Decision:
+
+    Affected files:
+
+    Normalized action impact:
+
+    Policy decision impact:
+
+    Tests:
+
+    Audit/redaction:
+
+    Approval required:'
+  data_driven_policy_report: '## Data-driven policy report
+
+    Policy source:
+
+    Compiled rules:
+
+    Risk behavior:
+
+    Profile/scope behavior:
+
+    Fallback behavior:
+
+    Tests:
+
+    Migration notes:'
+  policy_loader_report: '## Policy loader report
+
+    Loaded files:
+
+    Tools:
+
+    Rules:
+
+    Activity policies:
+
+    Profiles:
+
+    Scopes:
+
+    Errors:'
+  rule_matcher_report: '## Rule matcher report
+
+    Tool:
+
+    Matched rules:
+
+    Decision precedence:
+
+    Risk precedence:
+
+    Fallback:'
+  tool_specific_normalizer_report: '## Tool-specific normalizer report
+
+    Tool:
+
+    Parsed operation:
+
+    Target/environment:
+
+    Side effects:
+
+    Sensitive data:
+
+    Policy impact:
+
+    Tests:
+
+    Limitations:'
+  normalizer_regression_report: '## Normalizer regression report
+
+    Tool coverage:
+
+    Scenarios:
+
+    Pass/fail:
+
+    Parser gaps:
+
+    Next normalizers:'
+  scope_approval_report: '## Scope approval report
+
+    Scope:
+
+    Approved actions:
+
+    Expiration:
+
+    Revocation:
+
+    Policy impact:
+
+    Audit impact:
+
+    Tests:'
+  approval_store_report: '## Approval store report
+
+    Store path:
+
+    Approvals:
+
+    Expired:
+
+    Revoked:
+
+    Valid matches:
+
+    Risks:'
+  durable_audit_report: '## Durable audit report
+
+    Record type:
+
+    Store path:
+
+    Hash/tamper status:
+
+    Redaction status:
+
+    Linked IDs:
+
+    Export behavior:
+
+    Tests:'
+  evidence_store_report: '## Evidence store report
+
+    Evidence type:
+
+    Source:
+
+    Redacted:
+
+    Linked audit event:
+
+    Storage path:
+
+    Verification:'
+  sandbox_execution_report: '## Sandbox execution report
+
+    Sandbox profile:
+
+    Filesystem boundary:
+
+    Network mode:
+
+    Timeout/output limits:
+
+    Policy decision:
+
+    Execution mode:
+
+    Audit/evidence:
+
+    Tests:'
+  tool_execution_result_report: '## Tool execution result
+
+    Command:
+
+    Decision:
+
+    Would execute:
+
+    Executed:
+
+    Exit status:
+
+    Timed out:
+
+    Output truncated:
+
+    Redaction applied:
+
+    Audit record:'

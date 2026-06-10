@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Approval State",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "status",
+    "scope",
+    "approved_actions"
+  ],
+  "properties": {
+    "approval_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "not_requested",
+        "requested",
+        "approved",
+        "denied",
+        "expired"
+      ]
+    },
+    "scope": {
+      "type": "string"
+    },
+    "approved_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approval_text": {
+      "type": "string"
+    }
+  }
+}

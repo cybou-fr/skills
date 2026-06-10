@@ -1,0 +1,36 @@
+tool: shell
+version: '3.0'
+default: review_required
+rules:
+- id: shell-readonly-basic
+  match_regex: ^(pwd|ls|head|tail|grep|find|df|du|free|ps|ss|journalctl|systemctl status)\b
+  decision: allow_read_only
+  risk: low
+- id: shell-sensitive-file-read
+  match_regex: \b(cat|less|more|head|tail)\b.*(\.env|\.pem|\.key|id_rsa|id_ed25519|credentials\.json|kubeconfig|secrets\.ya?ml|\.aws/credentials)
+  decision: approval_required_and_redact
+  risk: high
+- id: shell-curl-pipe-shell
+  match_regex: (curl|wget).*\|\s*(sh|bash|zsh|python|perl)
+  decision: deny
+  risk: critical
+- id: shell-rm-recursive
+  match_regex: \brm\s+.*(-r|-rf|--recursive)
+  decision: approval_required
+  risk: high
+- id: shell-root-delete
+  match_regex: \brm\s+.*(/|\*)
+  decision: deny
+  risk: critical
+- id: shell-chmod-777
+  match_regex: \bchmod\s+.*777
+  decision: approval_required
+  risk: high
+- id: shell-sudo
+  match_regex: ^\s*sudo\b
+  decision: approval_required
+  risk: high
+- id: shell-package-install
+  match_regex: \b(apt|apt-get|yum|dnf|apk|brew)\s+(install|add)\b
+  decision: approval_required
+  risk: high

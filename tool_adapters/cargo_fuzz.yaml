@@ -1,0 +1,18 @@
+tool: cargo-fuzz
+version: '4.5'
+adapter_type: command
+decision_inputs:
+- target
+- corpus
+- time_limit
+- environment
+- approval_state
+enforcement:
+  sandbox_required: true
+  time_limit_required: true
+  network_denied: true
+allowed_read_only:
+- fuzz run with time limit
+approval_required:
+- long_fuzz_run
+- run_on_untrusted_code

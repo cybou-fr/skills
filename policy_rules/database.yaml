@@ -1,0 +1,28 @@
+tool: database
+version: '3.0'
+default: read_only
+rules:
+- id: db-readonly
+  match_regex: ^\s*(SELECT|EXPLAIN|SHOW|DESCRIBE)\b
+  decision: allow_read_only_with_limit_and_redaction
+  risk: low
+- id: db-write
+  match_regex: ^\s*(INSERT|UPDATE|DELETE|ALTER|CREATE)\b
+  decision: approval_required
+  risk: high
+- id: db-drop
+  match_regex: ^\s*DROP\s+DATABASE\b
+  decision: deny_by_default
+  risk: critical
+- id: db-truncate
+  match_regex: ^\s*TRUNCATE\b
+  decision: deny_by_default
+  risk: critical
+- id: db-delete-no-where
+  match_regex: ^\s*DELETE\s+FROM\s+\S+\s*;?\s*$
+  decision: deny_by_default
+  risk: critical
+- id: db-update-no-where
+  match_regex: ^\s*UPDATE\s+\S+\s+SET\s+.*;?\s*$
+  decision: deny_by_default
+  risk: critical

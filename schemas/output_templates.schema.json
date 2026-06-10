@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Output Templates",
+  "type": "object",
+  "required": [
+    "version",
+    "templates"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "templates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

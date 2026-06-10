@@ -1,0 +1,17 @@
+tool: rust_analyzer
+version: '4.4'
+adapter_type: language_server
+decision_inputs:
+- operation
+- workspace
+- file
+enforcement:
+  read_only: true
+allowed:
+- diagnostics
+- references
+- symbols
+- hover
+- semantic_tokens
+denied:
+- write_file_without_patch_scope

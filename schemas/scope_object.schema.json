@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Generic Scope Object",
+  "type": "object",
+  "required": [
+    "scope_type",
+    "owner",
+    "environment",
+    "allowed_actions",
+    "denied_actions"
+  ],
+  "properties": {
+    "scope_type": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "denied_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "time_window": {
+      "type": "string"
+    },
+    "approval_reference": {
+      "type": "string"
+    }
+  }
+}

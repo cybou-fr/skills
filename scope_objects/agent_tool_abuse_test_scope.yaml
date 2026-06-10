@@ -1,0 +1,17 @@
+scope_type: agent_tool_abuse_test
+owner: ''
+environment: sandbox
+targets:
+- mock_tools
+- dry_run_tool_router
+allowed_actions:
+- mock_delete_request
+- mock_secret_request
+- approval_gate_test
+- policy_block_test
+denied_actions:
+- real_tool_execution
+- real_secret_access
+- production_targeting
+time_window: ''
+approval_reference: ''

@@ -1,0 +1,37 @@
+version: '5.5'
+default_policy: deny_write_without_approval
+policy_rule_directory: policy_rules/
+enforcement_note: Runtime Tool Router must enforce these rules. SKILL.md is guidance only.
+global_limits:
+  default_timeout_seconds: 30
+  default_max_output_bytes: 20000
+  redact_secrets: true
+  unknown_environment_write_policy: deny
+tools:
+  shell:
+    rules: policy_rules/shell.yaml
+  kubectl:
+    rules: policy_rules/kubectl.yaml
+  terraform:
+    rules: policy_rules/terraform.yaml
+  docker:
+    rules: policy_rules/docker.yaml
+  git:
+    rules: policy_rules/git.yaml
+  database:
+    rules: policy_rules/database.yaml
+  cloud:
+    rules: policy_rules/cloud.yaml
+  package_managers:
+    rules: policy_rules/package_managers.yaml
+  http_fetch:
+    rules: policy_rules/http_fetch.yaml
+  pentest:
+    rules: policy_rules/pentest.yaml
+  ai_security:
+    rules: policy_rules/ai_security.yaml
+  cargo:
+    rules: policy_rules/cargo.yaml
+  rust_toolchain:
+    rules: policy_rules/rust_toolchain.yaml
+activity_policy_directory: activity_policies/

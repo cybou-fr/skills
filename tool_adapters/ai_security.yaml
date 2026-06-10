@@ -1,0 +1,17 @@
+tool: ai_security
+version: '4.1'
+adapter_type: activity
+decision_inputs:
+- activity_class
+- system_under_test
+- test_fixture_type
+- scope
+- approval_state
+enforcement:
+  policy_rules: policy_rules/ai_security.yaml
+  activity_policy: activity_policies/ai_security_assessment.yaml
+safe_fixture_policy:
+  allow_synthetic_benign: true
+  allow_placeholder_secrets: true
+  deny_real_customer_data: true
+  deny_bypass_prompt_generation: true

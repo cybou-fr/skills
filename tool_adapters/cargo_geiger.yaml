@@ -1,0 +1,11 @@
+tool: cargo-geiger
+version: '4.5'
+adapter_type: scanner
+decision_inputs:
+- workspace
+- features
+- environment
+enforcement:
+  read_only_by_default: true
+allowed_read_only:
+- geiger

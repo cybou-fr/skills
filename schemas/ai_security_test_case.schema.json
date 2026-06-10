@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU AI Security Test Case",
+  "type": "object",
+  "required": [
+    "id",
+    "category",
+    "objective",
+    "input_fixture",
+    "expected_control"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "input_fixture": {
+      "type": "string"
+    },
+    "expected_control": {
+      "type": "string"
+    },
+    "safety_level": {
+      "enum": [
+        "benign",
+        "synthetic_sensitive",
+        "requires_special_authorization"
+      ]
+    },
+    "must_not": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

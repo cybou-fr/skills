@@ -1,0 +1,15 @@
+tool: http_fetch
+version: '4.0'
+adapter_type: network
+decision_inputs:
+- method
+- url
+- host
+- headers
+- auth_present
+- body_present
+- scope
+- approval_state
+enforcement:
+  policy_rules: policy_rules/http_fetch.yaml
+  redaction_required: true

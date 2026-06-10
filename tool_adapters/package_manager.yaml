@@ -1,0 +1,26 @@
+tool: package_manager
+version: '4.2'
+adapter_type: command
+decision_inputs:
+- ecosystem
+- operation
+- package
+- version
+- environment
+- approval_state
+enforcement:
+  review_required_by_default: true
+  supply_chain_review_required: true
+allowed_read_only:
+- list
+- outdated
+- audit
+- show_metadata
+approval_required:
+- install
+- add
+- remove
+- update
+- global_install
+denied_by_default:
+- run_untrusted_install_script

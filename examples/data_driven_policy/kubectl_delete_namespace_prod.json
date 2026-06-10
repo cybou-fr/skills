@@ -1,0 +1,79 @@
+{
+  "command": "kubectl delete namespace prod",
+  "normalized_action": {
+    "tool": "kubectl",
+    "operation": "delete",
+    "raw_input": "kubectl delete namespace prod",
+    "args": {
+      "tokens": [
+        "kubectl",
+        "delete",
+        "namespace",
+        "prod"
+      ]
+    },
+    "target": "namespace",
+    "environment": "production",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "tool": "kubectl",
+    "normalized_action": {
+      "tool": "kubectl",
+      "operation": "delete",
+      "raw_input": "kubectl delete namespace prod",
+      "args": {
+        "tokens": [
+          "kubectl",
+          "delete",
+          "namespace",
+          "prod"
+        ]
+      },
+      "target": "namespace",
+      "environment": "production",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "kubectl-write",
+      "kubectl-delete-namespace",
+      "fallback:kubectl-high-risk",
+      "fallback:side-effect-or-production",
+      "readonly_profile_blocks_write",
+      "risk_floor:kubectl_delete_namespace=critical",
+      "side_effect:destructive",
+      "side_effect:write",
+      "environment:production"
+    ],
+    "approval_required": false,
+    "approval_scope": "namespace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781114639.927141,
+    "event_type": "policy_decision",
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "skills": [],
+    "task_id": "23007bf2-1073-4612-9419-6c8f7bc4ef4b",
+    "tool": "kubectl",
+    "action": "delete",
+    "policy_rule": "kubectl-write,kubectl-delete-namespace,fallback:kubectl-high-risk,fallback:side-effect-or-production,readonly_profile_blocks_write,risk_floor:kubectl_delete_namespace=critical,side_effect:destructive,side_effect:write,environment:production",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

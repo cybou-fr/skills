@@ -1,0 +1,79 @@
+{
+  "command": "cargo publish",
+  "normalized_action": {
+    "tool": "cargo",
+    "operation": "publish",
+    "raw_input": "cargo publish",
+    "args": {
+      "tokens": [
+        "cargo",
+        "publish"
+      ],
+      "features": [],
+      "channel": null,
+      "read_only_known": false
+    },
+    "target": "cargo_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "external_publish",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "cargo",
+    "normalized_action": {
+      "tool": "cargo",
+      "operation": "publish",
+      "raw_input": "cargo publish",
+      "args": {
+        "tokens": [
+          "cargo",
+          "publish"
+        ],
+        "features": [],
+        "channel": null,
+        "read_only_known": false
+      },
+      "target": "cargo_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "external_publish",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "cargo-publish",
+      "rust-publish",
+      "fallback:cargo-high-risk",
+      "readonly_profile_blocks_write",
+      "risk_floor:cargo_publish=high",
+      "risk_floor:crate_publish=high",
+      "side_effect:write"
+    ],
+    "approval_required": true,
+    "approval_scope": "cargo_workspace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115280.8211875,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "9b7a88a6-f19d-40b6-89af-cdc011176b42",
+    "tool": "cargo",
+    "action": "publish",
+    "policy_rule": "cargo-publish,rust-publish,fallback:cargo-high-risk,readonly_profile_blocks_write,risk_floor:cargo_publish=high,risk_floor:crate_publish=high,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

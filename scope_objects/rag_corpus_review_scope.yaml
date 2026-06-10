@@ -1,0 +1,17 @@
+scope_type: rag_corpus_review
+owner: ''
+environment: staging_or_production_readonly
+targets:
+- vector_store
+- document_sources
+allowed_actions:
+- metadata_review
+- source_trust_review
+- synthetic_marker_test
+- sensitive_document_detection
+denied_actions:
+- modifying_corpus_without_approval
+- exporting_sensitive_documents
+- poisoning_live_corpus
+time_window: ''
+approval_reference: ''

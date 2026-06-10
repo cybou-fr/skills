@@ -1,0 +1,16 @@
+tool: terraform
+version: '4.0'
+adapter_type: command
+decision_inputs:
+- subcommand
+- workspace
+- plan_summary
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/terraform.yaml
+dangerous_subcommands:
+- apply
+- destroy
+- state
+- force-unlock

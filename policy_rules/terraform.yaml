@@ -1,0 +1,24 @@
+tool: terraform
+version: '3.0'
+default: read_only
+rules:
+- id: terraform-readonly
+  match_regex: ^(terraform|tofu)\s+(fmt|validate|plan|show)\b
+  decision: allow_read_only
+  risk: medium
+- id: terraform-apply
+  match_regex: ^(terraform|tofu)\s+apply\b
+  decision: approval_required
+  risk: high
+- id: terraform-destroy
+  match_regex: ^(terraform|tofu)\s+destroy\b
+  decision: deny_by_default
+  risk: critical
+- id: terraform-state
+  match_regex: ^(terraform|tofu)\s+state\b
+  decision: approval_required
+  risk: high
+- id: terraform-force-unlock
+  match_regex: ^(terraform|tofu)\s+force-unlock\b
+  decision: approval_required
+  risk: high

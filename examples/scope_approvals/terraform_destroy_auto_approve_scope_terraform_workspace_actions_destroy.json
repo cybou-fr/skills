@@ -1,0 +1,103 @@
+{
+  "command": "terraform destroy -auto-approve",
+  "approval": {
+    "approval_id": "4af868cc-47de-443c-90ff-31ed33465232",
+    "status": "approved",
+    "scope": "terraform_workspace",
+    "approved_actions": [
+      "destroy"
+    ],
+    "expires_at": 1781116401.1567721,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "approval_used": {
+    "approval_id": "4af868cc-47de-443c-90ff-31ed33465232",
+    "status": "approved",
+    "scope": "terraform_workspace",
+    "approved_actions": [
+      "destroy"
+    ],
+    "expires_at": 1781116401.1567721,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "normalized_action": {
+    "tool": "terraform",
+    "operation": "destroy",
+    "raw_input": "terraform destroy -auto-approve",
+    "args": {
+      "tokens": [
+        "terraform",
+        "destroy",
+        "-auto-approve"
+      ],
+      "chdir": null,
+      "auto_approve": true
+    },
+    "target": "terraform_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "auto_approve",
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "tool": "terraform",
+    "normalized_action": {
+      "tool": "terraform",
+      "operation": "destroy",
+      "raw_input": "terraform destroy -auto-approve",
+      "args": {
+        "tokens": [
+          "terraform",
+          "destroy",
+          "-auto-approve"
+        ],
+        "chdir": null,
+        "auto_approve": true
+      },
+      "target": "terraform_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "auto_approve",
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "terraform-destroy",
+      "fallback:terraform-high-risk",
+      "fallback:side-effect-or-production",
+      "readonly_profile_blocks_write",
+      "risk_floor:terraform_destroy=critical",
+      "side_effect:destructive",
+      "side_effect:write"
+    ],
+    "approval_required": false,
+    "approval_scope": "terraform_workspace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115501.200349,
+    "event_type": "policy_decision",
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "skills": [],
+    "task_id": "c0378729-2e71-4a7a-a7ce-b820ebc4b8fe",
+    "tool": "terraform",
+    "action": "destroy",
+    "policy_rule": "terraform-destroy,fallback:terraform-high-risk,fallback:side-effect-or-production,readonly_profile_blocks_write,risk_floor:terraform_destroy=critical,side_effect:destructive,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

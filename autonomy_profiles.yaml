@@ -1,0 +1,155 @@
+version: '5.5'
+profiles:
+  readonly_copilot:
+    max_autonomy_level: 1
+    description: Read-only analysis and reporting only.
+    allowed:
+    - read_files
+    - read_logs
+    - read_metadata
+    - draft_reports
+    approval_required:
+    - any_write_action
+    - external_request_with_auth
+    denied:
+    - destructive_actions
+    - secret_output
+    - production_write
+  local_dev_operator:
+    max_autonomy_level: 3
+    description: Can execute safe local read-only commands and low-risk local checks.
+    allowed:
+    - local_read_only_shell
+    - local_tests
+    - draft_patches
+    approval_required:
+    - package_install
+    - file_modification
+    - git_write
+    denied:
+    - production_actions
+    - secret_output
+    - destructive_commands
+  staging_operator:
+    max_autonomy_level: 4
+    description: Can assist staging operations with approval gates.
+    allowed:
+    - read_only_staging_diagnostics
+    - draft_deployment_plan
+    approval_required:
+    - staging_write
+    - restart
+    - deploy
+    - database_migration
+    denied:
+    - unapproved_destructive_actions
+    - secret_output
+  production_assistant:
+    max_autonomy_level: 2
+    description: 'Production-safe assistant: read-only diagnostics and draft actions.'
+    allowed:
+    - production_read_only_diagnostics
+    - draft_approval_requests
+    - incident_reports
+    approval_required:
+    - all_production_write_actions
+    - restart
+    - rollback
+    - secret_rotation
+    denied:
+    - destructive_without_backup
+    - unscoped_approval
+    - secret_output
+  secops_incident_assistant:
+    max_autonomy_level: 2
+    description: Security incident mode with evidence preservation.
+    allowed:
+    - read_only_evidence_collection
+    - timeline_building
+    - containment_plan_draft
+    approval_required:
+    - disable_account
+    - revoke_token
+    - rotate_secret
+    - isolate_workload
+    denied:
+    - delete_logs
+    - purge_evidence
+    - external_notification_without_authorization
+  authorized_pentest_assistant:
+    max_autonomy_level: 2
+    description: Authorized defensive assessment mode.
+    allowed:
+    - scope_review
+    - passive_recon
+    - safe_web_api_checks
+    - finding_reports
+    - retest_plans
+    approval_required:
+    - active_scanning
+    - authenticated_testing
+    - controlled_validation
+    denied:
+    - dos
+    - credential_theft
+    - persistence
+    - stealth
+    - malware
+    - out_of_scope_testing
+  ai_security_reviewer:
+    max_autonomy_level: 2
+    description: Defensive AI security review and evaluation profile.
+    allowed:
+    - architecture_review
+    - benign_eval
+    - synthetic_prompt_injection_simulation
+    - tool_policy_review
+    - draft_reports
+    approval_required:
+    - testing_live_ai_system
+    - tool_abuse_simulation
+    - access_to_sensitive_eval_logs
+    denied:
+    - jailbreak_generation
+    - bypass_instructions
+    - harmful_content_generation
+    - secret_exfiltration
+    - third_party_testing_without_authorization
+  rust_senior_architect:
+    max_autonomy_level: 3
+    description: Senior Rust developer / software architect mode for developing CYBOU itself.
+    allowed:
+    - architecture_review
+    - cargo_audit
+    - cargo_check
+    - cargo_clippy
+    - cargo_deny
+    - cargo_doc
+    - cargo_fmt
+    - cargo_hack_check
+    - cargo_llvm_cov
+    - cargo_miri_test_with_review
+    - cargo_msrv_verify
+    - cargo_nextest
+    - cargo_semver_checks
+    - cargo_test
+    - code_review
+    - draft_patches
+    - dry_run_tool_adapter_tests
+    approval_required:
+    - adding_dependencies
+    - cargo_fuzz_long_run
+    - cargo_install
+    - cargo_publish
+    - changing_ci_quality_gates
+    - coverage_upload
+    - database_migration
+    - production_deploy
+    - profiling_production
+    - publishing_crates
+    - security_sensitive_adapter_changes
+    denied:
+    - bypassing_policy_engine
+    - printing_secrets
+    - large_unreviewed_rewrites
+    - unsafe_blocks_without_justification

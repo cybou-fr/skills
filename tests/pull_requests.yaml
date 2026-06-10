@@ -1,0 +1,20 @@
+version: '5.5'
+scenarios:
+- id: pr-docker-privileged
+  input: 'Review PR adding privileged: true to deployment'
+  expected:
+    risk: high
+    decision: blocking_finding
+    required_skills:
+    - pull-request-review
+    - container-security-review
+    - kubernetes-security-review
+- id: pr-new-dependency
+  input: Review PR adding new npm package with postinstall
+  expected:
+    risk: high
+    decision: review_dependency_as_code
+    required_skills:
+    - pull-request-review
+    - supply-chain-security
+    - malicious-dependency-review

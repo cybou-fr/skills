@@ -1,0 +1,37 @@
+version: '4.5'
+baseline_commands:
+- cargo fmt --all -- --check
+- cargo clippy --workspace --all-targets --all-features -- -D warnings
+- cargo test --workspace --all-features
+- cargo nextest run --workspace --all-features
+- cargo audit
+- cargo deny check
+- cargo doc --workspace --no-deps
+advanced_commands:
+- cargo llvm-cov --workspace --all-features --lcov --output-path lcov.info
+- cargo hack check --workspace --feature-powerset
+- cargo msrv verify
+- cargo semver-checks
+- cargo miri test
+- cargo fuzz run <target> -- -max_total_time=60
+cybou_crate_gates:
+  cybou-policy:
+  - unit_tests
+  - property_tests
+  - fuzz_targets
+  - coverage_threshold
+  cybou-tools:
+  - adapter_contract_tests
+  - mock_execution_tests
+  - redaction_tests
+  cybou-skills:
+  - registry_fixture_tests
+  - schema_validation_tests
+  cybou-runtime:
+  - async_cancellation_tests
+  - backpressure_tests
+  - state_machine_tests
+  cybou-audit:
+  - serialization_tests
+  - redaction_tests
+  - tamper_evidence_tests

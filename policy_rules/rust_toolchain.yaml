@@ -1,0 +1,28 @@
+tool: rust_toolchain
+version: '4.5'
+default: review_required
+rules:
+- id: rust-safe-quality-commands
+  match_regex: ^\s*cargo\s+(check|test|fmt|clippy|doc|metadata|tree|audit|deny)\b
+  decision: allow_read_only
+  risk: low
+- id: rust-nextest
+  match_regex: ^\s*cargo\s+nextest\s+(run|list)\b
+  decision: allow_read_only
+  risk: low
+- id: rust-coverage
+  match_regex: ^\s*cargo\s+(llvm-cov|tarpaulin)\b
+  decision: allow_read_only
+  risk: medium
+- id: rust-fuzz
+  match_regex: ^\s*cargo\s+fuzz\s+run\b
+  decision: approval_required_with_sandbox_and_time_limit
+  risk: high
+- id: rust-publish
+  match_regex: ^\s*cargo\s+(publish|package)\b
+  decision: approval_required
+  risk: high
+- id: rust-install
+  match_regex: ^\s*cargo\s+install\b
+  decision: approval_required
+  risk: high

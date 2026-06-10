@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Skills Registry",
+  "type": "object",
+  "required": [
+    "version",
+    "package",
+    "skills"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "package": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "category",
+          "triggers",
+          "default_risk",
+          "default_mode"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "default_risk": {
+            "type": "string"
+          },
+          "default_mode": {
+            "type": "string"
+          },
+          "requires_tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "input_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "output_template": {
+            "type": "string"
+          },
+          "related_skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "do_not_use_for": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "autonomy_level": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

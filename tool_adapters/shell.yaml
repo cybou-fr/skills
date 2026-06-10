@@ -1,0 +1,25 @@
+tool: shell
+version: '4.0'
+adapter_type: command
+normalization:
+- trim
+- collapse_whitespace
+- resolve_common_binary_prefixes
+- detect_shell_wrappers
+decision_inputs:
+- command
+- args
+- environment
+- working_directory
+- approval_state
+enforcement:
+  policy_rules: policy_rules/shell.yaml
+  timeout_default_seconds: 30
+  max_output_bytes: 20000
+  redaction_required: true
+wrapper_detection:
+- bash -c
+- sh -c
+- python -c
+- perl -e
+- ruby -e

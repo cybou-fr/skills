@@ -1,0 +1,2 @@
+# Keep this file small. Prefer workspace lints in Cargo.toml.
+avoid-breaking-exported-api = false

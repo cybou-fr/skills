@@ -1,0 +1,85 @@
+{
+  "command": "curl -X POST https://api.example.com/items -H 'Authorization: Bearer token123456789'",
+  "normalized_action": {
+    "tool": "http_fetch",
+    "operation": "post",
+    "raw_input": "curl -X POST https://api.example.com/items -H 'Authorization: Bearer token123456789'",
+    "args": {
+      "tokens": [
+        "curl",
+        "-X",
+        "POST",
+        "https://api.example.com/items",
+        "-H",
+        "Authorization: Bearer token123456789"
+      ],
+      "url": "https://api.example.com/items",
+      "host": "api.example.com",
+      "output_file": null
+    },
+    "target": "api.example.com",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "write"
+    ],
+    "sensitive_data_possible": true
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "http_fetch",
+    "normalized_action": {
+      "tool": "http_fetch",
+      "operation": "post",
+      "raw_input": "curl -X POST https://api.example.com/items -H 'Authorization: Bearer token123456789'",
+      "args": {
+        "tokens": [
+          "curl",
+          "-X",
+          "POST",
+          "https://api.example.com/items",
+          "-H",
+          "Authorization: Bearer token123456789"
+        ],
+        "url": "https://api.example.com/items",
+        "host": "api.example.com",
+        "output_file": null
+      },
+      "target": "api.example.com",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "write"
+      ],
+      "sensitive_data_possible": true
+    },
+    "matched_rules": [
+      "http-head-get",
+      "http-auth-header",
+      "http-write-method",
+      "fallback:sensitive-data-possible",
+      "readonly_profile_blocks_write",
+      "side_effect:write",
+      "sensitive_data_possible"
+    ],
+    "approval_required": true,
+    "approval_scope": "api.example.com",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115281.1771748,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "912da463-f092-480d-b22c-f6046e0c8e3d",
+    "tool": "http_fetch",
+    "action": "post",
+    "policy_rule": "http-head-get,http-auth-header,http-write-method,fallback:sensitive-data-possible,readonly_profile_blocks_write,side_effect:write,sensitive_data_possible",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

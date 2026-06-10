@@ -1,0 +1,14 @@
+tool: figma_api
+version: '4.3'
+adapter_type: design_api
+decision_inputs:
+- operation
+- file
+- team
+- approval_state
+enforcement:
+  read_only_by_default: true
+approval_required:
+- create_file
+- modify_design
+- publish_library

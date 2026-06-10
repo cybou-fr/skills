@@ -1,0 +1,90 @@
+{
+  "command": "kubectl exec -n prod pod/app -- sh",
+  "normalized_action": {
+    "tool": "kubectl",
+    "operation": "exec",
+    "raw_input": "kubectl exec -n prod pod/app -- sh",
+    "args": {
+      "tokens": [
+        "kubectl",
+        "exec",
+        "-n",
+        "prod",
+        "pod/app",
+        "--",
+        "sh"
+      ],
+      "resource": "-n",
+      "name": "prod",
+      "namespace": "prod",
+      "context": null
+    },
+    "target": "-n",
+    "environment": "production",
+    "scope": null,
+    "side_effects": [
+      "remote_execution",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "kubectl",
+    "normalized_action": {
+      "tool": "kubectl",
+      "operation": "exec",
+      "raw_input": "kubectl exec -n prod pod/app -- sh",
+      "args": {
+        "tokens": [
+          "kubectl",
+          "exec",
+          "-n",
+          "prod",
+          "pod/app",
+          "--",
+          "sh"
+        ],
+        "resource": "-n",
+        "name": "prod",
+        "namespace": "prod",
+        "context": null
+      },
+      "target": "-n",
+      "environment": "production",
+      "scope": null,
+      "side_effects": [
+        "remote_execution",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "kubectl-exec",
+      "fallback:kubectl-high-risk",
+      "fallback:side-effect-or-production",
+      "readonly_profile_blocks_write",
+      "side_effect:write",
+      "environment:production"
+    ],
+    "approval_required": true,
+    "approval_scope": "-n",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115280.9569159,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "5b9c537e-42d5-422a-9c9d-5e9808ba4eaa",
+    "tool": "kubectl",
+    "action": "exec",
+    "policy_rule": "kubectl-exec,fallback:kubectl-high-risk,fallback:side-effect-or-production,readonly_profile_blocks_write,side_effect:write,environment:production",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

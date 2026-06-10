@@ -1,0 +1,21 @@
+scope_type: ai_security_assessment
+owner: ''
+environment: staging_or_lab
+targets:
+- ai-app-name
+- model-endpoint
+- rag-corpus
+allowed_actions:
+- architecture_review
+- benign_eval
+- synthetic_indirect_prompt_injection_test
+- mock_tool_abuse_simulation
+- reporting
+denied_actions:
+- jailbreak_generation
+- bypass_instructions
+- real_secret_exfiltration
+- customer_data_testing
+- third_party_model_testing_without_authorization
+time_window: ''
+approval_reference: ''

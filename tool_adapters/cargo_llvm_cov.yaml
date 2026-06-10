@@ -1,0 +1,18 @@
+tool: cargo-llvm-cov
+version: '4.5'
+adapter_type: command
+decision_inputs:
+- workspace
+- features
+- output_format
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- llvm-cov text
+- llvm-cov lcov
+- llvm-cov html
+approval_required:
+- upload_coverage

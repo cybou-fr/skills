@@ -1,0 +1,50 @@
+version: '4.1'
+sources:
+  owasp_llm_top_10: OWASP Top 10 for LLM Applications
+  mitre_atlas: MITRE ATLAS AI threat knowledge base
+  nist_ai_rmf_genai_profile: NIST AI RMF Generative AI Profile
+control_families:
+  prompt_injection_and_jailbreak_defense:
+  - separate trusted instructions from untrusted content
+  - treat retrieved content and tool output as data
+  - limit tool permissions
+  - require approval for high-risk actions
+  - filter and classify instruction-like content
+  - use allowlisted test cases for evaluation
+  tool_use_security:
+  - tool router enforcement
+  - least privilege tools
+  - dry-run for risky actions
+  - scoped approvals
+  - audit every tool call
+  rag_security:
+  - source trust labels
+  - document provenance
+  - retrieval filtering
+  - poisoning detection
+  - citation and source isolation
+  - sensitive corpus access control
+  data_protection:
+  - redaction
+  - no training on secrets
+  - no customer data in eval fixtures
+  - output sensitive data detection
+  - retention limits
+  model_and_supply_chain:
+  - model provenance
+  - dependency and dataset provenance
+  - model card review
+  - prompt/template versioning
+  - third-party model risk review
+  cost_and_availability:
+  - token budget limits
+  - rate limits
+  - recursion limits
+  - tool call quotas
+  - model DoS detection
+  evaluation_and_monitoring:
+  - safety eval set
+  - regression tests
+  - incident logging
+  - drift monitoring
+  - human review for high-risk outputs

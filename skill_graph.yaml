@@ -1,0 +1,1757 @@
+version: '5.5'
+description: Skill relationship graph for CYBOU runtime routing and co-loading.
+global_always_consider:
+- task-classification
+- risk-and-approval
+- environment-detection
+- redaction
+skills:
+  task-classification:
+    path: core/task-classification/SKILL.md
+    category: core
+    related: &id001
+    - risk-and-approval
+    - environment-detection
+    always_load_before: []
+    may_escalate_to: *id001
+    output_template: generic_task_report
+  risk-and-approval:
+    path: core/risk-and-approval/SKILL.md
+    category: core
+    related: &id002
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id002
+    output_template: generic_task_report
+  command-safety:
+    path: core/command-safety/SKILL.md
+    category: core
+    related: &id003
+    - redaction
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id003
+    output_template: generic_task_report
+  environment-detection:
+    path: core/environment-detection/SKILL.md
+    category: core
+    related: &id004
+    - risk-and-approval
+    always_load_before: []
+    may_escalate_to: *id004
+    output_template: generic_task_report
+  redaction:
+    path: core/redaction/SKILL.md
+    category: core
+    related: &id005
+    - secret-detection
+    always_load_before: []
+    may_escalate_to: *id005
+    output_template: generic_task_report
+  evidence-handling:
+    path: core/evidence-handling/SKILL.md
+    category: core
+    related: &id006
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id006
+    output_template: generic_task_report
+  approval-request:
+    path: core/approval-request/SKILL.md
+    category: core
+    related: &id007 []
+    always_load_before: []
+    may_escalate_to: *id007
+    output_template: approval_request
+  linux-diagnostics:
+    path: devops/linux-diagnostics/SKILL.md
+    category: devops
+    related: &id008
+    - command-safety
+    - environment-detection
+    always_load_before: []
+    may_escalate_to: *id008
+    output_template: linux_diagnostics_report
+  docker-diagnostics:
+    path: devops/docker-diagnostics/SKILL.md
+    category: devops
+    related: &id009
+    - container-security-review
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id009
+    output_template: docker_diagnostics_report
+  kubernetes-readonly-triage:
+    path: devops/kubernetes-readonly-triage/SKILL.md
+    category: devops
+    related: &id010
+    - environment-detection
+    - redaction
+    - helm-readonly-triage
+    always_load_before:
+    - task-classification
+    - environment-detection
+    - risk-and-approval
+    may_escalate_to: *id010
+    output_template: kubernetes_triage_report
+  helm-readonly-triage:
+    path: devops/helm-readonly-triage/SKILL.md
+    category: devops
+    related: &id011
+    - kubernetes-readonly-triage
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id011
+    output_template: helm_triage_report
+  cicd-failure-analysis:
+    path: devops/cicd-failure-analysis/SKILL.md
+    category: devops
+    related: &id012
+    - secret-detection
+    - supply-chain-security
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id012
+    output_template: cicd_failure_report
+  terraform-plan-review:
+    path: devops/terraform-plan-review/SKILL.md
+    category: devops
+    related: &id013
+    - iam-review
+    - cloud-readonly-triage
+    always_load_before:
+    - task-classification
+    - environment-detection
+    - risk-and-approval
+    may_escalate_to: *id013
+    output_template: terraform_plan_review
+  log-analysis:
+    path: devops/log-analysis/SKILL.md
+    category: devops
+    related: &id014
+    - redaction
+    - security-log-review
+    always_load_before: []
+    may_escalate_to: *id014
+    output_template: log_analysis_report
+  devops-incident-triage:
+    path: devops/devops-incident-triage/SKILL.md
+    category: devops
+    related: &id015
+    - evidence-handling
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id015
+    output_template: incident_report
+  deployment-planning:
+    path: devops/deployment-planning/SKILL.md
+    category: devops
+    related: &id016
+    - database-safety
+    - backup-restore-review
+    - approval-request
+    always_load_before:
+    - task-classification
+    - environment-detection
+    - risk-and-approval
+    may_escalate_to: *id016
+    output_template: deployment_plan
+  network-diagnostics:
+    path: devops/network-diagnostics/SKILL.md
+    category: devops
+    related: &id017
+    - redaction
+    - http-fetch-safety
+    always_load_before: []
+    may_escalate_to: *id017
+    output_template: network_diagnostics_report
+  database-safety:
+    path: devops/database-safety/SKILL.md
+    category: devops
+    related: &id018
+    - backup-restore-review
+    - redaction
+    - approval-request
+    always_load_before:
+    - task-classification
+    - environment-detection
+    - risk-and-approval
+    may_escalate_to: *id018
+    output_template: database_review_report
+  git-repository-review:
+    path: devops/git-repository-review/SKILL.md
+    category: devops
+    related: &id019
+    - pull-request-review
+    - secret-detection
+    always_load_before: []
+    may_escalate_to: *id019
+    output_template: git_repository_review
+  pull-request-review:
+    path: devops/pull-request-review/SKILL.md
+    category: devops
+    related: &id020
+    - supply-chain-security
+    - container-security-review
+    - terraform-plan-review
+    - secret-detection
+    always_load_before: []
+    may_escalate_to: *id020
+    output_template: pull_request_review
+  backup-restore-review:
+    path: devops/backup-restore-review/SKILL.md
+    category: devops
+    related: &id021
+    - database-safety
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id021
+    output_template: backup_restore_review
+  package-manager-safety:
+    path: devops/package-manager-safety/SKILL.md
+    category: devops
+    related: &id022
+    - malicious-dependency-review
+    - supply-chain-security
+    always_load_before: []
+    may_escalate_to: *id022
+    output_template: package_manager_safety_report
+  prometheus-alert-analysis:
+    path: devops/prometheus-alert-analysis/SKILL.md
+    category: devops
+    related: &id023
+    - devops-incident-triage
+    - log-analysis
+    always_load_before: []
+    may_escalate_to: *id023
+    output_template: alert_analysis_report
+  secret-detection:
+    path: secops/secret-detection/SKILL.md
+    category: secops
+    related:
+    - redaction
+    - secret-rotation-playbook
+    - secops-incident-response
+    always_load_before:
+    - redaction
+    may_escalate_to:
+    - secret-rotation-playbook
+    - secops-incident-response
+    output_template: secret_leak_report
+  secret-rotation-playbook:
+    path: secops/secret-rotation-playbook/SKILL.md
+    category: secops
+    related: &id024
+    - secret-detection
+    - approval-request
+    - secops-incident-response
+    always_load_before: []
+    may_escalate_to: *id024
+    output_template: secret_rotation_plan
+  vulnerability-triage:
+    path: secops/vulnerability-triage/SKILL.md
+    category: secops
+    related: &id025
+    - supply-chain-security
+    - container-security-review
+    always_load_before: []
+    may_escalate_to: *id025
+    output_template: vulnerability_triage_report
+  security-log-review:
+    path: secops/security-log-review/SKILL.md
+    category: secops
+    related: &id026
+    - evidence-handling
+    - secops-incident-response
+    always_load_before: []
+    may_escalate_to: *id026
+    output_template: security_log_review
+  prompt-injection-defense:
+    path: secops/prompt-injection-defense/SKILL.md
+    category: secops
+    related: &id027
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id027
+    output_template: prompt_injection_report
+  iam-review:
+    path: secops/iam-review/SKILL.md
+    category: secops
+    related: &id028
+    - cloud-readonly-triage
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id028
+    output_template: iam_review_report
+  container-security-review:
+    path: secops/container-security-review/SKILL.md
+    category: secops
+    related: &id029
+    - docker-diagnostics
+    - kubernetes-security-review
+    always_load_before: []
+    may_escalate_to: *id029
+    output_template: container_security_review
+  kubernetes-security-review:
+    path: secops/kubernetes-security-review/SKILL.md
+    category: secops
+    related: &id030
+    - kubernetes-readonly-triage
+    - iam-review
+    always_load_before: []
+    may_escalate_to: *id030
+    output_template: kubernetes_security_review
+  supply-chain-security:
+    path: secops/supply-chain-security/SKILL.md
+    category: secops
+    related: &id031
+    - malicious-dependency-review
+    - package-manager-safety
+    always_load_before: []
+    may_escalate_to: *id031
+    output_template: supply_chain_review
+  secops-incident-response:
+    path: secops/secops-incident-response/SKILL.md
+    category: secops
+    related: &id032
+    - evidence-handling
+    - security-log-review
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id032
+    output_template: incident_report
+  cloud-readonly-triage:
+    path: secops/cloud-readonly-triage/SKILL.md
+    category: secops
+    related: &id033
+    - iam-review
+    - security-log-review
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id033
+    output_template: cloud_triage_report
+  malicious-dependency-review:
+    path: secops/malicious-dependency-review/SKILL.md
+    category: secops
+    related: &id034
+    - supply-chain-security
+    - secret-detection
+    always_load_before: []
+    may_escalate_to: *id034
+    output_template: malicious_dependency_review
+  github-security-review:
+    path: secops/github-security-review/SKILL.md
+    category: secops
+    related: &id035
+    - pull-request-review
+    - supply-chain-security
+    always_load_before: []
+    may_escalate_to: *id035
+    output_template: github_security_review
+  siem-alert-enrichment:
+    path: secops/siem-alert-enrichment/SKILL.md
+    category: secops
+    related: &id036
+    - security-log-review
+    - secops-incident-response
+    always_load_before: []
+    may_escalate_to: *id036
+    output_template: siem_alert_enrichment
+  http-fetch-safety:
+    path: core/http-fetch-safety/SKILL.md
+    category: core
+    related: &id037
+    - prompt-injection-defense
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id037
+    output_template: http_fetch_safety_report
+  pentest-scope-and-authorization:
+    path: secops/pentest-scope-and-authorization/SKILL.md
+    category: secops
+    related: &id038
+    - risk-and-approval
+    - approval-request
+    always_load_before: []
+    may_escalate_to: *id038
+    output_template: pentest_scope_report
+  passive-reconnaissance:
+    path: secops/passive-reconnaissance/SKILL.md
+    category: secops
+    related: &id039
+    - pentest-scope-and-authorization
+    - http-fetch-safety
+    - redaction
+    always_load_before:
+    - pentest-scope-and-authorization
+    - risk-and-approval
+    may_escalate_to: *id039
+    output_template: passive_recon_report
+  safe-vulnerability-validation:
+    path: secops/safe-vulnerability-validation/SKILL.md
+    category: secops
+    related: &id040
+    - pentest-scope-and-authorization
+    - vulnerability-triage
+    - evidence-handling
+    always_load_before:
+    - pentest-scope-and-authorization
+    - risk-and-approval
+    may_escalate_to: *id040
+    output_template: vulnerability_validation_report
+  web-application-security-check:
+    path: secops/web-application-security-check/SKILL.md
+    category: secops
+    related: &id041
+    - pentest-scope-and-authorization
+    - http-fetch-safety
+    - redaction
+    always_load_before:
+    - pentest-scope-and-authorization
+    - risk-and-approval
+    may_escalate_to: *id041
+    output_template: web_app_security_check_report
+  api-security-check:
+    path: secops/api-security-check/SKILL.md
+    category: secops
+    related: &id042
+    - pentest-scope-and-authorization
+    - http-fetch-safety
+    - redaction
+    always_load_before:
+    - pentest-scope-and-authorization
+    - risk-and-approval
+    may_escalate_to: *id042
+    output_template: api_security_check_report
+  pentest-finding-report:
+    path: secops/pentest-finding-report/SKILL.md
+    category: secops
+    related: &id043
+    - redaction
+    - evidence-handling
+    always_load_before: []
+    may_escalate_to: *id043
+    output_template: pentest_finding_report
+  pentest-retainer-triage:
+    path: secops/pentest-retainer-triage/SKILL.md
+    category: secops
+    related: &id044
+    - safe-vulnerability-validation
+    - vulnerability-triage
+    - pentest-finding-report
+    always_load_before: []
+    may_escalate_to: *id044
+    output_template: pentest_retainer_triage_report
+  pentest-retest-validation:
+    path: secops/pentest-retest-validation/SKILL.md
+    category: secops
+    related: &id045
+    - pentest-scope-and-authorization
+    - safe-vulnerability-validation
+    - pentest-finding-report
+    always_load_before:
+    - pentest-scope-and-authorization
+    - risk-and-approval
+    may_escalate_to: *id045
+    output_template: pentest_retest_validation_report
+  pentest-evidence-redaction:
+    path: secops/pentest-evidence-redaction/SKILL.md
+    category: secops
+    related: &id046
+    - redaction
+    - pentest-finding-report
+    always_load_before: []
+    may_escalate_to: *id046
+    output_template: pentest_evidence_redaction_report
+  pentest-severity-rating:
+    path: secops/pentest-severity-rating/SKILL.md
+    category: secops
+    related: &id047
+    - pentest-finding-report
+    - vulnerability-triage
+    always_load_before: []
+    may_escalate_to: *id047
+    output_template: pentest_severity_rating_report
+  ai-jailbreak-defense:
+    path: secops/ai-jailbreak-defense/SKILL.md
+    category: secops
+    related:
+    - prompt-injection-defense
+    - ai-evaluation-and-redteam-reporting
+    - ai-agent-tool-abuse-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - ai-agent-tool-abuse-review
+    - ai-evaluation-and-redteam-reporting
+    - prompt-injection-defense
+    output_template: ai_jailbreak_defense_report
+  indirect-prompt-injection-assessment:
+    path: secops/indirect-prompt-injection-assessment/SKILL.md
+    category: secops
+    related:
+    - prompt-injection-defense
+    - rag-poisoning-defense
+    - ai-agent-tool-abuse-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - rag-poisoning-defense
+    - ai-agent-tool-abuse-review
+    - ai-evaluation-and-redteam-reporting
+    - prompt-injection-defense
+    output_template: indirect_prompt_injection_report
+  ai-agent-tool-abuse-review:
+    path: secops/ai-agent-tool-abuse-review/SKILL.md
+    category: secops
+    related:
+    - command-safety
+    - risk-and-approval
+    - approval-request
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - command-safety
+    - approval-request
+    - risk-and-approval
+    - ai-evaluation-and-redteam-reporting
+    output_template: ai_agent_tool_abuse_report
+  rag-poisoning-defense:
+    path: secops/rag-poisoning-defense/SKILL.md
+    category: secops
+    related:
+    - indirect-prompt-injection-assessment
+    - model-data-leakage-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - indirect-prompt-injection-assessment
+    - ai-evaluation-and-redteam-reporting
+    - model-data-leakage-review
+    output_template: rag_poisoning_defense_report
+  model-data-leakage-review:
+    path: secops/model-data-leakage-review/SKILL.md
+    category: secops
+    related:
+    - redaction
+    - ai-memory-and-context-safety
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - redaction
+    - ai-evaluation-and-redteam-reporting
+    - ai-memory-and-context-safety
+    output_template: model_data_leakage_report
+  model-denial-of-service-cost-abuse:
+    path: secops/model-denial-of-service-cost-abuse/SKILL.md
+    category: secops
+    related: &id048
+    - prometheus-alert-analysis
+    - devops-incident-triage
+    always_load_before: []
+    may_escalate_to: *id048
+    output_template: model_dos_cost_abuse_report
+  ai-supply-chain-review:
+    path: secops/ai-supply-chain-review/SKILL.md
+    category: secops
+    related: &id049
+    - supply-chain-security
+    - rag-poisoning-defense
+    always_load_before: []
+    may_escalate_to: *id049
+    output_template: ai_supply_chain_review
+  ai-evaluation-and-redteam-reporting:
+    path: secops/ai-evaluation-and-redteam-reporting/SKILL.md
+    category: secops
+    related: &id050
+    - ai-jailbreak-defense
+    - pentest-finding-report
+    always_load_before: []
+    may_escalate_to: *id050
+    output_template: ai_evaluation_redteam_report
+  ai-memory-and-context-safety:
+    path: secops/ai-memory-and-context-safety/SKILL.md
+    category: secops
+    related: &id051
+    - model-data-leakage-review
+    - prompt-injection-defense
+    always_load_before: []
+    may_escalate_to: *id051
+    output_template: ai_memory_context_safety_report
+  ai-output-handling-review:
+    path: secops/ai-output-handling-review/SKILL.md
+    category: secops
+    related:
+    - command-safety
+    - database-safety
+    - http-fetch-safety
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - redaction
+    may_escalate_to:
+    - ai-evaluation-and-redteam-reporting
+    - command-safety
+    - http-fetch-safety
+    - database-safety
+    output_template: ai_output_handling_review
+  document-processing-router:
+    path: productivity/document-processing-router/SKILL.md
+    category: productivity
+    related: &id052 []
+    always_load_before: []
+    may_escalate_to: *id052
+    output_template: document_processing_report
+  docx-document-workflow:
+    path: productivity/docx-document-workflow/SKILL.md
+    category: productivity
+    related: &id053 []
+    always_load_before: []
+    may_escalate_to: *id053
+    output_template: document_workflow_report
+  pdf-document-workflow:
+    path: productivity/pdf-document-workflow/SKILL.md
+    category: productivity
+    related: &id054
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id054
+    output_template: pdf_workflow_report
+  pptx-presentation-workflow:
+    path: productivity/pptx-presentation-workflow/SKILL.md
+    category: productivity
+    related: &id055 []
+    always_load_before: []
+    may_escalate_to: *id055
+    output_template: presentation_workflow_report
+  xlsx-spreadsheet-workflow:
+    path: productivity/xlsx-spreadsheet-workflow/SKILL.md
+    category: productivity
+    related: &id056
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id056
+    output_template: spreadsheet_workflow_report
+  screenshot-analysis-workflow:
+    path: productivity/screenshot-analysis-workflow/SKILL.md
+    category: productivity
+    related: &id057
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id057
+    output_template: screenshot_analysis_report
+  brand-guidelines-application:
+    path: productivity/brand-guidelines-application/SKILL.md
+    category: productivity
+    related: &id058 []
+    always_load_before: []
+    may_escalate_to: *id058
+    output_template: brand_guidelines_report
+  frontend-design-review:
+    path: devops/frontend-design-review/SKILL.md
+    category: devops
+    related: &id059
+    - screenshot-analysis-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id059
+    output_template: frontend_design_review
+  web-artifact-builder:
+    path: devops/web-artifact-builder/SKILL.md
+    category: devops
+    related: &id060
+    - frontend-design-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id060
+    output_template: web_artifact_report
+  theme-design-system-factory:
+    path: productivity/theme-design-system-factory/SKILL.md
+    category: productivity
+    related: &id061 []
+    always_load_before: []
+    may_escalate_to: *id061
+    output_template: design_system_report
+  figma-design-handoff:
+    path: productivity/figma-design-handoff/SKILL.md
+    category: productivity
+    related: &id062 []
+    always_load_before: []
+    may_escalate_to: *id062
+    output_template: figma_handoff_report
+  image-generation-brief:
+    path: productivity/image-generation-brief/SKILL.md
+    category: productivity
+    related: &id063 []
+    always_load_before: []
+    may_escalate_to: *id063
+    output_template: image_generation_brief
+  mcp-server-builder:
+    path: devops/mcp-server-builder/SKILL.md
+    category: devops
+    related: &id064
+    - api-security-check
+    - ai-agent-tool-abuse-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id064
+    output_template: mcp_server_builder_report
+  skill-creator-workflow:
+    path: devops/skill-creator-workflow/SKILL.md
+    category: devops
+    related: &id065 []
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id065
+    output_template: skill_creator_report
+  skill-installer-workflow:
+    path: devops/skill-installer-workflow/SKILL.md
+    category: devops
+    related: &id066
+    - supply-chain-security
+    - prompt-injection-defense
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id066
+    output_template: skill_installer_report
+  cli-creator-workflow:
+    path: devops/cli-creator-workflow/SKILL.md
+    category: devops
+    related: &id067
+    - command-safety
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id067
+    output_template: cli_creator_report
+  openai-docs-integration:
+    path: devops/openai-docs-integration/SKILL.md
+    category: devops
+    related: &id068
+    - model-denial-of-service-cost-abuse
+    - model-data-leakage-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id068
+    output_template: openai_docs_integration_report
+  claude-api-integration:
+    path: devops/claude-api-integration/SKILL.md
+    category: devops
+    related: &id069
+    - model-denial-of-service-cost-abuse
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id069
+    output_template: claude_api_integration_report
+  chatgpt-apps-workflow:
+    path: devops/chatgpt-apps-workflow/SKILL.md
+    category: devops
+    related: &id070
+    - ai-agent-tool-abuse-review
+    - model-data-leakage-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id070
+    output_template: chatgpt_apps_report
+  static-platform-deploy:
+    path: devops/static-platform-deploy/SKILL.md
+    category: devops
+    related: &id071
+    - deployment-planning
+    - secret-detection
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id071
+    output_template: static_platform_deploy_report
+  github-comment-triage:
+    path: devops/github-comment-triage/SKILL.md
+    category: devops
+    related: &id072
+    - prompt-injection-defense
+    - pull-request-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id072
+    output_template: github_comment_triage_report
+  ci-fix-proposal:
+    path: devops/ci-fix-proposal/SKILL.md
+    category: devops
+    related: &id073
+    - cicd-failure-analysis
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id073
+    output_template: ci_fix_proposal_report
+  sentry-issue-triage:
+    path: devops/sentry-issue-triage/SKILL.md
+    category: devops
+    related: &id074
+    - log-analysis
+    - redaction
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id074
+    output_template: sentry_issue_triage_report
+  issue-tracker-workflow:
+    path: productivity/issue-tracker-workflow/SKILL.md
+    category: productivity
+    related: &id075 []
+    always_load_before: []
+    may_escalate_to: *id075
+    output_template: issue_tracker_report
+  goal-definition-workflow:
+    path: productivity/goal-definition-workflow/SKILL.md
+    category: productivity
+    related: &id076 []
+    always_load_before: []
+    may_escalate_to: *id076
+    output_template: goal_definition_report
+  meeting-intelligence-workflow:
+    path: productivity/meeting-intelligence-workflow/SKILL.md
+    category: productivity
+    related: &id077
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id077
+    output_template: meeting_intelligence_report
+  knowledge-capture-workflow:
+    path: productivity/knowledge-capture-workflow/SKILL.md
+    category: productivity
+    related: &id078
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id078
+    output_template: knowledge_capture_report
+  research-documentation-workflow:
+    path: productivity/research-documentation-workflow/SKILL.md
+    category: productivity
+    related: &id079 []
+    always_load_before: []
+    may_escalate_to: *id079
+    output_template: research_documentation_report
+  notebook-analysis-workflow:
+    path: productivity/notebook-analysis-workflow/SKILL.md
+    category: devops
+    related: &id080
+    - command-safety
+    - secret-detection
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id080
+    output_template: notebook_analysis_report
+  speech-transcription-workflow:
+    path: productivity/speech-transcription-workflow/SKILL.md
+    category: productivity
+    related: &id081
+    - redaction
+    always_load_before: []
+    may_escalate_to: *id081
+    output_template: speech_transcription_report
+  security-best-practices-review:
+    path: secops/security-best-practices-review/SKILL.md
+    category: secops
+    related: &id082
+    - security-threat-modeling-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id082
+    output_template: security_best_practices_report
+  security-ownership-map:
+    path: secops/security-ownership-map/SKILL.md
+    category: secops
+    related: &id083 []
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id083
+    output_template: security_ownership_map_report
+  security-threat-modeling-workflow:
+    path: secops/security-threat-modeling-workflow/SKILL.md
+    category: secops
+    related: &id084
+    - ai-agent-tool-abuse-review
+    - model-data-leakage-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id084
+    output_template: security_threat_model_report
+  rust-senior-code-review:
+    path: devops/rust-senior-code-review/SKILL.md
+    category: devops
+    related: &id085
+    - pull-request-review
+    - security-best-practices-review
+    - supply-chain-security
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id085
+    output_template: rust_code_review_report
+  rust-software-architecture:
+    path: devops/rust-software-architecture/SKILL.md
+    category: devops
+    related:
+    - security-threat-modeling-workflow
+    - ai-agent-tool-abuse-review
+    - skill-creator-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - security-threat-modeling-workflow
+    - rust-security-hardening
+    - rust-senior-code-review
+    - rust-testing-strategy
+    - skill-creator-workflow
+    - ai-agent-tool-abuse-review
+    output_template: rust_architecture_report
+  rust-workspace-and-crate-design:
+    path: devops/rust-workspace-and-crate-design/SKILL.md
+    category: devops
+    related: &id086
+    - rust-software-architecture
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id086
+    output_template: rust_workspace_design_report
+  rust-async-runtime-design:
+    path: devops/rust-async-runtime-design/SKILL.md
+    category: devops
+    related: &id087
+    - devops-incident-triage
+    - model-denial-of-service-cost-abuse
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id087
+    output_template: rust_async_runtime_report
+  rust-error-handling-observability:
+    path: devops/rust-error-handling-observability/SKILL.md
+    category: devops
+    related: &id088
+    - log-analysis
+    - evidence-handling
+    - redaction
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id088
+    output_template: rust_observability_report
+  rust-api-design:
+    path: devops/rust-api-design/SKILL.md
+    category: devops
+    related: &id089
+    - api-security-check
+    - model-data-leakage-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id089
+    output_template: rust_api_design_report
+  rust-security-hardening:
+    path: devops/rust-security-hardening/SKILL.md
+    category: devops
+    related: &id090
+    - supply-chain-security
+    - secret-detection
+    - security-best-practices-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id090
+    output_template: rust_security_hardening_report
+  rust-performance-engineering:
+    path: devops/rust-performance-engineering/SKILL.md
+    category: devops
+    related: &id091
+    - prometheus-alert-analysis
+    - model-denial-of-service-cost-abuse
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id091
+    output_template: rust_performance_report
+  rust-testing-strategy:
+    path: devops/rust-testing-strategy/SKILL.md
+    category: devops
+    related: &id092
+    - ci-fix-proposal
+    - skill-creator-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id092
+    output_template: rust_testing_strategy_report
+  rust-dependency-supply-chain-review:
+    path: devops/rust-dependency-supply-chain-review/SKILL.md
+    category: devops
+    related: &id093
+    - supply-chain-security
+    - malicious-dependency-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id093
+    output_template: rust_dependency_review_report
+  rust-tool-adapter-implementation:
+    path: devops/rust-tool-adapter-implementation/SKILL.md
+    category: devops
+    related: &id094
+    - command-safety
+    - rust-api-design
+    - security-threat-modeling-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id094
+    output_template: rust_tool_adapter_report
+  cybou-policy-engine-implementation:
+    path: devops/cybou-policy-engine-implementation/SKILL.md
+    category: devops
+    related:
+    - risk-and-approval
+    - rust-tool-adapter-implementation
+    - rust-testing-strategy
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - rust-security-hardening
+    - rust-senior-code-review
+    - rust-tool-adapter-implementation
+    - rust-testing-strategy
+    - risk-and-approval
+    output_template: cybou_policy_engine_report
+  cybou-skill-runtime-implementation:
+    path: devops/cybou-skill-runtime-implementation/SKILL.md
+    category: devops
+    related:
+    - skill-creator-workflow
+    - skill-installer-workflow
+    - rust-software-architecture
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - rust-security-hardening
+    - rust-senior-code-review
+    - rust-testing-strategy
+    - skill-installer-workflow
+    - rust-software-architecture
+    - skill-creator-workflow
+    output_template: cybou_skill_runtime_report
+  cybou-self-hosting-development-loop:
+    path: devops/cybou-self-hosting-development-loop/SKILL.md
+    category: devops
+    related:
+    - rust-software-architecture
+    - cybou-policy-engine-implementation
+    - cybou-skill-runtime-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - rust-security-hardening
+    - rust-senior-code-review
+    - rust-testing-strategy
+    - rust-software-architecture
+    - cybou-policy-engine-implementation
+    - cybou-skill-runtime-implementation
+    output_template: cybou_self_hosting_report
+  rust-toolchain-management:
+    path: devops/rust-toolchain-management/SKILL.md
+    category: devops
+    related:
+    - rust-ci-quality-gates
+    - rust-release-and-semver
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to:
+    - rust-ci-quality-gates
+    - rust-coverage-workflow
+    - rust-release-and-semver
+    - rust-linting-and-formatting
+    output_template: rust_toolchain_management_report
+  rust-linting-and-formatting:
+    path: devops/rust-linting-and-formatting/SKILL.md
+    category: devops
+    related: &id095
+    - rust-senior-code-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id095
+    output_template: rust_linting_formatting_report
+  rust-test-infrastructure:
+    path: devops/rust-test-infrastructure/SKILL.md
+    category: devops
+    related:
+    - rust-testing-strategy
+    - ci-fix-proposal
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to:
+    - rust-release-and-semver
+    - ci-fix-proposal
+    - rust-testing-strategy
+    - rust-coverage-workflow
+    - rust-linting-and-formatting
+    output_template: rust_test_infrastructure_report
+  rust-coverage-workflow:
+    path: devops/rust-coverage-workflow/SKILL.md
+    category: devops
+    related: &id096
+    - rust-test-infrastructure
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id096
+    output_template: rust_coverage_workflow_report
+  rust-benchmarking-and-profiling:
+    path: devops/rust-benchmarking-and-profiling/SKILL.md
+    category: devops
+    related: &id097
+    - rust-performance-engineering
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id097
+    output_template: rust_benchmarking_report
+  rust-fuzzing-and-property-testing:
+    path: devops/rust-fuzzing-and-property-testing/SKILL.md
+    category: devops
+    related: &id098
+    - rust-testing-strategy
+    - command-safety
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id098
+    output_template: rust_fuzzing_property_report
+  rust-miri-unsafe-validation:
+    path: devops/rust-miri-unsafe-validation/SKILL.md
+    category: devops
+    related: &id099
+    - rust-security-hardening
+    - rust-senior-code-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id099
+    output_template: rust_miri_unsafe_report
+  rust-ci-quality-gates:
+    path: devops/rust-ci-quality-gates/SKILL.md
+    category: devops
+    related:
+    - cicd-failure-analysis
+    - rust-test-infrastructure
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to:
+    - cicd-failure-analysis
+    - rust-release-and-semver
+    - rust-coverage-workflow
+    - rust-test-infrastructure
+    - rust-linting-and-formatting
+    output_template: rust_ci_quality_gates_report
+  rust-docs-and-api-contracts:
+    path: devops/rust-docs-and-api-contracts/SKILL.md
+    category: devops
+    related: &id100
+    - rust-api-design
+    - research-documentation-workflow
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id100
+    output_template: rust_docs_api_contracts_report
+  rust-release-and-semver:
+    path: devops/rust-release-and-semver/SKILL.md
+    category: devops
+    related: &id101
+    - rust-ci-quality-gates
+    - rust-dependency-supply-chain-review
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id101
+    output_template: rust_release_semver_report
+  rust-feature-matrix-and-hack:
+    path: devops/rust-feature-matrix-and-hack/SKILL.md
+    category: devops
+    related: &id102
+    - rust-workspace-and-crate-design
+    - rust-ci-quality-gates
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id102
+    output_template: rust_feature_matrix_report
+  rust-dead-code-and-dependency-hygiene:
+    path: devops/rust-dead-code-and-dependency-hygiene/SKILL.md
+    category: devops
+    related: &id103
+    - rust-dependency-supply-chain-review
+    - rust-feature-matrix-and-hack
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id103
+    output_template: rust_dependency_hygiene_report
+  runtime-normalized-action-engine:
+    path: devops/runtime-normalized-action-engine/SKILL.md
+    category: devops
+    related: &id104
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id104
+    output_template: runtime_enforcement_report
+  runtime-policy-decision-engine:
+    path: devops/runtime-policy-decision-engine/SKILL.md
+    category: devops
+    related: &id105
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id105
+    output_template: runtime_enforcement_report
+  runtime-approval-state-manager:
+    path: devops/runtime-approval-state-manager/SKILL.md
+    category: devops
+    related: &id106
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id106
+    output_template: runtime_enforcement_report
+  runtime-audit-event-pipeline:
+    path: devops/runtime-audit-event-pipeline/SKILL.md
+    category: devops
+    related: &id107
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id107
+    output_template: runtime_enforcement_report
+  runtime-redaction-boundary:
+    path: devops/runtime-redaction-boundary/SKILL.md
+    category: devops
+    related: &id108
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id108
+    output_template: runtime_enforcement_report
+  runtime-tool-router:
+    path: devops/runtime-tool-router/SKILL.md
+    category: devops
+    related: &id109
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id109
+    output_template: runtime_enforcement_report
+  runtime-behavior-test-engine:
+    path: devops/runtime-behavior-test-engine/SKILL.md
+    category: devops
+    related: &id110
+    - cybou-policy-engine-implementation
+    - rust-tool-adapter-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id110
+    output_template: runtime_enforcement_report
+  runtime-policy-loader:
+    path: devops/runtime-policy-loader/SKILL.md
+    category: devops
+    related:
+    - runtime-policy-decision-engine
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    - runtime-policy-decision-engine
+    output_template: data_driven_policy_report
+  runtime-rule-matcher:
+    path: devops/runtime-rule-matcher/SKILL.md
+    category: devops
+    related:
+    - runtime-policy-decision-engine
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    - runtime-policy-decision-engine
+    output_template: data_driven_policy_report
+  runtime-risk-engine:
+    path: devops/runtime-risk-engine/SKILL.md
+    category: devops
+    related:
+    - runtime-policy-decision-engine
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    - runtime-policy-decision-engine
+    output_template: data_driven_policy_report
+  runtime-profile-scope-engine:
+    path: devops/runtime-profile-scope-engine/SKILL.md
+    category: devops
+    related:
+    - runtime-policy-decision-engine
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    - runtime-policy-decision-engine
+    output_template: data_driven_policy_report
+  runtime-policy-regression-suite:
+    path: devops/runtime-policy-regression-suite/SKILL.md
+    category: devops
+    related:
+    - runtime-policy-decision-engine
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - cybou-policy-engine-implementation
+    - runtime-policy-decision-engine
+    output_template: data_driven_policy_report
+  runtime-shell-normalizer:
+    path: devops/runtime-shell-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-cargo-normalizer:
+    path: devops/runtime-cargo-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-kubectl-normalizer:
+    path: devops/runtime-kubectl-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-terraform-normalizer:
+    path: devops/runtime-terraform-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-docker-normalizer:
+    path: devops/runtime-docker-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-git-normalizer:
+    path: devops/runtime-git-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-database-normalizer:
+    path: devops/runtime-database-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-http-fetch-normalizer:
+    path: devops/runtime-http-fetch-normalizer/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-normalizer-regression-suite:
+    path: devops/runtime-normalizer-regression-suite/SKILL.md
+    category: devops
+    related:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    - environment-detection
+    may_escalate_to:
+    - runtime-normalized-action-engine
+    - runtime-policy-decision-engine
+    - runtime-policy-regression-suite
+    output_template: tool_specific_normalizer_report
+  runtime-scope-matcher:
+    path: devops/runtime-scope-matcher/SKILL.md
+    category: devops
+    related: &id111
+    - runtime-approval-state-manager
+    - runtime-policy-decision-engine
+    - runtime-tool-router
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id111
+    output_template: scope_approval_report
+  runtime-approval-store:
+    path: devops/runtime-approval-store/SKILL.md
+    category: devops
+    related: &id112
+    - runtime-approval-state-manager
+    - runtime-policy-decision-engine
+    - runtime-tool-router
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id112
+    output_template: scope_approval_report
+  runtime-approval-cli:
+    path: devops/runtime-approval-cli/SKILL.md
+    category: devops
+    related: &id113
+    - runtime-approval-state-manager
+    - runtime-policy-decision-engine
+    - runtime-tool-router
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id113
+    output_template: scope_approval_report
+  runtime-approval-policy-integration:
+    path: devops/runtime-approval-policy-integration/SKILL.md
+    category: devops
+    related: &id114
+    - runtime-approval-state-manager
+    - runtime-policy-decision-engine
+    - runtime-tool-router
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id114
+    output_template: scope_approval_report
+  runtime-approval-regression-suite:
+    path: devops/runtime-approval-regression-suite/SKILL.md
+    category: devops
+    related: &id115
+    - runtime-approval-state-manager
+    - runtime-policy-decision-engine
+    - runtime-tool-router
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id115
+    output_template: scope_approval_report
+  runtime-durable-audit-store:
+    path: devops/runtime-durable-audit-store/SKILL.md
+    category: devops
+    related: &id116
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id116
+    output_template: durable_audit_report
+  runtime-evidence-store:
+    path: devops/runtime-evidence-store/SKILL.md
+    category: devops
+    related: &id117
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id117
+    output_template: durable_audit_report
+  runtime-audit-cli:
+    path: devops/runtime-audit-cli/SKILL.md
+    category: devops
+    related: &id118
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id118
+    output_template: durable_audit_report
+  runtime-tamper-evidence:
+    path: devops/runtime-tamper-evidence/SKILL.md
+    category: devops
+    related: &id119
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id119
+    output_template: durable_audit_report
+  runtime-evidence-redaction-integration:
+    path: devops/runtime-evidence-redaction-integration/SKILL.md
+    category: devops
+    related: &id120
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id120
+    output_template: durable_audit_report
+  runtime-audit-regression-suite:
+    path: devops/runtime-audit-regression-suite/SKILL.md
+    category: devops
+    related: &id121
+    - runtime-audit-event-pipeline
+    - runtime-redaction-boundary
+    - evidence-handling
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id121
+    output_template: durable_audit_report
+  runtime-sandbox-profile-engine:
+    path: devops/runtime-sandbox-profile-engine/SKILL.md
+    category: devops
+    related: &id122
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id122
+    output_template: sandbox_execution_report
+  runtime-tool-execution-boundary:
+    path: devops/runtime-tool-execution-boundary/SKILL.md
+    category: devops
+    related: &id123
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id123
+    output_template: sandbox_execution_report
+  runtime-filesystem-boundary:
+    path: devops/runtime-filesystem-boundary/SKILL.md
+    category: devops
+    related: &id124
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id124
+    output_template: sandbox_execution_report
+  runtime-network-boundary:
+    path: devops/runtime-network-boundary/SKILL.md
+    category: devops
+    related: &id125
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id125
+    output_template: sandbox_execution_report
+  runtime-output-limit-boundary:
+    path: devops/runtime-output-limit-boundary/SKILL.md
+    category: devops
+    related: &id126
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id126
+    output_template: sandbox_execution_report
+  runtime-tool-router-execution-prototype:
+    path: devops/runtime-tool-router-execution-prototype/SKILL.md
+    category: devops
+    related: &id127
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id127
+    output_template: sandbox_execution_report
+  runtime-sandbox-regression-suite:
+    path: devops/runtime-sandbox-regression-suite/SKILL.md
+    category: devops
+    related: &id128
+    - runtime-tool-router
+    - runtime-policy-decision-engine
+    - runtime-durable-audit-store
+    - runtime-evidence-store
+    always_load_before:
+    - task-classification
+    - risk-and-approval
+    may_escalate_to: *id128
+    output_template: sandbox_execution_report

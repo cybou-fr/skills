@@ -1,0 +1,50 @@
+version: '5.3'
+scenarios:
+- id: valid-terraform-apply-approval
+  command: terraform apply
+  approval:
+    scope: terraform_workspace
+    approved_actions:
+    - apply
+    ttl_seconds: 900
+  expected_decision: allow_with_approval
+- id: plan-approval-not-apply
+  command: terraform apply
+  approval:
+    scope: terraform_workspace
+    approved_actions:
+    - plan
+    ttl_seconds: 900
+  expected_decision: approval_required
+- id: wrong-scope
+  command: cargo publish
+  approval:
+    scope: terraform_workspace
+    approved_actions:
+    - publish
+    ttl_seconds: 900
+  expected_decision: approval_required
+- id: expired-apply-approval
+  command: terraform apply
+  approval:
+    scope: terraform_workspace
+    approved_actions:
+    - apply
+    ttl_seconds: -1
+  expected_decision: approval_required
+- id: valid-cargo-publish-approval
+  command: cargo publish
+  approval:
+    scope: cargo_workspace
+    approved_actions:
+    - publish
+    ttl_seconds: 900
+  expected_decision: allow_with_approval
+- id: hard-deny-not-overridden
+  command: terraform destroy -auto-approve
+  approval:
+    scope: terraform_workspace
+    approved_actions:
+    - destroy
+    ttl_seconds: 900
+  expected_decision: deny_by_default

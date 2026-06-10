@@ -1,0 +1,13 @@
+tool: audio_processor
+version: '4.3'
+adapter_type: media_processing
+decision_inputs:
+- operation
+- media
+- language
+- data_sensitivity
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+approval_required:
+- share_transcript_externally

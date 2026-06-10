@@ -1,0 +1,23 @@
+tool: backup_api
+version: '4.2'
+adapter_type: backup_system
+decision_inputs:
+- operation
+- target
+- environment
+- backup_id
+- approval_state
+enforcement:
+  read_only_by_default: true
+  audit_required: true
+allowed_read_only:
+- list_backups
+- check_backup_status
+- check_restore_test_status
+approval_required:
+- restore
+- delete_backup
+- change_retention
+- disable_backup
+denied_by_default:
+- overwrite_production_without_snapshot

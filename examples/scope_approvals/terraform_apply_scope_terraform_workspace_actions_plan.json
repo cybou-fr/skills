@@ -1,0 +1,84 @@
+{
+  "command": "terraform apply",
+  "approval": {
+    "approval_id": "d9b8850b-fba5-4965-a175-8802e41f12ae",
+    "status": "approved",
+    "scope": "terraform_workspace",
+    "approved_actions": [
+      "plan"
+    ],
+    "expires_at": 1781116401.0666103,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "approval_used": null,
+  "normalized_action": {
+    "tool": "terraform",
+    "operation": "apply",
+    "raw_input": "terraform apply",
+    "args": {
+      "tokens": [
+        "terraform",
+        "apply"
+      ],
+      "chdir": null,
+      "auto_approve": false
+    },
+    "target": "terraform_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "terraform",
+    "normalized_action": {
+      "tool": "terraform",
+      "operation": "apply",
+      "raw_input": "terraform apply",
+      "args": {
+        "tokens": [
+          "terraform",
+          "apply"
+        ],
+        "chdir": null,
+        "auto_approve": false
+      },
+      "target": "terraform_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "terraform-apply",
+      "fallback:terraform-high-risk",
+      "readonly_profile_blocks_write",
+      "side_effect:write"
+    ],
+    "approval_required": true,
+    "approval_scope": "terraform_workspace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115501.1131415,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "4a1f2c50-b632-4390-9869-b07d36ca2c18",
+    "tool": "terraform",
+    "action": "apply",
+    "policy_rule": "terraform-apply,fallback:terraform-high-risk,readonly_profile_blocks_write,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

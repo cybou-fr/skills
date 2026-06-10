@@ -1,0 +1,18 @@
+tool: package_registry
+version: '4.2'
+adapter_type: metadata_api
+decision_inputs:
+- ecosystem
+- package
+- version
+- registry
+enforcement:
+  read_only: true
+allowed:
+- read_metadata
+- read_versions
+- read_maintainers
+- read_download_stats
+denied:
+- publish_package
+- yank_package

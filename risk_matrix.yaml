@@ -1,0 +1,159 @@
+version: '5.5'
+default_environment_when_unknown: unknown
+unknown_environment_policy: read_only
+risk_levels:
+  low:
+    score_range: 0-1
+    description: Read-only, no sensitive data, no external side effects, no production impact.
+    approval_required: false
+  medium:
+    score_range: 2-3
+    description: May change local or non-production state, or produce patches/drafts.
+    approval_required: recommended
+  high:
+    score_range: 4-6
+    description: May affect production, customer data, security controls, IAM, secrets, cost, or external communication.
+    approval_required: true
+  critical:
+    score_range: 7+
+    description: Irreversible, destructive, security-sensitive, or likely to cause data loss or exposure.
+    approval_required: true
+    default_decision: refuse_or_escalate
+scoring:
+  base:
+    read_only: 0
+    draft_only: 1
+    write_local: 1
+    write_development: 2
+    write_staging: 3
+    write_production: 4
+  modifiers:
+    secrets_involved: 3
+    iam_involved: 3
+    customer_data_involved: 3
+    database_write: 3
+    irreversible: 4
+    destructive_command: 4
+    external_side_effect: 2
+    unknown_environment: 2
+    no_backup: 2
+    no_rollback: 2
+    security_incident: 2
+    public_exposure: 3
+  thresholds:
+    low:
+    - 0
+    - 1
+    medium:
+    - 2
+    - 3
+    high:
+    - 4
+    - 6
+    critical_min: 7
+critical_actions:
+- delete_database
+- delete_namespace
+- terraform_destroy
+- disable_mfa
+- disable_audit_logs
+- expose_secret
+- publicize_private_data
+- change_admin_iam
+- purge_logs
+- destructive_production_change
+- unauthorized_pentest
+- dos_testing
+- credential_theft
+- persistence_installation
+- out_of_scope_testing
+- stealth_or_evasion
+- malware_deployment
+- phishing
+- social_engineering
+- third_party_target_testing
+- jailbreak_generation
+- bypass_instruction_generation
+- ai_tool_abuse
+- rag_poisoning
+- model_data_leakage
+- cross_tenant_memory_leak
+- policy_engine_bypass
+- unreviewed_tool_adapter_change
+- cargo_publish_without_approval
+risk_floor:
+  secrets_involved: high
+  iam_change: high
+  database_write: high
+  public_exposure: high
+  terraform_destroy: critical
+  kubectl_delete_namespace: critical
+  database_drop: critical
+  disable_mfa: critical
+  disable_audit_logs: critical
+  purge_logs: critical
+  active_scanning: high
+  pentest_without_authorization: critical
+  dos_testing: critical
+  credential_capture: critical
+  stealth_or_evasion: critical
+  malware_deployment: critical
+  phishing_simulation: critical
+  social_engineering: critical
+  third_party_target: critical
+  out_of_scope_asset: critical
+  jailbreak_generation: critical
+  bypass_instruction_generation: critical
+  ai_tool_abuse: high
+  rag_poisoning: high
+  model_data_leakage: high
+  model_dos: high
+  cross_tenant_memory_leak: critical
+  unsafe_rust_in_runtime: high
+  cargo_publish: high
+  policy_engine_bypass: critical
+  tool_adapter_security_change: high
+  new_rust_dependency: medium
+  cargo_fuzz_long_run: high
+  crate_publish: high
+  ci_quality_gate_removal: high
+  coverage_upload: medium
+  unsafe_validation_failure: high
+approval_policy:
+  low:
+    explicit_confirmation_required: false
+  medium:
+    explicit_confirmation_required: recommended_for_write_actions
+  high:
+    explicit_confirmation_required: true
+    approval_scope_required: true
+  critical:
+    explicit_confirmation_required: true
+    approval_scope_required: true
+    default_decision: refuse_or_escalate
+  penetration_testing:
+    authorization_required: true
+    scope_required: true
+    rules_of_engagement_required: true
+    active_testing_requires_explicit_approval: true
+  ai_security_assessment:
+    defensive_testing_only: true
+    harmful_content_requires_special_authorization: true
+    third_party_testing_denied_without_authorization: true
+    use_synthetic_fixtures: true
+environment_rules:
+  unknown:
+    max_autonomy: read_only
+    write_actions: deny
+  production:
+    write_actions: approval_required
+    destructive_actions: deny_by_default
+  customer:
+    write_actions: approval_required
+    destructive_actions: deny_by_default
+  staging:
+    write_actions: approval_recommended
+    destructive_actions: approval_required
+  local_sandbox:
+    write_actions: policy_gated
+    destructive_actions: approval_required

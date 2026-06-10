@@ -1,0 +1,28 @@
+tool: cloud
+version: '3.0'
+default: read_only
+rules:
+- id: aws-readonly
+  match_regex: ^aws\s+.*\b(get|list|describe|lookup)\b
+  decision: allow_read_only_and_redact
+  risk: medium
+- id: gcloud-readonly
+  match_regex: ^gcloud\s+.*\b(list|describe|read|get)\b
+  decision: allow_read_only_and_redact
+  risk: medium
+- id: az-readonly
+  match_regex: ^az\s+.*\b(list|show)\b
+  decision: allow_read_only_and_redact
+  risk: medium
+- id: cloud-iam-change
+  match_regex: (iam|role|policy|permission).*(create|update|delete|attach|detach|set)
+  decision: approval_required
+  risk: high
+- id: cloud-firewall-change
+  match_regex: (security-group|firewall|nsg).*(authorize|create|update|delete|open)
+  decision: approval_required
+  risk: high
+- id: cloud-delete
+  match_regex: \b(delete|remove|destroy)\b
+  decision: approval_required
+  risk: high

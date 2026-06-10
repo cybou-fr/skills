@@ -1,0 +1,85 @@
+{
+  "command": "cargo clippy --workspace --all-targets --all-features -- -D warnings",
+  "normalized_action": {
+    "tool": "cargo",
+    "operation": "clippy",
+    "raw_input": "cargo clippy --workspace --all-targets --all-features -- -D warnings",
+    "args": {
+      "tokens": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "features": [
+        "--all-features"
+      ],
+      "channel": null,
+      "read_only_known": true
+    },
+    "target": "cargo_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "allow_read_only",
+    "risk": "low",
+    "tool": "cargo",
+    "normalized_action": {
+      "tool": "cargo",
+      "operation": "clippy",
+      "raw_input": "cargo clippy --workspace --all-targets --all-features -- -D warnings",
+      "args": {
+        "tokens": [
+          "cargo",
+          "clippy",
+          "--workspace",
+          "--all-targets",
+          "--all-features",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "features": [
+          "--all-features"
+        ],
+        "channel": null,
+        "read_only_known": true
+      },
+      "target": "cargo_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "cargo-readonly-checks",
+      "rust-safe-quality-commands",
+      "fallback:read-only"
+    ],
+    "approval_required": false,
+    "approval_scope": "cargo_workspace",
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115280.8673382,
+    "event_type": "policy_decision",
+    "decision": "allow_read_only",
+    "risk": "low",
+    "skills": [],
+    "task_id": "f9d3b517-27f2-423d-94a8-cbbcb40b8999",
+    "tool": "cargo",
+    "action": "clippy",
+    "policy_rule": "cargo-readonly-checks,rust-safe-quality-commands,fallback:read-only",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

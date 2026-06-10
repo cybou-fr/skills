@@ -1,0 +1,15 @@
+tool: flamegraph
+version: '4.5'
+adapter_type: profiler
+decision_inputs:
+- binary
+- benchmark
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+  local_only_recommended: true
+allowed_read_only:
+- flamegraph local
+approval_required:
+- profile_production

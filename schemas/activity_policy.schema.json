@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Activity Policy",
+  "type": "object",
+  "required": [
+    "activity",
+    "version",
+    "default",
+    "denied_by_default"
+  ],
+  "properties": {
+    "activity": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "default": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "required_before_any_testing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_activity_classes": {
+      "type": "object"
+    },
+    "denied_by_default": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_decision_rules": {
+      "type": "object"
+    }
+  }
+}

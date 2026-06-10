@@ -1,0 +1,9 @@
+version: '4.2'
+objects:
+  normalized_action: schemas/normalized_action.schema.json
+  policy_decision: schemas/policy_decision.schema.json
+  task_state: schemas/task_state.schema.json
+  tool_call_state: schemas/tool_call_state.schema.json
+  approval_state: schemas/approval_state.schema.json
+  audit_event: schemas/audit_event.schema.json
+  scope_object: schemas/scope_object.schema.json

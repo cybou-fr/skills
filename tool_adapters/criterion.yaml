@@ -1,0 +1,12 @@
+tool: criterion
+version: '4.5'
+adapter_type: benchmark
+decision_inputs:
+- bench_target
+- time_limit
+- environment
+enforcement:
+  read_only_by_default: true
+  time_limit_recommended: true
+allowed_read_only:
+- cargo bench

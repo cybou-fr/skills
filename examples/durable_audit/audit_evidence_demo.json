@@ -1,0 +1,46 @@
+{
+  "audit_record": {
+    "sequence": 1,
+    "record_id": "9b9e4bfd-37fa-4972-9507-bf7bfa23e823",
+    "timestamp": 1781115686.2458212,
+    "record_type": "policy_decision",
+    "previous_hash": "GENESIS",
+    "event": {
+      "timestamp": 1781115686.2457016,
+      "event_type": "policy_decision",
+      "decision": "approval_required",
+      "risk": "high",
+      "skills": [],
+      "task_id": "419e53c5-7f50-4425-9e36-62177a7f231b",
+      "tool": "terraform",
+      "action": "apply",
+      "policy_rule": "terraform-apply,fallback:terraform-high-risk,readonly_profile_blocks_write,side_effect:write",
+      "approval_id": null,
+      "redaction_applied": true
+    },
+    "record_hash": "deebbfd9ab6369d0691e64798c39264973f1674a424f010ba8eb46de48e8402d"
+  },
+  "evidence_record": {
+    "evidence_id": "eb381a4a-92f2-4c21-bfa9-4ee04510a679",
+    "timestamp": 1781115686.246236,
+    "evidence_type": "tool_output",
+    "content_type": "text/plain",
+    "redaction_applied": true,
+    "sha256": "132b36d79ecb4942c6108e1b04702b5de38174966a5b8d9b4e026c295e04b17e",
+    "linked": {
+      "audit_record_id": "9b9e4bfd-37fa-4972-9507-bf7bfa23e823"
+    }
+  },
+  "verify": {
+    "audit": {
+      "valid": true,
+      "record_count": 2,
+      "errors": []
+    },
+    "evidence": {
+      "valid": true,
+      "evidence_count": 1,
+      "errors": []
+    }
+  }
+}

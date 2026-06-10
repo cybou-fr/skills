@@ -1,0 +1,44 @@
+activity: ai_security_assessment
+version: '4.1'
+default: defensive_testing_only
+description: Controls defensive testing and hardening of LLM applications, AI agents, RAG systems, model integrations, and AI tool-use workflows.
+required_before_testing:
+- system_owner
+- assessment_scope
+- model_or_application_under_test
+- allowed_test_categories
+- data_handling_rules
+- tool_access_boundaries
+- stop_conditions
+allowed_activity_classes:
+  class_0_design_review:
+    description: Threat modeling, architecture review, policy review, control mapping.
+    approval: not_required_if_no_target_interaction
+  class_1_benign_eval:
+    description: Use synthetic benign test prompts and non-sensitive fixtures to evaluate defenses.
+    approval: scope_required
+  class_2_indirect_prompt_injection_simulation:
+    description: Use harmless instruction-like markers inside test documents to check data/instruction separation.
+    approval: scope_required
+  class_3_tool_abuse_simulation:
+    description: Test whether agent asks for approval and blocks dangerous tool calls using mock tools or dry-run.
+    approval: explicit_approval_or_sandbox_required
+  class_4_red_team_with_harmful_content:
+    description: Specialized safety red team with potentially harmful categories.
+    approval: special_authorization_required
+    default: do_not_perform_from_this_pack
+denied_by_default:
+- generating_jailbreak_prompts
+- bypass_instructions
+- real_secret_exfiltration
+- credential_theft
+- malware_or_phishing_generation
+- instructions_to_evade_safety_systems
+- automated_jailbreak_optimization
+- large_scale_abusive_prompting
+- testing_against_third_party_models_without_authorization
+safe_test_data_rules:
+  use_synthetic_data: true
+  use_placeholder_secrets: true
+  do_not_use_customer_data: true
+  do_not_store_model_outputs_with_sensitive_data: true

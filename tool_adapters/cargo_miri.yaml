@@ -1,0 +1,16 @@
+tool: cargo-miri
+version: '4.5'
+adapter_type: command
+decision_inputs:
+- crate
+- test_target
+- nightly_toolchain
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+  sandbox_recommended: true
+allowed_read_only:
+- miri test
+approval_required:
+- run_on_untrusted_code

@@ -1,0 +1,15 @@
+tool: metrics_reader
+version: '4.2'
+adapter_type: data_reader
+decision_inputs:
+- source
+- metric
+- time_window
+- environment
+enforcement:
+  read_only: true
+  max_time_window_default: 24h
+denied:
+- silence_alert
+- change_alert_rule
+- delete_dashboard

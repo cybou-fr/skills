@@ -1,0 +1,23 @@
+tool: repo_api
+version: '4.2'
+adapter_type: repository_api
+decision_inputs:
+- operation
+- repository
+- branch
+- pull_request
+- approval_state
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+allowed_read_only:
+- read_diff
+- read_file
+- list_branches
+- list_prs
+approval_required:
+- merge
+- push
+- comment
+- change_settings
+- create_secret

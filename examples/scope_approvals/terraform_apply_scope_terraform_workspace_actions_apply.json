@@ -1,0 +1,95 @@
+{
+  "command": "terraform apply",
+  "approval": {
+    "approval_id": "c0150b6e-daca-4e88-a015-c4fac32896eb",
+    "status": "approved",
+    "scope": "terraform_workspace",
+    "approved_actions": [
+      "apply"
+    ],
+    "expires_at": 1781116401.0225935,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "approval_used": {
+    "approval_id": "c0150b6e-daca-4e88-a015-c4fac32896eb",
+    "status": "approved",
+    "scope": "terraform_workspace",
+    "approved_actions": [
+      "apply"
+    ],
+    "expires_at": 1781116401.0225935,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "normalized_action": {
+    "tool": "terraform",
+    "operation": "apply",
+    "raw_input": "terraform apply",
+    "args": {
+      "tokens": [
+        "terraform",
+        "apply"
+      ],
+      "chdir": null,
+      "auto_approve": false
+    },
+    "target": "terraform_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "allow_with_approval",
+    "risk": "high",
+    "tool": "terraform",
+    "normalized_action": {
+      "tool": "terraform",
+      "operation": "apply",
+      "raw_input": "terraform apply",
+      "args": {
+        "tokens": [
+          "terraform",
+          "apply"
+        ],
+        "chdir": null,
+        "auto_approve": false
+      },
+      "target": "terraform_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "terraform-apply",
+      "fallback:terraform-high-risk",
+      "readonly_profile_blocks_write",
+      "side_effect:write",
+      "approval-valid"
+    ],
+    "approval_required": false,
+    "approval_scope": "terraform_workspace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115501.0656981,
+    "event_type": "policy_decision",
+    "decision": "allow_with_approval",
+    "risk": "high",
+    "skills": [],
+    "task_id": "7f0be4db-c6e5-498e-b1d3-f6121586897a",
+    "tool": "terraform",
+    "action": "apply",
+    "policy_rule": "terraform-apply,fallback:terraform-high-risk,readonly_profile_blocks_write,side_effect:write,approval-valid",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

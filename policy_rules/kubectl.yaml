@@ -1,0 +1,28 @@
+tool: kubectl
+version: '3.0'
+default: deny_write_without_approval
+rules:
+- id: kubectl-readonly
+  match_regex: ^kubectl\s+(get|describe|logs|top|auth can-i)\b
+  decision: allow_read_only
+  risk: medium
+- id: kubectl-secret-raw
+  match_regex: ^kubectl\s+get\s+secret.*(-o\s+yaml|-o\s+json)
+  decision: deny_or_redact
+  risk: high
+- id: kubectl-write
+  match_regex: ^kubectl\s+(apply|delete|edit|patch|scale|replace)\b
+  decision: approval_required
+  risk: high
+- id: kubectl-delete-namespace
+  match_regex: ^kubectl\s+delete\s+namespace\b
+  decision: deny_by_default
+  risk: critical
+- id: kubectl-rollout-restart
+  match_regex: ^kubectl\s+rollout\s+restart\b
+  decision: approval_required
+  risk: high
+- id: kubectl-exec
+  match_regex: ^kubectl\s+exec\b
+  decision: approval_required
+  risk: high

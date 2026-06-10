@@ -1,0 +1,102 @@
+{
+  "command": "cargo publish",
+  "approval": {
+    "approval_id": "6f975c58-f568-41d0-9c44-65fc4010b3d5",
+    "status": "approved",
+    "scope": "cargo_workspace",
+    "approved_actions": [
+      "publish"
+    ],
+    "expires_at": 1781116401.1139503,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "approval_used": {
+    "approval_id": "6f975c58-f568-41d0-9c44-65fc4010b3d5",
+    "status": "approved",
+    "scope": "cargo_workspace",
+    "approved_actions": [
+      "publish"
+    ],
+    "expires_at": 1781116401.1139503,
+    "approved_by": "operator",
+    "approval_text": "demo"
+  },
+  "normalized_action": {
+    "tool": "cargo",
+    "operation": "publish",
+    "raw_input": "cargo publish",
+    "args": {
+      "tokens": [
+        "cargo",
+        "publish"
+      ],
+      "features": [],
+      "channel": null,
+      "read_only_known": false
+    },
+    "target": "cargo_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "external_publish",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "allow_with_approval",
+    "risk": "high",
+    "tool": "cargo",
+    "normalized_action": {
+      "tool": "cargo",
+      "operation": "publish",
+      "raw_input": "cargo publish",
+      "args": {
+        "tokens": [
+          "cargo",
+          "publish"
+        ],
+        "features": [],
+        "channel": null,
+        "read_only_known": false
+      },
+      "target": "cargo_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "external_publish",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "cargo-publish",
+      "rust-publish",
+      "fallback:cargo-high-risk",
+      "readonly_profile_blocks_write",
+      "risk_floor:cargo_publish=high",
+      "risk_floor:crate_publish=high",
+      "side_effect:write",
+      "approval-valid"
+    ],
+    "approval_required": false,
+    "approval_scope": "cargo_workspace",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115501.1559458,
+    "event_type": "policy_decision",
+    "decision": "allow_with_approval",
+    "risk": "high",
+    "skills": [],
+    "task_id": "22f2a997-bb71-4d5c-aad3-3c570c95a043",
+    "tool": "cargo",
+    "action": "publish",
+    "policy_rule": "cargo-publish,rust-publish,fallback:cargo-high-risk,readonly_profile_blocks_write,risk_floor:cargo_publish=high,risk_floor:crate_publish=high,side_effect:write,approval-valid",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

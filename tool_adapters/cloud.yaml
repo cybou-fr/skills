@@ -1,0 +1,14 @@
+tool: cloud
+version: '4.0'
+adapter_type: api_or_command
+decision_inputs:
+- provider
+- operation
+- resource_type
+- account
+- region
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/cloud.yaml
+  redaction_required: true

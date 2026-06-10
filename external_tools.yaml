@@ -1,0 +1,297 @@
+version: '4.5'
+description: Catalog of abstract/external tools used by skills but not necessarily implemented as direct command tools.
+defaults:
+  read_only: true
+  redaction_required: true
+  audit_required: true
+  tool_router_required: true
+tools:
+  log_reader:
+    type: data_reader
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - tokens
+    - session_ids
+    - customer_data
+    - internal_hosts
+    adapter: tool_adapters/log_reader.yaml
+  ci_logs_reader:
+    type: data_reader
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - tokens
+    - secrets
+    - build_variables
+    adapter: tool_adapters/ci_logs_reader.yaml
+  metrics_reader:
+    type: data_reader
+    read_only: true
+    redaction_required: false
+    sensitive_outputs: []
+    adapter: tool_adapters/metrics_reader.yaml
+  siem:
+    type: security_data_reader
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - user_identifiers
+    - ip_addresses
+    - security_events
+    adapter: tool_adapters/siem.yaml
+  secret_scanner:
+    type: scanner
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - secret_matches
+    adapter: tool_adapters/secret_scanner.yaml
+  secrets_manager:
+    type: secrets_api
+    read_only: metadata_only
+    redaction_required: true
+    sensitive_outputs:
+    - secret_metadata
+    adapter: tool_adapters/secrets_manager.yaml
+    approval_required_for:
+    - create_secret
+    - update_secret
+    - delete_secret
+    - rotate_secret
+    - reveal_secret_value
+  vulnerability_scanner:
+    type: scanner
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - asset_metadata
+    adapter: tool_adapters/vulnerability_scanner.yaml
+  backup_api:
+    type: backup_system
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - backup_metadata
+    adapter: tool_adapters/backup_api.yaml
+  repo_api:
+    type: repository_api
+    read_only: true
+    redaction_required: true
+    sensitive_outputs:
+    - source_code
+    - secrets_in_diff
+    adapter: tool_adapters/repo_api.yaml
+  package_registry:
+    type: package_metadata_api
+    read_only: true
+    redaction_required: false
+    sensitive_outputs: []
+    adapter: tool_adapters/package_registry.yaml
+  helm:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    sensitive_outputs:
+    - values_may_contain_secrets
+    adapter: tool_adapters/helm.yaml
+    approval_required_for:
+    - upgrade
+    - rollback
+    - uninstall
+    - install
+  package_manager:
+    type: command
+    read_only: metadata_only
+    redaction_required: true
+    sensitive_outputs:
+    - install_scripts
+    adapter: tool_adapters/package_manager.yaml
+    approval_required_for:
+    - install
+    - add
+    - remove
+    - update
+    - global_install
+  notebook_runtime:
+    type: execution_environment
+    read_only: review_by_default
+    redaction_required: true
+    approval_required_for:
+    - execute_notebook
+    - install_dependency
+    adapter: tool_adapters/notebook_runtime.yaml
+  figma_api:
+    type: design_api
+    read_only: true
+    redaction_required: true
+    approval_required_for:
+    - create_file
+    - modify_design
+    - publish_library
+    adapter: tool_adapters/figma_api.yaml
+  issue_tracker_api:
+    type: issue_tracker_api
+    read_only: true
+    redaction_required: true
+    approval_required_for:
+    - create_issue
+    - update_issue
+    - assign_issue
+    - close_issue
+    adapter: tool_adapters/issue_tracker_api.yaml
+  deployment_platform:
+    type: deployment_api
+    read_only: preview_by_default
+    redaction_required: true
+    approval_required_for:
+    - production_deploy
+    - dns_change
+    - env_var_change
+    adapter: tool_adapters/deployment_platform.yaml
+  sentry_api:
+    type: observability_api
+    read_only: true
+    redaction_required: true
+    approval_required_for:
+    - resolve_issue
+    - ignore_issue
+    - change_alert
+    adapter: tool_adapters/sentry_api.yaml
+  audio_processor:
+    type: media_processing
+    read_only: true
+    redaction_required: true
+    adapter: tool_adapters/audio_processor.yaml
+  cargo:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo.yaml
+    approval_required_for:
+    - cargo install
+    - cargo publish
+    - dependency_add
+    - build_script_execution
+  rust_analyzer:
+    type: language_server
+    read_only: true
+    redaction_required: false
+    adapter: tool_adapters/rust_analyzer.yaml
+  cargo-nextest:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_nextest.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-llvm-cov:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_llvm_cov.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-tarpaulin:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_tarpaulin.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-miri:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_miri.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-fuzz:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_fuzz.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-hack:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_hack.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-udeps:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_udeps.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-msrv:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_msrv.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-semver-checks:
+    type: command
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_semver_checks.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  criterion:
+    type: benchmark
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/criterion.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  flamegraph:
+    type: profiler
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/flamegraph.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-bloat:
+    type: profiler
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_bloat.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results
+  cargo-geiger:
+    type: scanner
+    read_only: restricted
+    redaction_required: true
+    adapter: tool_adapters/cargo_geiger.yaml
+    approval_required_for:
+    - install_tool
+    - run_on_untrusted_code
+    - publish_or_upload_results

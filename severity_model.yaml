@@ -1,0 +1,55 @@
+version: '3.3'
+scale:
+- informational
+- low
+- medium
+- high
+- critical
+factors:
+  exploitability:
+  - theoretical
+  - requires_special_conditions
+  - practical
+  - trivial
+  exposure:
+  - local_only
+  - internal
+  - authenticated_external
+  - public_external
+  privileges_required:
+  - admin
+  - user
+  - low_privileged
+  - none
+  user_interaction:
+  - required
+  - limited
+  - none
+  data_sensitivity:
+  - none
+  - internal
+  - confidential
+  - customer_data
+  - secrets_or_regulated
+  impact:
+  - none
+  - limited
+  - material
+  - major
+  - systemic
+severity_floor:
+  confirmed_secret_exposure: high
+  public_admin_access: critical
+  remote_code_execution_public: critical
+  customer_data_exposure: high
+  auth_bypass_public: critical
+  stored_xss_admin_context: high
+  missing_security_header_only: low
+output_fields:
+- severity
+- confidence
+- impact
+- exploitability
+- affected_assets
+- business_context
+- remediation_priority

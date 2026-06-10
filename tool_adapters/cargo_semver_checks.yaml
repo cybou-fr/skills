@@ -1,0 +1,14 @@
+tool: cargo-semver-checks
+version: '4.5'
+adapter_type: command
+decision_inputs:
+- crate
+- baseline
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+allowed_read_only:
+- semver-checks
+approval_required:
+- publish_after_check

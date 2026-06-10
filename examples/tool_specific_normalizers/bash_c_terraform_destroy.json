@@ -1,0 +1,76 @@
+{
+  "command": "bash -c 'terraform destroy'",
+  "normalized_action": {
+    "tool": "shell",
+    "operation": "shell_wrapper",
+    "raw_input": "bash -c 'terraform destroy'",
+    "args": {
+      "tokens": [
+        "bash",
+        "-c",
+        "terraform destroy"
+      ],
+      "wrapper": "bash",
+      "wrapped": "terraform destroy"
+    },
+    "target": null,
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "shell",
+    "normalized_action": {
+      "tool": "shell",
+      "operation": "shell_wrapper",
+      "raw_input": "bash -c 'terraform destroy'",
+      "args": {
+        "tokens": [
+          "bash",
+          "-c",
+          "terraform destroy"
+        ],
+        "wrapper": "bash",
+        "wrapped": "terraform destroy"
+      },
+      "target": null,
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "fallback:side-effect-or-production",
+      "readonly_profile_blocks_write",
+      "side_effect:destructive",
+      "side_effect:write"
+    ],
+    "approval_required": true,
+    "approval_scope": "unknown",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115280.7804575,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "039da1a3-5d29-494f-a6f2-1cea826f20aa",
+    "tool": "shell",
+    "action": "shell_wrapper",
+    "policy_rule": "fallback:side-effect-or-production,readonly_profile_blocks_write,side_effect:destructive,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

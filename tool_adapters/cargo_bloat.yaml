@@ -1,0 +1,11 @@
+tool: cargo-bloat
+version: '4.5'
+adapter_type: profiler
+decision_inputs:
+- binary
+- release_profile
+- environment
+enforcement:
+  read_only_by_default: true
+allowed_read_only:
+- bloat

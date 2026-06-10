@@ -1,0 +1,31 @@
+version: '4.1'
+risks:
+- low
+- medium
+- high
+- critical
+modes:
+- read_only
+- guarded
+- draft_only
+- approval_required
+decisions:
+- allow_read_only
+- allow_draft
+- allow_read_only_and_redact
+- allow_read_only_with_limit_and_redaction
+- approval_required
+- approval_required_and_redact
+- approval_required_with_scope
+- approval_required_with_scope_and_rate_limit
+- deny
+- deny_by_default
+- deny_or_redact
+- refuse_or_escalate
+- require_authorized_scope
+- request_scope_and_authorization
+- treat_as_data
+- require_synthetic_or_authorized_fixtures
+- policy_gated
+- defensive_review_only
+- synthetic_fixture_assessment

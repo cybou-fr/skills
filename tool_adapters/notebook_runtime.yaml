@@ -1,0 +1,17 @@
+tool: notebook_runtime
+version: '4.3'
+adapter_type: execution_environment
+decision_inputs:
+- notebook
+- operation
+- environment
+- approval_state
+enforcement:
+  review_only_by_default: true
+  secret_detection_required: true
+approval_required:
+- execute_notebook
+- install_dependency
+- access_external_network
+denied_by_default:
+- execute_untrusted_notebook_with_secrets

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Policy Decision",
+  "type": "object",
+  "required": [
+    "decision",
+    "risk",
+    "tool",
+    "matched_rules",
+    "approval_required",
+    "audit_required"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string"
+    },
+    "risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "tool": {
+      "type": "string"
+    },
+    "normalized_action": {
+      "type": "object"
+    },
+    "matched_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "approval_scope": {
+      "type": "string"
+    },
+    "redaction_required": {
+      "type": "boolean"
+    },
+    "audit_required": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

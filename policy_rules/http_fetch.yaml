@@ -1,0 +1,24 @@
+tool: http_fetch
+version: '3.0'
+default: read_only
+rules:
+- id: http-head-get
+  match_regex: ^(curl|wget).*( -I |--head|--spider|https?://)
+  decision: allow_read_only_with_redaction
+  risk: medium
+- id: http-pipe-shell
+  match_regex: (curl|wget).*\|\s*(sh|bash|zsh|python|perl)
+  decision: deny
+  risk: critical
+- id: http-auth-header
+  match_regex: (Authorization:|Cookie:|X-API-Key:)
+  decision: approval_required_and_redact
+  risk: high
+- id: http-write-method
+  match_regex: (curl|wget).*(-X\s*(POST|PUT|PATCH|DELETE)|--method\s*(POST|PUT|PATCH|DELETE))
+  decision: approval_required
+  risk: high
+- id: http-download-executable
+  match_regex: (curl|wget).*(\\.sh|\\.bash|\\.py|\\.exe|\\.bin|\\.run)
+  decision: review_required
+  risk: high

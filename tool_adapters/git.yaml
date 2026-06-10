@@ -1,0 +1,12 @@
+tool: git
+version: '4.0'
+adapter_type: command
+decision_inputs:
+- subcommand
+- branch
+- dirty_worktree
+- remote
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/git.yaml

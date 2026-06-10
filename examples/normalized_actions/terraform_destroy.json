@@ -1,0 +1,69 @@
+{
+  "command": "terraform destroy",
+  "normalized_action": {
+    "tool": "terraform",
+    "operation": "destroy",
+    "raw_input": "terraform destroy",
+    "args": {
+      "tokens": [
+        "terraform",
+        "destroy"
+      ]
+    },
+    "target": "terraform_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "terraform",
+    "normalized_action": {
+      "tool": "terraform",
+      "operation": "destroy",
+      "raw_input": "terraform destroy",
+      "args": {
+        "tokens": [
+          "terraform",
+          "destroy"
+        ]
+      },
+      "target": "terraform_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "terraform-destroy",
+      "side-effect-or-production"
+    ],
+    "approval_required": true,
+    "approval_scope": "terraform_workspace",
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "High-risk side effect or production-like action requires scoped approval."
+  },
+  "audit_event": {
+    "timestamp": 1781114080.3180726,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "64811b8b-6559-48e8-9442-fff5847450cc",
+    "skill_id": null,
+    "tool": "terraform",
+    "action": "destroy",
+    "policy_rule": "terraform-destroy,side-effect-or-production",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

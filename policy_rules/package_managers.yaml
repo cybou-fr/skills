@@ -1,0 +1,28 @@
+tool: package_managers
+version: '3.0'
+default: review_required
+rules:
+- id: npm-install
+  match_regex: \b(npm|pnpm|yarn)\s+(install|add)\b
+  decision: approval_required
+  risk: high
+- id: pip-install
+  match_regex: \b(pip|poetry)\s+(install|add)\b
+  decision: approval_required
+  risk: high
+- id: cargo-add
+  match_regex: \bcargo\s+(add|install)\b
+  decision: approval_required
+  risk: high
+- id: go-get
+  match_regex: \bgo\s+get\b
+  decision: approval_required
+  risk: medium
+- id: system-package-install
+  match_regex: \b(apt|apt-get|yum|dnf|apk|brew)\s+(install|add)\b
+  decision: approval_required
+  risk: high
+- id: install-script-risk
+  match_regex: (postinstall|preinstall|curl.*\\|.*sh|wget.*\\|.*bash)
+  decision: review_required
+  risk: high

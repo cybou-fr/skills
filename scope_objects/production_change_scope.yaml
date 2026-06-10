@@ -1,0 +1,13 @@
+scope_type: production_change
+owner: ''
+environment: production
+targets: []
+allowed_actions:
+- read_only_diagnostics
+- draft_plan
+denied_actions:
+- destructive_change_without_backup
+- unapproved_restart
+- unapproved_deploy
+time_window: ''
+approval_reference: ''

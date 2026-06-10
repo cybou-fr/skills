@@ -1,0 +1,16 @@
+tool: cargo-nextest
+version: '4.5'
+adapter_type: command
+decision_inputs:
+- workspace
+- features
+- profile
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+allowed_read_only:
+- nextest run
+- nextest list
+approval_required:
+- install_tool

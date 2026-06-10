@@ -1,0 +1,31 @@
+tool: cargo
+version: '4.4'
+adapter_type: command
+decision_inputs:
+- subcommand
+- package
+- features
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+  supply_chain_review_required: true
+  redaction_required: true
+allowed_read_only:
+- check
+- test
+- fmt
+- clippy
+- tree
+- metadata
+- audit
+- deny
+approval_required:
+- install
+- publish
+- update
+- add
+- remove
+denied_by_default:
+- publish_without_approval
+- run_build_script_from_untrusted_dependency

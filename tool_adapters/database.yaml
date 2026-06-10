@@ -1,0 +1,14 @@
+tool: database
+version: '4.0'
+adapter_type: query
+decision_inputs:
+- statement_type
+- tables
+- where_present
+- limit_present
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/database.yaml
+  redaction_required: true
+parser_required_for_write: true

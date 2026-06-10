@@ -1,0 +1,68 @@
+{
+  "command": "rm -rf /",
+  "normalized_action": {
+    "tool": "shell",
+    "operation": "rm",
+    "raw_input": "rm -rf /",
+    "args": {
+      "tokens": [
+        "rm",
+        "-rf",
+        "/"
+      ]
+    },
+    "target": null,
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "destructive"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "tool": "shell",
+    "normalized_action": {
+      "tool": "shell",
+      "operation": "rm",
+      "raw_input": "rm -rf /",
+      "args": {
+        "tokens": [
+          "rm",
+          "-rf",
+          "/"
+        ]
+      },
+      "target": null,
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "destructive"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "shell-rm-root"
+    ],
+    "approval_required": false,
+    "approval_scope": null,
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "Recursive root deletion is denied by default."
+  },
+  "audit_event": {
+    "timestamp": 1781114080.3169377,
+    "event_type": "policy_decision",
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "skills": [],
+    "task_id": "957739e2-2e8b-4787-8ea9-1397f11e8829",
+    "skill_id": null,
+    "tool": "shell",
+    "action": "rm",
+    "policy_rule": "shell-rm-root",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

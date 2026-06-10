@@ -1,0 +1,19 @@
+tool: kubectl
+version: '4.0'
+adapter_type: command
+decision_inputs:
+- verb
+- resource
+- namespace
+- context
+- args
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/kubectl.yaml
+  redaction_required: true
+sensitive_resources:
+- secret
+- secrets
+- configmap
+- configmaps

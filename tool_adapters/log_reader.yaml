@@ -1,0 +1,19 @@
+tool: log_reader
+version: '4.2'
+adapter_type: data_reader
+decision_inputs:
+- source
+- time_window
+- query
+- environment
+- data_sensitivity
+- approval_state
+enforcement:
+  read_only: true
+  redaction_required: true
+  max_records_default: 500
+  max_time_window_default: 24h
+denied:
+- delete_logs
+- purge_logs
+- disable_logging

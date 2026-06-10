@@ -1,0 +1,81 @@
+{
+  "command": "docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock alpine",
+  "normalized_action": {
+    "tool": "docker",
+    "operation": "run",
+    "raw_input": "docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock alpine",
+    "args": {
+      "tokens": [
+        "docker",
+        "run",
+        "--privileged",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "alpine"
+      ]
+    },
+    "target": "alpine",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "docker_socket_mount",
+      "privileged_container",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "tool": "docker",
+    "normalized_action": {
+      "tool": "docker",
+      "operation": "run",
+      "raw_input": "docker run --privileged -v /var/run/docker.sock:/var/run/docker.sock alpine",
+      "args": {
+        "tokens": [
+          "docker",
+          "run",
+          "--privileged",
+          "-v",
+          "/var/run/docker.sock:/var/run/docker.sock",
+          "alpine"
+        ]
+      },
+      "target": "alpine",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "docker_socket_mount",
+        "privileged_container",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "docker-privileged",
+      "docker-socket-mount",
+      "fallback:docker-privileged",
+      "readonly_profile_blocks_write",
+      "side_effect:write"
+    ],
+    "approval_required": false,
+    "approval_scope": "alpine",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115281.046339,
+    "event_type": "policy_decision",
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "skills": [],
+    "task_id": "17c0e5d2-a70b-4238-bd3a-101b76421ef6",
+    "tool": "docker",
+    "action": "run",
+    "policy_rule": "docker-privileged,docker-socket-mount,fallback:docker-privileged,readonly_profile_blocks_write,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}

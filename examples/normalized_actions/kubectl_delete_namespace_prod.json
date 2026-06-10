@@ -1,0 +1,73 @@
+{
+  "command": "kubectl delete namespace prod",
+  "normalized_action": {
+    "tool": "kubectl",
+    "operation": "delete",
+    "raw_input": "kubectl delete namespace prod",
+    "args": {
+      "tokens": [
+        "kubectl",
+        "delete",
+        "namespace",
+        "prod"
+      ]
+    },
+    "target": "namespace",
+    "environment": "production",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "kubectl",
+    "normalized_action": {
+      "tool": "kubectl",
+      "operation": "delete",
+      "raw_input": "kubectl delete namespace prod",
+      "args": {
+        "tokens": [
+          "kubectl",
+          "delete",
+          "namespace",
+          "prod"
+        ]
+      },
+      "target": "namespace",
+      "environment": "production",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "kubectl-delete",
+      "side-effect-or-production"
+    ],
+    "approval_required": true,
+    "approval_scope": "namespace",
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "High-risk side effect or production-like action requires scoped approval."
+  },
+  "audit_event": {
+    "timestamp": 1781114080.317807,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "52a6f290-0126-4513-a162-65be1e3afa73",
+    "skill_id": null,
+    "tool": "kubectl",
+    "action": "delete",
+    "policy_rule": "kubectl-delete,side-effect-or-production",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

@@ -1,0 +1,3897 @@
+version: '5.5'
+package: cybou-devops-secops-agent-skills
+description: AgentSkills-compatible runtime-oriented DevOps/SecOps skill library for CYBOU or other AI workers.
+default_mode: read_only
+skill_selection_policy:
+  load_order:
+  - AGENTS.md
+  - registry.yaml
+  - risk_matrix.yaml
+  - tool_policies.yaml
+  - selected SKILL.md
+  avoid_operational_skills_for:
+  - general education
+  - pure definitions
+  - non-operational tutorials
+  unknown_environment: read_only
+skills:
+- id: task-classification
+  path: core/task-classification/SKILL.md
+  category: core
+  triggers:
+  - classify task
+  - select skill
+  - devops request
+  - secops request
+  - operational request
+  default_risk: low
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - user_request
+  output_template: generic_task_report
+  related_skills:
+  - risk-and-approval
+  - environment-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: risk-and-approval
+  path: core/risk-and-approval/SKILL.md
+  category: core
+  triggers:
+  - risk
+  - approval
+  - safe to run
+  - permission
+  - can execute
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - task_classification
+  - proposed_action
+  output_template: generic_task_report
+  related_skills:
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: command-safety
+  path: core/command-safety/SKILL.md
+  category: core
+  triggers:
+  - run command
+  - shell
+  - bash
+  - execute
+  - terminal
+  - sudo
+  - cli
+  default_risk: medium
+  default_mode: guarded
+  requires_tools:
+  - shell
+  input_types:
+  - command
+  output_template: generic_task_report
+  related_skills:
+  - redaction
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: environment-detection
+  path: core/environment-detection/SKILL.md
+  category: core
+  triggers:
+  - environment
+  - production
+  - staging
+  - dev
+  - where am i
+  - cluster context
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - shell
+  input_types:
+  - environment_context
+  output_template: generic_task_report
+  related_skills:
+  - risk-and-approval
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: redaction
+  path: core/redaction/SKILL.md
+  category: core
+  triggers:
+  - redact
+  - secret
+  - token
+  - pii
+  - sensitive output
+  - mask
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - logs
+  - command_output
+  - file_content
+  output_template: generic_task_report
+  related_skills:
+  - secret-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: evidence-handling
+  path: core/evidence-handling/SKILL.md
+  category: core
+  triggers:
+  - evidence
+  - audit
+  - preserve logs
+  - forensics
+  - chain of custody
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - incident_context
+  - logs
+  output_template: generic_task_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: approval-request
+  path: core/approval-request/SKILL.md
+  category: core
+  triggers:
+  - approval request
+  - ask confirmation
+  - human approval
+  - confirm action
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - proposed_action
+  output_template: approval_request
+  related_skills: []
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: linux-diagnostics
+  path: devops/linux-diagnostics/SKILL.md
+  category: devops
+  triggers:
+  - linux
+  - systemctl
+  - journalctl
+  - disk full
+  - high cpu
+  - memory
+  - inode
+  - service down
+  default_risk: low
+  default_mode: read_only
+  requires_tools:
+  - shell
+  input_types:
+  - logs
+  - command_output
+  output_template: linux_diagnostics_report
+  related_skills:
+  - command-safety
+  - environment-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: docker-diagnostics
+  path: devops/docker-diagnostics/SKILL.md
+  category: devops
+  triggers:
+  - docker
+  - container exited
+  - docker compose
+  - image build
+  - container logs
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - docker
+  input_types:
+  - logs
+  - dockerfile
+  output_template: docker_diagnostics_report
+  related_skills:
+  - container-security-review
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: kubernetes-readonly-triage
+  path: devops/kubernetes-readonly-triage/SKILL.md
+  category: devops
+  triggers:
+  - kubernetes
+  - kubectl
+  - pod
+  - crashloopbackoff
+  - imagepullbackoff
+  - pending pod
+  - ingress
+  - oomkilled
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - kubectl
+  input_types:
+  - kubernetes_resource
+  - logs
+  output_template: kubernetes_triage_report
+  related_skills:
+  - environment-detection
+  - redaction
+  - helm-readonly-triage
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: helm-readonly-triage
+  path: devops/helm-readonly-triage/SKILL.md
+  category: devops
+  triggers:
+  - helm
+  - helm release
+  - chart
+  - helm rollback
+  - helm history
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - helm
+  input_types:
+  - helm_release
+  output_template: helm_triage_report
+  related_skills:
+  - kubernetes-readonly-triage
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: cicd-failure-analysis
+  path: devops/cicd-failure-analysis/SKILL.md
+  category: devops
+  triggers:
+  - ci failed
+  - pipeline failed
+  - github actions
+  - gitlab ci
+  - jenkins
+  - build failed
+  - test failed
+  default_risk: low
+  default_mode: read_only
+  requires_tools:
+  - ci_logs_reader
+  input_types:
+  - ci_logs
+  output_template: cicd_failure_report
+  related_skills:
+  - secret-detection
+  - supply-chain-security
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: terraform-plan-review
+  path: devops/terraform-plan-review/SKILL.md
+  category: devops
+  triggers:
+  - terraform
+  - opentofu
+  - plan review
+  - tf plan
+  - infrastructure as code
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - terraform
+  input_types:
+  - terraform_plan
+  - iac_diff
+  output_template: terraform_plan_review
+  related_skills:
+  - iam-review
+  - cloud-readonly-triage
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: log-analysis
+  path: devops/log-analysis/SKILL.md
+  category: devops
+  triggers:
+  - logs
+  - analyze logs
+  - error log
+  - stack trace
+  - timeline
+  default_risk: low
+  default_mode: read_only
+  requires_tools:
+  - log_reader
+  input_types:
+  - logs
+  output_template: log_analysis_report
+  related_skills:
+  - redaction
+  - security-log-review
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: devops-incident-triage
+  path: devops/devops-incident-triage/SKILL.md
+  category: devops
+  triggers:
+  - incident
+  - outage
+  - service down
+  - sev
+  - degraded
+  - postmortem
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - log_reader
+  - metrics_reader
+  input_types:
+  - incident_context
+  - logs
+  - metrics
+  output_template: incident_report
+  related_skills:
+  - evidence-handling
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: deployment-planning
+  path: devops/deployment-planning/SKILL.md
+  category: devops
+  triggers:
+  - deploy
+  - release
+  - rollback
+  - canary
+  - blue green
+  - migration
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - ci_logs_reader
+  input_types:
+  - deployment_plan
+  output_template: deployment_plan
+  related_skills:
+  - database-safety
+  - backup-restore-review
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: network-diagnostics
+  path: devops/network-diagnostics/SKILL.md
+  category: devops
+  triggers:
+  - dns
+  - tls
+  - network
+  - connection refused
+  - timeout
+  - port
+  - ingress
+  - egress
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - shell
+  - http_fetch
+  input_types:
+  - network_symptom
+  output_template: network_diagnostics_report
+  related_skills:
+  - redaction
+  - http-fetch-safety
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: database-safety
+  path: devops/database-safety/SKILL.md
+  category: devops
+  triggers:
+  - database
+  - sql
+  - migration
+  - query
+  - postgres
+  - mysql
+  - backup before migration
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - database
+  input_types:
+  - sql
+  - migration
+  output_template: database_review_report
+  related_skills:
+  - backup-restore-review
+  - redaction
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: git-repository-review
+  path: devops/git-repository-review/SKILL.md
+  category: devops
+  triggers:
+  - git repository
+  - repo review
+  - git diff
+  - branch
+  - commit
+  - repository hygiene
+  default_risk: low
+  default_mode: read_only
+  requires_tools:
+  - git
+  input_types:
+  - repository
+  output_template: git_repository_review
+  related_skills:
+  - pull-request-review
+  - secret-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: pull-request-review
+  path: devops/pull-request-review/SKILL.md
+  category: devops
+  triggers:
+  - pull request
+  - merge request
+  - review pr
+  - code review
+  - diff review
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - git
+  - repo_api
+  input_types:
+  - pull_request_diff
+  output_template: pull_request_review
+  related_skills:
+  - supply-chain-security
+  - container-security-review
+  - terraform-plan-review
+  - secret-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: backup-restore-review
+  path: devops/backup-restore-review/SKILL.md
+  category: devops
+  triggers:
+  - backup
+  - restore
+  - snapshot
+  - disaster recovery
+  - rpo
+  - rto
+  - point in time recovery
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - backup_api
+  input_types:
+  - backup_status
+  output_template: backup_restore_review
+  related_skills:
+  - database-safety
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: package-manager-safety
+  path: devops/package-manager-safety/SKILL.md
+  category: devops
+  triggers:
+  - npm install
+  - pip install
+  - package install
+  - dependency add
+  - poetry add
+  - cargo add
+  - apt install
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - package_manager
+  input_types:
+  - package_manifest
+  - lockfile
+  output_template: package_manager_safety_report
+  related_skills:
+  - malicious-dependency-review
+  - supply-chain-security
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: prometheus-alert-analysis
+  path: devops/prometheus-alert-analysis/SKILL.md
+  category: devops
+  triggers:
+  - prometheus
+  - alertmanager
+  - alert firing
+  - slo burn
+  - latency alert
+  - error rate
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - metrics_reader
+  input_types:
+  - alert
+  output_template: alert_analysis_report
+  related_skills:
+  - devops-incident-triage
+  - log-analysis
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: secret-detection
+  path: secops/secret-detection/SKILL.md
+  category: secops
+  triggers:
+  - secret
+  - api key
+  - token leaked
+  - private key
+  - credentials
+  - env file
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - secret_scanner
+  input_types:
+  - file_content
+  - logs
+  output_template: secret_leak_report
+  related_skills:
+  - redaction
+  - secret-rotation-playbook
+  - secops-incident-response
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: secret-rotation-playbook
+  path: secops/secret-rotation-playbook/SKILL.md
+  category: secops
+  triggers:
+  - rotate secret
+  - revoke token
+  - leaked key
+  - credential rotation
+  default_risk: critical
+  default_mode: approval_required
+  requires_tools:
+  - secrets_manager
+  input_types:
+  - secret_metadata
+  output_template: secret_rotation_plan
+  related_skills:
+  - secret-detection
+  - approval-request
+  - secops-incident-response
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: vulnerability-triage
+  path: secops/vulnerability-triage/SKILL.md
+  category: secops
+  triggers:
+  - cve
+  - vulnerability
+  - scanner output
+  - cvss
+  - patch
+  - dependency vulnerability
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - vulnerability_scanner
+  input_types:
+  - scanner_output
+  - sbom
+  output_template: vulnerability_triage_report
+  related_skills:
+  - supply-chain-security
+  - container-security-review
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: security-log-review
+  path: secops/security-log-review/SKILL.md
+  category: secops
+  triggers:
+  - security logs
+  - suspicious login
+  - audit logs
+  - siem
+  - waf
+  - brute force
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - log_reader
+  - siem
+  input_types:
+  - security_logs
+  output_template: security_log_review
+  related_skills:
+  - evidence-handling
+  - secops-incident-response
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: prompt-injection-defense
+  path: secops/prompt-injection-defense/SKILL.md
+  category: secops
+  triggers:
+  - prompt injection
+  - ignore previous instructions
+  - malicious document
+  - tool output injection
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - untrusted_content
+  output_template: prompt_injection_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: iam-review
+  path: secops/iam-review/SKILL.md
+  category: secops
+  triggers:
+  - iam
+  - permissions
+  - role
+  - policy
+  - admin access
+  - service account
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - cloud_cli
+  input_types:
+  - iam_policy
+  output_template: iam_review_report
+  related_skills:
+  - cloud-readonly-triage
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: container-security-review
+  path: secops/container-security-review/SKILL.md
+  category: secops
+  triggers:
+  - container security
+  - dockerfile security
+  - privileged container
+  - securitycontext
+  - image scan
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - docker
+  - kubectl
+  input_types:
+  - dockerfile
+  - kubernetes_manifest
+  output_template: container_security_review
+  related_skills:
+  - docker-diagnostics
+  - kubernetes-security-review
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: kubernetes-security-review
+  path: secops/kubernetes-security-review/SKILL.md
+  category: secops
+  triggers:
+  - kubernetes security
+  - pod security
+  - clusterrolebinding
+  - networkpolicy
+  - service account
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - kubectl
+  input_types:
+  - kubernetes_manifest
+  output_template: kubernetes_security_review
+  related_skills:
+  - kubernetes-readonly-triage
+  - iam-review
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: supply-chain-security
+  path: secops/supply-chain-security/SKILL.md
+  category: secops
+  triggers:
+  - supply chain
+  - dependency confusion
+  - sbom
+  - provenance
+  - unpinned action
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - lockfile
+  - sbom
+  output_template: supply_chain_review
+  related_skills:
+  - malicious-dependency-review
+  - package-manager-safety
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: secops-incident-response
+  path: secops/secops-incident-response/SKILL.md
+  category: secops
+  triggers:
+  - breach
+  - compromise
+  - incident response
+  - data exfiltration
+  - malware
+  - account compromised
+  default_risk: critical
+  default_mode: read_only
+  requires_tools:
+  - log_reader
+  - siem
+  input_types:
+  - incident_context
+  output_template: incident_report
+  related_skills:
+  - evidence-handling
+  - security-log-review
+  - approval-request
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: cloud-readonly-triage
+  path: secops/cloud-readonly-triage/SKILL.md
+  category: secops
+  triggers:
+  - aws
+  - gcp
+  - azure
+  - cloud audit
+  - security group
+  - public bucket
+  - cloud incident
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - cloud_cli
+  input_types:
+  - cloud_audit
+  output_template: cloud_triage_report
+  related_skills:
+  - iam-review
+  - security-log-review
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: malicious-dependency-review
+  path: secops/malicious-dependency-review/SKILL.md
+  category: secops
+  triggers:
+  - malicious dependency
+  - typosquatting
+  - postinstall
+  - package takeover
+  - npm malware
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - repo_api
+  - package_registry
+  input_types:
+  - package_manifest
+  - lockfile
+  output_template: malicious_dependency_review
+  related_skills:
+  - supply-chain-security
+  - secret-detection
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: github-security-review
+  path: secops/github-security-review/SKILL.md
+  category: secops
+  triggers:
+  - github security
+  - branch protection
+  - github actions permissions
+  - deploy key
+  - dependabot
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - github_api
+  input_types:
+  - repository
+  output_template: github_security_review
+  related_skills:
+  - pull-request-review
+  - supply-chain-security
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: siem-alert-enrichment
+  path: secops/siem-alert-enrichment/SKILL.md
+  category: secops
+  triggers:
+  - siem alert
+  - soc alert
+  - alert enrichment
+  - suspicious entity
+  - false positive
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - siem
+  - log_reader
+  input_types:
+  - siem_alert
+  output_template: siem_alert_enrichment
+  related_skills:
+  - security-log-review
+  - secops-incident-response
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: http-fetch-safety
+  path: core/http-fetch-safety/SKILL.md
+  category: core
+  triggers:
+  - curl
+  - wget
+  - http fetch
+  - download script
+  - webhook
+  - url
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  input_types:
+  - url
+  output_template: http_fetch_safety_report
+  related_skills:
+  - prompt-injection-defense
+  - redaction
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  autonomy_level: 1
+- id: pentest-scope-and-authorization
+  path: secops/pentest-scope-and-authorization/SKILL.md
+  category: secops
+  triggers:
+  - penetration test
+  - pentest
+  - scope
+  - rules of engagement
+  - authorized security test
+  - security assessment
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - authorization_context
+  output_template: pentest_scope_report
+  related_skills:
+  - risk-and-approval
+  - approval-request
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: passive-reconnaissance
+  path: secops/passive-reconnaissance/SKILL.md
+  category: secops
+  triggers:
+  - passive recon
+  - reconnaissance
+  - attack surface
+  - domain inventory
+  - certificate transparency
+  - public exposure
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  input_types:
+  - authorized_target
+  output_template: passive_recon_report
+  related_skills:
+  - pentest-scope-and-authorization
+  - http-fetch-safety
+  - redaction
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: safe-vulnerability-validation
+  path: secops/safe-vulnerability-validation/SKILL.md
+  category: secops
+  triggers:
+  - validate vulnerability
+  - confirm finding
+  - false positive
+  - scanner finding
+  - vulnerability validation
+  - verify remediation
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  - vulnerability_scanner
+  input_types:
+  - finding
+  output_template: vulnerability_validation_report
+  related_skills:
+  - pentest-scope-and-authorization
+  - vulnerability-triage
+  - evidence-handling
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: web-application-security-check
+  path: secops/web-application-security-check/SKILL.md
+  category: secops
+  triggers:
+  - web app security
+  - owasp
+  - security headers
+  - cookie flags
+  - cors
+  - auth flow
+  - access control
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  input_types:
+  - authorized_web_target
+  output_template: web_app_security_check_report
+  related_skills:
+  - pentest-scope-and-authorization
+  - http-fetch-safety
+  - redaction
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: api-security-check
+  path: secops/api-security-check/SKILL.md
+  category: secops
+  triggers:
+  - api security
+  - openapi
+  - swagger
+  - api auth
+  - object level authorization
+  - sensitive data exposure
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  input_types:
+  - authorized_api_target
+  output_template: api_security_check_report
+  related_skills:
+  - pentest-scope-and-authorization
+  - http-fetch-safety
+  - redaction
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: pentest-finding-report
+  path: secops/pentest-finding-report/SKILL.md
+  category: secops
+  triggers:
+  - pentest report
+  - finding report
+  - security finding
+  - retest
+  - remediation guidance
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - finding_evidence
+  output_template: pentest_finding_report
+  related_skills:
+  - redaction
+  - evidence-handling
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: pentest-retainer-triage
+  path: secops/pentest-retainer-triage/SKILL.md
+  category: secops
+  triggers:
+  - bug bounty report
+  - pentest retainer
+  - security report triage
+  - external finding
+  - vulnerability report triage
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - external_report
+  output_template: pentest_retainer_triage_report
+  related_skills:
+  - safe-vulnerability-validation
+  - vulnerability-triage
+  - pentest-finding-report
+  do_not_use_for:
+  - unauthorized testing
+  - real-world exploitation outside scope
+  - stealth or evasion
+  - denial-of-service
+  - credential theft
+  - malware
+  - general education without authorized target
+  autonomy_level: 1
+- id: pentest-retest-validation
+  path: secops/pentest-retest-validation/SKILL.md
+  category: secops
+  triggers:
+  - retest
+  - validate fix
+  - remediation verification
+  - finding fixed
+  - pentest retest
+  default_risk: high
+  default_mode: read_only
+  requires_tools:
+  - http_fetch
+  input_types:
+  - finding_evidence
+  - authorized_target
+  output_template: pentest_retest_validation_report
+  related_skills:
+  - pentest-scope-and-authorization
+  - safe-vulnerability-validation
+  - pentest-finding-report
+  do_not_use_for:
+  - unauthorized testing
+  - out-of-scope testing
+  - destructive exploitation
+  - stealth or evasion
+  - credential theft
+  - malware
+  - denial-of-service
+  autonomy_level: 1
+- id: pentest-evidence-redaction
+  path: secops/pentest-evidence-redaction/SKILL.md
+  category: secops
+  triggers:
+  - redact pentest evidence
+  - sanitize screenshot
+  - sanitize http response
+  - redact finding
+  - evidence redaction
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - finding_evidence
+  - screenshot
+  - http_response
+  output_template: pentest_evidence_redaction_report
+  related_skills:
+  - redaction
+  - pentest-finding-report
+  do_not_use_for:
+  - unauthorized testing
+  - out-of-scope testing
+  - destructive exploitation
+  - stealth or evasion
+  - credential theft
+  - malware
+  - denial-of-service
+  autonomy_level: 1
+- id: pentest-severity-rating
+  path: secops/pentest-severity-rating/SKILL.md
+  category: secops
+  triggers:
+  - rate pentest finding
+  - severity rating
+  - cvss-like
+  - finding severity
+  - risk rating
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - finding_evidence
+  output_template: pentest_severity_rating_report
+  related_skills:
+  - pentest-finding-report
+  - vulnerability-triage
+  do_not_use_for:
+  - unauthorized testing
+  - out-of-scope testing
+  - destructive exploitation
+  - stealth or evasion
+  - credential theft
+  - malware
+  - denial-of-service
+  autonomy_level: 1
+- id: ai-jailbreak-defense
+  path: secops/ai-jailbreak-defense/SKILL.md
+  category: secops
+  triggers:
+  - jailbreak
+  - jailbrake
+  - llm jailbreak
+  - safety bypass
+  - model refusal
+  - jailbreak defense
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - ai_system_design
+  output_template: ai_jailbreak_defense_report
+  related_skills:
+  - prompt-injection-defense
+  - ai-evaluation-and-redteam-reporting
+  - ai-agent-tool-abuse-review
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: indirect-prompt-injection-assessment
+  path: secops/indirect-prompt-injection-assessment/SKILL.md
+  category: secops
+  triggers:
+  - indirect prompt injection
+  - retrieved content attack
+  - tool output injection
+  - malicious document
+  - rag prompt injection
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - untrusted_content_channel
+  output_template: indirect_prompt_injection_report
+  related_skills:
+  - prompt-injection-defense
+  - rag-poisoning-defense
+  - ai-agent-tool-abuse-review
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: ai-agent-tool-abuse-review
+  path: secops/ai-agent-tool-abuse-review/SKILL.md
+  category: secops
+  triggers:
+  - ai agent tool abuse
+  - agent tool misuse
+  - unsafe tool call
+  - tool invocation abuse
+  - agent permissions
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - agent_tool_inventory
+  output_template: ai_agent_tool_abuse_report
+  related_skills:
+  - command-safety
+  - risk-and-approval
+  - approval-request
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: rag-poisoning-defense
+  path: secops/rag-poisoning-defense/SKILL.md
+  category: secops
+  triggers:
+  - rag poisoning
+  - knowledge base poisoning
+  - retrieval poisoning
+  - vector store contamination
+  - malicious rag document
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - rag_architecture
+  output_template: rag_poisoning_defense_report
+  related_skills:
+  - indirect-prompt-injection-assessment
+  - model-data-leakage-review
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: model-data-leakage-review
+  path: secops/model-data-leakage-review/SKILL.md
+  category: secops
+  triggers:
+  - model data leakage
+  - sensitive information disclosure
+  - prompt leakage
+  - training data leakage
+  - ai memory privacy
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - ai_data_flow
+  output_template: model_data_leakage_report
+  related_skills:
+  - redaction
+  - ai-memory-and-context-safety
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: model-denial-of-service-cost-abuse
+  path: secops/model-denial-of-service-cost-abuse/SKILL.md
+  category: secops
+  triggers:
+  - model denial of service
+  - model dos
+  - cost harvesting
+  - token abuse
+  - agent loop
+  - tool call storm
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - ai_runtime_metrics
+  output_template: model_dos_cost_abuse_report
+  related_skills:
+  - prometheus-alert-analysis
+  - devops-incident-triage
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: ai-supply-chain-review
+  path: secops/ai-supply-chain-review/SKILL.md
+  category: secops
+  triggers:
+  - ai supply chain
+  - model provenance
+  - dataset poisoning
+  - embedding model
+  - vector store security
+  - prompt template tampering
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - ai_components
+  output_template: ai_supply_chain_review
+  related_skills:
+  - supply-chain-security
+  - rag-poisoning-defense
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: ai-evaluation-and-redteam-reporting
+  path: secops/ai-evaluation-and-redteam-reporting/SKILL.md
+  category: secops
+  triggers:
+  - ai red team report
+  - llm evaluation report
+  - ai security eval
+  - jailbreak test report
+  - model safety report
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - ai_eval_results
+  output_template: ai_evaluation_redteam_report
+  related_skills:
+  - ai-jailbreak-defense
+  - pentest-finding-report
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: ai-memory-and-context-safety
+  path: secops/ai-memory-and-context-safety/SKILL.md
+  category: secops
+  triggers:
+  - ai memory safety
+  - context safety
+  - long term memory
+  - cross tenant memory
+  - memory leakage
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - memory_design
+  output_template: ai_memory_context_safety_report
+  related_skills:
+  - model-data-leakage-review
+  - prompt-injection-defense
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: ai-output-handling-review
+  path: secops/ai-output-handling-review/SKILL.md
+  category: secops
+  triggers:
+  - insecure output handling
+  - llm output handling
+  - ai output to shell
+  - ai generated code execution
+  - downstream execution
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - output_sinks
+  output_template: ai_output_handling_review
+  related_skills:
+  - command-safety
+  - database-safety
+  - http-fetch-safety
+  do_not_use_for:
+  - generating jailbreak prompts
+  - bypass instructions
+  - harmful content generation
+  - credential theft
+  - malware or phishing
+  - third-party testing without authorization
+  - automated jailbreak optimization
+  autonomy_level: 1
+- id: document-processing-router
+  path: productivity/document-processing-router/SKILL.md
+  category: productivity
+  triggers:
+  - docx
+  - pdf
+  - pptx
+  - xlsx
+  - screenshot
+  - document workflow
+  - artifact
+  default_risk: low
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - artifact_request
+  output_template: document_processing_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: docx-document-workflow
+  path: productivity/docx-document-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - docx
+  - word document
+  - document edit
+  - report document
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - document
+  output_template: document_workflow_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: pdf-document-workflow
+  path: productivity/pdf-document-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - pdf
+  - extract pdf
+  - pdf form
+  - pdf table
+  - redact pdf
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - pdf
+  output_template: pdf_workflow_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: pptx-presentation-workflow
+  path: productivity/pptx-presentation-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - pptx
+  - presentation
+  - slides
+  - deck
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - presentation_request
+  output_template: presentation_workflow_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: xlsx-spreadsheet-workflow
+  path: productivity/xlsx-spreadsheet-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - xlsx
+  - spreadsheet
+  - excel
+  - formula
+  - table
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - spreadsheet
+  output_template: spreadsheet_workflow_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: screenshot-analysis-workflow
+  path: productivity/screenshot-analysis-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - screenshot
+  - ui capture
+  - screen
+  - visual evidence
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - image
+  output_template: screenshot_analysis_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: brand-guidelines-application
+  path: productivity/brand-guidelines-application/SKILL.md
+  category: productivity
+  triggers:
+  - brand guidelines
+  - brand
+  - tone of voice
+  - visual identity
+  default_risk: low
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - brand_guidelines
+  output_template: brand_guidelines_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: frontend-design-review
+  path: devops/frontend-design-review/SKILL.md
+  category: devops
+  triggers:
+  - frontend
+  - ui review
+  - design review
+  - responsive
+  - accessibility
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - frontend_code_or_screenshot
+  output_template: frontend_design_review
+  related_skills:
+  - screenshot-analysis-workflow
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: web-artifact-builder
+  path: devops/web-artifact-builder/SKILL.md
+  category: devops
+  triggers:
+  - web artifact
+  - landing page
+  - static site
+  - prototype
+  - interactive demo
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - web_artifact_request
+  output_template: web_artifact_report
+  related_skills:
+  - frontend-design-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: theme-design-system-factory
+  path: productivity/theme-design-system-factory/SKILL.md
+  category: productivity
+  triggers:
+  - theme
+  - design system
+  - tokens
+  - style guide
+  - component library
+  default_risk: low
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - design_request
+  output_template: design_system_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: figma-design-handoff
+  path: productivity/figma-design-handoff/SKILL.md
+  category: productivity
+  triggers:
+  - figma
+  - figma handoff
+  - design tokens
+  - code connect
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - design_artifact
+  output_template: figma_handoff_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: image-generation-brief
+  path: productivity/image-generation-brief/SKILL.md
+  category: productivity
+  triggers:
+  - image generation
+  - image brief
+  - visual prompt
+  - icon
+  - illustration
+  default_risk: low
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - visual_request
+  output_template: image_generation_brief
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: mcp-server-builder
+  path: devops/mcp-server-builder/SKILL.md
+  category: devops
+  triggers:
+  - mcp
+  - mcp server
+  - model context protocol
+  - tool server
+  default_risk: high
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - integration_request
+  output_template: mcp_server_builder_report
+  related_skills:
+  - api-security-check
+  - ai-agent-tool-abuse-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: skill-creator-workflow
+  path: devops/skill-creator-workflow/SKILL.md
+  category: devops
+  triggers:
+  - create skill
+  - skill creator
+  - agent skill
+  - SKILL.md
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - skill_request
+  output_template: skill_creator_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: skill-installer-workflow
+  path: devops/skill-installer-workflow/SKILL.md
+  category: devops
+  triggers:
+  - install skill
+  - skill installer
+  - import skill
+  - external skill
+  default_risk: high
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - external_skill
+  output_template: skill_installer_report
+  related_skills:
+  - supply-chain-security
+  - prompt-injection-defense
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: cli-creator-workflow
+  path: devops/cli-creator-workflow/SKILL.md
+  category: devops
+  triggers:
+  - cli
+  - command line tool
+  - create cli
+  - terminal app
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - cli_request
+  output_template: cli_creator_report
+  related_skills:
+  - command-safety
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: openai-docs-integration
+  path: devops/openai-docs-integration/SKILL.md
+  category: devops
+  triggers:
+  - openai api
+  - openai docs
+  - codex
+  - responses api
+  - openai integration
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - api_integration
+  output_template: openai_docs_integration_report
+  related_skills:
+  - model-denial-of-service-cost-abuse
+  - model-data-leakage-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: claude-api-integration
+  path: devops/claude-api-integration/SKILL.md
+  category: devops
+  triggers:
+  - claude api
+  - anthropic api
+  - claude integration
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - api_integration
+  output_template: claude_api_integration_report
+  related_skills:
+  - model-denial-of-service-cost-abuse
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: chatgpt-apps-workflow
+  path: devops/chatgpt-apps-workflow/SKILL.md
+  category: devops
+  triggers:
+  - chatgpt app
+  - chatgpt apps
+  - plugin
+  - app integration
+  default_risk: high
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - app_integration
+  output_template: chatgpt_apps_report
+  related_skills:
+  - ai-agent-tool-abuse-review
+  - model-data-leakage-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: static-platform-deploy
+  path: devops/static-platform-deploy/SKILL.md
+  category: devops
+  triggers:
+  - vercel deploy
+  - netlify deploy
+  - cloudflare deploy
+  - render deploy
+  - static deploy
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - deployment_request
+  output_template: static_platform_deploy_report
+  related_skills:
+  - deployment-planning
+  - secret-detection
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: github-comment-triage
+  path: devops/github-comment-triage/SKILL.md
+  category: devops
+  triggers:
+  - github comments
+  - pr comments
+  - address comments
+  - review feedback
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - github_comments
+  output_template: github_comment_triage_report
+  related_skills:
+  - prompt-injection-defense
+  - pull-request-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: ci-fix-proposal
+  path: devops/ci-fix-proposal/SKILL.md
+  category: devops
+  triggers:
+  - fix ci
+  - ci failure
+  - github actions failed
+  - gh fix ci
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - ci_logs_reader
+  - repo_api
+  input_types:
+  - ci_logs
+  output_template: ci_fix_proposal_report
+  related_skills:
+  - cicd-failure-analysis
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: sentry-issue-triage
+  path: devops/sentry-issue-triage/SKILL.md
+  category: devops
+  triggers:
+  - sentry
+  - stack trace
+  - error monitoring
+  - exception
+  default_risk: medium
+  default_mode: read_only
+  requires_tools:
+  - log_reader
+  input_types:
+  - error_event
+  output_template: sentry_issue_triage_report
+  related_skills:
+  - log-analysis
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: issue-tracker-workflow
+  path: productivity/issue-tracker-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - linear
+  - jira
+  - issue tracker
+  - ticket
+  - task
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - issue_request
+  output_template: issue_tracker_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: goal-definition-workflow
+  path: productivity/goal-definition-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - define goal
+  - clarify objective
+  - plan goal
+  - make plan
+  default_risk: low
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - user_request
+  output_template: goal_definition_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: meeting-intelligence-workflow
+  path: productivity/meeting-intelligence-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - meeting notes
+  - meeting summary
+  - action items
+  - transcript
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - meeting_notes
+  output_template: meeting_intelligence_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: knowledge-capture-workflow
+  path: productivity/knowledge-capture-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - knowledge capture
+  - notion capture
+  - notes to docs
+  - save knowledge
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - notes
+  output_template: knowledge_capture_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: research-documentation-workflow
+  path: productivity/research-documentation-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - research documentation
+  - research notes
+  - source summary
+  - documentation
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - research_request
+  output_template: research_documentation_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: notebook-analysis-workflow
+  path: productivity/notebook-analysis-workflow/SKILL.md
+  category: devops
+  triggers:
+  - jupyter
+  - notebook
+  - ipynb
+  - data analysis notebook
+  default_risk: high
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - notebook
+  output_template: notebook_analysis_report
+  related_skills:
+  - command-safety
+  - secret-detection
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: speech-transcription-workflow
+  path: productivity/speech-transcription-workflow/SKILL.md
+  category: productivity
+  triggers:
+  - speech
+  - transcribe
+  - audio transcription
+  - voice notes
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - audio_or_transcript
+  output_template: speech_transcription_report
+  related_skills:
+  - redaction
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: security-best-practices-review
+  path: secops/security-best-practices-review/SKILL.md
+  category: secops
+  triggers:
+  - security best practices
+  - security review
+  - secure baseline
+  default_risk: medium
+  default_mode: read_only
+  requires_tools: []
+  input_types:
+  - system_description
+  output_template: security_best_practices_report
+  related_skills:
+  - security-threat-modeling-workflow
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: security-ownership-map
+  path: secops/security-ownership-map/SKILL.md
+  category: secops
+  triggers:
+  - security ownership
+  - ownership map
+  - asset owner
+  - security governance
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - asset_inventory
+  output_template: security_ownership_map_report
+  related_skills: []
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: security-threat-modeling-workflow
+  path: secops/security-threat-modeling-workflow/SKILL.md
+  category: secops
+  triggers:
+  - threat model
+  - security threat model
+  - stride
+  - data flow threat
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools: []
+  input_types:
+  - architecture
+  output_template: security_threat_model_report
+  related_skills:
+  - ai-agent-tool-abuse-review
+  - model-data-leakage-review
+  do_not_use_for:
+  - unsafe or unauthorized side effects
+  - credential disclosure
+  - copyright copying from upstream repositories
+  autonomy_level: 1
+- id: rust-senior-code-review
+  path: devops/rust-senior-code-review/SKILL.md
+  category: devops
+  triggers:
+  - rust review
+  - rust code review
+  - senior rust
+  - review rust
+  - cargo review
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - rust_code
+  output_template: rust_code_review_report
+  related_skills:
+  - pull-request-review
+  - security-best-practices-review
+  - supply-chain-security
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-software-architecture
+  path: devops/rust-software-architecture/SKILL.md
+  category: devops
+  triggers:
+  - rust architecture
+  - software architect
+  - architect cybou
+  - crate structure
+  - workspace architecture
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - architecture_request
+  output_template: rust_architecture_report
+  related_skills:
+  - security-threat-modeling-workflow
+  - ai-agent-tool-abuse-review
+  - skill-creator-workflow
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-workspace-and-crate-design
+  path: devops/rust-workspace-and-crate-design/SKILL.md
+  category: devops
+  triggers:
+  - cargo workspace
+  - crate design
+  - rust crates
+  - feature flags
+  - module structure
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - rust_workspace
+  output_template: rust_workspace_design_report
+  related_skills:
+  - rust-software-architecture
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-async-runtime-design
+  path: devops/rust-async-runtime-design/SKILL.md
+  category: devops
+  triggers:
+  - tokio
+  - async rust
+  - runtime design
+  - backpressure
+  - graceful shutdown
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - rust_async_design
+  output_template: rust_async_runtime_report
+  related_skills:
+  - devops-incident-triage
+  - model-denial-of-service-cost-abuse
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-error-handling-observability
+  path: devops/rust-error-handling-observability/SKILL.md
+  category: devops
+  triggers:
+  - rust error handling
+  - thiserror
+  - anyhow
+  - tracing
+  - observability
+  - audit events
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - rust_error_observability
+  output_template: rust_observability_report
+  related_skills:
+  - log-analysis
+  - evidence-handling
+  - redaction
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-api-design
+  path: devops/rust-api-design/SKILL.md
+  category: devops
+  triggers:
+  - rust api
+  - http api
+  - grpc
+  - axum
+  - api design
+  - internal api
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - api_design
+  output_template: rust_api_design_report
+  related_skills:
+  - api-security-check
+  - model-data-leakage-review
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-security-hardening
+  path: devops/rust-security-hardening/SKILL.md
+  category: devops
+  triggers:
+  - rust security
+  - rust hardening
+  - unsafe audit
+  - secure rust
+  - cargo audit
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  - package_registry
+  input_types:
+  - rust_project
+  output_template: rust_security_hardening_report
+  related_skills:
+  - supply-chain-security
+  - secret-detection
+  - security-best-practices-review
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-performance-engineering
+  path: devops/rust-performance-engineering/SKILL.md
+  category: devops
+  triggers:
+  - rust performance
+  - benchmark
+  - profiling
+  - allocation
+  - lock contention
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  - metrics_reader
+  input_types:
+  - rust_project
+  output_template: rust_performance_report
+  related_skills:
+  - prometheus-alert-analysis
+  - model-denial-of-service-cost-abuse
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-testing-strategy
+  path: devops/rust-testing-strategy/SKILL.md
+  category: devops
+  triggers:
+  - rust tests
+  - testing strategy
+  - cargo test
+  - property tests
+  - integration tests
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  - ci_logs_reader
+  input_types:
+  - rust_project
+  output_template: rust_testing_strategy_report
+  related_skills:
+  - ci-fix-proposal
+  - skill-creator-workflow
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-dependency-supply-chain-review
+  path: devops/rust-dependency-supply-chain-review/SKILL.md
+  category: devops
+  triggers:
+  - cargo dependencies
+  - cargo audit
+  - cargo deny
+  - rust supply chain
+  - crate review
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - package_registry
+  - repo_api
+  input_types:
+  - cargo_toml
+  output_template: rust_dependency_review_report
+  related_skills:
+  - supply-chain-security
+  - malicious-dependency-review
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-tool-adapter-implementation
+  path: devops/rust-tool-adapter-implementation/SKILL.md
+  category: devops
+  triggers:
+  - tool adapter
+  - rust adapter
+  - normalized action
+  - policy decision
+  - tool router
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - adapter_request
+  output_template: rust_tool_adapter_report
+  related_skills:
+  - command-safety
+  - rust-api-design
+  - security-threat-modeling-workflow
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: cybou-policy-engine-implementation
+  path: devops/cybou-policy-engine-implementation/SKILL.md
+  category: devops
+  triggers:
+  - policy engine
+  - policy decision
+  - risk engine
+  - approval state
+  - cybou policy
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - policy_engine_design
+  output_template: cybou_policy_engine_report
+  related_skills:
+  - risk-and-approval
+  - rust-tool-adapter-implementation
+  - rust-testing-strategy
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: cybou-skill-runtime-implementation
+  path: devops/cybou-skill-runtime-implementation/SKILL.md
+  category: devops
+  triggers:
+  - skill runtime
+  - load skills
+  - registry parser
+  - skill graph
+  - AgentSkills runtime
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - skill_runtime_request
+  output_template: cybou_skill_runtime_report
+  related_skills:
+  - skill-creator-workflow
+  - skill-installer-workflow
+  - rust-software-architecture
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: cybou-self-hosting-development-loop
+  path: devops/cybou-self-hosting-development-loop/SKILL.md
+  category: devops
+  triggers:
+  - use cybou to build cybou
+  - dogfood
+  - self hosting
+  - develop cybou itself
+  - cybou development loop
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  - ci_logs_reader
+  input_types:
+  - cybou_dev_task
+  output_template: cybou_self_hosting_report
+  related_skills:
+  - rust-software-architecture
+  - cybou-policy-engine-implementation
+  - cybou-skill-runtime-implementation
+  do_not_use_for:
+  - blind large rewrites without tests
+  - unsafe dependency additions without review
+  - security-sensitive production changes without approval
+  - hiding unsafe Rust or panics in core runtime paths
+  autonomy_level: 2
+- id: rust-toolchain-management
+  path: devops/rust-toolchain-management/SKILL.md
+  category: devops
+  triggers:
+  - rust-toolchain
+  - rust toolchain
+  - msrv
+  - rust-version
+  - rustup
+  - stable nightly
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  input_types: []
+  output_template: rust_toolchain_management_report
+  related_skills:
+  - rust-ci-quality-gates
+  - rust-release-and-semver
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-linting-and-formatting
+  path: devops/rust-linting-and-formatting/SKILL.md
+  category: devops
+  triggers:
+  - rustfmt
+  - clippy
+  - cargo fmt
+  - cargo clippy
+  - linting
+  - formatting
+  - clippy.toml
+  - rustfmt.toml
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  input_types: []
+  output_template: rust_linting_formatting_report
+  related_skills:
+  - rust-senior-code-review
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-test-infrastructure
+  path: devops/rust-test-infrastructure/SKILL.md
+  category: devops
+  triggers:
+  - cargo test
+  - cargo nextest
+  - nextest
+  - rust tests
+  - doctest
+  - integration tests
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  - cargo-nextest
+  input_types: []
+  output_template: rust_test_infrastructure_report
+  related_skills:
+  - rust-testing-strategy
+  - ci-fix-proposal
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-coverage-workflow
+  path: devops/rust-coverage-workflow/SKILL.md
+  category: devops
+  triggers:
+  - cargo llvm-cov
+  - cargo-llvm-cov
+  - tarpaulin
+  - cargo tarpaulin
+  - coverage
+  - lcov
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo-llvm-cov
+  - cargo-tarpaulin
+  input_types: []
+  output_template: rust_coverage_workflow_report
+  related_skills:
+  - rust-test-infrastructure
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-benchmarking-and-profiling
+  path: devops/rust-benchmarking-and-profiling/SKILL.md
+  category: devops
+  triggers:
+  - criterion
+  - cargo bench
+  - cargo flamegraph
+  - flamegraph
+  - cargo bloat
+  - benchmark
+  - profiling
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  - criterion
+  - flamegraph
+  - cargo-bloat
+  input_types: []
+  output_template: rust_benchmarking_report
+  related_skills:
+  - rust-performance-engineering
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-fuzzing-and-property-testing
+  path: devops/rust-fuzzing-and-property-testing/SKILL.md
+  category: devops
+  triggers:
+  - cargo fuzz
+  - fuzzing
+  - proptest
+  - quickcheck
+  - property testing
+  - fuzz
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo-fuzz
+  input_types: []
+  output_template: rust_fuzzing_property_report
+  related_skills:
+  - rust-testing-strategy
+  - command-safety
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-miri-unsafe-validation
+  path: devops/rust-miri-unsafe-validation/SKILL.md
+  category: devops
+  triggers:
+  - miri
+  - cargo miri
+  - unsafe rust
+  - undefined behavior
+  - cargo geiger
+  - unsafe audit
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo-miri
+  - cargo-geiger
+  input_types: []
+  output_template: rust_miri_unsafe_report
+  related_skills:
+  - rust-security-hardening
+  - rust-senior-code-review
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-ci-quality-gates
+  path: devops/rust-ci-quality-gates/SKILL.md
+  category: devops
+  triggers:
+  - rust ci
+  - quality gates
+  - github actions rust
+  - cargo audit
+  - cargo deny
+  - nextest ci
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  - cargo-nextest
+  - cargo-llvm-cov
+  input_types: []
+  output_template: rust_ci_quality_gates_report
+  related_skills:
+  - cicd-failure-analysis
+  - rust-test-infrastructure
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-docs-and-api-contracts
+  path: devops/rust-docs-and-api-contracts/SKILL.md
+  category: devops
+  triggers:
+  - cargo doc
+  - rustdoc
+  - doc tests
+  - api docs
+  - adr
+  - architecture decision record
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  input_types: []
+  output_template: rust_docs_api_contracts_report
+  related_skills:
+  - rust-api-design
+  - research-documentation-workflow
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-release-and-semver
+  path: devops/rust-release-and-semver/SKILL.md
+  category: devops
+  triggers:
+  - cargo publish
+  - cargo package
+  - semver
+  - cargo semver-checks
+  - release rust
+  - crate release
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo
+  - cargo-semver-checks
+  input_types: []
+  output_template: rust_release_semver_report
+  related_skills:
+  - rust-ci-quality-gates
+  - rust-dependency-supply-chain-review
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-feature-matrix-and-hack
+  path: devops/rust-feature-matrix-and-hack/SKILL.md
+  category: devops
+  triggers:
+  - cargo hack
+  - feature matrix
+  - feature powerset
+  - all-features
+  - no-default-features
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo-hack
+  input_types: []
+  output_template: rust_feature_matrix_report
+  related_skills:
+  - rust-workspace-and-crate-design
+  - rust-ci-quality-gates
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: rust-dead-code-and-dependency-hygiene
+  path: devops/rust-dead-code-and-dependency-hygiene/SKILL.md
+  category: devops
+  triggers:
+  - cargo udeps
+  - unused dependencies
+  - dead code
+  - dependency hygiene
+  - cargo tree
+  default_risk: medium
+  default_mode: draft_only
+  requires_tools:
+  - cargo-udeps
+  - cargo
+  input_types: []
+  output_template: rust_dependency_hygiene_report
+  related_skills:
+  - rust-dependency-supply-chain-review
+  - rust-feature-matrix-and-hack
+  do_not_use_for:
+  - publishing crates without approval
+  - running untrusted fuzz targets without sandbox
+  - changing CI gates without review
+  - hiding clippy or test failures
+  - unsafe runtime changes without miri/security review
+  autonomy_level: 2
+- id: runtime-normalized-action-engine
+  path: devops/runtime-normalized-action-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime normalized action engine
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-policy-decision-engine
+  path: devops/runtime-policy-decision-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime policy decision engine
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-approval-state-manager
+  path: devops/runtime-approval-state-manager/SKILL.md
+  category: devops
+  triggers:
+  - runtime approval state manager
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-audit-event-pipeline
+  path: devops/runtime-audit-event-pipeline/SKILL.md
+  category: devops
+  triggers:
+  - runtime audit event pipeline
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-redaction-boundary
+  path: devops/runtime-redaction-boundary/SKILL.md
+  category: devops
+  triggers:
+  - runtime redaction boundary
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-tool-router
+  path: devops/runtime-tool-router/SKILL.md
+  category: devops
+  triggers:
+  - runtime tool router
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-behavior-test-engine
+  path: devops/runtime-behavior-test-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime behavior test engine
+  - runtime enforcement
+  - policy decision
+  - normalized action
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_design
+  output_template: runtime_enforcement_report
+  related_skills:
+  - cybou-policy-engine-implementation
+  - rust-tool-adapter-implementation
+  do_not_use_for:
+  - bypassing tool router
+  - executing without policy decision
+  autonomy_level: 2
+- id: runtime-policy-loader
+  path: devops/runtime-policy-loader/SKILL.md
+  category: devops
+  triggers:
+  - runtime policy loader
+  - data driven policy
+  - policy loader
+  - rule matcher
+  - risk engine
+  - scope engine
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_policy_design
+  output_template: data_driven_policy_report
+  related_skills:
+  - runtime-policy-decision-engine
+  - runtime-normalized-action-engine
+  - cybou-policy-engine-implementation
+  do_not_use_for:
+  - bypassing policy files
+  - executing tools during policy loading
+  autonomy_level: 2
+- id: runtime-rule-matcher
+  path: devops/runtime-rule-matcher/SKILL.md
+  category: devops
+  triggers:
+  - runtime rule matcher
+  - data driven policy
+  - policy loader
+  - rule matcher
+  - risk engine
+  - scope engine
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_policy_design
+  output_template: data_driven_policy_report
+  related_skills:
+  - runtime-policy-decision-engine
+  - runtime-normalized-action-engine
+  - cybou-policy-engine-implementation
+  do_not_use_for:
+  - bypassing policy files
+  - executing tools during policy loading
+  autonomy_level: 2
+- id: runtime-risk-engine
+  path: devops/runtime-risk-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime risk engine
+  - data driven policy
+  - policy loader
+  - rule matcher
+  - risk engine
+  - scope engine
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_policy_design
+  output_template: data_driven_policy_report
+  related_skills:
+  - runtime-policy-decision-engine
+  - runtime-normalized-action-engine
+  - cybou-policy-engine-implementation
+  do_not_use_for:
+  - bypassing policy files
+  - executing tools during policy loading
+  autonomy_level: 2
+- id: runtime-profile-scope-engine
+  path: devops/runtime-profile-scope-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime profile scope engine
+  - data driven policy
+  - policy loader
+  - rule matcher
+  - risk engine
+  - scope engine
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_policy_design
+  output_template: data_driven_policy_report
+  related_skills:
+  - runtime-policy-decision-engine
+  - runtime-normalized-action-engine
+  - cybou-policy-engine-implementation
+  do_not_use_for:
+  - bypassing policy files
+  - executing tools during policy loading
+  autonomy_level: 2
+- id: runtime-policy-regression-suite
+  path: devops/runtime-policy-regression-suite/SKILL.md
+  category: devops
+  triggers:
+  - runtime policy regression suite
+  - data driven policy
+  - policy loader
+  - rule matcher
+  - risk engine
+  - scope engine
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_policy_design
+  output_template: data_driven_policy_report
+  related_skills:
+  - runtime-policy-decision-engine
+  - runtime-normalized-action-engine
+  - cybou-policy-engine-implementation
+  do_not_use_for:
+  - bypassing policy files
+  - executing tools during policy loading
+  autonomy_level: 2
+- id: runtime-shell-normalizer
+  path: devops/runtime-shell-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime shell normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-cargo-normalizer
+  path: devops/runtime-cargo-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime cargo normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-kubectl-normalizer
+  path: devops/runtime-kubectl-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime kubectl normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-terraform-normalizer
+  path: devops/runtime-terraform-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime terraform normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-docker-normalizer
+  path: devops/runtime-docker-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime docker normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-git-normalizer
+  path: devops/runtime-git-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime git normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-database-normalizer
+  path: devops/runtime-database-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime database normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-http-fetch-normalizer
+  path: devops/runtime-http-fetch-normalizer/SKILL.md
+  category: devops
+  triggers:
+  - runtime http fetch normalizer
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-normalizer-regression-suite
+  path: devops/runtime-normalizer-regression-suite/SKILL.md
+  category: devops
+  triggers:
+  - runtime normalizer regression suite
+  - tool specific normalizer
+  - normalize command
+  - command parser
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - runtime_normalizer_design
+  output_template: tool_specific_normalizer_report
+  related_skills:
+  - runtime-normalized-action-engine
+  - runtime-policy-decision-engine
+  - runtime-policy-regression-suite
+  do_not_use_for:
+  - executing commands
+  - bypassing policy evaluation
+  autonomy_level: 2
+- id: runtime-scope-matcher
+  path: devops/runtime-scope-matcher/SKILL.md
+  category: devops
+  triggers:
+  - runtime scope matcher
+  - scope approval
+  - approval service
+  - approval store
+  - scoped approval
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - approval_runtime_design
+  output_template: scope_approval_report
+  related_skills:
+  - runtime-approval-state-manager
+  - runtime-policy-decision-engine
+  - runtime-tool-router
+  do_not_use_for:
+  - global approvals
+  - unbounded production approvals
+  - approval without audit
+  - overriding hard deny decisions
+  autonomy_level: 2
+- id: runtime-approval-store
+  path: devops/runtime-approval-store/SKILL.md
+  category: devops
+  triggers:
+  - runtime approval store
+  - scope approval
+  - approval service
+  - approval store
+  - scoped approval
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - approval_runtime_design
+  output_template: scope_approval_report
+  related_skills:
+  - runtime-approval-state-manager
+  - runtime-policy-decision-engine
+  - runtime-tool-router
+  do_not_use_for:
+  - global approvals
+  - unbounded production approvals
+  - approval without audit
+  - overriding hard deny decisions
+  autonomy_level: 2
+- id: runtime-approval-cli
+  path: devops/runtime-approval-cli/SKILL.md
+  category: devops
+  triggers:
+  - runtime approval cli
+  - scope approval
+  - approval service
+  - approval store
+  - scoped approval
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - approval_runtime_design
+  output_template: scope_approval_report
+  related_skills:
+  - runtime-approval-state-manager
+  - runtime-policy-decision-engine
+  - runtime-tool-router
+  do_not_use_for:
+  - global approvals
+  - unbounded production approvals
+  - approval without audit
+  - overriding hard deny decisions
+  autonomy_level: 2
+- id: runtime-approval-policy-integration
+  path: devops/runtime-approval-policy-integration/SKILL.md
+  category: devops
+  triggers:
+  - runtime approval policy integration
+  - scope approval
+  - approval service
+  - approval store
+  - scoped approval
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - approval_runtime_design
+  output_template: scope_approval_report
+  related_skills:
+  - runtime-approval-state-manager
+  - runtime-policy-decision-engine
+  - runtime-tool-router
+  do_not_use_for:
+  - global approvals
+  - unbounded production approvals
+  - approval without audit
+  - overriding hard deny decisions
+  autonomy_level: 2
+- id: runtime-approval-regression-suite
+  path: devops/runtime-approval-regression-suite/SKILL.md
+  category: devops
+  triggers:
+  - runtime approval regression suite
+  - scope approval
+  - approval service
+  - approval store
+  - scoped approval
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - approval_runtime_design
+  output_template: scope_approval_report
+  related_skills:
+  - runtime-approval-state-manager
+  - runtime-policy-decision-engine
+  - runtime-tool-router
+  do_not_use_for:
+  - global approvals
+  - unbounded production approvals
+  - approval without audit
+  - overriding hard deny decisions
+  autonomy_level: 2
+- id: runtime-durable-audit-store
+  path: devops/runtime-durable-audit-store/SKILL.md
+  category: devops
+  triggers:
+  - runtime durable audit store
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-evidence-store
+  path: devops/runtime-evidence-store/SKILL.md
+  category: devops
+  triggers:
+  - runtime evidence store
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-audit-cli
+  path: devops/runtime-audit-cli/SKILL.md
+  category: devops
+  triggers:
+  - runtime audit cli
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-tamper-evidence
+  path: devops/runtime-tamper-evidence/SKILL.md
+  category: devops
+  triggers:
+  - runtime tamper evidence
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-evidence-redaction-integration
+  path: devops/runtime-evidence-redaction-integration/SKILL.md
+  category: devops
+  triggers:
+  - runtime evidence redaction integration
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-audit-regression-suite
+  path: devops/runtime-audit-regression-suite/SKILL.md
+  category: devops
+  triggers:
+  - runtime audit regression suite
+  - durable audit
+  - evidence store
+  - tamper evidence
+  - audit cli
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - audit_runtime_design
+  output_template: durable_audit_report
+  related_skills:
+  - runtime-audit-event-pipeline
+  - runtime-redaction-boundary
+  - evidence-handling
+  do_not_use_for:
+  - storing secret values
+  - deleting audit history
+  - hiding policy decisions
+  autonomy_level: 2
+- id: runtime-sandbox-profile-engine
+  path: devops/runtime-sandbox-profile-engine/SKILL.md
+  category: devops
+  triggers:
+  - runtime sandbox profile engine
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-tool-execution-boundary
+  path: devops/runtime-tool-execution-boundary/SKILL.md
+  category: devops
+  triggers:
+  - runtime tool execution boundary
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-filesystem-boundary
+  path: devops/runtime-filesystem-boundary/SKILL.md
+  category: devops
+  triggers:
+  - runtime filesystem boundary
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-network-boundary
+  path: devops/runtime-network-boundary/SKILL.md
+  category: devops
+  triggers:
+  - runtime network boundary
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-output-limit-boundary
+  path: devops/runtime-output-limit-boundary/SKILL.md
+  category: devops
+  triggers:
+  - runtime output limit boundary
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-tool-router-execution-prototype
+  path: devops/runtime-tool-router-execution-prototype/SKILL.md
+  category: devops
+  triggers:
+  - runtime tool router execution prototype
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+- id: runtime-sandbox-regression-suite
+  path: devops/runtime-sandbox-regression-suite/SKILL.md
+  category: devops
+  triggers:
+  - runtime sandbox regression suite
+  - sandbox
+  - tool execution boundary
+  - tool router execution
+  - execution limits
+  default_risk: high
+  default_mode: draft_only
+  requires_tools:
+  - repo_api
+  input_types:
+  - sandbox_runtime_design
+  output_template: sandbox_execution_report
+  related_skills:
+  - runtime-tool-router
+  - runtime-policy-decision-engine
+  - runtime-durable-audit-store
+  - runtime-evidence-store
+  do_not_use_for:
+  - direct tool execution
+  - unbounded output
+  - unrestricted filesystem access
+  - unrestricted network
+  autonomy_level: 2
+activity_policies:
+  penetration_testing: activity_policies/penetration_testing.yaml
+  ai_security_assessment: activity_policies/ai_security_assessment.yaml
+upstream_catalog_mapping: upstream_catalog_mapping.yaml

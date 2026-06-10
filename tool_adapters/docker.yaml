@@ -1,0 +1,13 @@
+tool: docker
+version: '4.0'
+adapter_type: command
+decision_inputs:
+- subcommand
+- container
+- image
+- compose_service
+- environment
+- approval_state
+enforcement:
+  policy_rules: policy_rules/docker.yaml
+  redaction_required: true

@@ -1,0 +1,18 @@
+tool: ci_logs_reader
+version: '4.2'
+adapter_type: data_reader
+decision_inputs:
+- provider
+- repository
+- workflow
+- job
+- run_id
+- approval_state
+enforcement:
+  read_only: true
+  redaction_required: true
+  secret_detection_required: true
+denied:
+- rerun_with_secrets
+- change_workflow
+- approve_deployment

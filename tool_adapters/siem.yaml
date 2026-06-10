@@ -1,0 +1,22 @@
+tool: siem
+version: '4.2'
+adapter_type: security_data_reader
+decision_inputs:
+- alert_id
+- query
+- time_window
+- entities
+- environment
+- approval_state
+enforcement:
+  read_only: true
+  redaction_required: true
+  evidence_handling_required: true
+approval_required:
+- close_alert
+- suppress_rule
+- block_ip
+- disable_user
+denied:
+- delete_events
+- purge_evidence

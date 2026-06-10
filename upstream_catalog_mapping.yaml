@@ -1,0 +1,111 @@
+version: '4.3'
+note: This file maps public upstream catalog ideas to CYBOU-native skills. It does not vendor or copy upstream SKILL.md contents.
+sources:
+  anthropic_skills:
+    repo: https://github.com/anthropics/skills
+    observed_skill_folders:
+    - algorithmic-art
+    - brand-guidelines
+    - canvas-design
+    - claude-api
+    - doc-coauthoring
+    - docx
+    - frontend-design
+    - internal-comms
+    - mcp-builder
+    - pdf
+    - pptx
+    - skill-creator
+    - slack-gif-creator
+    - theme-factory
+    - web-artifacts-builder
+    - webapp-testing
+    - xlsx
+  openai_skills:
+    repo: https://github.com/openai/skills
+    observed_curated_folders:
+    - aspnet-core
+    - chatgpt-apps
+    - cli-creator
+    - cloudflare-deploy
+    - define-goal
+    - figma-code-connect-components
+    - figma-create-design-system-rules
+    - figma-create-new-file
+    - figma-generate-design
+    - figma-generate-library
+    - figma-implement-design
+    - figma-use
+    - figma
+    - gh-address-comments
+    - gh-fix-ci
+    - hatch-pet
+    - jupyter-notebook
+    - linear
+    - migrate-to-codex
+    - netlify-deploy
+    - notion-knowledge-capture
+    - notion-meeting-intelligence
+    - notion-research-documentation
+    - notion-spec-to-implementation
+    - openai-docs
+    - pdf
+    - playwright-interactive
+    - playwright
+    - render-deploy
+    - screenshot
+    - security-best-practices
+    - security-ownership-map
+    - security-threat-model
+    - sentry
+    - speech
+    - transcribe
+    - vercel-deploy
+    - winui-app
+    - yeet
+    observed_system_folders:
+    - imagegen
+    - openai-docs
+    - plugin-creator
+    - skill-creator
+    - skill-installer
+cybou_adapters_added:
+  document_and_artifact:
+  - document-processing-router
+  - docx-document-workflow
+  - pdf-document-workflow
+  - pptx-presentation-workflow
+  - xlsx-spreadsheet-workflow
+  - screenshot-analysis-workflow
+  design_and_frontend:
+  - brand-guidelines-application
+  - frontend-design-review
+  - web-artifact-builder
+  - theme-design-system-factory
+  - figma-design-handoff
+  - image-generation-brief
+  developer_platform:
+  - mcp-server-builder
+  - skill-creator-workflow
+  - skill-installer-workflow
+  - cli-creator-workflow
+  - openai-docs-integration
+  - claude-api-integration
+  - chatgpt-apps-workflow
+  deployment_and_repo_ops:
+  - static-platform-deploy
+  - github-comment-triage
+  - ci-fix-proposal
+  - sentry-issue-triage
+  - issue-tracker-workflow
+  productivity_and_research:
+  - goal-definition-workflow
+  - meeting-intelligence-workflow
+  - knowledge-capture-workflow
+  - research-documentation-workflow
+  - notebook-analysis-workflow
+  - speech-transcription-workflow
+  security_governance:
+  - security-best-practices-review
+  - security-ownership-map
+  - security-threat-modeling-workflow

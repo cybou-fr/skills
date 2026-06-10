@@ -1,0 +1,25 @@
+version: '4.4'
+recommended_crates:
+  cybou-core: Domain types, tasks, skills, scopes, approvals, audit IDs.
+  cybou-runtime: Task orchestration, profiles, state machine, worker loop.
+  cybou-policy: NormalizedAction -> PolicyDecision engine.
+  cybou-tools: ToolAdapter traits and implementations.
+  cybou-skills: Skill pack loading, registry, validation, routing.
+  cybou-audit: Audit event model, evidence, tamper-aware storage boundary.
+  cybou-api: External API boundary.
+  cybou-cli: Developer/operator CLI.
+  cybou-agent: Worker executable.
+dependency_direction:
+- cybou-core has no dependency on infrastructure crates
+- cybou-policy depends on cybou-core
+- cybou-tools depends on cybou-core and cybou-policy interfaces
+- cybou-runtime orchestrates cybou-core, cybou-policy, cybou-tools, cybou-skills, cybou-audit
+- cybou-api and cybou-cli depend on public runtime interfaces
+first_implementation_milestones:
+- define domain types
+- implement skill pack validator
+- implement normalized action schema/types
+- implement policy decision engine
+- implement shell/http_fetch/git adapters in dry-run mode
+- implement audit events
+- wire CLI for validation and behavior tests

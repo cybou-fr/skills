@@ -1,0 +1,28 @@
+tool: docker
+version: '3.0'
+default: read_only
+rules:
+- id: docker-readonly
+  match_regex: ^docker\s+(ps|images|logs|inspect|stats)\b
+  decision: allow_read_only_and_redact
+  risk: medium
+- id: docker-compose-readonly
+  match_regex: ^docker\s+compose\s+(ps|logs|config)\b
+  decision: allow_read_only_and_redact
+  risk: medium
+- id: docker-stop-restart-rm
+  match_regex: ^docker\s+(stop|restart|rm|rmi)\b
+  decision: approval_required
+  risk: high
+- id: docker-compose-change
+  match_regex: ^docker\s+compose\s+(up|down|restart)\b
+  decision: approval_required
+  risk: high
+- id: docker-privileged
+  match_regex: ^docker\s+run\b.*--privileged
+  decision: deny_by_default
+  risk: critical
+- id: docker-socket-mount
+  match_regex: /var/run/docker\.sock
+  decision: deny_by_default
+  risk: critical

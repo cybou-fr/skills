@@ -1,0 +1,28 @@
+tool: ai_security
+version: '4.1'
+default: defensive_only
+rules:
+- id: ai-deny-jailbreak-generation
+  match_regex: (generate|create|write|optimize).*(jailbreak|bypass|safety bypass)
+  decision: deny_by_default
+  risk: critical
+- id: ai-deny-bypass-instructions
+  match_regex: (how to|steps|instructions).*(bypass|evade|disable).*(safety|guardrail|filter|policy)
+  decision: deny_by_default
+  risk: critical
+- id: ai-deny-secret-exfiltration
+  match_regex: (extract|dump|reveal|print).*(system prompt|secret|token|api key|credential)
+  decision: deny_by_default
+  risk: critical
+- id: ai-allow-defensive-review
+  match_regex: (review|assess|harden|defend|evaluate|report|controls|mitigation)
+  decision: allow_draft
+  risk: medium
+- id: ai-require-synthetic-fixtures
+  match_regex: (test|eval|red team|jailbreak defense|prompt injection)
+  decision: require_synthetic_or_authorized_fixtures
+  risk: high
+- id: ai-agent-tool-abuse
+  match_regex: (tool call|agent tool|execute|delete|send|exfiltrate)
+  decision: policy_gated
+  risk: high

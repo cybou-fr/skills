@@ -1,0 +1,82 @@
+name: cybou-devops-secops-agent-skills
+version: 5.5.0
+license: Proprietary-or-custom
+format: agentskills-compatible-cybou-sandbox-tool-execution-boundary
+description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
+entrypoints:
+  registry: registry.yaml
+  risk_matrix: risk_matrix.yaml
+  tool_policies: tool_policies.yaml
+  output_templates: output_templates.yaml
+  cybou: cybou.yaml
+compatibility:
+  agentskills_io_style: true
+  directory_per_skill: true
+  required_skill_file: SKILL.md
+  skill_md_required_frontmatter:
+  - name
+  - description
+cybou_extensions:
+- registry.yaml
+- risk_matrix.yaml
+- tool_policies.yaml
+- output_templates.yaml
+- cybou.yaml
+- policy_rules/
+- tests/
+- schemas/
+- activity_policies/
+- severity_model.yaml
+- templates/pentest_scope.yaml
+- runtime/
+- autonomy_profiles.yaml
+- skill_graph.yaml
+- tool_adapters/
+- scope_objects/
+- scripts/run_behavior_tests.py
+- ai_security_controls.yaml
+- activity_policies/ai_security_assessment.yaml
+- policy_rules/ai_security.yaml
+- tool_adapters/ai_security.yaml
+- external_tools.yaml
+- profile_decision_matrix.yaml
+- runtime/runtime_objects.yaml
+- upstream_catalog_mapping.yaml
+- cybou_rust_architecture_map.yaml
+- rust_toolchain_quality_matrix.yaml
+- templates/rust-toolchain.toml
+- templates/rustfmt.toml
+- templates/clippy.toml
+- templates/deny.toml
+- runtime_prototype/
+- scripts/normalize_command.py
+- scripts/evaluate_policy.py
+- scripts/simulate_tool_call.py
+- scripts/route_task.py
+- examples/normalized_actions/
+- runtime_prototype/policy_loader.py
+- runtime_prototype/rule_matcher.py
+- runtime_prototype/risk_engine.py
+- runtime_prototype/profile_engine.py
+- scripts/inspect_policy_bundle.py
+- examples/data_driven_policy/
+- runtime_prototype/tool_normalizers/
+- scripts/run_normalizer_tests.py
+- normalizer_tests/
+- runtime_prototype/approval_store.py
+- runtime_prototype/scope_matcher.py
+- scripts/approval_cli.py
+- scripts/run_approval_tests.py
+- approval_tests/
+- runtime_prototype/audit_store.py
+- runtime_prototype/evidence_store.py
+- scripts/audit_cli.py
+- scripts/run_audit_tests.py
+- audit_tests/
+- sandbox_profiles.yaml
+- runtime_prototype/sandbox_profiles.py
+- runtime_prototype/execution_boundary.py
+- runtime_prototype/tool_router.py
+- scripts/tool_router_cli.py
+- scripts/run_sandbox_tests.py
+- sandbox_tests/

@@ -1,0 +1,52 @@
+activity: penetration_testing
+version: '3.3'
+default: authorization_required
+description: Controls authorized defensive penetration testing activities.
+required_before_any_testing:
+- explicit_authorization
+- target_scope
+- rules_of_engagement
+- time_window
+- stop_conditions
+- emergency_contact
+- data_handling_rules
+allowed_activity_classes:
+  class_0_documentation_only:
+    description: Planning, scope review, report writing, evidence review.
+    approval: not_required_if_no_target_interaction
+  class_1_passive_recon:
+    description: Passive review of provided data and public metadata.
+    approval: scope_required
+  class_2_low_impact_web_api_checks:
+    description: Non-destructive HEAD/GET checks, header/cookie review, authorized test-account access control checks.
+    approval: scope_and_rate_limit_required
+  class_3_active_scanning:
+    description: Port/service scanning or scanner-based checks.
+    approval: explicit_approval_scope_rate_limit_required
+  class_4_controlled_validation:
+    description: Carefully bounded validation of suspected vulnerabilities without data access or state changes.
+    approval: explicit_approval_required
+  class_5_destructive_or_abusive:
+    description: DoS, credential theft, persistence, malware, stealth, evasion, data exfiltration.
+    approval: denied_by_default
+denied_by_default:
+- unauthorized_testing
+- out_of_scope_testing
+- denial_of_service
+- credential_theft
+- cookie_or_session_capture
+- phishing_or_social_engineering
+- persistence
+- backdoor
+- reverse_shell
+- malware
+- stealth
+- evasion
+- data_exfiltration
+- third_party_target_testing
+scope_decision_rules:
+  unknown_scope: stop_and_request_scope
+  ambiguous_target: stop_and_request_clarification
+  third_party_dependency: exclude_unless_explicitly_authorized
+  production_target: approval_required
+  customer_data_visible: stop_redact_and_report

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Skill Graph",
+  "type": "object",
+  "required": [
+    "version",
+    "skills"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "global_always_consider": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skills": {
+      "type": "object"
+    }
+  }
+}

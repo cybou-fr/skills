@@ -1,0 +1,69 @@
+{
+  "command": "cargo publish",
+  "normalized_action": {
+    "tool": "cargo",
+    "operation": "publish",
+    "raw_input": "cargo publish",
+    "args": {
+      "tokens": [
+        "cargo",
+        "publish"
+      ]
+    },
+    "target": "cargo_workspace",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "high",
+    "tool": "cargo",
+    "normalized_action": {
+      "tool": "cargo",
+      "operation": "publish",
+      "raw_input": "cargo publish",
+      "args": {
+        "tokens": [
+          "cargo",
+          "publish"
+        ]
+      },
+      "target": "cargo_workspace",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "cargo-publish",
+      "side-effect-or-production"
+    ],
+    "approval_required": true,
+    "approval_scope": "cargo_workspace",
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "High-risk side effect or production-like action requires scoped approval."
+  },
+  "audit_event": {
+    "timestamp": 1781114080.3183093,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "high",
+    "skills": [],
+    "task_id": "55a7b876-db7b-483b-9b74-63ce424c2e79",
+    "skill_id": null,
+    "tool": "cargo",
+    "action": "publish",
+    "policy_rule": "cargo-publish,side-effect-or-production",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

@@ -1,0 +1,15 @@
+tool: issue_tracker_api
+version: '4.3'
+adapter_type: issue_tracker_api
+decision_inputs:
+- operation
+- project
+- issue
+- approval_state
+enforcement:
+  draft_only_by_default: true
+approval_required:
+- create_issue
+- update_issue
+- assign_issue
+- close_issue

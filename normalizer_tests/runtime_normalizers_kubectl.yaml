@@ -1,0 +1,28 @@
+version: '5.2'
+scenarios:
+- id: kubectl-get
+  input: kubectl get pods -n staging
+  expected_normalized_action:
+    tool: kubectl
+    operation: get
+    target: pods
+    environment: staging
+- id: kubectl-delete-prod
+  input: kubectl delete namespace prod
+  expected_normalized_action:
+    tool: kubectl
+    operation: delete
+    target: namespace
+    environment: production
+    side_effects_contains:
+    - destructive
+    - write
+- id: kubectl-exec
+  input: kubectl exec -n prod pod/app -- sh
+  expected_normalized_action:
+    tool: kubectl
+    operation: exec
+    environment: production
+    side_effects_contains:
+    - write
+    - remote_execution

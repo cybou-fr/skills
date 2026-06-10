@@ -1,0 +1,76 @@
+{
+  "command": "git push --force origin main",
+  "normalized_action": {
+    "tool": "git",
+    "operation": "push",
+    "raw_input": "git push --force origin main",
+    "args": {
+      "tokens": [
+        "git",
+        "push",
+        "--force",
+        "origin",
+        "main"
+      ]
+    },
+    "target": "main",
+    "environment": "unknown",
+    "scope": null,
+    "side_effects": [
+      "history_rewrite",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "approval_required",
+    "risk": "medium",
+    "tool": "git",
+    "normalized_action": {
+      "tool": "git",
+      "operation": "push",
+      "raw_input": "git push --force origin main",
+      "args": {
+        "tokens": [
+          "git",
+          "push",
+          "--force",
+          "origin",
+          "main"
+        ]
+      },
+      "target": "main",
+      "environment": "unknown",
+      "scope": null,
+      "side_effects": [
+        "history_rewrite",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "git-write",
+      "fallback:git-high-risk",
+      "readonly_profile_blocks_write",
+      "side_effect:write"
+    ],
+    "approval_required": true,
+    "approval_scope": "main",
+    "redaction_required": false,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115281.0940287,
+    "event_type": "policy_decision",
+    "decision": "approval_required",
+    "risk": "medium",
+    "skills": [],
+    "task_id": "ad401450-8a17-4484-9c8c-e29c6acbb536",
+    "tool": "git",
+    "action": "push",
+    "policy_rule": "git-write,fallback:git-high-risk,readonly_profile_blocks_write,side_effect:write",
+    "approval_id": null,
+    "redaction_applied": false
+  }
+}

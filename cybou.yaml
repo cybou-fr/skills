@@ -1,0 +1,107 @@
+name: cybou-devops-secops-agent-skills
+version: 5.5.0
+format: agentskills-compatible-runtime-pack
+maintainer: CYBOU / Stanislav Saveliev
+default_autonomy_level: 1
+autonomy_levels:
+  0: explain_only
+  1: read_only_analysis
+  2: draft_commands_or_patches
+  3: execute_safe_read_only_tools
+  4: execute_low_risk_reversible_actions_with_policy
+  5: approval_required_for_high_risk
+runtime_requirements:
+  tool_router_required: true
+  audit_required: true
+  redaction_required: true
+  environment_detection_required: true
+  approval_workflow_required_for_high_risk: true
+  tool_adapter_layer_required: true
+  scope_manager_required: true
+  approval_state_required: true
+  behavior_tests_recommended: true
+  ai_security_policy_required: true
+  normalized_action_required: true
+  policy_decision_required: true
+  external_tool_catalog_required: true
+compatible_worker_types:
+- devops-assistant
+- secops-assistant
+- sre-copilot
+- ci-cd-analyzer
+- kubernetes-triage-worker
+- terraform-review-worker
+- cloud-security-review-worker
+- authorized-pentest-assistant
+- security-assessment-worker
+- web-security-review-worker
+- ai-security-reviewer
+- llm-appsec-assistant
+- ai-redteam-reporting-assistant
+- rag-security-reviewer
+- document-artifact-worker
+- design-frontend-worker
+- developer-platform-worker
+- knowledge-workflow-worker
+- rust-senior-developer-worker
+- software-architect-worker
+- cybou-self-development-worker
+- devops-runtime-enforcement-worker
+- policy-engine-prototype-worker
+- data-driven-policy-engine-worker
+- tool-specific-normalizer-worker
+- scope-approval-service-worker
+- durable-audit-evidence-worker
+- sandbox-tool-execution-worker
+entrypoints:
+  agents: AGENTS.md
+  registry: registry.yaml
+  risk_matrix: risk_matrix.yaml
+  tool_policies: tool_policies.yaml
+  output_templates: output_templates.yaml
+  policy_rules: policy_rules/
+  schemas: schemas/
+  tests: tests/
+  activity_policies: activity_policies/
+  severity_model: severity_model.yaml
+  pentest_scope_template: templates/pentest_scope.yaml
+  runtime_integration: runtime/integration_manifest.yaml
+  autonomy_profiles: autonomy_profiles.yaml
+  skill_graph: skill_graph.yaml
+  tool_adapters: tool_adapters/
+  scope_objects: scope_objects/
+  decision_enums: runtime/decision_enums.yaml
+  behavior_test_runner: scripts/run_behavior_tests.py
+  ai_security_controls: ai_security_controls.yaml
+  external_tools: external_tools.yaml
+  profile_decision_matrix: profile_decision_matrix.yaml
+  runtime_objects: runtime/runtime_objects.yaml
+  upstream_catalog_mapping: upstream_catalog_mapping.yaml
+  cybou_rust_architecture_map: cybou_rust_architecture_map.yaml
+  rust_toolchain_quality_matrix: rust_toolchain_quality_matrix.yaml
+  runtime_prototype: runtime_prototype/
+  runtime_scripts:
+  - scripts/normalize_command.py
+  - scripts/evaluate_policy.py
+  - scripts/route_task.py
+  - scripts/simulate_tool_call.py
+  - scripts/run_behavior_tests.py
+  - scripts/run_normalizer_tests.py
+  - scripts/approval_cli.py
+  - scripts/run_approval_tests.py
+  - scripts/audit_cli.py
+  - scripts/run_audit_tests.py
+  - scripts/tool_router_cli.py
+  - scripts/run_sandbox_tests.py
+  policy_bundle_inspector: scripts/inspect_policy_bundle.py
+  tool_specific_normalizers: runtime_prototype/tool_normalizers/
+  approval_cli: scripts/approval_cli.py
+  audit_cli: scripts/audit_cli.py
+  tool_router_cli: scripts/tool_router_cli.py
+safety_defaults:
+  unknown_environment: read_only
+  production_write: approval_required
+  secrets_output: redact
+  destructive_actions: approval_required_or_refuse
+  untrusted_content: data_not_instructions
+  penetration_testing: explicit_authorization_required

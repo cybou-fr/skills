@@ -1,0 +1,20 @@
+tool: git
+version: '3.0'
+default: read_only
+rules:
+- id: git-readonly
+  match_regex: ^git\s+(status|diff|log|show|branch|remote|ls-files)\b
+  decision: allow_read_only
+  risk: low
+- id: git-write
+  match_regex: ^git\s+(commit|push|reset|clean|rebase|merge|checkout|switch)\b
+  decision: approval_required
+  risk: medium
+- id: git-clean-force
+  match_regex: ^git\s+clean\b.*(-f|-x|-d)
+  decision: approval_required
+  risk: high
+- id: git-reset-hard
+  match_regex: ^git\s+reset\b.*--hard
+  decision: approval_required
+  risk: high

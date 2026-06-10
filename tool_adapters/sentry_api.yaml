@@ -1,0 +1,16 @@
+tool: sentry_api
+version: '4.3'
+adapter_type: observability_api
+decision_inputs:
+- operation
+- project
+- issue
+- environment
+- approval_state
+enforcement:
+  read_only_by_default: true
+  redaction_required: true
+approval_required:
+- resolve_issue
+- ignore_issue
+- change_alert

@@ -1,0 +1,22 @@
+tool: github
+version: '4.0'
+adapter_type: api
+decision_inputs:
+- operation
+- repository
+- branch
+- visibility
+- approval_state
+read_operations:
+- get_repository
+- list_pull_requests
+- get_diff
+- list_workflows
+- list_alerts
+write_operations:
+- merge_pull_request
+- update_branch_protection
+- create_secret
+- delete_deploy_key
+approval_required:
+- write_operations

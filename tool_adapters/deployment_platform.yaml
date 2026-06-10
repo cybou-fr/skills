@@ -1,0 +1,16 @@
+tool: deployment_platform
+version: '4.3'
+adapter_type: deployment_api
+decision_inputs:
+- platform
+- operation
+- project
+- environment
+- approval_state
+enforcement:
+  preview_by_default: true
+  redaction_required: true
+approval_required:
+- production_deploy
+- dns_change
+- env_var_change

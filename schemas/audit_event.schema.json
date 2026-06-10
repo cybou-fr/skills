@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CYBOU Audit Event",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "event_type",
+    "decision",
+    "risk",
+    "skills"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "skill_id": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string"
+    },
+    "risk": {
+      "type": "string"
+    },
+    "policy_rule": {
+      "type": "string"
+    },
+    "approval_id": {
+      "type": "string"
+    },
+    "redaction_applied": {
+      "type": "boolean"
+    }
+  }
+}

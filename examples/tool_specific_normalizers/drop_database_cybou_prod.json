@@ -1,0 +1,77 @@
+{
+  "command": "DROP DATABASE cybou_prod",
+  "normalized_action": {
+    "tool": "database",
+    "operation": "drop",
+    "raw_input": "DROP DATABASE cybou_prod",
+    "args": {
+      "tokens": [
+        "DROP",
+        "DATABASE",
+        "cybou_prod"
+      ],
+      "sql_operation": "drop"
+    },
+    "target": "database",
+    "environment": "production",
+    "scope": null,
+    "side_effects": [
+      "destructive",
+      "write"
+    ],
+    "sensitive_data_possible": false
+  },
+  "policy_decision": {
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "tool": "database",
+    "normalized_action": {
+      "tool": "database",
+      "operation": "drop",
+      "raw_input": "DROP DATABASE cybou_prod",
+      "args": {
+        "tokens": [
+          "DROP",
+          "DATABASE",
+          "cybou_prod"
+        ],
+        "sql_operation": "drop"
+      },
+      "target": "database",
+      "environment": "production",
+      "scope": null,
+      "side_effects": [
+        "destructive",
+        "write"
+      ],
+      "sensitive_data_possible": false
+    },
+    "matched_rules": [
+      "db-drop",
+      "fallback:database-destructive",
+      "readonly_profile_blocks_write",
+      "risk_floor:database_drop=critical",
+      "side_effect:destructive",
+      "side_effect:write",
+      "environment:production"
+    ],
+    "approval_required": false,
+    "approval_scope": "database",
+    "redaction_required": true,
+    "audit_required": true,
+    "reason": "data-driven policy evaluation with safe fallback"
+  },
+  "audit_event": {
+    "timestamp": 1781115281.1352077,
+    "event_type": "policy_decision",
+    "decision": "deny_by_default",
+    "risk": "critical",
+    "skills": [],
+    "task_id": "1b55c5f5-6fdd-4415-ba15-a9f87b77e362",
+    "tool": "database",
+    "action": "drop",
+    "policy_rule": "db-drop,fallback:database-destructive,readonly_profile_blocks_write,risk_floor:database_drop=critical,side_effect:destructive,side_effect:write,environment:production",
+    "approval_id": null,
+    "redaction_applied": true
+  }
+}
