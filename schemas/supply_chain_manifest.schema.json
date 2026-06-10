@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/supply_chain_manifest.schema.json",
+  "title": "Cybou Supply Chain Manifest",
+  "type": "object",
+  "required": [
+    "version",
+    "package",
+    "hash_algorithm",
+    "file_hashes",
+    "release_integrity",
+    "loader_requirements"
+  ]
+}

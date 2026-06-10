@@ -6,10 +6,10 @@ patterns:
   risk: critical
   reason: remote script piped to interpreter
 - id: rm-rf-root
-  regex: \brm\s+(-[^\s]*r[^\s]*f|-?[^\s]*f[^\s]*r)\s+(/|\$HOME|~)\b
+  regex: (?i)(^|\s)(sudo\s+)?rm\s+(-[A-Za-z]*r[A-Za-z]*f[A-Za-z]*|-[A-Za-z]*f[A-Za-z]*r[A-Za-z]*|--recursive\s+--force|--force\s+--recursive)\s+(--\s+)?(/(\s|$)|/\*|~(\s|$)|\$HOME(\s|$)|\"\$HOME\"|'?\$HOME'?)
   verdict: Deny
   risk: critical
-  reason: destructive root/home removal
+  reason: destructive root/home removal including rm -rf / variants
 - id: mkfs
   regex: \bmkfs(\.[a-z0-9]+)?\b
   verdict: Deny

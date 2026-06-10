@@ -1,0 +1,24 @@
+version: 6.4.0
+package: cybou-core-integration-pack
+role: external skills/policies/evals corpus
+hash_algorithm: sha256
+file_hashes: integration/file_hashes.yaml
+release_integrity:
+  signed_release_recommended: true
+  signed_release_required_for_enterprise: true
+  trusted_publishers:
+  - cybou-fr
+  commit_pinning_recommended: true
+  tag_pinning_recommended: true
+loader_requirements:
+  verify_file_hashes: true
+  reject_hash_mismatch: true
+  reject_unknown_files_in_enterprise: false
+  quarantine_on_validation_failure: true
+threat_model:
+- malicious skill contribution
+- compromised skills repository
+- prompt injection through skill body
+- policy drift
+- eval poisoning
+- silent file modification after vetting

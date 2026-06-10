@@ -1,4 +1,4 @@
-version: '6.2'
+version: '6.4'
 pack_role: external_skills_policies_templates_evals_corpus
 target_project: Cybou
 authoritative_runtime: cybou-core Rust worker + cybou-guest MicroVM + cybou-proto vsock protocol
@@ -50,3 +50,6 @@ schemas:
 - schemas/tool_classes.schema.json
 - schemas/eval_scenario.schema.json
 - schemas/loader_manifest.schema.json
+supply_chain_manifest: integration/supply_chain_manifest.yaml
+vetting_rules: integration/vetting_rules.yaml
+quarantine_policy: integration/quarantine_policy.yaml

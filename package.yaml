@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 6.3.0
+version: 6.4.0
 license: Proprietary-or-custom
-format: cybou-core-integration-immunity-compatibility
+format: cybou-core-integration-skill-vetting-supply-chain
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -126,6 +126,18 @@ cybou_extensions:
 - schemas/immunity_manifest.schema.json
 - schemas/command_pattern_mapping.schema.json
 - schemas/sensitive_targets.schema.json
+- integration/supply_chain_manifest.yaml
+- integration/file_hashes.yaml
+- integration/vetting_rules.yaml
+- integration/quarantine_policy.yaml
+- immunity_mapping/command_pattern_tests.yaml
+- docs/SUPPLY_CHAIN_TRUST.md
+- docs/SKILL_VETTING_DEEP.md
+- docs/COMMAND_PATTERN_TESTING.md
+- docs/V6_4_SKILL_VETTING_SUPPLY_CHAIN_CHANGELOG.md
+- scripts/validate_supply_chain_v6_4.py
+- scripts/validate_skill_vetting_rules_v6_4.py
+- scripts/validate_command_patterns_v6_4.py
 role: external_clean_corpus_for_cybou_core
 authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
 not_authoritative_runtime:
@@ -139,3 +151,5 @@ hygiene_patch:
   tool_classes: integration/tool_classes.yaml
 loader_contract: integration/loader_manifest.yaml
 immunity_compatibility: immunity_mapping/immunity_manifest.yaml
+supply_chain_manifest: integration/supply_chain_manifest.yaml
+vetting_rules: integration/vetting_rules.yaml

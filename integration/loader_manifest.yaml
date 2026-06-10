@@ -1,4 +1,4 @@
-version: 6.3.0
+version: 6.4.0
 loader_contract: Cybou Core Skills Loader Contract v1
 role: metadata-first external corpus
 required_files:
@@ -16,6 +16,11 @@ required_files:
 - immunity_mapping/tool_class_mapping.yaml
 - immunity_mapping/command_pattern_mapping.yaml
 - immunity_mapping/sensitive_targets.yaml
+- integration/supply_chain_manifest.yaml
+- integration/file_hashes.yaml
+- integration/vetting_rules.yaml
+- integration/quarantine_policy.yaml
+- immunity_mapping/command_pattern_tests.yaml
 canonical_dirs:
 - core/
 - devops/
@@ -68,3 +73,12 @@ immunity_compatibility:
   manifest: immunity_mapping/immunity_manifest.yaml
   required: true
   validate_with: scripts/validate_immunity_compat_v6_3.py
+supply_chain_trust:
+  manifest: integration/supply_chain_manifest.yaml
+  file_hashes: integration/file_hashes.yaml
+  vetting_rules: integration/vetting_rules.yaml
+  quarantine_policy: integration/quarantine_policy.yaml
+  validate_with:
+  - scripts/validate_supply_chain_v6_4.py
+  - scripts/validate_skill_vetting_rules_v6_4.py
+  - scripts/validate_command_patterns_v6_4.py

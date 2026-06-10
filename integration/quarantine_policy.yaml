@@ -1,0 +1,23 @@
+version: '6.4'
+quarantine_dir: .cybou/skills/quarantine
+quarantine_triggers:
+- invalid frontmatter
+- reject pattern matched
+- hash mismatch
+- unknown tool class
+- unknown policy decision
+- malformed SKILL.md
+- unsigned or untrusted release in enterprise mode
+behavior:
+  quarantined_skill_prompt_access: none
+  quarantined_policy_runtime_access: none
+  quarantined_eval_learning_access: none
+  audit_event_required: SkillQuarantined
+manual_override:
+  allowed: true
+  requires_operator: true
+  requires_reason: true
+  audit_event: SkillQuarantineOverride
+  cannot_override:
+  - hash mismatch in enterprise signed mode
+  - critical reject pattern

@@ -1,10 +1,10 @@
-# Cybou Core Integration Pack v6.3
+# Cybou Core Integration Pack v6.4
 
-**Version:** 6.3.0  
-**Role:** loader-compatible external skills/policies/evals corpus with Rust immunity compatibility assets.  
-**Target:** `cybou-core`, especially `immunity.rs`, `risk.rs`, `approval.rs`, `audit.rs`.
+**Version:** 6.4.0  
+**Role:** supply-chain aware external skills/policies/evals corpus for Cybou.  
+**Target:** `cybou-core`, especially `memory/skills.rs`, `memory/vetting.rs`, `immunity.rs`, `audit.rs`.
 
-v6.3 adds direct **Immunity Compatibility Mapping** on top of the v6.2 loader contract.
+v6.4 adds **Skill Vetting & Supply Chain Trust** on top of v6.3 immunity compatibility.
 
 ## Core rule
 
@@ -27,22 +27,21 @@ CybouDecision
   -> audit.rs
 ```
 
-## What changed in v6.3
+## What changed in v6.4
 
 ```text
-Added immunity_mapping/.
-Added Rust-facing immunity manifest.
-Added decision/risk/tool class mappings for immunity.rs.
-Added command pattern mapping for deterministic safety checks.
-Added sensitive target mapping.
-Added Rust contract sketch.
-Added immunity compatibility validator.
+Added supply-chain manifest and file hashes.
+Added machine-readable vetting rules.
+Added quarantine policy.
+Added command-pattern regression tests.
+Fixed rm-rf-root detection for rm -rf / variants.
+Added supply-chain, vetting and command-pattern validators.
 ```
 
 ## Package statistics
 
 ```text
-Total files: 464
+Total files: 479
 Skill files: 207
 Registry skills: 207
 Output templates: 139
@@ -50,41 +49,11 @@ Policy rule files: 13
 Activity policy files: 2
 Tool adapter files: 74
 Scope object files: 6
-Schema JSON files: 27
-Schema total files: 29
+Schema JSON files: 31
+Schema total files: 33
 Eval files: 41
 Eval scenarios: 222
-Immunity mapping files: 6
-```
-
-## Immunity compatibility files
-
-```text
-immunity_mapping/immunity_manifest.yaml
-immunity_mapping/decision_mapping.yaml
-immunity_mapping/risk_mapping.yaml
-immunity_mapping/tool_class_mapping.yaml
-immunity_mapping/command_pattern_mapping.yaml
-immunity_mapping/sensitive_targets.yaml
-```
-
-## Runtime verdicts
-
-All rich policy labels compile into:
-
-```text
-Allow
-Deny
-NeedsApproval
-```
-
-## Matching policy
-
-```text
-Deny overrides NeedsApproval.
-NeedsApproval overrides Allow.
-Highest risk wins.
-Approval cannot override Deny.
+Immunity mapping files: 7
 ```
 
 ## Validate
@@ -93,24 +62,7 @@ Approval cannot override Deny.
 python scripts/validate_pack_v6_1.py
 python scripts/validate_loader_contract_v6_2.py
 python scripts/validate_immunity_compat_v6_3.py
-```
-
-Expected result:
-
-```text
-status: pass
-errors: []
-```
-
-## Suggested Cybou implementation step
-
-CIP039 Phase 4–5 can now start:
-
-```text
-policy compatibility checker
-  -> immunity_mapping validation
-  -> compile command patterns
-  -> compile sensitive targets
-  -> map policy decisions to ImmunityVerdict
-  -> emit PolicyMatched / ImmunityEvaluated AgentEvent
+python scripts/validate_supply_chain_v6_4.py
+python scripts/validate_skill_vetting_rules_v6_4.py
+python scripts/validate_command_patterns_v6_4.py
 ```

@@ -1,0 +1,64 @@
+version: '6.4'
+default_trust: untrusted
+allowed_prompt_access_by_trust:
+  untrusted: []
+  metadata_trusted:
+  - name
+  - description
+  - category
+  - triggers
+  - default_risk
+  - default_mode
+  - output_template
+  body_vetted:
+  - trusted_summary
+  - approved_excerpts
+  policy_compiled: []
+reject_patterns:
+- id: bypass-immunity
+  regex: (?i)\b(bypass|disable|ignore|skip)\b.{0,80}\b(immunity|safety|approval|audit)\b
+  severity: critical
+- id: disable-audit
+  regex: (?i)\b(disable|turn off|remove|delete)\b.{0,80}\b(audit|logging|evidence)\b
+  severity: critical
+- id: print-secrets
+  regex: (?i)\b(print|show|dump|exfiltrate|send)\b.{0,100}\b(secret[s]?|token[s]?|password[s]?|credential[s]?|private\s+key[s]?|api\s+key[s]?)\b
+  severity: critical
+- id: direct-tool-execution
+  regex: (?i)\b(run|execute)\b.{0,80}\b(shell|command|tool)\b.{0,80}\b(without|bypass|directly)\b
+  severity: high
+- id: prompt-injection
+  regex: (?i)\b(ignore previous instructions|system prompt|developer message|you are now|act as system)\b
+  severity: critical
+- id: data-exfiltration
+  regex: (?i)\b(curl|wget|nc|netcat)\b.{0,140}\b((secret[s]?|token[s]?|password[s]?|credential[s]?|private\s+key[s]?|api\s+key[s]?)|/etc/shadow|id_rsa|credentials)\b
+  severity: critical
+- id: persistent-backdoor
+  regex: (?i)\b(backdoor|reverse shell|persistence|cron.*curl|authorized_keys)\b
+  severity: critical
+warning_patterns:
+- id: overbroad-sudo
+  regex: (?i)\bsudo\b
+  severity: medium
+- id: wildcard-delete
+  regex: (?i)\brm\b.*\*
+  severity: medium
+- id: external-download
+  regex: (?i)\b(curl|wget)\b\s+https?://
+  severity: medium
+required_report_fields:
+- skill_id
+- skill_path
+- content_sha256
+- accepted
+- trust_level
+- risk_level
+- reject_reasons
+- warnings
+- trusted_summary
+- allowed_prompt_sections
+hard_rules:
+- A rejected skill cannot enter prompt context.
+- A body_vetted skill must have content_sha256 pinned in a vetting report.
+- No skill may override immunity.rs, approval.rs, audit.rs, or MicroVM boundary.
+- Full body prompt access requires accepted=true and trust_level=body_vetted.
