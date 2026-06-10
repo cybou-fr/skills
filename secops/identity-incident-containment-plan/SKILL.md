@@ -1,6 +1,7 @@
 ---
 name: identity-incident-containment-plan
-description: Draft identity incident containment plans: disable account, revoke sessions, rotate keys, remove app consent, reset credentials and preserve evidence.
+description: 'Draft identity incident containment plans: disable account, revoke sessions, rotate keys, remove app consent,
+  reset credentials and preserve evidence.'
 ---
 
 # Identity Incident Containment Plan

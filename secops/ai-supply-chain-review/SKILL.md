@@ -1,6 +1,7 @@
 ---
 name: ai-supply-chain-review
-description: Review AI-specific supply chain risks: model provenance, third-party models, datasets, embeddings, vector stores, prompt templates, eval datasets, plugins/tools, adapters, and model-serving dependencies.
+description: 'Review AI-specific supply chain risks: model provenance, third-party models, datasets, embeddings, vector stores,
+  prompt templates, eval datasets, plugins/tools, adapters, and model-serving dependencies.'
 ---
 
 # AI Supply Chain Review

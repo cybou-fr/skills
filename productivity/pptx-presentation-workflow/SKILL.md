@@ -1,6 +1,7 @@
 ---
 name: pptx-presentation-workflow
-description: Create, analyze, and improve slide decks with structure, narrative, visual hierarchy, speaker notes, consistency checks, and export-ready review.
+description: Create, analyze, and improve slide decks with structure, narrative, visual hierarchy, speaker notes, consistency
+  checks, and export-ready review.
 ---
 
 # PPTX Presentation Workflow

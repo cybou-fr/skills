@@ -1,6 +1,7 @@
 ---
 name: azure-activity-log-triage
-description: Triage Azure Activity Log security events: role assignments, key vault access, NSG changes, defender alerts and diagnostic setting changes.
+description: 'Triage Azure Activity Log security events: role assignments, key vault access, NSG changes, defender alerts
+  and diagnostic setting changes.'
 ---
 
 # Azure Activity Log Triage

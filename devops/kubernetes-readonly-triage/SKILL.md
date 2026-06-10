@@ -1,6 +1,8 @@
 ---
 name: kubernetes-readonly-triage
-description: Triage Kubernetes issues using read-only kubectl and optional Helm commands. Use for operational troubleshooting of pods, deployments, services, ingress, CrashLoopBackOff, ImagePullBackOff, Pending, OOMKilled, NodeNotReady, PVC Pending, RBAC Forbidden, and cluster diagnostics.
+description: Triage Kubernetes issues using read-only kubectl and optional Helm commands. Use for operational troubleshooting
+  of pods, deployments, services, ingress, CrashLoopBackOff, ImagePullBackOff, Pending, OOMKilled, NodeNotReady, PVC Pending,
+  RBAC Forbidden, and cluster diagnostics.
 ---
 
 # Kubernetes Read-only Triage

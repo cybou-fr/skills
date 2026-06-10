@@ -1,6 +1,7 @@
 ---
 name: ci-fix-proposal
-description: Analyze CI failures and propose minimal safe fixes, with special focus on GitHub Actions, flaky tests, dependency failures, secrets, and deployment gates.
+description: Analyze CI failures and propose minimal safe fixes, with special focus on GitHub Actions, flaky tests, dependency
+  failures, secrets, and deployment gates.
 ---
 
 # CI Fix Proposal

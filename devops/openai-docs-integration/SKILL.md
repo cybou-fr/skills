@@ -1,6 +1,7 @@
 ---
 name: openai-docs-integration
-description: Design OpenAI API integration workflows safely: docs lookup, API usage planning, auth handling, model/tool configuration, evals, logging, cost controls, and migration notes.
+description: 'Design OpenAI API integration workflows safely: docs lookup, API usage planning, auth handling, model/tool configuration,
+  evals, logging, cost controls, and migration notes.'
 ---
 
 # OpenAI Docs Integration

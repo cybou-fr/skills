@@ -1,6 +1,7 @@
 ---
 name: prometheus-alert-analysis
-description: Analyze Prometheus or Alertmanager alerts and produce safe triage summaries. Use for alert labels, firing alerts, SLO burn rate, latency, error rate, saturation, Kubernetes alerts, and incident routing.
+description: Analyze Prometheus or Alertmanager alerts and produce safe triage summaries. Use for alert labels, firing alerts,
+  SLO burn rate, latency, error rate, saturation, Kubernetes alerts, and incident routing.
 ---
 
 # Prometheus Alert Analysis

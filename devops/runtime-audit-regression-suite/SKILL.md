@@ -1,6 +1,7 @@
 ---
 name: runtime-audit-regression-suite
-description: Create regression tests for append-only audit records, hash-chain verification, tamper detection, redacted evidence capture and export.
+description: Create regression tests for append-only audit records, hash-chain verification, tamper detection, redacted evidence
+  capture and export.
 ---
 
 # Runtime Audit Regression Suite

@@ -1,6 +1,8 @@
 ---
 name: security-log-review
-description: Review security logs and audit events for suspicious activity. Use for auth logs, cloud audit logs, IdP events, WAF logs, VPN logs, Kubernetes audit logs, GitHub audit logs, SIEM alerts, brute force, suspicious login, privilege escalation, and exfiltration signals.
+description: Review security logs and audit events for suspicious activity. Use for auth logs, cloud audit logs, IdP events,
+  WAF logs, VPN logs, Kubernetes audit logs, GitHub audit logs, SIEM alerts, brute force, suspicious login, privilege escalation,
+  and exfiltration signals.
 ---
 
 # Security Log Review

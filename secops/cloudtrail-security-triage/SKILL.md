@@ -1,6 +1,7 @@
 ---
 name: cloudtrail-security-triage
-description: Triage AWS CloudTrail security events such as AssumeRole, AccessDenied spikes, key usage, console login and suspicious IAM changes.
+description: Triage AWS CloudTrail security events such as AssumeRole, AccessDenied spikes, key usage, console login and suspicious
+  IAM changes.
 ---
 
 # CloudTrail Security Triage

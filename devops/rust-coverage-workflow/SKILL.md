@@ -1,6 +1,7 @@
 ---
 name: rust-coverage-workflow
-description: Configure Rust coverage workflow using cargo-llvm-cov or tarpaulin, coverage thresholds, report generation, CI upload, and exclusions.
+description: Configure Rust coverage workflow using cargo-llvm-cov or tarpaulin, coverage thresholds, report generation, CI
+  upload, and exclusions.
 ---
 
 # Rust Coverage Workflow

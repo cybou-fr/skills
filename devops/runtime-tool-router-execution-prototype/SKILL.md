@@ -1,6 +1,7 @@
 ---
 name: runtime-tool-router-execution-prototype
-description: Implement tool router execution prototype that connects normalizer, policy, approval, sandbox, executor, audit store and evidence store.
+description: Implement tool router execution prototype that connects normalizer, policy, approval, sandbox, executor, audit
+  store and evidence store.
 ---
 
 # Runtime Tool Router Execution Prototype

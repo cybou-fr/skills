@@ -1,6 +1,7 @@
 ---
 name: aws-iam-privilege-path-review
-description: Review AWS IAM privilege escalation paths, risky policies, trust relationships, wildcard permissions and cross-account access.
+description: Review AWS IAM privilege escalation paths, risky policies, trust relationships, wildcard permissions and cross-account
+  access.
 ---
 
 # AWS IAM Privilege Path Review

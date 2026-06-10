@@ -1,17 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "CYBOU Skills Registry",
+  "$id": "https://cybou.fr/schemas/registry.schema.json",
+  "title": "Cybou Skills Registry",
   "type": "object",
   "required": [
     "version",
-    "package",
     "skills"
   ],
   "properties": {
     "version": {
-      "type": "string"
-    },
-    "package": {
       "type": "string"
     },
     "skills": {
@@ -22,19 +19,27 @@
           "id",
           "path",
           "category",
-          "triggers",
           "default_risk",
           "default_mode"
         ],
+        "additionalProperties": true,
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
           },
           "path": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(core|devops|secops|productivity)/.*/SKILL\\.md$"
           },
           "category": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "core",
+              "devops",
+              "secops",
+              "productivity"
+            ]
           },
           "triggers": {
             "type": "array",
@@ -43,7 +48,13 @@
             }
           },
           "default_risk": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
           },
           "default_mode": {
             "type": "string"
@@ -76,7 +87,9 @@
             }
           },
           "autonomy_level": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
           }
         }
       }

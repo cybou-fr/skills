@@ -1,0 +1,27 @@
+version: '6.3'
+risk_levels:
+  low:
+    rank: 1
+    runtime_default: Allow
+    checkpoint_required: false
+    approval_default: false
+  medium:
+    rank: 2
+    runtime_default: Allow
+    checkpoint_required: false
+    approval_default: false
+  high:
+    rank: 3
+    runtime_default: NeedsApproval
+    checkpoint_required: true
+    approval_default: true
+  critical:
+    rank: 4
+    runtime_default: Deny
+    checkpoint_required: true
+    approval_default: false
+policy:
+  critical_cannot_be_auto_approved: true
+  approval_cannot_override_deny: true
+  checkpoint_before_high_risk_mutation: true
+  dryrun_before_supported_package_mutation: true

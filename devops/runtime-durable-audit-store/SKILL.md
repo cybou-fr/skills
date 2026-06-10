@@ -1,6 +1,7 @@
 ---
 name: runtime-durable-audit-store
-description: Implement and review durable append-only audit store with JSONL records, hash chaining, verification and export support.
+description: Implement and review durable append-only audit store with JSONL records, hash chaining, verification and export
+  support.
 ---
 
 # Runtime Durable Audit Store

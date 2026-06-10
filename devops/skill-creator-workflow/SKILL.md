@@ -1,6 +1,7 @@
 ---
 name: skill-creator-workflow
-description: Create AgentSkills-compatible skills with SKILL.md frontmatter, clear routing descriptions, instructions, safety boundaries, references, templates, tests, and validation metadata.
+description: Create AgentSkills-compatible skills with SKILL.md frontmatter, clear routing descriptions, instructions, safety
+  boundaries, references, templates, tests, and validation metadata.
 ---
 
 # Skill Creator Workflow

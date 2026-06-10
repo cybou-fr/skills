@@ -1,6 +1,7 @@
 ---
 name: aws-securityhub-finding-triage
-description: Triage AWS Security Hub findings, correlate with CloudTrail/GuardDuty and produce severity-adjusted remediation plan.
+description: Triage AWS Security Hub findings, correlate with CloudTrail/GuardDuty and produce severity-adjusted remediation
+  plan.
 ---
 
 # AWS Security Hub Finding Triage

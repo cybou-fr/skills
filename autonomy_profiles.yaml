@@ -1,4 +1,4 @@
-version: '6.0'
+version: '6.3'
 profiles:
   readonly_copilot:
     max_autonomy_level: 1

@@ -1,6 +1,7 @@
 ---
 name: runtime-docker-normalizer
-description: Implement and review Docker/Compose normalizer for container/image/network/volume operations, privileged flags, socket mounts, destructive actions and production hints.
+description: Implement and review Docker/Compose normalizer for container/image/network/volume operations, privileged flags,
+  socket mounts, destructive actions and production hints.
 ---
 
 # Runtime Docker Normalizer

@@ -1,6 +1,7 @@
 ---
 name: yara-rule-authoring
-description: Draft and review defensive YARA rules from benign indicators, malware family notes or file metadata without creating weaponized artifacts.
+description: Draft and review defensive YARA rules from benign indicators, malware family notes or file metadata without creating
+  weaponized artifacts.
 ---
 
 # YARA Rule Authoring

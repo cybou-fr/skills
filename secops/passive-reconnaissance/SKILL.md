@@ -1,6 +1,8 @@
 ---
 name: passive-reconnaissance
-description: Perform passive reconnaissance for authorized targets using non-invasive sources only. Use for domain inventory, certificate transparency review, DNS records, public metadata, exposed documentation, technology fingerprinting from provided data, and attack surface mapping without active probing.
+description: Perform passive reconnaissance for authorized targets using non-invasive sources only. Use for domain inventory,
+  certificate transparency review, DNS records, public metadata, exposed documentation, technology fingerprinting from provided
+  data, and attack surface mapping without active probing.
 ---
 
 # Passive Reconnaissance

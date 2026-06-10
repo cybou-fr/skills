@@ -1,0 +1,70 @@
+version: 6.3.0
+loader_contract: Cybou Core Skills Loader Contract v1
+role: metadata-first external corpus
+required_files:
+- README.md
+- registry.yaml
+- output_templates.yaml
+- package.yaml
+- integration/decision_mapping.yaml
+- integration/tool_classes.yaml
+- integration/cybou_core_mapping.yaml
+- integration/loader_manifest.yaml
+- immunity_mapping/immunity_manifest.yaml
+- immunity_mapping/decision_mapping.yaml
+- immunity_mapping/risk_mapping.yaml
+- immunity_mapping/tool_class_mapping.yaml
+- immunity_mapping/command_pattern_mapping.yaml
+- immunity_mapping/sensitive_targets.yaml
+canonical_dirs:
+- core/
+- devops/
+- secops/
+- productivity/
+- policy_rules/
+- activity_policies/
+- schemas/
+- tool_adapters/
+- scope_objects/
+- evals/
+- docs/
+- integration/
+- scripts/
+non_canonical_dirs_forbidden:
+- runtime_prototype/
+- reference_prototype/
+- tests/
+- normalizer_tests/
+- approval_tests/
+- audit_tests/
+- sandbox_tests/
+- detection_tests/
+- cloud_secops_tests/
+- identity_secrets_tests/
+- forensics_tests/
+- __pycache__/
+validation:
+  frontmatter_yaml: strict
+  missing_skill_paths: error
+  missing_output_templates: error
+  unknown_tools: error
+  unknown_policy_decisions: error
+  python_bytecode: error
+  full_skill_body_default: forbidden
+cybou_core_loader:
+  phase_1: registry + frontmatter metadata only
+  phase_2: skill selection from compact metadata
+  phase_3: SkillVetter gates full body excerpts
+  phase_4: policy compatibility check
+  phase_5: immunity mapping
+  phase_6: eval integration
+trust_defaults:
+  skills_enabled: false
+  allow_full_body: false
+  require_vetting: true
+  max_prompt_skills: 8
+  max_skill_excerpt_bytes: 4000
+immunity_compatibility:
+  manifest: immunity_mapping/immunity_manifest.yaml
+  required: true
+  validate_with: scripts/validate_immunity_compat_v6_3.py

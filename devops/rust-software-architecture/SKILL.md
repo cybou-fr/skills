@@ -1,6 +1,7 @@
 ---
 name: rust-software-architecture
-description: Design Rust software architecture for CYBOU and similar systems: crates, modules, boundaries, domain model, runtime services, adapters, traits, persistence, observability, and evolution strategy.
+description: 'Design Rust software architecture for CYBOU and similar systems: crates, modules, boundaries, domain model,
+  runtime services, adapters, traits, persistence, observability, and evolution strategy.'
 ---
 
 # Rust Software Architecture

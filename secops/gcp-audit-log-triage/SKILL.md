@@ -1,6 +1,7 @@
 ---
 name: gcp-audit-log-triage
-description: Triage Google Cloud Audit Logs: IAM policy changes, service account key creation, workload identity misuse, firewall changes and logging sink tampering.
+description: 'Triage Google Cloud Audit Logs: IAM policy changes, service account key creation, workload identity misuse,
+  firewall changes and logging sink tampering.'
 ---
 
 # GCP Audit Log Triage

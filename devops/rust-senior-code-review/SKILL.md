@@ -1,6 +1,7 @@
 ---
 name: rust-senior-code-review
-description: Review Rust code like a senior engineer: ownership, lifetimes, error handling, async correctness, trait design, module boundaries, unsafe usage, testing, performance, and maintainability.
+description: 'Review Rust code like a senior engineer: ownership, lifetimes, error handling, async correctness, trait design,
+  module boundaries, unsafe usage, testing, performance, and maintainability.'
 ---
 
 # Rust Senior Code Review

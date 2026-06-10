@@ -1,6 +1,7 @@
 ---
 name: runtime-database-normalizer
-description: Implement and review database/SQL normalizer for SELECT versus INSERT/UPDATE/DELETE/DROP/TRUNCATE/ALTER, migration commands, target database and sensitive data hints.
+description: Implement and review database/SQL normalizer for SELECT versus INSERT/UPDATE/DELETE/DROP/TRUNCATE/ALTER, migration
+  commands, target database and sensitive data hints.
 ---
 
 # Runtime Database Normalizer

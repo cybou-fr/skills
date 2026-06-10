@@ -1,6 +1,7 @@
 ---
 name: runtime-evidence-store
-description: Implement and review evidence store for redacted tool outputs, command decisions, file references, screenshots/log snippets and structured evidence metadata.
+description: Implement and review evidence store for redacted tool outputs, command decisions, file references, screenshots/log
+  snippets and structured evidence metadata.
 ---
 
 # Runtime Evidence Store

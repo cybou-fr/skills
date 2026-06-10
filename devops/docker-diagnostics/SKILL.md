@@ -1,6 +1,7 @@
 ---
 name: docker-diagnostics
-description: Diagnose Docker and Docker Compose problems. Use for operational troubleshooting of failed containers, container exits, build failures, logs, image issues, port conflicts, volume permissions, Docker Compose services, and runtime debugging.
+description: Diagnose Docker and Docker Compose problems. Use for operational troubleshooting of failed containers, container
+  exits, build failures, logs, image issues, port conflicts, volume permissions, Docker Compose services, and runtime debugging.
 ---
 
 # Docker Diagnostics

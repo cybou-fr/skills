@@ -1,6 +1,7 @@
 ---
 name: runtime-approval-store
-description: Implement and review local approval store prototype with create/list/revoke/expire operations, JSON persistence and audit-friendly records.
+description: Implement and review local approval store prototype with create/list/revoke/expire operations, JSON persistence
+  and audit-friendly records.
 ---
 
 # Runtime Approval Store

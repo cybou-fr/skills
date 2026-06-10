@@ -1,6 +1,7 @@
 ---
 name: detection-regression-suite
-description: Create and maintain regression tests for IOC extraction, Sigma/YARA generation, alert triage, cloud event triage and timeline reconstruction.
+description: Create and maintain regression tests for IOC extraction, Sigma/YARA generation, alert triage, cloud event triage
+  and timeline reconstruction.
 ---
 
 # Detection Regression Suite

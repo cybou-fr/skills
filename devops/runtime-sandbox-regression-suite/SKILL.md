@@ -1,6 +1,7 @@
 ---
 name: runtime-sandbox-regression-suite
-description: Create regression tests for sandbox profile selection, dry-run behavior, timeout, output cap, denied network pipe, blocked destructive actions and allowed read-only commands.
+description: Create regression tests for sandbox profile selection, dry-run behavior, timeout, output cap, denied network
+  pipe, blocked destructive actions and allowed read-only commands.
 ---
 
 # Runtime Sandbox Regression Suite

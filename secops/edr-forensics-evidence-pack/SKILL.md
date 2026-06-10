@@ -1,6 +1,7 @@
 ---
 name: edr-forensics-evidence-pack
-description: Build EDR evidence pack from process trees, network connections, file events, detections, host metadata and analyst notes.
+description: Build EDR evidence pack from process trees, network connections, file events, detections, host metadata and analyst
+  notes.
 ---
 
 # EDR Forensics Evidence Pack

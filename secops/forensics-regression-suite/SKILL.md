@@ -1,6 +1,7 @@
 ---
 name: forensics-regression-suite
-description: Maintain regression tests for case creation, evidence attachment, chain-of-custody verification, timeline reconstruction and evidence export.
+description: Maintain regression tests for case creation, evidence attachment, chain-of-custody verification, timeline reconstruction
+  and evidence export.
 ---
 
 # Forensics Regression Suite

@@ -1,6 +1,7 @@
 ---
 name: runtime-audit-event-pipeline
-description: Implement audit event pipeline for task, skill selection, normalized action, policy decision, approval, tool call and redaction events.
+description: Implement audit event pipeline for task, skill selection, normalized action, policy decision, approval, tool
+  call and redaction events.
 ---
 
 # Runtime Audit Event Pipeline

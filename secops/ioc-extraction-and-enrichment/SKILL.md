@@ -1,6 +1,7 @@
 ---
 name: ioc-extraction-and-enrichment
-description: Extract and safely enrich IOCs such as IPs, domains, URLs, hashes, emails, usernames and cloud resource identifiers from logs and alerts.
+description: Extract and safely enrich IOCs such as IPs, domains, URLs, hashes, emails, usernames and cloud resource identifiers
+  from logs and alerts.
 ---
 
 # IOC Extraction and Enrichment

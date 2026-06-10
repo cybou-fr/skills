@@ -1,6 +1,7 @@
 ---
 name: git-repository-review
-description: Review Git repositories safely using read-only operations. Use for operational repository hygiene, branch state, diffs, commit history, ignored files, suspicious changes, config review, and safe patch recommendations.
+description: Review Git repositories safely using read-only operations. Use for operational repository hygiene, branch state,
+  diffs, commit history, ignored files, suspicious changes, config review, and safe patch recommendations.
 ---
 
 # Git Repository Review

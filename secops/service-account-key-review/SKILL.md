@@ -1,6 +1,7 @@
 ---
 name: service-account-key-review
-description: Review service account keys and machine identities for age, scope, ownership, rotation, workload identity options and leakage risk.
+description: Review service account keys and machine identities for age, scope, ownership, rotation, workload identity options
+  and leakage risk.
 ---
 
 # Service Account Key Review

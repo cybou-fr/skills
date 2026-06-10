@@ -1,6 +1,7 @@
 ---
 name: sentry-issue-triage
-description: Triage Sentry-style errors: group stack traces, identify release/environment, correlate with deploys, estimate impact, and propose safe remediation.
+description: 'Triage Sentry-style errors: group stack traces, identify release/environment, correlate with deploys, estimate
+  impact, and propose safe remediation.'
 ---
 
 # Sentry Issue Triage

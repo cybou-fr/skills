@@ -1,6 +1,7 @@
 ---
 name: cli-creator-workflow
-description: Design and scaffold command-line tools safely with command structure, argument parsing, help text, config, tests, packaging, and security review.
+description: Design and scaffold command-line tools safely with command structure, argument parsing, help text, config, tests,
+  packaging, and security review.
 ---
 
 # CLI Creator Workflow

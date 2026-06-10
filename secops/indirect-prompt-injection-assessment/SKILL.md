@@ -1,6 +1,7 @@
 ---
 name: indirect-prompt-injection-assessment
-description: Assess defenses against indirect prompt injection through retrieved documents, web pages, tickets, emails, logs, repository files, tool outputs, and RAG content. Use benign markers and synthetic fixtures only.
+description: Assess defenses against indirect prompt injection through retrieved documents, web pages, tickets, emails, logs,
+  repository files, tool outputs, and RAG content. Use benign markers and synthetic fixtures only.
 ---
 
 # Indirect Prompt Injection Assessment

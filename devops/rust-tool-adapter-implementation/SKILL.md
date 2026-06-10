@@ -1,6 +1,7 @@
 ---
 name: rust-tool-adapter-implementation
-description: Design and implement Rust tool adapters for CYBOU: normalized actions, policy checks, execution boundary, timeout, output capture, redaction, and audit events.
+description: 'Design and implement Rust tool adapters for CYBOU: normalized actions, policy checks, execution boundary, timeout,
+  output capture, redaction, and audit events.'
 ---
 
 # Rust Tool Adapter Implementation

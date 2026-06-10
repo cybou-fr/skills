@@ -1,6 +1,7 @@
 ---
 name: rust-workspace-and-crate-design
-description: Design Rust Cargo workspaces, crate boundaries, feature flags, dependency direction, public APIs, module layout, and versioning policy.
+description: Design Rust Cargo workspaces, crate boundaries, feature flags, dependency direction, public APIs, module layout,
+  and versioning policy.
 ---
 
 # Rust Workspace and Crate Design

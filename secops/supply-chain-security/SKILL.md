@@ -1,6 +1,7 @@
 ---
 name: supply-chain-security
-description: Review software supply chain risk in dependencies, lockfiles, CI/CD, artifacts, containers, SBOMs, provenance, package managers, unpinned actions, suspicious install scripts, and dependency confusion scenarios.
+description: Review software supply chain risk in dependencies, lockfiles, CI/CD, artifacts, containers, SBOMs, provenance,
+  package managers, unpinned actions, suspicious install scripts, and dependency confusion scenarios.
 ---
 
 # Supply Chain Security

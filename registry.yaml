@@ -1,4 +1,4 @@
-version: '6.0'
+version: '6.3'
 package: cybou-devops-secops-agent-skills
 description: AgentSkills-compatible runtime-oriented DevOps/SecOps skill library for CYBOU or other AI workers.
 default_mode: read_only

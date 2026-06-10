@@ -1,6 +1,7 @@
 ---
 name: secrets-exposure-triage
-description: Triage exposed secrets in logs, PRs, tickets, artifacts, environment variables and evidence; classify type, blast radius and rotation plan without revealing values.
+description: Triage exposed secrets in logs, PRs, tickets, artifacts, environment variables and evidence; classify type, blast
+  radius and rotation plan without revealing values.
 ---
 
 # Secrets Exposure Triage

@@ -1,6 +1,7 @@
 ---
 name: brand-guidelines-application
-description: Apply brand guidelines to content, documents, slides, websites, UI copy, and visual briefs while preserving consistency, tone, accessibility, and enterprise polish.
+description: Apply brand guidelines to content, documents, slides, websites, UI copy, and visual briefs while preserving consistency,
+  tone, accessibility, and enterprise polish.
 ---
 
 # Brand Guidelines Application

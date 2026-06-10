@@ -1,6 +1,7 @@
 ---
 name: rust-dead-code-and-dependency-hygiene
-description: Use cargo-udeps and code review to identify unused dependencies, dead code, unnecessary features, stale modules, and architecture drift.
+description: Use cargo-udeps and code review to identify unused dependencies, dead code, unnecessary features, stale modules,
+  and architecture drift.
 ---
 
 # Rust Dead Code and Dependency Hygiene

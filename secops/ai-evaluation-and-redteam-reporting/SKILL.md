@@ -1,6 +1,7 @@
 ---
 name: ai-evaluation-and-redteam-reporting
-description: Create defensive AI security evaluation and red-team reports without revealing bypass content. Use for summarizing test coverage, failure modes, severity, controls, regression cases, and remediation status.
+description: Create defensive AI security evaluation and red-team reports without revealing bypass content. Use for summarizing
+  test coverage, failure modes, severity, controls, regression cases, and remediation status.
 ---
 
 # AI Evaluation and Red-team Reporting

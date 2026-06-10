@@ -1,6 +1,7 @@
 ---
 name: access-key-hygiene-review
-description: Review access key hygiene: long-lived keys, unused keys, keys without rotation, root keys, leaked keys and CI/CD key usage.
+description: 'Review access key hygiene: long-lived keys, unused keys, keys without rotation, root keys, leaked keys and CI/CD
+  key usage.'
 ---
 
 # Access Key Hygiene Review

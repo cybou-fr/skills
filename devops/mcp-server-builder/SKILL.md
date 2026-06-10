@@ -1,6 +1,7 @@
 ---
 name: mcp-server-builder
-description: Design and scaffold MCP-style server integrations safely: tool definitions, resource contracts, auth model, input validation, logging, rate limits, and test plan.
+description: 'Design and scaffold MCP-style server integrations safely: tool definitions, resource contracts, auth model,
+  input validation, logging, rate limits, and test plan.'
 ---
 
 # MCP Server Builder

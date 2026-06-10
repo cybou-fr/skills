@@ -1,6 +1,7 @@
 ---
 name: chain-of-custody-review
-description: Review chain-of-custody integrity: who collected evidence, when, from where, hash verification, transfers and tamper status.
+description: 'Review chain-of-custody integrity: who collected evidence, when, from where, hash verification, transfers and
+  tamper status.'
 ---
 
 # Chain of Custody Review

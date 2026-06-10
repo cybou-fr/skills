@@ -1,6 +1,7 @@
 ---
 name: runtime-cargo-normalizer
-description: Implement and review Cargo/Rust command normalizer for cargo check/test/fmt/clippy/audit/deny/publish/install/update and Rust toolchain commands.
+description: Implement and review Cargo/Rust command normalizer for cargo check/test/fmt/clippy/audit/deny/publish/install/update
+  and Rust toolchain commands.
 ---
 
 # Runtime Cargo Normalizer

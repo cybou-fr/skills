@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/eval_scenario.schema.json",
+  "title": "Cybou Eval Scenario File",
+  "type": "object",
+  "required": [
+    "version",
+    "scenarios"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "object"
+          },
+          "event": {
+            "type": "object"
+          },
+          "actions": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  }
+}

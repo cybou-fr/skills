@@ -1,6 +1,7 @@
 ---
 name: docx-document-workflow
-description: Plan and execute safe DOCX document workflows: drafting, editing, formatting, section organization, consistency checks, metadata review, and export planning.
+description: 'Plan and execute safe DOCX document workflows: drafting, editing, formatting, section organization, consistency
+  checks, metadata review, and export planning.'
 ---
 
 # DOCX Document Workflow

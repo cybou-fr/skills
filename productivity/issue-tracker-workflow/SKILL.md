@@ -1,6 +1,7 @@
 ---
 name: issue-tracker-workflow
-description: Work with issue trackers such as Linear/Jira-style systems: convert notes to issues, prioritize, write acceptance criteria, link implementation tasks, and preserve security boundaries.
+description: 'Work with issue trackers such as Linear/Jira-style systems: convert notes to issues, prioritize, write acceptance
+  criteria, link implementation tasks, and preserve security boundaries.'
 ---
 
 # Issue Tracker Workflow

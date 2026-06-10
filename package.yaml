@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 6.0.0
+version: 6.3.0
 license: Proprietary-or-custom
-format: cybou-core-integration-skills-policies-evals
+format: cybou-core-integration-immunity-compatibility
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -103,7 +103,39 @@ cybou_extensions:
 - docs/
 - evals/
 - reference_prototype/README.md
-role: external_corpus_for_cybou_core
+- integration/decision_mapping.yaml
+- integration/tool_classes.yaml
+- scripts/validate_pack_v6_1.py
+- docs/HYGIENE_PATCH_V6_1.md
+- integration/loader_manifest.yaml
+- docs/CYBOU_CORE_LOADER_CONTRACT.md
+- docs/SCHEMA_REFERENCE.md
+- docs/V6_2_LOADER_CONTRACT_CHANGELOG.md
+- schemas/skill_frontmatter.schema.json
+- schemas/registry.schema.json
+- schemas/policy_rule.schema.json
+- schemas/tool_classes.schema.json
+- schemas/eval_scenario.schema.json
+- schemas/loader_manifest.schema.json
+- scripts/validate_loader_contract_v6_2.py
+- immunity_mapping/
+- docs/IMMUNITY_COMPATIBILITY.md
+- docs/V6_3_IMMUNITY_COMPATIBILITY_CHANGELOG.md
+- docs/RUST_IMMUNITY_CONTRACT_SKETCH.rs
+- scripts/validate_immunity_compat_v6_3.py
+- schemas/immunity_manifest.schema.json
+- schemas/command_pattern_mapping.schema.json
+- schemas/sensitive_targets.schema.json
+role: external_clean_corpus_for_cybou_core
 authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
 not_authoritative_runtime:
 - runtime_prototype/*.py
+hygiene_patch:
+  removed_legacy_runtime_prototype: true
+  removed_python_bytecode: true
+  canonical_eval_layout: evals/
+  frontmatter_strict_yaml: true
+  decision_mapping: integration/decision_mapping.yaml
+  tool_classes: integration/tool_classes.yaml
+loader_contract: integration/loader_manifest.yaml
+immunity_compatibility: immunity_mapping/immunity_manifest.yaml

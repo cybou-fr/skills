@@ -1,6 +1,7 @@
 ---
 name: runtime-tool-router
-description: Implement Tool Router dispatching tool calls only after normalization, policy decision, approval validation, output limits, redaction and audit hooks.
+description: Implement Tool Router dispatching tool calls only after normalization, policy decision, approval validation,
+  output limits, redaction and audit hooks.
 ---
 
 # Runtime Tool Router

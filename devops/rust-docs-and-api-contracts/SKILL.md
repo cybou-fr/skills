@@ -1,6 +1,7 @@
 ---
 name: rust-docs-and-api-contracts
-description: Create Rust documentation and API contracts: rustdoc, doc tests, examples, ADRs, crate-level docs, public API stability, and generated docs policy.
+description: 'Create Rust documentation and API contracts: rustdoc, doc tests, examples, ADRs, crate-level docs, public API
+  stability, and generated docs policy.'
 ---
 
 # Rust Docs and API Contracts

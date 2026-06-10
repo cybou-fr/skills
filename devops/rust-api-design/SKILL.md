@@ -1,6 +1,7 @@
 ---
 name: rust-api-design
-description: Design Rust API surfaces for internal crates and external HTTP/gRPC APIs: typed requests, versioning, idempotency, pagination, auth boundaries, and compatibility.
+description: 'Design Rust API surfaces for internal crates and external HTTP/gRPC APIs: typed requests, versioning, idempotency,
+  pagination, auth boundaries, and compatibility.'
 ---
 
 # Rust API Design

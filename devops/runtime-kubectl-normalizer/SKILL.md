@@ -1,6 +1,7 @@
 ---
 name: runtime-kubectl-normalizer
-description: Implement and review kubectl normalizer for verbs, resources, namespace, context, kubeconfig, production hints, exec/port-forward/apply/delete risks and dry-run flags.
+description: Implement and review kubectl normalizer for verbs, resources, namespace, context, kubeconfig, production hints,
+  exec/port-forward/apply/delete risks and dry-run flags.
 ---
 
 # Runtime Kubectl Normalizer

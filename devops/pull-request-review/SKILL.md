@@ -1,6 +1,7 @@
 ---
 name: pull-request-review
-description: Review pull requests or merge requests for DevOps, SecOps, reliability, deployment, CI/CD, dependency, Docker, Kubernetes, Terraform, IAM, database migration, and secret exposure risks. Use for PR/MR diff review and safe review comments.
+description: Review pull requests or merge requests for DevOps, SecOps, reliability, deployment, CI/CD, dependency, Docker,
+  Kubernetes, Terraform, IAM, database migration, and secret exposure risks. Use for PR/MR diff review and safe review comments.
 ---
 
 # Pull Request Review

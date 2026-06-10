@@ -1,6 +1,7 @@
 ---
 name: forensic-artifact-inventory
-description: Build forensic artifact inventory for logs, disk images, memory captures, cloud audit records, EDR events, screenshots, tickets and hashes.
+description: Build forensic artifact inventory for logs, disk images, memory captures, cloud audit records, EDR events, screenshots,
+  tickets and hashes.
 ---
 
 # Forensic Artifact Inventory

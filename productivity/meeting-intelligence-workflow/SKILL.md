@@ -1,6 +1,7 @@
 ---
 name: meeting-intelligence-workflow
-description: Convert meeting notes/transcripts into summaries, decisions, action items, owners, risks, follow-ups, and structured knowledge without exposing sensitive data.
+description: Convert meeting notes/transcripts into summaries, decisions, action items, owners, risks, follow-ups, and structured
+  knowledge without exposing sensitive data.
 ---
 
 # Meeting Intelligence Workflow

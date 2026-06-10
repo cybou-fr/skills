@@ -1,6 +1,7 @@
 ---
 name: rust-feature-matrix-and-hack
-description: Validate Rust feature flags and workspace combinations using cargo-hack, feature powerset, no-default-features, all-features, and dependency minimization.
+description: Validate Rust feature flags and workspace combinations using cargo-hack, feature powerset, no-default-features,
+  all-features, and dependency minimization.
 ---
 
 # Rust Feature Matrix and Cargo Hack

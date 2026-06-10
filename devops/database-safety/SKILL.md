@@ -1,6 +1,7 @@
 ---
 name: database-safety
-description: Safely inspect databases and review SQL or migrations. Use for database diagnostics, SQL review, migrations, slow queries, backup-before-change checks, read-only query safety, and preventing destructive database actions.
+description: Safely inspect databases and review SQL or migrations. Use for database diagnostics, SQL review, migrations,
+  slow queries, backup-before-change checks, read-only query safety, and preventing destructive database actions.
 ---
 
 # Database Safety

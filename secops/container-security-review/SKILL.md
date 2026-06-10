@@ -1,6 +1,7 @@
 ---
 name: container-security-review
-description: Review container images, Dockerfiles, Docker Compose, Kubernetes securityContext, runtime privileges, image vulnerabilities, SBOM, provenance, and container hardening. Use when security-reviewing containers rather than debugging them.
+description: Review container images, Dockerfiles, Docker Compose, Kubernetes securityContext, runtime privileges, image vulnerabilities,
+  SBOM, provenance, and container hardening. Use when security-reviewing containers rather than debugging them.
 ---
 
 # Container Security Review

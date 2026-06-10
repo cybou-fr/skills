@@ -1,6 +1,7 @@
 ---
 name: xlsx-spreadsheet-workflow
-description: Design, analyze, and validate spreadsheets with tables, formulas, data quality checks, summaries, charts planning, and safe handling of sensitive rows.
+description: Design, analyze, and validate spreadsheets with tables, formulas, data quality checks, summaries, charts planning,
+  and safe handling of sensitive rows.
 ---
 
 # XLSX Spreadsheet Workflow

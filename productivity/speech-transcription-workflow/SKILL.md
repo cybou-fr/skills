@@ -1,6 +1,7 @@
 ---
 name: speech-transcription-workflow
-description: Plan speech/audio transcription workflows: language detection, speaker labels, timestamps, summary, action items, privacy redaction, and downstream documentation.
+description: 'Plan speech/audio transcription workflows: language detection, speaker labels, timestamps, summary, action items,
+  privacy redaction, and downstream documentation.'
 ---
 
 # Speech / Transcription Workflow

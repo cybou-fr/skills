@@ -1,6 +1,7 @@
 ---
 name: oauth-app-consent-review
-description: Review OAuth/OIDC app consent, delegated permissions, high-risk scopes, publisher trust, redirect URIs and consent grant anomalies.
+description: Review OAuth/OIDC app consent, delegated permissions, high-risk scopes, publisher trust, redirect URIs and consent
+  grant anomalies.
 ---
 
 # OAuth App Consent Review

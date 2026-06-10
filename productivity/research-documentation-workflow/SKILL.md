@@ -1,6 +1,7 @@
 ---
 name: research-documentation-workflow
-description: Create research documentation with sources, claims, evidence, uncertainty, citations, summaries, and implementation recommendations.
+description: Create research documentation with sources, claims, evidence, uncertainty, citations, summaries, and implementation
+  recommendations.
 ---
 
 # Research Documentation Workflow

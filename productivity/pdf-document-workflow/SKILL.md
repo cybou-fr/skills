@@ -1,6 +1,7 @@
 ---
 name: pdf-document-workflow
-description: Analyze and process PDFs safely, including extraction planning, visual-page inspection guidance, form/table extraction, summarization, redaction planning, and conversion workflow selection.
+description: Analyze and process PDFs safely, including extraction planning, visual-page inspection guidance, form/table extraction,
+  summarization, redaction planning, and conversion workflow selection.
 ---
 
 # PDF Document Workflow

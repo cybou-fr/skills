@@ -1,6 +1,7 @@
 ---
 name: runtime-evidence-redaction-integration
-description: Integrate redaction boundary with evidence capture so sensitive outputs are stored only after redaction and marked with redaction status.
+description: Integrate redaction boundary with evidence capture so sensitive outputs are stored only after redaction and marked
+  with redaction status.
 ---
 
 # Runtime Evidence Redaction Integration

@@ -1,6 +1,7 @@
 ---
 name: siem-alert-enrichment
-description: Enrich SIEM or SOC alerts with context and safe investigation steps. Use for alert triage, entity enrichment, suspicious user/IP/resource, correlated events, false positive assessment, and incident escalation recommendations.
+description: Enrich SIEM or SOC alerts with context and safe investigation steps. Use for alert triage, entity enrichment,
+  suspicious user/IP/resource, correlated events, false positive assessment, and incident escalation recommendations.
 ---
 
 # SIEM Alert Enrichment

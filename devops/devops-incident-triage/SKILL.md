@@ -1,6 +1,7 @@
 ---
 name: devops-incident-triage
-description: Triage reliability incidents and outages. Use for service down, degraded performance, SEV events, production symptoms, customer impact, rollback decisions, incident summaries, status updates, and postmortem preparation.
+description: Triage reliability incidents and outages. Use for service down, degraded performance, SEV events, production
+  symptoms, customer impact, rollback decisions, incident summaries, status updates, and postmortem preparation.
 ---
 
 # DevOps Incident Triage

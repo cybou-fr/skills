@@ -1,6 +1,7 @@
 ---
 name: runtime-scope-matcher
-description: Implement and review scope matching for normalized actions: environment, target, tool, operation, namespace, workspace, repository, and explicit scope object matching.
+description: 'Implement and review scope matching for normalized actions: environment, target, tool, operation, namespace,
+  workspace, repository, and explicit scope object matching.'
 ---
 
 # Runtime Scope Matcher

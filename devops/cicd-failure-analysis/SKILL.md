@@ -1,6 +1,8 @@
 ---
 name: cicd-failure-analysis
-description: Analyze failed CI/CD pipelines and propose safe fixes. Use for GitHub Actions, GitLab CI, Jenkins, Docker builds, Node/Python/Go/Java/Rust build failures, tests, lint, dependency failures, deployment jobs, flaky tests, and CI security concerns.
+description: Analyze failed CI/CD pipelines and propose safe fixes. Use for GitHub Actions, GitLab CI, Jenkins, Docker builds,
+  Node/Python/Go/Java/Rust build failures, tests, lint, dependency failures, deployment jobs, flaky tests, and CI security
+  concerns.
 ---
 
 # CI/CD Failure Analysis

@@ -1,6 +1,7 @@
 ---
 name: cloud-logging-control-plane-review
-description: Review cloud logging/audit control-plane integrity: CloudTrail, Azure diagnostic settings, GCP audit logs, sinks, retention and tampering signals.
+description: 'Review cloud logging/audit control-plane integrity: CloudTrail, Azure diagnostic settings, GCP audit logs, sinks,
+  retention and tampering signals.'
 ---
 
 # Cloud Logging Control Plane Review

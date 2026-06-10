@@ -1,6 +1,7 @@
 ---
 name: runtime-filesystem-boundary
-description: Implement and review filesystem boundary for tool execution: cwd scope, path allowlist, write restrictions, temp dirs and denied sensitive paths.
+description: 'Implement and review filesystem boundary for tool execution: cwd scope, path allowlist, write restrictions,
+  temp dirs and denied sensitive paths.'
 ---
 
 # Runtime Filesystem Boundary

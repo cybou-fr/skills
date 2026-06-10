@@ -1,6 +1,7 @@
 ---
 name: knowledge-capture-workflow
-description: Capture reusable knowledge from conversations, documents, research, incidents, or project notes into structured, searchable, privacy-aware documentation.
+description: Capture reusable knowledge from conversations, documents, research, incidents, or project notes into structured,
+  searchable, privacy-aware documentation.
 ---
 
 # Knowledge Capture Workflow

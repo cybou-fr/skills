@@ -1,6 +1,7 @@
 ---
 name: security-ownership-map
-description: Create security ownership maps linking systems, services, repositories, data classes, risks, controls, and responsible owners for enterprise governance.
+description: Create security ownership maps linking systems, services, repositories, data classes, risks, controls, and responsible
+  owners for enterprise governance.
 ---
 
 # Security Ownership Map

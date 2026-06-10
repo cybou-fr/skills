@@ -1,6 +1,7 @@
 ---
 name: secrets-rotation-orchestration-plan
-description: Draft safe secret rotation orchestration plan with dependency mapping, staged rollout, validation, rollback and approval boundaries.
+description: Draft safe secret rotation orchestration plan with dependency mapping, staged rollout, validation, rollback and
+  approval boundaries.
 ---
 
 # Secrets Rotation Orchestration Plan

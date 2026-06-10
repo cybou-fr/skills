@@ -1,6 +1,8 @@
 ---
 name: cloud-readonly-triage
-description: Perform read-only cloud security triage for AWS, GCP, or Azure. Use for suspicious cloud activity, public exposure, security group/firewall review, storage exposure, IAM changes, audit log checks, cloud incident evidence, and cloud configuration review.
+description: Perform read-only cloud security triage for AWS, GCP, or Azure. Use for suspicious cloud activity, public exposure,
+  security group/firewall review, storage exposure, IAM changes, audit log checks, cloud incident evidence, and cloud configuration
+  review.
 ---
 
 # Cloud Read-only Triage

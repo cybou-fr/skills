@@ -1,6 +1,7 @@
 ---
 name: incident-timeline-builder
-description: Build incident timelines from logs, SIEM events, EDR findings, cloud audit events, Sentry issues and operator notes.
+description: Build incident timelines from logs, SIEM events, EDR findings, cloud audit events, Sentry issues and operator
+  notes.
 ---
 
 # Incident Timeline Builder

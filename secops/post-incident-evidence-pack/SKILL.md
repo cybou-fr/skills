@@ -1,6 +1,7 @@
 ---
 name: post-incident-evidence-pack
-description: Assemble redacted post-incident evidence packs with timeline, IOCs, affected assets, decisions, approvals and audit references.
+description: Assemble redacted post-incident evidence packs with timeline, IOCs, affected assets, decisions, approvals and
+  audit references.
 ---
 
 # Post-Incident Evidence Pack

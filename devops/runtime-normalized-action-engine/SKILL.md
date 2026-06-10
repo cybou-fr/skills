@@ -1,6 +1,7 @@
 ---
 name: runtime-normalized-action-engine
-description: Implement and review CYBOU NormalizedAction engine for shell, cargo, kubectl, terraform, git, docker, database, http_fetch and abstract tools.
+description: Implement and review CYBOU NormalizedAction engine for shell, cargo, kubectl, terraform, git, docker, database,
+  http_fetch and abstract tools.
 ---
 
 # Runtime Normalized Action Engine

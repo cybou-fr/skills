@@ -1,6 +1,7 @@
 ---
 name: rust-error-handling-observability
-description: Design Rust error handling and observability: thiserror/anyhow boundaries, tracing spans, structured logs, metrics, audit events, and user-safe error messages.
+description: 'Design Rust error handling and observability: thiserror/anyhow boundaries, tracing spans, structured logs, metrics,
+  audit events, and user-safe error messages.'
 ---
 
 # Rust Error Handling and Observability

@@ -1,4 +1,4 @@
-version: '6.0'
+version: '6.1'
 operational_verdicts:
 - Allow
 - Deny
@@ -24,3 +24,5 @@ critical_requirements:
 - detect nested interpreters
 - detect remote-pipe-to-shell
 - detect sensitive target paths
+decision_mapping_file: integration/decision_mapping.yaml
+tool_classes_file: integration/tool_classes.yaml

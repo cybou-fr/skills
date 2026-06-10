@@ -1,6 +1,7 @@
 ---
 name: secrets-and-identity-regression-suite
-description: Maintain tests for identity, secrets and key-management triage, secret classification, redaction, approval boundaries and hard-deny behavior.
+description: Maintain tests for identity, secrets and key-management triage, secret classification, redaction, approval boundaries
+  and hard-deny behavior.
 ---
 
 # Secrets and Identity Regression Suite

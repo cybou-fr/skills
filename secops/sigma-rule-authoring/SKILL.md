@@ -1,6 +1,7 @@
 ---
 name: sigma-rule-authoring
-description: Draft, validate and review Sigma detection rules from alert patterns, log examples and detection ideas without deploying them automatically.
+description: Draft, validate and review Sigma detection rules from alert patterns, log examples and detection ideas without
+  deploying them automatically.
 ---
 
 # Sigma Rule Authoring

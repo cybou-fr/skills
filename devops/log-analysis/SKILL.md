@@ -1,6 +1,8 @@
 ---
 name: log-analysis
-description: Analyze operational logs, group errors, build timelines, detect reliability and security patterns, and summarize likely root causes. Use for application logs, system logs, container logs, CI logs, incident timelines, and redacted pattern analysis.
+description: Analyze operational logs, group errors, build timelines, detect reliability and security patterns, and summarize
+  likely root causes. Use for application logs, system logs, container logs, CI logs, incident timelines, and redacted pattern
+  analysis.
 ---
 
 # Log Analysis

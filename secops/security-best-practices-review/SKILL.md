@@ -1,6 +1,7 @@
 ---
 name: security-best-practices-review
-description: Review systems, repositories, applications, or workflows against practical security best practices and produce prioritized, actionable remediation guidance.
+description: Review systems, repositories, applications, or workflows against practical security best practices and produce
+  prioritized, actionable remediation guidance.
 ---
 
 # Security Best Practices Review

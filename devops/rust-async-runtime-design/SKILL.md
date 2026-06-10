@@ -1,6 +1,7 @@
 ---
 name: rust-async-runtime-design
-description: Design and review Rust async systems: Tokio runtime boundaries, cancellation, backpressure, timeouts, channels, worker pools, graceful shutdown, and avoiding blocking work.
+description: 'Design and review Rust async systems: Tokio runtime boundaries, cancellation, backpressure, timeouts, channels,
+  worker pools, graceful shutdown, and avoiding blocking work.'
 ---
 
 # Rust Async Runtime Design

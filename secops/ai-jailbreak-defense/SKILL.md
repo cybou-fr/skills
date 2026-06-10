@@ -1,6 +1,8 @@
 ---
 name: ai-jailbreak-defense
-description: Assess and harden defenses against jailbreak attempts and direct prompt injection in LLM applications. Use for defensive AI security reviews, safety policy testing with benign fixtures, instruction hierarchy review, refusal consistency, and jailbreak-resilience reporting without generating bypass prompts.
+description: Assess and harden defenses against jailbreak attempts and direct prompt injection in LLM applications. Use for
+  defensive AI security reviews, safety policy testing with benign fixtures, instruction hierarchy review, refusal consistency,
+  and jailbreak-resilience reporting without generating bypass prompts.
 ---
 
 # AI Jailbreak Defense

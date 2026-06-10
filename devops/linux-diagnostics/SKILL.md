@@ -1,6 +1,8 @@
 ---
 name: linux-diagnostics
-description: Diagnose Linux host issues safely using read-only commands first. Use for operational troubleshooting of service down, high CPU, high memory, disk full, inode exhaustion, systemd failures, port conflicts, permissions, DNS symptoms, file descriptors, and server health.
+description: Diagnose Linux host issues safely using read-only commands first. Use for operational troubleshooting of service
+  down, high CPU, high memory, disk full, inode exhaustion, systemd failures, port conflicts, permissions, DNS symptoms, file
+  descriptors, and server health.
 ---
 
 # Linux Diagnostics

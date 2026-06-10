@@ -1,6 +1,7 @@
 ---
 name: runtime-policy-decision-engine
-description: Implement and review CYBOU PolicyDecision engine combining normalized actions, risk matrix, policies, profiles, scope and approval state.
+description: Implement and review CYBOU PolicyDecision engine combining normalized actions, risk matrix, policies, profiles,
+  scope and approval state.
 ---
 
 # Runtime Policy Decision Engine

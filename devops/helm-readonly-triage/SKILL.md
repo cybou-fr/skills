@@ -1,6 +1,7 @@
 ---
 name: helm-readonly-triage
-description: Inspect Helm releases safely using read-only commands. Use for Helm deployment history, release status, rendered values review, rollback planning, chart version investigation, and Kubernetes incidents involving Helm-managed resources.
+description: Inspect Helm releases safely using read-only commands. Use for Helm deployment history, release status, rendered
+  values review, rollback planning, chart version investigation, and Kubernetes incidents involving Helm-managed resources.
 ---
 
 # Helm Read-only Triage

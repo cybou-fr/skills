@@ -1,6 +1,7 @@
 ---
 name: ai-agent-tool-abuse-review
-description: Review whether an AI agent can be manipulated into unsafe tool calls. Use for tool permission review, dry-run abuse simulation, approval gate testing, dangerous action blocking, and agent capability hardening.
+description: Review whether an AI agent can be manipulated into unsafe tool calls. Use for tool permission review, dry-run
+  abuse simulation, approval gate testing, dangerous action blocking, and agent capability hardening.
 ---
 
 # AI Agent Tool Abuse Review

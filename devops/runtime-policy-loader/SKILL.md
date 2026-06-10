@@ -1,6 +1,7 @@
 ---
 name: runtime-policy-loader
-description: Implement and review CYBOU policy loader that reads risk matrix, tool policies, policy rules, activity policies, autonomy profiles, profile decision matrix and scope objects.
+description: Implement and review CYBOU policy loader that reads risk matrix, tool policies, policy rules, activity policies,
+  autonomy profiles, profile decision matrix and scope objects.
 ---
 
 # Runtime Policy Loader

@@ -1,6 +1,8 @@
 ---
 name: kubernetes-security-review
-description: Review Kubernetes manifests and cluster resources for security risks. Use for Pod securityContext, RBAC, NetworkPolicy, Secrets exposure, privileged workloads, admission policy, service accounts, hostPath, hostNetwork, and namespace security review.
+description: Review Kubernetes manifests and cluster resources for security risks. Use for Pod securityContext, RBAC, NetworkPolicy,
+  Secrets exposure, privileged workloads, admission policy, service accounts, hostPath, hostNetwork, and namespace security
+  review.
 ---
 
 # Kubernetes Security Review

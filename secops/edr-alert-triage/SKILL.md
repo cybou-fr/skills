@@ -1,6 +1,7 @@
 ---
 name: edr-alert-triage
-description: Triage EDR alerts, process trees, command lines, parent/child relationships, hashes, users, hosts and containment boundaries.
+description: Triage EDR alerts, process trees, command lines, parent/child relationships, hashes, users, hosts and containment
+  boundaries.
 ---
 
 # EDR Alert Triage

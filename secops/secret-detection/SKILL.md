@@ -1,6 +1,8 @@
 ---
 name: secret-detection
-description: Detect and safely report possible secrets in files, logs, CI output, repositories, environment variables, tickets, or pasted text. Use for API keys, tokens, private keys, credentials, database URLs, JWTs, cookies, leaked secrets, and secret exposure investigations.
+description: Detect and safely report possible secrets in files, logs, CI output, repositories, environment variables, tickets,
+  or pasted text. Use for API keys, tokens, private keys, credentials, database URLs, JWTs, cookies, leaked secrets, and secret
+  exposure investigations.
 ---
 
 # Secret Detection

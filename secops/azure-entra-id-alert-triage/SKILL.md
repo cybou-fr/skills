@@ -1,6 +1,7 @@
 ---
 name: azure-entra-id-alert-triage
-description: Triage Microsoft Entra ID identity alerts: impossible travel, risky sign-in, MFA fatigue, consent grant, app credential and privilege role changes.
+description: 'Triage Microsoft Entra ID identity alerts: impossible travel, risky sign-in, MFA fatigue, consent grant, app
+  credential and privilege role changes.'
 ---
 
 # Azure / Entra ID Alert Triage

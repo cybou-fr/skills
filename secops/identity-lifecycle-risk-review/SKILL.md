@@ -1,6 +1,7 @@
 ---
 name: identity-lifecycle-risk-review
-description: Review identity lifecycle risks: stale users, dormant admins, orphaned service accounts, stale app registrations, external guests and lifecycle gaps.
+description: 'Review identity lifecycle risks: stale users, dormant admins, orphaned service accounts, stale app registrations,
+  external guests and lifecycle gaps.'
 ---
 
 # Identity Lifecycle Risk Review

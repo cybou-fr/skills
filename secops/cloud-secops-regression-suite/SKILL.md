@@ -1,6 +1,7 @@
 ---
 name: cloud-secops-regression-suite
-description: Maintain Cloud SecOps tests for AWS, Azure and GCP alert triage, IAM review, logging control-plane checks and containment boundaries.
+description: Maintain Cloud SecOps tests for AWS, Azure and GCP alert triage, IAM review, logging control-plane checks and
+  containment boundaries.
 ---
 
 # Cloud SecOps Regression Suite

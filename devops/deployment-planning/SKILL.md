@@ -1,6 +1,8 @@
 ---
 name: deployment-planning
-description: Prepare and review deployment plans without executing them by default. Use for releases, production deployments, staging deployments, rollback plans, database migrations, canary, blue-green, feature flags, gates, and post-deployment checks.
+description: Prepare and review deployment plans without executing them by default. Use for releases, production deployments,
+  staging deployments, rollback plans, database migrations, canary, blue-green, feature flags, gates, and post-deployment
+  checks.
 ---
 
 # Deployment Planning

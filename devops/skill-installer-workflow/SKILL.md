@@ -1,6 +1,7 @@
 ---
 name: skill-installer-workflow
-description: Safely install or import external Agent Skills into CYBOU: review source, license, safety, compatibility, dependencies, scripts, permissions, and registry integration.
+description: 'Safely install or import external Agent Skills into CYBOU: review source, license, safety, compatibility, dependencies,
+  scripts, permissions, and registry integration.'
 ---
 
 # Skill Installer Workflow

@@ -1,6 +1,7 @@
 ---
 name: runtime-approval-policy-integration
-description: Integrate scoped approvals into policy evaluation so approval-required actions can become allow-with-approval only when action, target, scope and expiration match.
+description: Integrate scoped approvals into policy evaluation so approval-required actions can become allow-with-approval
+  only when action, target, scope and expiration match.
 ---
 
 # Runtime Approval Policy Integration

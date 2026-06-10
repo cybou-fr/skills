@@ -1,6 +1,8 @@
 ---
 name: secret-rotation-playbook
-description: Plan safe credential revocation and rotation after a suspected or confirmed secret leak. Use for API keys, cloud credentials, GitHub tokens, SSH keys, database passwords, webhook secrets, OAuth tokens, service account keys, and dependency mapping before rotation.
+description: Plan safe credential revocation and rotation after a suspected or confirmed secret leak. Use for API keys, cloud
+  credentials, GitHub tokens, SSH keys, database passwords, webhook secrets, OAuth tokens, service account keys, and dependency
+  mapping before rotation.
 ---
 
 # Secret Rotation Playbook

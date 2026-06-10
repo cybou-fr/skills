@@ -1,6 +1,7 @@
 ---
 name: case-management-workflow
-description: Prepare SOC case notes, status, evidence references, owner handoff, severity changes and closure recommendations without closing cases automatically.
+description: Prepare SOC case notes, status, evidence references, owner handoff, severity changes and closure recommendations
+  without closing cases automatically.
 ---
 
 # Case Management Workflow

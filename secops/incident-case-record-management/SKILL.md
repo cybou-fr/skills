@@ -1,6 +1,7 @@
 ---
 name: incident-case-record-management
-description: Create and maintain incident case records with severity, status, owner, affected assets, evidence links, notes and audit references.
+description: Create and maintain incident case records with severity, status, owner, affected assets, evidence links, notes
+  and audit references.
 ---
 
 # Incident Case Record Management

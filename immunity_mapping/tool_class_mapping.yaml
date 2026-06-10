@@ -1,0 +1,85 @@
+version: '6.3'
+guest_command_tools:
+  shell:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  git:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  docker:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  kubectl:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  terraform:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  database:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  helm:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  cargo:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+  package_manager:
+    adapter: GuestExecutor
+    boundary: MicroVM
+    requires_immunity: true
+host_tools:
+  web_fetch:
+    adapter: WebClient
+    boundary: host_ssrf_guard
+    requires_immunity: true
+  web_search:
+    adapter: WebClient
+    boundary: host_ssrf_guard
+    requires_immunity: true
+  http_fetch:
+    adapter: WebClient
+    boundary: host_ssrf_guard
+    requires_immunity: true
+  github_api:
+    adapter: HostTool
+    boundary: host_connector
+    requires_immunity: true
+  repo_api:
+    adapter: HostTool
+    boundary: host_connector
+    requires_immunity: true
+enterprise_connectors:
+  siem:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+  case_management:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+  identity_provider:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+  aws_cloudtrail:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+  azure_entra_id:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+  gcp_audit_logs:
+    adapter: EnterpriseConnector
+    boundary: connector_policy
+    requires_immunity: true
+default_unknown_tool_policy: Deny

@@ -1,6 +1,7 @@
 ---
 name: vault-and-secrets-manager-review
-description: Review HashiCorp Vault, AWS Secrets Manager, Azure Key Vault and GCP Secret Manager access patterns, policies, rotation and audit logging.
+description: Review HashiCorp Vault, AWS Secrets Manager, Azure Key Vault and GCP Secret Manager access patterns, policies,
+  rotation and audit logging.
 ---
 
 # Vault and Secrets Manager Review

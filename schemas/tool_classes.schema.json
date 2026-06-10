@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/tool_classes.schema.json",
+  "title": "Cybou Tool Classes",
+  "type": "object",
+  "required": [
+    "version",
+    "classes",
+    "rules"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "classes": {
+      "type": "object",
+      "required": [
+        "guest_command",
+        "host_tool",
+        "external_connector"
+      ],
+      "properties": {
+        "guest_command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "host_tool": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "external_connector": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object"
+    },
+    "all_required_tools_covered": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

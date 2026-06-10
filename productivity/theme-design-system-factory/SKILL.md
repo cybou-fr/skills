@@ -1,6 +1,7 @@
 ---
 name: theme-design-system-factory
-description: Create or adapt themes/design systems: tokens, color roles, typography, component states, spacing, accessibility constraints, and implementation handoff.
+description: 'Create or adapt themes/design systems: tokens, color roles, typography, component states, spacing, accessibility
+  constraints, and implementation handoff.'
 ---
 
 # Theme / Design System Factory

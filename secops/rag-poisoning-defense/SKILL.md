@@ -1,6 +1,7 @@
 ---
 name: rag-poisoning-defense
-description: Assess and harden Retrieval-Augmented Generation systems against poisoned documents, malicious instructions in knowledge bases, untrusted source injection, stale or low-trust documents, and sensitive corpus exposure.
+description: Assess and harden Retrieval-Augmented Generation systems against poisoned documents, malicious instructions in
+  knowledge bases, untrusted source injection, stale or low-trust documents, and sensitive corpus exposure.
 ---
 
 # RAG Poisoning Defense

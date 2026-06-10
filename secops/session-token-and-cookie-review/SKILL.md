@@ -1,6 +1,7 @@
 ---
 name: session-token-and-cookie-review
-description: Review session tokens, cookies and refresh tokens for leakage, lifetime, scope, revocation needs and evidence redaction.
+description: Review session tokens, cookies and refresh tokens for leakage, lifetime, scope, revocation needs and evidence
+  redaction.
 ---
 
 # Session Token and Cookie Review

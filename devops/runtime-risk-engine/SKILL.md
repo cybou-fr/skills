@@ -1,6 +1,7 @@
 ---
 name: runtime-risk-engine
-description: Implement and review CYBOU risk engine that combines matched policy rules, risk floors, side effects, environment, sensitive data and activity classes.
+description: Implement and review CYBOU risk engine that combines matched policy rules, risk floors, side effects, environment,
+  sensitive data and activity classes.
 ---
 
 # Runtime Risk Engine

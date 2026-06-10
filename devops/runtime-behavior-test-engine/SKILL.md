@@ -1,6 +1,7 @@
 ---
 name: runtime-behavior-test-engine
-description: Implement real behavior tests comparing expected skills, normalized action, policy risk, decision, blocking, redaction and audit flags.
+description: Implement real behavior tests comparing expected skills, normalized action, policy risk, decision, blocking,
+  redaction and audit flags.
 ---
 
 # Runtime Behavior Test Engine

@@ -1,6 +1,7 @@
 ---
 name: figma-design-handoff
-description: Plan Figma-to-code and code-to-Figma handoff workflows: component mapping, design tokens, implementation checklist, design QA, and review notes.
+description: 'Plan Figma-to-code and code-to-Figma handoff workflows: component mapping, design tokens, implementation checklist,
+  design QA, and review notes.'
 ---
 
 # Figma Design Handoff

@@ -1,6 +1,7 @@
 ---
 name: cloud-asset-exposure-review
-description: Review cloud asset exposure: public buckets, public IPs, security groups/firewall rules, load balancers, storage ACLs and exposed secrets.
+description: 'Review cloud asset exposure: public buckets, public IPs, security groups/firewall rules, load balancers, storage
+  ACLs and exposed secrets.'
 ---
 
 # Cloud Asset Exposure Review

@@ -1,6 +1,7 @@
 ---
 name: frontend-design-review
-description: Review frontend UI/UX implementations for design quality, accessibility, responsive behavior, performance, component consistency, and implementation risks.
+description: Review frontend UI/UX implementations for design quality, accessibility, responsive behavior, performance, component
+  consistency, and implementation risks.
 ---
 
 # Frontend Design Review

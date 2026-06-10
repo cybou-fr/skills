@@ -1,6 +1,7 @@
 ---
 name: web-artifact-builder
-description: Plan and build self-contained web artifacts, landing pages, demos, interactive prototypes, and static UI deliverables with security and deployment constraints.
+description: Plan and build self-contained web artifacts, landing pages, demos, interactive prototypes, and static UI deliverables
+  with security and deployment constraints.
 ---
 
 # Web Artifact Builder

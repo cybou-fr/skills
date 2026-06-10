@@ -1,6 +1,7 @@
 ---
 name: rust-ci-quality-gates
-description: Design CI quality gates for Rust projects: fmt, clippy, test, nextest, coverage, audit, deny, MSRV, docs, semver, feature matrix, and release checks.
+description: 'Design CI quality gates for Rust projects: fmt, clippy, test, nextest, coverage, audit, deny, MSRV, docs, semver,
+  feature matrix, and release checks.'
 ---
 
 # Rust CI Quality Gates

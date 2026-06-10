@@ -1,6 +1,8 @@
 ---
 name: api-security-check
-description: Perform safe, authorized API security checks. Use for OpenAPI/Swagger review, authentication and authorization review with provided test credentials, rate-limit observation, error handling, sensitive data exposure review, and non-destructive API finding triage.
+description: Perform safe, authorized API security checks. Use for OpenAPI/Swagger review, authentication and authorization
+  review with provided test credentials, rate-limit observation, error handling, sensitive data exposure review, and non-destructive
+  API finding triage.
 ---
 
 # API Security Check

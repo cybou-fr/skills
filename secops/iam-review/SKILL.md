@@ -1,6 +1,7 @@
 ---
 name: iam-review
-description: Review IAM users, roles, service accounts, trust policies, cloud permissions, and access risks. Use for AWS IAM, GCP IAM, Azure RBAC, wildcard permissions, admin access, privilege escalation, long-lived keys, and least-privilege recommendations.
+description: Review IAM users, roles, service accounts, trust policies, cloud permissions, and access risks. Use for AWS IAM,
+  GCP IAM, Azure RBAC, wildcard permissions, admin access, privilege escalation, long-lived keys, and least-privilege recommendations.
 ---
 
 # IAM Review

@@ -1,6 +1,7 @@
 ---
 name: runtime-git-normalizer
-description: Implement and review Git normalizer for fetch/status/diff/log versus commit/push/reset/clean/rebase risks, remote targets and branch references.
+description: Implement and review Git normalizer for fetch/status/diff/log versus commit/push/reset/clean/rebase risks, remote
+  targets and branch references.
 ---
 
 # Runtime Git Normalizer

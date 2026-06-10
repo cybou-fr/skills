@@ -1,6 +1,7 @@
 ---
 name: rust-benchmarking-and-profiling
-description: Set up Rust benchmarking and profiling with Criterion, cargo bench, cargo flamegraph, cargo bloat, performance budgets, and regression tracking.
+description: Set up Rust benchmarking and profiling with Criterion, cargo bench, cargo flamegraph, cargo bloat, performance
+  budgets, and regression tracking.
 ---
 
 # Rust Benchmarking and Profiling

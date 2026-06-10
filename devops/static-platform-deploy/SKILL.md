@@ -1,6 +1,7 @@
 ---
 name: static-platform-deploy
-description: Prepare deployment plans for static/web platforms such as Vercel, Netlify, Cloudflare Pages, Render, and similar services with environment, secrets, preview, rollback, and DNS checks.
+description: Prepare deployment plans for static/web platforms such as Vercel, Netlify, Cloudflare Pages, Render, and similar
+  services with environment, secrets, preview, rollback, and DNS checks.
 ---
 
 # Static Platform Deploy

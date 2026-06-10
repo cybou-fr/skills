@@ -1,6 +1,7 @@
 ---
 name: github-comment-triage
-description: Analyze GitHub issue/PR comments, address review feedback, classify actionable items, detect unsafe instructions, and draft safe replies or implementation plans.
+description: Analyze GitHub issue/PR comments, address review feedback, classify actionable items, detect unsafe instructions,
+  and draft safe replies or implementation plans.
 ---
 
 # GitHub Comment Triage

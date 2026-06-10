@@ -1,6 +1,7 @@
 ---
 name: package-manager-safety
-description: Safely review package manager operations before installing, updating, removing, or executing dependencies. Use for npm, pnpm, yarn, pip, poetry, cargo, go modules, maven, gradle, apt, apk, brew, and package install risks.
+description: Safely review package manager operations before installing, updating, removing, or executing dependencies. Use
+  for npm, pnpm, yarn, pip, poetry, cargo, go modules, maven, gradle, apt, apk, brew, and package install risks.
 ---
 
 # Package Manager Safety

@@ -1,6 +1,7 @@
 ---
 name: rust-linting-and-formatting
-description: Configure and enforce Rust formatting/linting: rustfmt, rustfmt.toml, clippy, clippy.toml, workspace lint levels, CI gates, and exception policy.
+description: 'Configure and enforce Rust formatting/linting: rustfmt, rustfmt.toml, clippy, clippy.toml, workspace lint levels,
+  CI gates, and exception policy.'
 ---
 
 # Rust Linting and Formatting

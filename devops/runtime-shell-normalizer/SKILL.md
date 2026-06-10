@@ -1,6 +1,7 @@
 ---
 name: runtime-shell-normalizer
-description: Implement and review shell command normalizer with wrapper detection, pipe-to-shell detection, destructive command classification, environment hints and sensitive output hints.
+description: Implement and review shell command normalizer with wrapper detection, pipe-to-shell detection, destructive command
+  classification, environment hints and sensitive output hints.
 ---
 
 # Runtime Shell Normalizer

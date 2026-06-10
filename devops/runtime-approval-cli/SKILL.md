@@ -1,6 +1,7 @@
 ---
 name: runtime-approval-cli
-description: Implement and review CLI workflows for creating, listing, revoking and evaluating scoped approvals in CYBOU runtime prototype.
+description: Implement and review CLI workflows for creating, listing, revoking and evaluating scoped approvals in CYBOU runtime
+  prototype.
 ---
 
 # Runtime Approval CLI

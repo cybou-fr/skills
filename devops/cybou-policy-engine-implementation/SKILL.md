@@ -1,6 +1,7 @@
 ---
 name: cybou-policy-engine-implementation
-description: Design and implement CYBOU policy engine in Rust: normalized action evaluation, rule matching, risk floors, approval state, profile matrix, and auditable decisions.
+description: 'Design and implement CYBOU policy engine in Rust: normalized action evaluation, rule matching, risk floors,
+  approval state, profile matrix, and auditable decisions.'
 ---
 
 # CYBOU Policy Engine Implementation

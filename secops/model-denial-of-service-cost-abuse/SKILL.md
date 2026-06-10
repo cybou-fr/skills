@@ -1,6 +1,7 @@
 ---
 name: model-denial-of-service-cost-abuse
-description: Assess LLM application exposure to model denial of service, cost harvesting, excessive token usage, recursive agent loops, tool-call storms, and resource exhaustion.
+description: Assess LLM application exposure to model denial of service, cost harvesting, excessive token usage, recursive
+  agent loops, tool-call storms, and resource exhaustion.
 ---
 
 # Model Denial of Service and Cost Abuse

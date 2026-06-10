@@ -1,6 +1,7 @@
 ---
 name: aws-cloudtrail-triage
-description: Triage AWS CloudTrail security events: suspicious AssumeRole, ConsoleLogin, IAM changes, access key usage, CloudTrail tampering and region anomalies.
+description: 'Triage AWS CloudTrail security events: suspicious AssumeRole, ConsoleLogin, IAM changes, access key usage, CloudTrail
+  tampering and region anomalies.'
 ---
 
 # AWS CloudTrail Triage

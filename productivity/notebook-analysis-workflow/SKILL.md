@@ -1,6 +1,7 @@
 ---
 name: notebook-analysis-workflow
-description: Analyze Jupyter-style notebooks for reproducibility, data flow, execution order, outputs, dependencies, security risks, and report quality.
+description: Analyze Jupyter-style notebooks for reproducibility, data flow, execution order, outputs, dependencies, security
+  risks, and report quality.
 ---
 
 # Notebook Analysis Workflow

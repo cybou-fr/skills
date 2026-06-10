@@ -1,6 +1,7 @@
 ---
 name: incident-timeline-reconstruction
-description: Reconstruct incident timelines from alerts, logs, CloudTrail, EDR, identity events, tickets and analyst notes with confidence levels.
+description: Reconstruct incident timelines from alerts, logs, CloudTrail, EDR, identity events, tickets and analyst notes
+  with confidence levels.
 ---
 
 # Incident Timeline Reconstruction

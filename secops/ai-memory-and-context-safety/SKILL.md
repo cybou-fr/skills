@@ -1,6 +1,7 @@
 ---
 name: ai-memory-and-context-safety
-description: Review safety of AI memory, context windows, conversation state, user-specific memory, long-term memory, cross-tenant memory isolation, and context injection risks.
+description: Review safety of AI memory, context windows, conversation state, user-specific memory, long-term memory, cross-tenant
+  memory isolation, and context injection risks.
 ---
 
 # AI Memory and Context Safety

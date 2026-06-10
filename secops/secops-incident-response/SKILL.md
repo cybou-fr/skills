@@ -1,6 +1,8 @@
 ---
 name: secops-incident-response
-description: Guide security incident response while preserving evidence. Use for suspected breach, account compromise, leaked secret, malware, data exfiltration, cloud compromise, container escape, malicious dependency, prompt/tool abuse, and suspicious admin activity.
+description: Guide security incident response while preserving evidence. Use for suspected breach, account compromise, leaked
+  secret, malware, data exfiltration, cloud compromise, container escape, malicious dependency, prompt/tool abuse, and suspicious
+  admin activity.
 ---
 
 # SecOps Incident Response

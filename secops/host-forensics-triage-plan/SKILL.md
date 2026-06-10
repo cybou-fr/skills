@@ -1,6 +1,7 @@
 ---
 name: host-forensics-triage-plan
-description: Draft safe host forensics triage plan for processes, persistence, network connections, file hashes, volatile data and evidence preservation.
+description: Draft safe host forensics triage plan for processes, persistence, network connections, file hashes, volatile
+  data and evidence preservation.
 ---
 
 # Host Forensics Triage Plan

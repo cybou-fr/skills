@@ -1,6 +1,7 @@
 ---
 name: runtime-rule-matcher
-description: Implement and review rule matching for CYBOU runtime policy files, including regex matching, decision mapping, risk extraction, matched rule reporting and safe fallback.
+description: Implement and review rule matching for CYBOU runtime policy files, including regex matching, decision mapping,
+  risk extraction, matched rule reporting and safe fallback.
 ---
 
 # Runtime Rule Matcher

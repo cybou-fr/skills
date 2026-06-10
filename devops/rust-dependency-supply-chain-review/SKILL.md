@@ -1,6 +1,7 @@
 ---
 name: rust-dependency-supply-chain-review
-description: Review Rust dependencies and Cargo supply chain: crates, features, licenses, build scripts, transitive risk, MSRV, advisories, and dependency minimization.
+description: 'Review Rust dependencies and Cargo supply chain: crates, features, licenses, build scripts, transitive risk,
+  MSRV, advisories, and dependency minimization.'
 ---
 
 # Rust Dependency and Supply Chain Review

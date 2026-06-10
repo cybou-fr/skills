@@ -1,6 +1,7 @@
 ---
 name: model-data-leakage-review
-description: Review risks of sensitive information disclosure in LLM applications. Use for output leakage, prompt leakage, secret exposure, training data leakage, customer data exposure, logs, traces, and AI memory privacy reviews.
+description: Review risks of sensitive information disclosure in LLM applications. Use for output leakage, prompt leakage,
+  secret exposure, training data leakage, customer data exposure, logs, traces, and AI memory privacy reviews.
 ---
 
 # Model Data Leakage Review

@@ -1,6 +1,7 @@
 ---
 name: post-incident-case-summary
-description: Draft post-incident case summary with impact, timeline, root cause hypotheses, evidence, remediation, lessons learned and follow-ups.
+description: Draft post-incident case summary with impact, timeline, root cause hypotheses, evidence, remediation, lessons
+  learned and follow-ups.
 ---
 
 # Post-Incident Case Summary

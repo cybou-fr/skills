@@ -1,6 +1,7 @@
 ---
 name: runtime-normalizer-regression-suite
-description: Create and maintain normalizer regression tests for shell, cargo, kubectl, terraform, docker, git, database and http_fetch inputs.
+description: Create and maintain normalizer regression tests for shell, cargo, kubectl, terraform, docker, git, database and
+  http_fetch inputs.
 ---
 
 # Runtime Normalizer Regression Suite

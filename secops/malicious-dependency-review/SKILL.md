@@ -1,6 +1,8 @@
 ---
 name: malicious-dependency-review
-description: Review suspected malicious or risky dependencies. Use for typosquatting, dependency confusion, postinstall scripts, package takeover, suspicious maintainers, untrusted binaries, npm/pypi/rubygems/maven/cargo package risk, and dependency incident triage.
+description: Review suspected malicious or risky dependencies. Use for typosquatting, dependency confusion, postinstall scripts,
+  package takeover, suspicious maintainers, untrusted binaries, npm/pypi/rubygems/maven/cargo package risk, and dependency
+  incident triage.
 ---
 
 # Malicious Dependency Review

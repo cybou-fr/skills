@@ -1,0 +1,126 @@
+version: '6.1'
+classes:
+  guest_command:
+  - cargo
+  - cargo-bloat
+  - cargo-fuzz
+  - cargo-geiger
+  - cargo-hack
+  - cargo-llvm-cov
+  - cargo-miri
+  - cargo-nextest
+  - cargo-semver-checks
+  - cargo-tarpaulin
+  - cargo-udeps
+  - cloud_cli
+  - criterion
+  - database
+  - docker
+  - flamegraph
+  - git
+  - helm
+  - kubectl
+  - package_manager
+  - rust_analyzer
+  - shell
+  - terraform
+  host_tool:
+  - backup_api
+  - ci_logs_reader
+  - github_api
+  - http_fetch
+  - log_reader
+  - metrics_reader
+  - package_registry
+  - repo_api
+  - secret_scanner
+  - vulnerability_scanner
+  - web_fetch
+  - web_search
+  external_connector:
+  - aws_cloudtrail
+  - aws_guardduty
+  - aws_iam_access_analyzer
+  - aws_kms
+  - aws_secrets_manager
+  - aws_securityhub
+  - azure_activity_log
+  - azure_defender
+  - azure_entra_id
+  - azure_key_vault
+  - case_management
+  - edr
+  - edr_forensics
+  - forensic_artifact_store
+  - gcp_audit_logs
+  - gcp_kms
+  - gcp_secret_manager
+  - gcp_security_command_center
+  - hashicorp_vault
+  - identity_provider
+  - memory_forensics
+  - oauth_app_inventory
+  - secrets_manager
+  - siem
+  - sigma_repository
+  - threat_intel
+  - ticketing_system
+  - timeline_store
+  - yara_repository
+rules:
+  guest_command: May execute only through immunity.rs -> GuestExecutor -> vsock -> MicroVM.
+  host_tool: May execute only through explicit host tool adapters with SSRF/egress protections.
+  external_connector: Enterprise connector metadata only unless connector implementation is installed.
+all_required_tools_covered:
+- aws_cloudtrail
+- aws_guardduty
+- aws_iam_access_analyzer
+- aws_kms
+- aws_secrets_manager
+- aws_securityhub
+- azure_activity_log
+- azure_defender
+- azure_entra_id
+- azure_key_vault
+- backup_api
+- cargo
+- cargo-bloat
+- cargo-fuzz
+- cargo-geiger
+- cargo-hack
+- cargo-llvm-cov
+- cargo-miri
+- cargo-nextest
+- cargo-semver-checks
+- cargo-tarpaulin
+- cargo-udeps
+- case_management
+- ci_logs_reader
+- cloud_cli
+- criterion
+- database
+- docker
+- flamegraph
+- gcp_audit_logs
+- gcp_kms
+- gcp_secret_manager
+- gcp_security_command_center
+- git
+- github_api
+- hashicorp_vault
+- helm
+- http_fetch
+- identity_provider
+- kubectl
+- log_reader
+- metrics_reader
+- oauth_app_inventory
+- package_manager
+- package_registry
+- repo_api
+- secret_scanner
+- secrets_manager
+- shell
+- siem
+- terraform
+- vulnerability_scanner

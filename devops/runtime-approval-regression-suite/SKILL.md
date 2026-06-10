@@ -1,6 +1,7 @@
 ---
 name: runtime-approval-regression-suite
-description: Create regression tests for scoped approvals, expiration, revocation, mismatched action, mismatched target, staging-vs-production mismatch and valid approval flows.
+description: Create regression tests for scoped approvals, expiration, revocation, mismatched action, mismatched target, staging-vs-production
+  mismatch and valid approval flows.
 ---
 
 # Runtime Approval Regression Suite

@@ -1,6 +1,7 @@
 ---
 name: runtime-http-fetch-normalizer
-description: Implement and review HTTP fetch normalizer for curl/wget/URLs, method detection, headers/body sensitivity, file downloads, pipe-to-shell handoff and host allowlist context.
+description: Implement and review HTTP fetch normalizer for curl/wget/URLs, method detection, headers/body sensitivity, file
+  downloads, pipe-to-shell handoff and host allowlist context.
 ---
 
 # Runtime HTTP Fetch Normalizer

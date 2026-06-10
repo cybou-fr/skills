@@ -1,6 +1,7 @@
 ---
 name: document-processing-router
-description: Route document and artifact tasks to the right workflow for DOCX, PDF, PPTX, XLSX, screenshots, extraction, editing, conversion, summarization, and validation.
+description: Route document and artifact tasks to the right workflow for DOCX, PDF, PPTX, XLSX, screenshots, extraction, editing,
+  conversion, summarization, and validation.
 ---
 
 # Document Processing Router

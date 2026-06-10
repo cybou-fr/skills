@@ -1,6 +1,7 @@
 ---
 name: chatgpt-apps-workflow
-description: Plan ChatGPT app/integration workflows with manifest, auth, data boundaries, tool safety, UI behavior, testing, deployment, and security review.
+description: Plan ChatGPT app/integration workflows with manifest, auth, data boundaries, tool safety, UI behavior, testing,
+  deployment, and security review.
 ---
 
 # ChatGPT Apps Workflow

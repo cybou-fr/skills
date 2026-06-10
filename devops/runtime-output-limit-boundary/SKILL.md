@@ -1,6 +1,7 @@
 ---
 name: runtime-output-limit-boundary
-description: Implement and review output capture boundary: stdout/stderr byte limits, timeout status, truncation metadata, redaction and evidence capture.
+description: 'Implement and review output capture boundary: stdout/stderr byte limits, timeout status, truncation metadata,
+  redaction and evidence capture.'
 ---
 
 # Runtime Output Limit Boundary

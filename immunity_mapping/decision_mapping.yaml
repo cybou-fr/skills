@@ -1,0 +1,26 @@
+version: '6.3'
+target_runtime_verdicts:
+- Allow
+- Deny
+- NeedsApproval
+mapping:
+  allow_read_only: Allow
+  allow_read_only_and_redact: Allow
+  allow_read_only_with_redaction: Allow
+  allow_read_only_with_limit_and_redaction: Allow
+  allow_draft: Allow
+  approval_required: NeedsApproval
+  approval_required_and_redact: NeedsApproval
+  approval_required_with_scope_and_rate_limit: NeedsApproval
+  approval_required_with_sandbox_and_time_limit: NeedsApproval
+  review_required: NeedsApproval
+  policy_gated: NeedsApproval
+  require_authorized_scope: NeedsApproval
+  require_synthetic_or_authorized_fixtures: NeedsApproval
+  deny: Deny
+  deny_by_default: Deny
+  deny_or_redact: Deny
+  refuse_or_escalate: Deny
+validation_rule: Any policy decision not listed here is an error before Cybou core can consume the policy bundle.
+rust_enum_target: ImmunityVerdict
+compile_time_rule: Every policy rule decision must map to Allow, Deny, or NeedsApproval before use by cybou-core.

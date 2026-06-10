@@ -1,6 +1,7 @@
 ---
 name: runtime-policy-regression-suite
-description: Create and maintain policy regression tests proving that YAML policy files produce expected runtime decisions for dangerous, approval-gated and read-only actions.
+description: Create and maintain policy regression tests proving that YAML policy files produce expected runtime decisions
+  for dangerous, approval-gated and read-only actions.
 ---
 
 # Runtime Policy Regression Suite

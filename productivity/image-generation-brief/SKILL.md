@@ -1,6 +1,7 @@
 ---
 name: image-generation-brief
-description: Prepare safe, precise image generation briefs for product, brand, UI, illustration, icon, and marketing assets without leaking private data or copyrighted prompt text.
+description: Prepare safe, precise image generation briefs for product, brand, UI, illustration, icon, and marketing assets
+  without leaking private data or copyrighted prompt text.
 ---
 
 # Image Generation Brief

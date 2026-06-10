@@ -1,6 +1,7 @@
 ---
 name: rust-performance-engineering
-description: Analyze Rust performance: allocation, cloning, async overhead, lock contention, parsing performance, memory usage, profiling plan, benchmarks, and regression prevention.
+description: 'Analyze Rust performance: allocation, cloning, async overhead, lock contention, parsing performance, memory
+  usage, profiling plan, benchmarks, and regression prevention.'
 ---
 
 # Rust Performance Engineering

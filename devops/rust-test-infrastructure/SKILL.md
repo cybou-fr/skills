@@ -1,6 +1,7 @@
 ---
 name: rust-test-infrastructure
-description: Design Rust test infrastructure: cargo test, cargo-nextest, fixtures, integration tests, workspace test matrix, doc tests, flaky test policy, and CI test gates.
+description: 'Design Rust test infrastructure: cargo test, cargo-nextest, fixtures, integration tests, workspace test matrix,
+  doc tests, flaky test policy, and CI test gates.'
 ---
 
 # Rust Test Infrastructure

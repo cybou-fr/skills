@@ -1,6 +1,7 @@
 ---
 name: soc-alert-triage
-description: Triage SOC alerts from SIEM/EDR/cloud sources with severity, confidence, affected assets, evidence, containment recommendations and approval boundaries.
+description: Triage SOC alerts from SIEM/EDR/cloud sources with severity, confidence, affected assets, evidence, containment
+  recommendations and approval boundaries.
 ---
 
 # SOC Alert Triage

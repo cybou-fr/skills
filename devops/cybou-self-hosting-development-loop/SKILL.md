@@ -1,6 +1,7 @@
 ---
 name: cybou-self-hosting-development-loop
-description: Use CYBOU to develop CYBOU itself safely: task intake, architecture decision, patch planning, code review, test selection, policy simulation, and release notes.
+description: 'Use CYBOU to develop CYBOU itself safely: task intake, architecture decision, patch planning, code review, test
+  selection, policy simulation, and release notes.'
 ---
 
 # CYBOU Self-hosting Development Loop

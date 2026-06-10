@@ -1,6 +1,7 @@
 ---
 name: rust-security-hardening
-description: Harden Rust applications: dependency review, unsafe audit, secret handling, input validation, deserialization, filesystem/network boundaries, sandboxing, and secure defaults.
+description: 'Harden Rust applications: dependency review, unsafe audit, secret handling, input validation, deserialization,
+  filesystem/network boundaries, sandboxing, and secure defaults.'
 ---
 
 # Rust Security Hardening

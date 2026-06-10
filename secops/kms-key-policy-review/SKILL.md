@@ -1,6 +1,7 @@
 ---
 name: kms-key-policy-review
-description: Review KMS/key policy risks across AWS KMS, Azure Key Vault keys and GCP Cloud KMS: grants, rotation, public/cross-account access and deletion windows.
+description: 'Review KMS/key policy risks across AWS KMS, Azure Key Vault keys and GCP Cloud KMS: grants, rotation, public/cross-account
+  access and deletion windows.'
 ---
 
 # KMS Key Policy Review

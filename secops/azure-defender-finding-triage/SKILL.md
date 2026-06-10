@@ -1,6 +1,7 @@
 ---
 name: azure-defender-finding-triage
-description: Triage Microsoft Defender for Cloud findings and map to resources, identities, network exposure and remediation plans.
+description: Triage Microsoft Defender for Cloud findings and map to resources, identities, network exposure and remediation
+  plans.
 ---
 
 # Azure Defender Finding Triage

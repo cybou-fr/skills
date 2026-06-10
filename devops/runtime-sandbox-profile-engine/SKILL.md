@@ -1,6 +1,7 @@
 ---
 name: runtime-sandbox-profile-engine
-description: Implement and review sandbox profiles for local readonly commands, repository checks, CI-quality commands, network fetches and denied/high-risk operations.
+description: Implement and review sandbox profiles for local readonly commands, repository checks, CI-quality commands, network
+  fetches and denied/high-risk operations.
 ---
 
 # Runtime Sandbox Profile Engine

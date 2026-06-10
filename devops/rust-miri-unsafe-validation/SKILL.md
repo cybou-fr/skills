@@ -1,6 +1,7 @@
 ---
 name: rust-miri-unsafe-validation
-description: Use Miri and unsafe review to validate Rust unsafe code, undefined behavior risks, aliasing, memory model assumptions, and concurrency-sensitive unsafe boundaries.
+description: Use Miri and unsafe review to validate Rust unsafe code, undefined behavior risks, aliasing, memory model assumptions,
+  and concurrency-sensitive unsafe boundaries.
 ---
 
 # Rust Miri and Unsafe Validation

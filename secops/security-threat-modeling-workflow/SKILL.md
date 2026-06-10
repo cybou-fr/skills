@@ -1,6 +1,7 @@
 ---
 name: security-threat-modeling-workflow
-description: Create defensive threat models for applications, infrastructure, AI systems, agents, APIs, data flows, and integrations using assets, trust boundaries, threats, controls, and tests.
+description: Create defensive threat models for applications, infrastructure, AI systems, agents, APIs, data flows, and integrations
+  using assets, trust boundaries, threats, controls, and tests.
 ---
 
 # Security Threat Modeling Workflow

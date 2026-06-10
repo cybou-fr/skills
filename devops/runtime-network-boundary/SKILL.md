@@ -1,6 +1,7 @@
 ---
 name: runtime-network-boundary
-description: Implement and review network boundary for tool execution: offline default, host allowlist, method limits and pipe-to-shell denial.
+description: 'Implement and review network boundary for tool execution: offline default, host allowlist, method limits and
+  pipe-to-shell denial.'
 ---
 
 # Runtime Network Boundary

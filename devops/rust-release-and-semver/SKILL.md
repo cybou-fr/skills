@@ -1,6 +1,7 @@
 ---
 name: rust-release-and-semver
-description: Plan Rust releases: semver, changelog, cargo package/publish gates, MSRV impact, migration notes, compatibility, and release approval.
+description: 'Plan Rust releases: semver, changelog, cargo package/publish gates, MSRV impact, migration notes, compatibility,
+  and release approval.'
 ---
 
 # Rust Release and Semver

@@ -1,6 +1,7 @@
 ---
 name: aws-guardduty-triage
-description: Triage AWS GuardDuty findings with severity, affected resource, evidence, likely attack path and safe containment plan.
+description: Triage AWS GuardDuty findings with severity, affected resource, evidence, likely attack path and safe containment
+  plan.
 ---
 
 # AWS GuardDuty Triage

@@ -1,4 +1,4 @@
-version: '6.0'
+version: '6.2'
 pack_role: external_skills_policies_templates_evals_corpus
 target_project: Cybou
 authoritative_runtime: cybou-core Rust worker + cybou-guest MicroVM + cybou-proto vsock protocol
@@ -42,3 +42,11 @@ security_principles:
 - MicroVM is the primary execution boundary
 - external skills are untrusted until vetted
 - full skill bodies are not prompt-injected by default
+loader_contract: integration/loader_manifest.yaml
+schemas:
+- schemas/skill_frontmatter.schema.json
+- schemas/registry.schema.json
+- schemas/policy_rule.schema.json
+- schemas/tool_classes.schema.json
+- schemas/eval_scenario.schema.json
+- schemas/loader_manifest.schema.json

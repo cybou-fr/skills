@@ -1,6 +1,7 @@
 ---
 name: ai-output-handling-review
-description: Review insecure output handling risks when LLM outputs are passed to code, shell, SQL, HTML, browsers, tickets, email, CI/CD, or other tools. Use for output validation and downstream execution safety.
+description: Review insecure output handling risks when LLM outputs are passed to code, shell, SQL, HTML, browsers, tickets,
+  email, CI/CD, or other tools. Use for output validation and downstream execution safety.
 ---
 
 # AI Output Handling Review

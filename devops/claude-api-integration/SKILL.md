@@ -1,6 +1,7 @@
 ---
 name: claude-api-integration
-description: Design Claude API integration workflows safely: API usage planning, key handling, tool/skill integration, evals, logging, cost controls, and migration notes.
+description: 'Design Claude API integration workflows safely: API usage planning, key handling, tool/skill integration, evals,
+  logging, cost controls, and migration notes.'
 ---
 
 # Claude API Integration

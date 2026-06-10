@@ -1,6 +1,7 @@
 ---
 name: runtime-tool-execution-boundary
-description: Implement and review central tool execution boundary with dry-run by default, timeout, output byte caps, cwd allowlist, environment allowlist and redaction hooks.
+description: Implement and review central tool execution boundary with dry-run by default, timeout, output byte caps, cwd
+  allowlist, environment allowlist and redaction hooks.
 ---
 
 # Runtime Tool Execution Boundary

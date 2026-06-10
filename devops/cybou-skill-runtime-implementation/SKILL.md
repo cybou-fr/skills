@@ -1,6 +1,7 @@
 ---
 name: cybou-skill-runtime-implementation
-description: Design and implement CYBOU skill runtime in Rust: skill pack loading, registry parsing, validation, routing, skill graph co-loading, behavior tests, and versioned compatibility.
+description: 'Design and implement CYBOU skill runtime in Rust: skill pack loading, registry parsing, validation, routing,
+  skill graph co-loading, behavior tests, and versioned compatibility.'
 ---
 
 # CYBOU Skill Runtime Implementation

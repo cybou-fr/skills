@@ -1,6 +1,7 @@
 ---
 name: rust-toolchain-management
-description: Manage Rust toolchain configuration for senior projects: rust-toolchain.toml, MSRV policy, stable/beta/nightly split, components, targets, CI matrix, and reproducibility.
+description: 'Manage Rust toolchain configuration for senior projects: rust-toolchain.toml, MSRV policy, stable/beta/nightly
+  split, components, targets, CI matrix, and reproducibility.'
 ---
 
 # Rust Toolchain Management

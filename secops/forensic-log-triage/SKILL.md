@@ -1,6 +1,7 @@
 ---
 name: forensic-log-triage
-description: Triage forensic logs safely: normalize events, extract indicators, map sources, preserve raw references and avoid exposing secrets.
+description: 'Triage forensic logs safely: normalize events, extract indicators, map sources, preserve raw references and
+  avoid exposing secrets.'
 ---
 
 # Forensic Log Triage

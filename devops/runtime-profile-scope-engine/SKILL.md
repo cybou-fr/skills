@@ -1,6 +1,7 @@
 ---
 name: runtime-profile-scope-engine
-description: Implement and review profile and scope enforcement for CYBOU runtime, combining autonomy profile, profile decision matrix, scope objects and approval state.
+description: Implement and review profile and scope enforcement for CYBOU runtime, combining autonomy profile, profile decision
+  matrix, scope objects and approval state.
 ---
 
 # Runtime Profile and Scope Engine

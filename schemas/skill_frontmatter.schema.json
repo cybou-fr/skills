@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/skill_frontmatter.schema.json",
+  "title": "Cybou Skill Frontmatter",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 8
+    },
+    "version": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "core",
+        "devops",
+        "secops",
+        "productivity",
+        "soc",
+        "cloud",
+        "identity",
+        "forensics"
+      ]
+    },
+    "risk": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "mode": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 ---
 name: web-application-security-check
-description: Perform safe, authorized web application security checks without destructive exploitation. Use for reviewing headers, cookies, TLS, authentication flow observations, access control evidence from provided accounts, input validation review, and OWASP-style finding triage.
+description: Perform safe, authorized web application security checks without destructive exploitation. Use for reviewing
+  headers, cookies, TLS, authentication flow observations, access control evidence from provided accounts, input validation
+  review, and OWASP-style finding triage.
 ---
 
 # Web Application Security Check

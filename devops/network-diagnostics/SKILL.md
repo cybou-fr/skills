@@ -1,6 +1,7 @@
 ---
 name: network-diagnostics
-description: Diagnose network, DNS, TLS, port, ingress, egress, proxy, timeout, connection refused, firewall, and service connectivity problems using safe read-only checks. Use for operational troubleshooting, not aggressive scanning.
+description: Diagnose network, DNS, TLS, port, ingress, egress, proxy, timeout, connection refused, firewall, and service
+  connectivity problems using safe read-only checks. Use for operational troubleshooting, not aggressive scanning.
 ---
 
 # Network Diagnostics

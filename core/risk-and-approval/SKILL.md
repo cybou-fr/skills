@@ -1,6 +1,8 @@
 ---
 name: risk-and-approval
-description: Evaluate operational risk and decide whether the worker may proceed, stay read-only, draft only, or ask for human approval. Use before infrastructure changes, shell commands, deployments, IAM, secrets, database writes, incidents, or production actions.
+description: Evaluate operational risk and decide whether the worker may proceed, stay read-only, draft only, or ask for human
+  approval. Use before infrastructure changes, shell commands, deployments, IAM, secrets, database writes, incidents, or production
+  actions.
 ---
 
 # Risk and Approval

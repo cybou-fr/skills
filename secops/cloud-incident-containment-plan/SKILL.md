@@ -1,6 +1,7 @@
 ---
 name: cloud-incident-containment-plan
-description: Draft safe cloud incident containment plans with approval boundaries for key revocation, instance isolation, security group changes and identity disablement.
+description: Draft safe cloud incident containment plans with approval boundaries for key revocation, instance isolation,
+  security group changes and identity disablement.
 ---
 
 # Cloud Incident Containment Plan

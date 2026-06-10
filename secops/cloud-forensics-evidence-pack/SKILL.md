@@ -1,6 +1,7 @@
 ---
 name: cloud-forensics-evidence-pack
-description: Build cloud forensics evidence pack from audit logs, IAM events, findings, asset metadata, identity logs and timeline references.
+description: Build cloud forensics evidence pack from audit logs, IAM events, findings, asset metadata, identity logs and
+  timeline references.
 ---
 
 # Cloud Forensics Evidence Pack

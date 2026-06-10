@@ -1,6 +1,7 @@
 ---
 name: runtime-terraform-normalizer
-description: Implement and review Terraform/OpenTofu normalizer for plan/apply/destroy/state/import/workspace operations, chdir, var-files, auto-approve, state risks and workspace target.
+description: Implement and review Terraform/OpenTofu normalizer for plan/apply/destroy/state/import/workspace operations,
+  chdir, var-files, auto-approve, state risks and workspace target.
 ---
 
 # Runtime Terraform Normalizer

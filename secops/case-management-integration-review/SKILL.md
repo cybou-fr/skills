@@ -1,6 +1,7 @@
 ---
 name: case-management-integration-review
-description: Review integration with case management systems, ticketing, SOC workflows, evidence exports and approval/audit boundaries.
+description: Review integration with case management systems, ticketing, SOC workflows, evidence exports and approval/audit
+  boundaries.
 ---
 
 # Case Management Integration Review

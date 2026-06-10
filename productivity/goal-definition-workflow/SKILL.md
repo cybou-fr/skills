@@ -1,6 +1,7 @@
 ---
 name: goal-definition-workflow
-description: Transform vague requests into clear goals, success criteria, constraints, milestones, and execution plan before invoking operational skills.
+description: Transform vague requests into clear goals, success criteria, constraints, milestones, and execution plan before
+  invoking operational skills.
 ---
 
 # Goal Definition Workflow

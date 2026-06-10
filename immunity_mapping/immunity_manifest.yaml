@@ -1,0 +1,29 @@
+version: 6.3.0
+role: Rust immunity compatibility manifest
+target_modules:
+- immunity.rs
+- risk.rs
+- dryrun.rs
+- approval.rs
+- audit.rs
+files:
+  decision_mapping: immunity_mapping/decision_mapping.yaml
+  risk_mapping: immunity_mapping/risk_mapping.yaml
+  tool_class_mapping: immunity_mapping/tool_class_mapping.yaml
+  command_pattern_mapping: immunity_mapping/command_pattern_mapping.yaml
+  sensitive_targets: immunity_mapping/sensitive_targets.yaml
+runtime_verdicts:
+- Allow
+- Deny
+- NeedsApproval
+compile_time_failures:
+- unknown policy decision
+- unknown tool class
+- unknown runtime verdict
+- invalid risk level
+- malformed command regex
+- policy rule that maps critical to Allow
+audit_events_required:
+- PolicyBundleLoaded
+- PolicyMatched
+- ImmunityEvaluated

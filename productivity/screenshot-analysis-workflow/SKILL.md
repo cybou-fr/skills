@@ -1,6 +1,7 @@
 ---
 name: screenshot-analysis-workflow
-description: Analyze screenshots and UI captures for product, security, documentation, error triage, visual evidence, and artifact extraction without exposing sensitive information.
+description: Analyze screenshots and UI captures for product, security, documentation, error triage, visual evidence, and
+  artifact extraction without exposing sensitive information.
 ---
 
 # Screenshot Analysis Workflow

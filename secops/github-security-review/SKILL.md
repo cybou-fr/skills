@@ -1,6 +1,7 @@
 ---
 name: github-security-review
-description: Review GitHub repository and organization security posture. Use for branch protection, Actions security, secrets exposure, deploy keys, GitHub Apps, repository visibility, Dependabot, code scanning, environments, and audit events.
+description: Review GitHub repository and organization security posture. Use for branch protection, Actions security, secrets
+  exposure, deploy keys, GitHub Apps, repository visibility, Dependabot, code scanning, environments, and audit events.
 ---
 
 # GitHub Security Review

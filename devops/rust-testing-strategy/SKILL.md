@@ -1,6 +1,7 @@
 ---
 name: rust-testing-strategy
-description: Design Rust testing strategy: unit, integration, property, snapshot, fuzz-like safe tests, contract tests, policy tests, tool adapter tests, and regression suites.
+description: 'Design Rust testing strategy: unit, integration, property, snapshot, fuzz-like safe tests, contract tests, policy
+  tests, tool adapter tests, and regression suites.'
 ---
 
 # Rust Testing Strategy

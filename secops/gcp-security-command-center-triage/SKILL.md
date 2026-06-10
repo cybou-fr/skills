@@ -1,6 +1,7 @@
 ---
 name: gcp-security-command-center-triage
-description: Triage GCP Security Command Center findings, affected assets, source properties, severity, mute status and remediation options.
+description: Triage GCP Security Command Center findings, affected assets, source properties, severity, mute status and remediation
+  options.
 ---
 
 # GCP Security Command Center Triage

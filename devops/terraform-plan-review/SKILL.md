@@ -1,6 +1,8 @@
 ---
 name: terraform-plan-review
-description: Review Terraform or OpenTofu plans for risky infrastructure changes. Use for plan output, .tf diffs, cloud resource changes, IAM changes, networking changes, database/storage changes, public exposure, production IaC review, and blast-radius analysis.
+description: Review Terraform or OpenTofu plans for risky infrastructure changes. Use for plan output, .tf diffs, cloud resource
+  changes, IAM changes, networking changes, database/storage changes, public exposure, production IaC review, and blast-radius
+  analysis.
 ---
 
 # Terraform Plan Review

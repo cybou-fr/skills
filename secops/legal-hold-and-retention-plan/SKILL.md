@@ -1,6 +1,7 @@
 ---
 name: legal-hold-and-retention-plan
-description: Draft legal hold and retention plan for security evidence, audit logs, case records and exports without deleting or altering evidence.
+description: Draft legal hold and retention plan for security evidence, audit logs, case records and exports without deleting
+  or altering evidence.
 ---
 
 # Legal Hold and Retention Plan

@@ -1,6 +1,7 @@
 ---
 name: rust-fuzzing-and-property-testing
-description: Design safe fuzzing and property testing for Rust parsers, normalizers, policy decisions, registry loading, and security boundaries using cargo-fuzz, proptest, or quickcheck.
+description: Design safe fuzzing and property testing for Rust parsers, normalizers, policy decisions, registry loading, and
+  security boundaries using cargo-fuzz, proptest, or quickcheck.
 ---
 
 # Rust Fuzzing and Property Testing

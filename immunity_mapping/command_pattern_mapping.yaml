@@ -1,0 +1,97 @@
+version: '6.3'
+patterns:
+- id: remote-pipe-shell
+  regex: (curl|wget)\b.*\|\s*(sh|bash|zsh|python|perl|ruby)\b
+  verdict: Deny
+  risk: critical
+  reason: remote script piped to interpreter
+- id: rm-rf-root
+  regex: \brm\s+(-[^\s]*r[^\s]*f|-?[^\s]*f[^\s]*r)\s+(/|\$HOME|~)\b
+  verdict: Deny
+  risk: critical
+  reason: destructive root/home removal
+- id: mkfs
+  regex: \bmkfs(\.[a-z0-9]+)?\b
+  verdict: Deny
+  risk: critical
+  reason: filesystem formatting
+- id: dd-to-disk
+  regex: \bdd\b.*\bof=/dev/
+  verdict: Deny
+  risk: critical
+  reason: raw disk write
+- id: fork-bomb
+  regex: :\(\)\s*\{\s*:\|:\s*&\s*\}\s*;
+  verdict: Deny
+  risk: critical
+  reason: fork bomb
+- id: chmod-777-sensitive
+  regex: \bchmod\s+777\b.*(/etc|/boot|/usr|/var|~/.ssh)
+  verdict: NeedsApproval
+  risk: high
+  reason: unsafe permissions on sensitive path
+- id: terraform-destroy
+  regex: \bterraform\b.*\bdestroy\b
+  verdict: NeedsApproval
+  risk: high
+  reason: terraform destroy
+- id: terraform-auto-approve
+  regex: \bterraform\b.*\b(apply|destroy)\b.*-auto-approve
+  verdict: Deny
+  risk: critical
+  reason: terraform auto-approve mutation
+- id: kubectl-delete
+  regex: \bkubectl\b.*\bdelete\b
+  verdict: NeedsApproval
+  risk: high
+  reason: kubernetes deletion
+- id: kubectl-delete-namespace
+  regex: \bkubectl\b.*\bdelete\b.*\b(ns|namespace|namespaces)\b
+  verdict: Deny
+  risk: critical
+  reason: namespace deletion
+- id: docker-privileged
+  regex: \bdocker\b.*\brun\b.*--privileged
+  verdict: Deny
+  risk: critical
+  reason: privileged container
+- id: docker-socket-mount
+  regex: \bdocker\b.*(-v|--volume)\s+/var/run/docker\.sock
+  verdict: Deny
+  risk: critical
+  reason: host docker socket mount
+- id: git-force-push
+  regex: \bgit\b.*\bpush\b.*--force
+  verdict: NeedsApproval
+  risk: high
+  reason: force push
+- id: drop-database
+  regex: (?i)\bDROP\s+DATABASE\b
+  verdict: Deny
+  risk: critical
+  reason: database destruction
+- id: truncate-table
+  regex: (?i)\bTRUNCATE\s+TABLE\b
+  verdict: NeedsApproval
+  risk: high
+  reason: table truncation
+- id: secret-path-read
+  regex: (/etc/shadow|/etc/sudoers|~/.ssh|\.env\b|id_rsa|id_ed25519)
+  verdict: NeedsApproval
+  risk: high
+  reason: sensitive credential/config path
+- id: nested-interpreter
+  regex: \b(bash|sh|zsh|python|perl|ruby|node)\s+-c\b
+  verdict: NeedsApproval
+  risk: high
+  reason: nested interpreter execution
+- id: base64-decode-exec
+  regex: \bbase64\b.*(-d|--decode).*\|\s*(sh|bash|python|perl|ruby)
+  verdict: Deny
+  risk: critical
+  reason: encoded payload execution
+matching_policy:
+  first_match: false
+  take_highest_risk: true
+  deny_overrides_approval: true
+  needs_approval_overrides_allow: true
