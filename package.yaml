@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 6.6.0
+version: 6.8.0
 license: Proprietary-or-custom
-format: cybou-core-integration-release-signing-provenance
+format: cybou-skills-corpus-public-repository-cleanup
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -162,6 +162,27 @@ cybou_extensions:
 - docs/ENTERPRISE_TRUST_MODE.md
 - docs/V6_6_RELEASE_SIGNING_PROVENANCE_CHANGELOG.md
 - scripts/validate_release_signing_v6_6.py
+- immunity_mapping/argv_normalization_contract.yaml
+- immunity_mapping/destructive_command_tests.yaml
+- immunity_mapping/cloud_cli_dangerous_ops.yaml
+- immunity_mapping/package_publish_policy.yaml
+- schemas/argv_normalization_contract.schema.json
+- schemas/destructive_command_tests.schema.json
+- schemas/cloud_cli_dangerous_ops.schema.json
+- schemas/package_publish_policy.schema.json
+- docs/COMMAND_NORMALIZATION_CONTRACT.md
+- docs/POLICY_HARDENING_V6_7.md
+- docs/V6_7_COMMAND_NORMALIZATION_POLICY_HARDENING_CHANGELOG.md
+- scripts/validate_policy_hardening_v6_7.py
+- CONTRIBUTING.md
+- SECURITY.md
+- SKILL_AUTHORING_GUIDE.md
+- RELEASE.md
+- docs/REPOSITORY_BOUNDARIES.md
+- docs/SKILL_CORPUS_FORMAT.md
+- docs/PUBLIC_REPOSITORY_CLEANUP_V6_8.md
+- docs/V6_8_SKILLS_CORPUS_FINALIZATION_CHANGELOG.md
+- scripts/validate_public_repository_cleanup_v6_8.py
 role: external_clean_corpus_for_cybou_core
 authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
 not_authoritative_runtime:
@@ -180,3 +201,9 @@ vetting_rules: integration/vetting_rules.yaml
 eval_runner_contract: evals/manifest.yaml
 release_signing: integration/signing_policy.yaml
 provenance_manifest: integration/provenance_manifest.yaml
+command_normalization_contract: immunity_mapping/argv_normalization_contract.yaml
+repository_role: skills_corpus_only
+contains_runtime_code: false
+cybou_core_patches: false
+renamed_skill_prefixes:
+  runtime-: cybou-core-

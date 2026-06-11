@@ -6,8 +6,8 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-tool-router-execution-prototype
-    - runtime-sandbox-profile-engine
+    - cybou-core-tool-router-execution-prototype
+    - cybou-core-sandbox-profile-engine
     tool: cargo
 - id: v55-router-curl-pipe-blocked
   input: route curl pipe to shell and block execution
@@ -15,7 +15,7 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-tool-execution-boundary
-    - runtime-network-boundary
+    - cybou-core-tool-execution-boundary
+    - cybou-core-network-boundary
     tool: shell
     must_not_execute: true

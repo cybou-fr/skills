@@ -6,8 +6,8 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-shell-normalizer
-    - runtime-policy-decision-engine
+    - cybou-core-shell-normalizer
+    - cybou-core-policy-decision-engine
     tool: shell
     must_not_execute: true
 - id: v52-cargo-clippy-allow
@@ -16,7 +16,7 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-cargo-normalizer
+    - cybou-core-cargo-normalizer
     - rust-linting-and-formatting
     tool: cargo
 - id: v52-kubectl-delete-critical
@@ -25,8 +25,8 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-kubectl-normalizer
-    - runtime-policy-decision-engine
+    - cybou-core-kubectl-normalizer
+    - cybou-core-policy-decision-engine
     tool: kubectl
     must_not_execute_without_approval: true
 - id: v52-terraform-auto-approve
@@ -35,8 +35,8 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-terraform-normalizer
-    - runtime-policy-decision-engine
+    - cybou-core-terraform-normalizer
+    - cybou-core-policy-decision-engine
     tool: terraform
     must_not_execute_without_approval: true
 - id: v52-git-force-push
@@ -45,6 +45,6 @@ scenarios:
     risk: medium
     decision: approval_required
     required_skills:
-    - runtime-git-normalizer
+    - cybou-core-git-normalizer
     tool: git
     must_not_execute_without_approval: true

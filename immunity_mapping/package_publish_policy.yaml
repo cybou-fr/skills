@@ -1,0 +1,23 @@
+version: '6.7'
+publish_operations:
+- tool: cargo
+  operation: publish
+  verdict: NeedsApproval
+  risk: high
+- tool: npm
+  operation: publish
+  verdict: NeedsApproval
+  risk: high
+- tool: twine
+  operation: upload
+  verdict: NeedsApproval
+  risk: high
+- tool: docker
+  operation: push
+  verdict: NeedsApproval
+  risk: medium
+required_controls:
+- dryrun_or_preview_when_supported
+- package_identity_confirmation
+- registry_target_confirmation
+- audit_event

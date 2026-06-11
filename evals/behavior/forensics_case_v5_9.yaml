@@ -15,7 +15,7 @@ scenarios:
     decision: allow_read_only_and_redact
     required_skills:
     - forensic-artifact-inventory
-    - runtime-evidence-redaction-integration
+    - cybou-core-evidence-redaction-integration
     tool: log_reader
     redaction_required: true
 - id: v59-chain-custody

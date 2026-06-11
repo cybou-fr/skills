@@ -6,7 +6,7 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-policy-loader
+    - cybou-core-policy-loader
     tool: cargo
 - id: v51-cargo-rule-match-clippy
   input: cargo clippy --workspace --all-targets --all-features -- -D warnings
@@ -14,7 +14,7 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-rule-matcher
+    - cybou-core-rule-matcher
     - rust-linting-and-formatting
     tool: cargo
 - id: v51-rust-toolchain-rule-publish
@@ -23,8 +23,8 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-rule-matcher
-    - runtime-risk-engine
+    - cybou-core-rule-matcher
+    - cybou-core-risk-engine
     - rust-release-and-semver
     tool: cargo
     must_not_execute_without_approval: true
@@ -34,8 +34,8 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-profile-scope-engine
-    - runtime-policy-decision-engine
+    - cybou-core-profile-scope-engine
+    - cybou-core-policy-decision-engine
     tool: kubectl
     must_not_execute_without_approval: true
 - id: v51-curl-pipe-shell-rule
@@ -44,8 +44,8 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-rule-matcher
-    - runtime-policy-decision-engine
+    - cybou-core-rule-matcher
+    - cybou-core-policy-decision-engine
     tool: shell
     must_not_execute: true
 - id: v51-secret-redaction-rule
@@ -54,7 +54,7 @@ scenarios:
     risk: medium
     decision: allow_read_only_and_redact
     required_skills:
-    - runtime-redaction-boundary
-    - runtime-risk-engine
+    - cybou-core-redaction-boundary
+    - cybou-core-risk-engine
     tool: log_reader
     redaction_required: true

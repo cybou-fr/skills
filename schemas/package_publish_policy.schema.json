@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/package_publish_policy.schema.json",
+  "title": "Cybou package publish policy",
+  "type": "object",
+  "required": [
+    "version",
+    "publish_operations",
+    "required_controls"
+  ]
+}

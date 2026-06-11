@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/argv_normalization_contract.schema.json",
+  "title": "Cybou argv normalization contract",
+  "type": "object",
+  "required": [
+    "version",
+    "role",
+    "core_principle",
+    "normalization_steps",
+    "normalized_action_fields"
+  ]
+}

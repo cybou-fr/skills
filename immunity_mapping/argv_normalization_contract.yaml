@@ -1,0 +1,49 @@
+version: '6.7'
+role: argv normalization contract for cybou-core immunity.rs
+core_principle: Regex is metadata. Rust normalizer is authority.
+normalization_steps:
+- preserve original command string
+- parse command into argv using shell-compatible lexer where possible
+- 'identify wrapper prefixes: sudo, command, env, time, nohup'
+- resolve executable basename and absolute path
+- extract interpreter payloads for -c, -lc, -e
+- detect pipelines and command substitutions
+- extract nested commands recursively with depth limit
+- normalize tool-specific verbs for kubectl, helm, terraform, docker, git, package managers, cloud CLIs, cargo, database CLIs
+- classify target paths, namespaces, clusters, buckets, repositories, registries and databases
+- emit NormalizedAction list for policy engine
+normalized_action_fields:
+- raw_command
+- executable
+- tool
+- operation
+- suboperation
+- args
+- targets
+- flags
+- environment
+- pipeline
+- nested_actions
+- risk_hints
+- source_span
+- normalization_warnings
+wrapper_prefixes:
+- sudo
+- command
+- env
+- time
+- nohup
+- xargs
+interpreters:
+- sh
+- bash
+- zsh
+- python
+- python3
+- perl
+- ruby
+- node
+max_nested_depth: 4
+on_parse_failure: NeedsApproval
+on_unknown_mutating_tool: NeedsApproval
+on_known_destructive_operation: Deny

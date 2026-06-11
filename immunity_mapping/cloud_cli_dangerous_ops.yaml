@@ -1,0 +1,32 @@
+version: '6.7'
+cloud_cli_tools:
+- aws
+- az
+- gcloud
+dangerous_operations:
+- tool: aws
+  service: s3
+  operation: rm --recursive
+  verdict: NeedsApproval
+  risk: high
+- tool: aws
+  service: ec2
+  operation: terminate-instances
+  verdict: NeedsApproval
+  risk: high
+- tool: aws
+  service: iam
+  operation: delete-*
+  verdict: NeedsApproval
+  risk: high
+- tool: az
+  service: '*'
+  operation: delete
+  verdict: NeedsApproval
+  risk: high
+- tool: gcloud
+  service: '*'
+  operation: delete
+  verdict: NeedsApproval
+  risk: high
+normalizer_required: true

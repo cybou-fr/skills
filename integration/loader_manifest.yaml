@@ -1,4 +1,4 @@
-version: 6.6.0
+version: 6.8.0
 loader_contract: Cybou Core Skills Loader Contract v1
 role: metadata-first external corpus
 required_files:
@@ -28,6 +28,15 @@ required_files:
 - integration/provenance_manifest.yaml
 - integration/signature_status.yaml
 - integration/release_signature.placeholder
+- immunity_mapping/argv_normalization_contract.yaml
+- immunity_mapping/destructive_command_tests.yaml
+- immunity_mapping/cloud_cli_dangerous_ops.yaml
+- immunity_mapping/package_publish_policy.yaml
+- CONTRIBUTING.md
+- SECURITY.md
+- SKILL_AUTHORING_GUIDE.md
+- RELEASE.md
+- docs/REPOSITORY_BOUNDARIES.md
 canonical_dirs:
 - core/
 - devops/
@@ -101,3 +110,12 @@ release_signing:
   provenance_manifest: integration/provenance_manifest.yaml
   signature_status: integration/signature_status.yaml
   validate_with: scripts/validate_release_signing_v6_6.py
+command_normalization:
+  contract: immunity_mapping/argv_normalization_contract.yaml
+  policy_hardening_validator: scripts/validate_policy_hardening_v6_7.py
+  regex_is_metadata: true
+  rust_normalizer_is_authority: true
+repository_boundary:
+  role: skills_corpus_only
+  forbidden_runtime_code: true
+  validate_with: scripts/validate_public_repository_cleanup_v6_8.py

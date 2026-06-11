@@ -6,8 +6,8 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-approval-cli
-    - runtime-approval-store
+    - cybou-core-approval-cli
+    - cybou-core-approval-store
     tool: cargo
 - id: v53-hard-deny-not-overridden
   input: terraform destroy -auto-approve with approval should remain denied
@@ -15,7 +15,7 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-approval-policy-integration
-    - runtime-scope-matcher
+    - cybou-core-approval-policy-integration
+    - cybou-core-scope-matcher
     tool: terraform
     must_not_execute: true

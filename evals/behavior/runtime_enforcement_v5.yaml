@@ -6,8 +6,8 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
     tool: shell
     must_not_execute: true
 - id: v5-curl-pipe-shell
@@ -16,8 +16,8 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
     - http-fetch-safety
     tool: shell
     must_not_execute: true
@@ -27,7 +27,7 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     - kubernetes-readonly-triage
     tool: kubectl
     must_not_execute_without_approval: true
@@ -37,7 +37,7 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     - terraform-plan-review
     tool: terraform
     must_not_execute_without_approval: true
@@ -47,7 +47,7 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     - rust-release-and-semver
     tool: cargo
     must_not_execute_without_approval: true
@@ -65,7 +65,7 @@ scenarios:
     risk: critical
     decision: deny_by_default
     required_skills:
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     - database-safety
     tool: database
     must_not_execute: true
@@ -75,7 +75,7 @@ scenarios:
     risk: medium
     decision: allow_read_only_and_redact
     required_skills:
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     - log-analysis
     tool: log_reader
     redaction_required: true
@@ -85,8 +85,8 @@ scenarios:
     risk: high
     decision: approval_required
     required_skills:
-    - runtime-audit-event-pipeline
-    - runtime-policy-decision-engine
+    - cybou-core-audit-event-pipeline
+    - cybou-core-policy-decision-engine
     tool: terraform
     audit_required: true
     must_not_execute_without_approval: true
@@ -96,5 +96,5 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-behavior-test-engine
+    - cybou-core-behavior-test-engine
     tool: cargo

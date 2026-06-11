@@ -1,33 +1,39 @@
-# Cybou Core Integration Pack v6.6
+# Cybou Skills Corpus v6.8
 
-**Version:** 6.6.0  
-**Role:** signed-release/provenance-ready external skills/policies/evals corpus for Cybou.  
-**Target:** `cybou-core`, especially `skills sync`, enterprise trust mode, release verification and supply-chain hardening.
+**Version:** 6.8.0  
+**Role:** public/private skills corpus for Cybou.  
+**Repository boundary:** skills, policies, evals, schemas, trust/signing metadata and documentation only.
 
-v6.6 adds **Release Signing & Provenance** on top of v6.5 eval runner/adversarial immunity tests.
+This repository does **not** contain Cybou runtime implementation code.
 
 ## Core rule
 
 ```text
-The pack must never execute tools directly.
+Skills improve reasoning.
+Rust decides safety.
+MicroVM contains execution.
+Audit records everything.
 ```
 
-## What changed in v6.6
+## What changed in v6.8
 
 ```text
-Added signing policy.
-Added trusted publishers manifest.
-Added provenance manifest.
-Added signature status.
-Added release signature placeholder.
-Added enterprise trust mode documentation.
-Added release signing validator.
+Finalized skills-only repository boundary.
+Removed Rust contract sketch artifact.
+Confirmed no cybou-core patch/scaffold directories.
+Added CONTRIBUTING.md.
+Added SECURITY.md.
+Added SKILL_AUTHORING_GUIDE.md.
+Added RELEASE.md.
+Added repository boundary docs.
+Renamed runtime-* skill ids to cybou-core-*.
+Added public repository cleanup validator.
 ```
 
 ## Package statistics
 
 ```text
-Total files: 504
+Total files: 531
 Skill files: 207
 Registry skills: 207
 Output templates: 139
@@ -35,22 +41,32 @@ Policy rule files: 13
 Activity policy files: 2
 Tool adapter files: 74
 Scope object files: 6
-Schema JSON files: 38
-Schema total files: 40
-Eval files: 43
-Eval scenarios: 240
-Immunity mapping files: 7
+Schema JSON files: 42
+Schema total files: 44
+Eval files: 44
+Eval scenarios: 254
+Immunity mapping files: 11
 ```
 
-## Signing status
+## Canonical directories
 
 ```text
-status: unsigned_placeholder
-community behavior: warn_and_metadata_only
-enterprise behavior: deny_until_signed
+core/
+devops/
+secops/
+productivity/
+policy_rules/
+activity_policies/
+tool_adapters/
+scope_objects/
+schemas/
+evals/
+integration/
+immunity_mapping/
+docs/
+examples/
+scripts/
 ```
-
-This generated artifact defines the signing contract but is not cryptographically signed.
 
 ## Validate
 
@@ -64,4 +80,12 @@ python scripts/validate_command_patterns_v6_4.py
 python scripts/validate_eval_contract_v6_5.py
 python scripts/validate_adversarial_immunity_v6_5.py
 python scripts/validate_release_signing_v6_6.py
+python scripts/validate_policy_hardening_v6_7.py
+python scripts/validate_public_repository_cleanup_v6_8.py
 ```
+
+## Signing status
+
+This generated artifact may still be unsigned placeholder unless signed by the real `cybou-fr` release key.
+
+Enterprise mode must deny unsigned releases.

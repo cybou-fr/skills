@@ -1,4 +1,4 @@
-version: 6.5.0
+version: 6.7.0
 role: Cybou eval runner contract
 suites:
 - id: behavior
@@ -56,6 +56,8 @@ runner_contract:
   success_does_not_imply_trust: true
   learning_requires_gate: true
   unsafe_eval_never_learns: true
+  normalization_required_for_policy_hardening: true
+  regex_is_metadata: true
 result_values:
 - pass
 - fail

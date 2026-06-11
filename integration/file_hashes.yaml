@@ -1,15 +1,23 @@
-version: '6.6'
+version: '6.8'
 algorithm: sha256
-generated_at: '2026-06-10T23:33:34.309368+00:00'
+generated_at: '2026-06-11T11:14:52.773744+00:00'
 files:
 - path: .gitignore
   sha256: 7cb6bc50a51a1ccea416c0c7388212d2f24a0e634982476fa3ca8be74100c728
 - path: AGENTS.md
   sha256: f50bd9e0021ae3367abd7684dd3b4103171941b9be8d7f05a65a466ca1bcbdd0
 - path: CHANGELOG.md
-  sha256: 6eb795171fb8e6b9413974e2c9daa57bb4d1dd1f16d300cda0415f29af2ce4c3
+  sha256: 0105e021eca82bba629745bcc9ce8ca5781874d69cce3c9732853bf0fd700cab
+- path: CONTRIBUTING.md
+  sha256: 052f846d7583a2d8f44fb5e9988598723e674ed4ec04f519f0084704358985c4
 - path: README.md
-  sha256: 6fcf513beb025d2ec5308efc83ce0f08a9911dd341908ed9a15534305e53216d
+  sha256: bb194f6f53e23af39afed43414f052878cbaf489e44b97ab5b81d99c085d3bc6
+- path: RELEASE.md
+  sha256: fe0f9fc90e9520110663a2430c2bfc29e2fc2e92ba7c119248cf726e4f53a416
+- path: SECURITY.md
+  sha256: cdc5a197ab6ed6ad76108e3a97dd39e7272c2550fafa0c951b0f0e503d3dead5
+- path: SKILL_AUTHORING_GUIDE.md
+  sha256: 6ac485472abfa2d023aae3f3b2d77cb4510437c9c75317b745db107fbdc6ebe0
 - path: activity_policies/ai_security_assessment.yaml
   sha256: 09e4d9282d4dc9ca519e54ac7133713daf5b810e1840a0bd6d3440780037dcbe
 - path: activity_policies/penetration_testing.yaml
@@ -17,7 +25,7 @@ files:
 - path: ai_security_controls.yaml
   sha256: 1668653ce8f8f274ca28c58bfc739e24c7d48a86adcb98d6e8cbecc49a11be12
 - path: autonomy_profiles.yaml
-  sha256: f0fcaadcc3f9679c01b2eb97f3666c9285a027b9cb615d742d62295afa71c76e
+  sha256: 0284ff85717db850869ff22c0a344e21fdefe37893f53ee33d503b13266d28a7
 - path: core/approval-request/SKILL.md
   sha256: 164cc3a45954e82c9c91177372fcabb1917235a525a60bd49298294818fb64fa
 - path: core/command-safety/SKILL.md
@@ -35,7 +43,7 @@ files:
 - path: core/task-classification/SKILL.md
   sha256: 00900d433255ed8e6d7cd31b622a10c27b60ea814366748505ef52bd8e108583
 - path: cybou.yaml
-  sha256: 97352766ffce08f8c056892791b014b8d31e877fc4924de13d853e61937a243e
+  sha256: 76aca840ff83499fc11a8a40ba4f8434ddc55215788aa98886e51cf67208ee05
 - path: cybou_rust_architecture_map.yaml
   sha256: 000e0dd3e2e07d4f86178a43e8298d41c32e96987c7c07c258d6cc0dcc6e279a
 - path: devops/backup-restore-review/SKILL.md
@@ -50,6 +58,84 @@ files:
   sha256: d6fca51171ab96c0aaf9400b1a3c75f39e82856c3493a001cfb09a4a91cbf58c
 - path: devops/cli-creator-workflow/SKILL.md
   sha256: c033c4934b5492cbb2bd3002933f2f77a979d3331f5eeac1a0cc5ccd9a1f6cee
+- path: devops/cybou-core-approval-cli/SKILL.md
+  sha256: 0ac9717f0f1f0ec738ed4bef26a9ccdcb91f2aa1ab08ef643063be6f68149a09
+- path: devops/cybou-core-approval-policy-integration/SKILL.md
+  sha256: 06202bb061de2e541017dcb8c8f8f49ceb420cc30b752a2d9afbebef3ba17017
+- path: devops/cybou-core-approval-regression-suite/SKILL.md
+  sha256: ecc885196b60a52e38589377f39f9f06b4a3ebaa58e1d1495a82d1144e069543
+- path: devops/cybou-core-approval-state-manager/SKILL.md
+  sha256: ca9567b923aa58d29316d0bf83dd577f3ef288cddc6d72c23c9bcde7998357ad
+- path: devops/cybou-core-approval-store/SKILL.md
+  sha256: af75241fccd959cb3d49792e13ef239c5337d81fc5e465358f0df94d7bb2e8f1
+- path: devops/cybou-core-audit-cli/SKILL.md
+  sha256: 0aa61c8bc50f3506fbd93f5ad1cf468bb94c623dd2ba6615f214a8aaa839a4af
+- path: devops/cybou-core-audit-event-pipeline/SKILL.md
+  sha256: 6685ff3cf92b487253720755125144a31540b9783c722833256da8071efdbc82
+- path: devops/cybou-core-audit-regression-suite/SKILL.md
+  sha256: 138e9d386c83cc437b0d7155ee7ed05e3d420c27fd90ff0cbd164a2a28aa6072
+- path: devops/cybou-core-behavior-test-engine/SKILL.md
+  sha256: d30aa2e45ae112e529bf943025ce5a0853b90221e0e65b6f32d4d07b92b6757f
+- path: devops/cybou-core-cargo-normalizer/SKILL.md
+  sha256: feee7e1e9d7645e9276b477c11c6a1461123c9f466f43c684d4995d68c6337f1
+- path: devops/cybou-core-database-normalizer/SKILL.md
+  sha256: 19fcdc871a215769a1d7816538038ef77d5da33d90c45f8fdfd36c07c3ea9267
+- path: devops/cybou-core-docker-normalizer/SKILL.md
+  sha256: 4f7946cee0bcdedcc5d38b96d863ca7c2244d7ec99d8bc0bf9ccfba364ced09b
+- path: devops/cybou-core-durable-audit-store/SKILL.md
+  sha256: b9994ef5800d6eef869c1690ef73dc311e29c824e5aedba34f58061f89451220
+- path: devops/cybou-core-evidence-redaction-integration/SKILL.md
+  sha256: 99b5a87bc58272c20a612d76e399c956f39820bc8510720e06593580494b9b8d
+- path: devops/cybou-core-evidence-store/SKILL.md
+  sha256: c1ea20009f0632ca0ef8c44c98b57ae9549c7d1452e1e79a65466dcb1d7c8626
+- path: devops/cybou-core-filesystem-boundary/SKILL.md
+  sha256: 693a5a1c1e8b4c1e1722f4ff5d4ac01f0aa0473bc8183ae3efb56cc12f473fde
+- path: devops/cybou-core-git-normalizer/SKILL.md
+  sha256: ed296023011f20a2a37b4a1c47c5edb434c543f190429dfda99c1453727e1503
+- path: devops/cybou-core-http-fetch-normalizer/SKILL.md
+  sha256: 9151d2157d2fefa7f3f100ab3f934f3192b776c5ed5f895fd98204f12632e823
+- path: devops/cybou-core-kubectl-normalizer/SKILL.md
+  sha256: 55fde1754705578c7ca77e21c94d59fbeeac0d204c31481d1a21bef42cf4009c
+- path: devops/cybou-core-network-boundary/SKILL.md
+  sha256: 34ac51c81dbdef96a0b7fd1e97ac6059ba9f28970cefa455223b9f0cbb8f7153
+- path: devops/cybou-core-normalized-action-engine/SKILL.md
+  sha256: ae017dc462830d82986bd1e7ab49762989092fa42fb8f5282403d5dbb2a37418
+- path: devops/cybou-core-normalizer-regression-suite/SKILL.md
+  sha256: 6ee986c8c5e73344db94de5f872ba86360b14a36c0def7ced65cdc1dfcec2c55
+- path: devops/cybou-core-output-limit-boundary/SKILL.md
+  sha256: f21275809a9ef864b82d0620b8b9c5e73c69d07e74e91e244f4f843003abf716
+- path: devops/cybou-core-policy-decision-engine/SKILL.md
+  sha256: 577872f6f6db2bf836b0486ec213b80368c65a8c87c00231583110b2d51e816f
+- path: devops/cybou-core-policy-loader/SKILL.md
+  sha256: f47ac1bd7e6f51794c1b627afb8208d217255c1eedc823ab4dd1f0b97cf6f5d3
+- path: devops/cybou-core-policy-regression-suite/SKILL.md
+  sha256: a0f72f37ecc38fdd00b879adb9e7a8e59c56edd510a095a30552557a14e86104
+- path: devops/cybou-core-profile-scope-engine/SKILL.md
+  sha256: 91925fb4de045c96a6d00bc8c2025f11d1ae2d94feb3b31b6b050c5b3c5b1c4e
+- path: devops/cybou-core-redaction-boundary/SKILL.md
+  sha256: 1639f1c2ad77f5c7a50db5c16b1503bc8b20c018a10ce0cd5f01f8e0361acdb4
+- path: devops/cybou-core-risk-engine/SKILL.md
+  sha256: 507c4c30dc05b681407f71513f40d06cee9769601fc67a023769875455966268
+- path: devops/cybou-core-rule-matcher/SKILL.md
+  sha256: 26fa7b8d323940bfc165bb79319e0d5c42ec0fb9a111878151c5d7920cbe59fc
+- path: devops/cybou-core-sandbox-profile-engine/SKILL.md
+  sha256: 29de9c2059458d4129ea20b8b653831a010f12afa1f2dbff3d63ae7106460617
+- path: devops/cybou-core-sandbox-regression-suite/SKILL.md
+  sha256: 84d75f7fa124d9d5ed2ec9a75d19101c3b6416991e0af771445406d796fe8b18
+- path: devops/cybou-core-scope-matcher/SKILL.md
+  sha256: 99c4002a42c6d62491a56223f0c3f0ca842512ee20459918616028cb22d3e9d0
+- path: devops/cybou-core-shell-normalizer/SKILL.md
+  sha256: dc356e83db5e23e7752778a5862f26ee5f2a213e2540f3da3f47ed6737df3554
+- path: devops/cybou-core-tamper-evidence/SKILL.md
+  sha256: 5ae56b27f460f743ee2072d279d3f18db3e2af92829ab15833825e2ae929a1bd
+- path: devops/cybou-core-terraform-normalizer/SKILL.md
+  sha256: 6bbfe7da2e31a25d8c585fb476867c1fc56dd9e301f6dcff0682bc45f9c3305b
+- path: devops/cybou-core-tool-execution-boundary/SKILL.md
+  sha256: f4aa4f4cb34736bf3625ec7a95483376fef7dc212ed61952cb940a993943e3d0
+- path: devops/cybou-core-tool-router/SKILL.md
+  sha256: fa79d9a57eed3a4eb0083a04b05ae44fbd2d81d7f4aaf1e2ed3fda4e97c355df
+- path: devops/cybou-core-tool-router-execution-prototype/SKILL.md
+  sha256: 37d4166efd65b69d3449cfef8b1b4194ee5b445fd9747da395327efa7cd557cc
 - path: devops/cybou-policy-engine-implementation/SKILL.md
   sha256: 6dde07cb40f5b1337d6e3231ab9421e57833183f295da58a1a38f4cadef76d98
 - path: devops/cybou-self-hosting-development-loop/SKILL.md
@@ -90,84 +176,6 @@ files:
   sha256: 707f4eeec7bf6e37330640271257625d1a0b16eb9513c3b4dacecf06f602c045
 - path: devops/pull-request-review/SKILL.md
   sha256: 666f8ee28f7f2177016aed9509cf9eb93a56bb1631904e5bbbda6307ef2b2c5f
-- path: devops/runtime-approval-cli/SKILL.md
-  sha256: 54a6e8046353d4dc41d6069cdc4bb35de73b50185b26c6f31e4ee20474cbae6c
-- path: devops/runtime-approval-policy-integration/SKILL.md
-  sha256: e6e1a1659ca2125ec11b36e51ad6316adaa368953b07a2bb689a4c7d1edd5919
-- path: devops/runtime-approval-regression-suite/SKILL.md
-  sha256: 6c2d40c48ce3d51cac4f813ea5cc6cfb9d7ffb7cca7a6e6686d9094ff3a393d1
-- path: devops/runtime-approval-state-manager/SKILL.md
-  sha256: 72bbe4b5569a750afd8b08f60ab353251d700180a877d853f32ad27baf5148f8
-- path: devops/runtime-approval-store/SKILL.md
-  sha256: 0f68626f1587ccaf2d0cd3c8e4f4c0cc7887dc60415d58de9fb430b021f8932a
-- path: devops/runtime-audit-cli/SKILL.md
-  sha256: f0e4ffb43f302af5128b6d64f7e903ed6e6ccb7fbc7a70cbca38cbf5b164048c
-- path: devops/runtime-audit-event-pipeline/SKILL.md
-  sha256: 4cfc9277be46c57f24b5de5469efacbf4230fe281bf0671bc5417085ab878f28
-- path: devops/runtime-audit-regression-suite/SKILL.md
-  sha256: f3fc9e14e36e37fe1000660f9c9b718f599b2ab8cbbb3e1eda7f8841ec40c690
-- path: devops/runtime-behavior-test-engine/SKILL.md
-  sha256: d0ae43f801b36255bb2a606d0f70efa172b464c0365e5df3482e5cf07ae174c3
-- path: devops/runtime-cargo-normalizer/SKILL.md
-  sha256: 7042d52879154cb65c3d76512dcbf1404e59a940761d6f604b26bf96ce7015da
-- path: devops/runtime-database-normalizer/SKILL.md
-  sha256: ff130427411c70b81937ca12e7659f9cc8cf87e7e43260ebfbb046d7d7be62ba
-- path: devops/runtime-docker-normalizer/SKILL.md
-  sha256: 3dca617be9fbce8ca6c697d40992fca9a888b99616be0ef2a1f79e883a1b8612
-- path: devops/runtime-durable-audit-store/SKILL.md
-  sha256: 61482a6934bad702189d711757f5328673f67ad082f4382546d56ab34ca4ecdd
-- path: devops/runtime-evidence-redaction-integration/SKILL.md
-  sha256: 983cbb3784b13f1f21fc5b53d0209f992d1c0307c0ce980b75633f3b252296b4
-- path: devops/runtime-evidence-store/SKILL.md
-  sha256: 89c9639e38cef964fc1cf8aec94258699441491311d1ff4be93cab5e94ec2550
-- path: devops/runtime-filesystem-boundary/SKILL.md
-  sha256: 00bbdce357c4a83564ae5251855250bc249c59687015318acfd822c9e0a518ae
-- path: devops/runtime-git-normalizer/SKILL.md
-  sha256: 140ea031be2e4bb082160e94a3e86a90c4d76ec59674226de9a22b4e8b1a83ea
-- path: devops/runtime-http-fetch-normalizer/SKILL.md
-  sha256: adeaa2eeeead64fa604bdd6565032efc1acb46ecc568932735941186e5ae6bbb
-- path: devops/runtime-kubectl-normalizer/SKILL.md
-  sha256: bacdb0b142489e3ff17994e5656126d3d54da58f4eff8f90992c1419f682a6db
-- path: devops/runtime-network-boundary/SKILL.md
-  sha256: a1af76b54b89e162772d084147d695527ed2541e96c1153d3c676f7c9f9382ab
-- path: devops/runtime-normalized-action-engine/SKILL.md
-  sha256: 80057c1de39d84c86443e5f46c7b0121ca3c2eb74009ffb13bc5f4013693b731
-- path: devops/runtime-normalizer-regression-suite/SKILL.md
-  sha256: 889ac01421fd65d9a2b9c82adbb7d4e84e18cad0a4ea178a7a04336bd98d785c
-- path: devops/runtime-output-limit-boundary/SKILL.md
-  sha256: 8e6c3b8d0d10e671a92f6e0803ab7d59fceb1f681b664d094ce8af9012c2657d
-- path: devops/runtime-policy-decision-engine/SKILL.md
-  sha256: 763a7dd3d5b1dea1e08cd61dc21d56b66739c036ed05cfd9a5d4c340b5874d0a
-- path: devops/runtime-policy-loader/SKILL.md
-  sha256: bfa7f23529ecf4dd3177e992cbd8a0193e4845b591a67baf291907ad701d241d
-- path: devops/runtime-policy-regression-suite/SKILL.md
-  sha256: 0b90f12d9565a6274547cce79349f4c2ae5ce3f07ebe53d5ebeb66735d1f849c
-- path: devops/runtime-profile-scope-engine/SKILL.md
-  sha256: 0a572fdbbafe23d014721e70b1cd872d49e9c38305d78278084dfa6e7e039c73
-- path: devops/runtime-redaction-boundary/SKILL.md
-  sha256: 35219d1b20a70a685ae45acb82c23cde96ebb83a310ed692b46c234a77f4d9b5
-- path: devops/runtime-risk-engine/SKILL.md
-  sha256: 22f656f423935c5d84496fbf99961fe0b6980037a87ba3f3b455d0cc8bcf7418
-- path: devops/runtime-rule-matcher/SKILL.md
-  sha256: d0b277ef33537bfc2dbd4eca083863620ac37ee958cfe4f222e5f98e16f88f64
-- path: devops/runtime-sandbox-profile-engine/SKILL.md
-  sha256: f3e085837774441f46e71c4a1c17c3e8029c9724bc0a6f7c39d399f45e4f77d6
-- path: devops/runtime-sandbox-regression-suite/SKILL.md
-  sha256: 18be9152514538dcbb66c1888d6686a16409c674603d4b4077d6edb197c54fe1
-- path: devops/runtime-scope-matcher/SKILL.md
-  sha256: cbdb9bc06d6aefd865aaa72c693e94843b43d8d28408255178aca617c3fe7133
-- path: devops/runtime-shell-normalizer/SKILL.md
-  sha256: 6fa85bfa25345afbda27dbe0bee3da4ff95d777d1aa10110fb0126a47e35a6ec
-- path: devops/runtime-tamper-evidence/SKILL.md
-  sha256: 103ebf0a6b5176eb230b0668fa4c7c7dd204262a62bb96a8c8a27f2918bb25c7
-- path: devops/runtime-terraform-normalizer/SKILL.md
-  sha256: 95ed947a1c0e1560f5fdf987104f7445eee7cb6682319671bf00611252fe803f
-- path: devops/runtime-tool-execution-boundary/SKILL.md
-  sha256: 01bfc33e27081d5aa7c3ffc5cc0d0d956c5cfbb01d44837a71271750d99290d9
-- path: devops/runtime-tool-router/SKILL.md
-  sha256: e77ab3d94fac6d3adb0f5924b74f41c8d40f254d5acfc901074ef9e08d621097
-- path: devops/runtime-tool-router-execution-prototype/SKILL.md
-  sha256: ccd590344e579a3baf1eaf2d683e082b3a518f9f4097b913ed388fcf3d77ee9f
 - path: devops/rust-api-design/SKILL.md
   sha256: a4d163e9100d5e118a46e0aa5509f1dbecc2d86fcc2d49c771e59bd1b613f3b3
 - path: devops/rust-async-runtime-design/SKILL.md
@@ -228,6 +236,8 @@ files:
   sha256: 980d7d99d5f56adb32d2cd1ec1aa5729c0cebc02c94036e8b4c5f73cc20216e7
 - path: docs/ADVERSARIAL_IMMUNITY_TESTS.md
   sha256: b0674da82d41fe48337f191d54924223ab13a8cfc73cc3e5cbc5d08adeb31a61
+- path: docs/COMMAND_NORMALIZATION_CONTRACT.md
+  sha256: add7616de0544b7027afc1423f46a8219eba5fffbc1828375b268546c1decb10
 - path: docs/COMMAND_PATTERN_TESTING.md
   sha256: 0a041c2ee6d391d60acdb4751a87a36526413b82b7310500b48a5beb84c5a4fe
 - path: docs/CYBOU_CORE_INTEGRATION.md
@@ -248,16 +258,22 @@ files:
   sha256: 50313b05add17442ed2358a1e3c29856300b9aa2260f2c7c071197fdaf86662b
 - path: docs/MICROVM_BOUNDARY_MODEL.md
   sha256: d9d772adf0e8e39b41db987b6f26d03e4a701ad373b2e110aeb30fd83ff4c680
+- path: docs/POLICY_HARDENING_V6_7.md
+  sha256: 336bb54bc4760a972f31feac93e01e3f338483ce92c4185d64c56245c4b257e7
 - path: docs/POLICY_TO_IMMUNITY_MAPPING.md
   sha256: 5b227e7bafc17d20b9818d7da331e33b67867cb954e56a532ea2adfd351dfd7a
+- path: docs/PUBLIC_REPOSITORY_CLEANUP_V6_8.md
+  sha256: e8902b8366abfbe31697291b1a7ecad76c4d4c0f866bd4a28062b67b7d48f334
 - path: docs/RELEASE_SIGNING.md
   sha256: f6c10caeab059fcd07ff4c0673608dc97fbb859d370dce7b3314d1446ab52cfc
+- path: docs/REPOSITORY_BOUNDARIES.md
+  sha256: 17ab76934e53656e89118d70bb23332bfb32e5b1abb5e80f70212029e05387a6
 - path: docs/REPOSITORY_LAYOUT.md
   sha256: e377df68819bae12d7a3d1f80fa41039fa8e1419154d39a4cc6d6d117a2d7280
-- path: docs/RUST_IMMUNITY_CONTRACT_SKETCH.rs
-  sha256: db60996f2391e7ac3168fa6884fd4c2358cced55056da43cb1b41c737a522d39
 - path: docs/SCHEMA_REFERENCE.md
   sha256: be6b41505d5be1f86529d3365b8ee01f44defd9a82150b48a2c0eaf98a852f27
+- path: docs/SKILL_CORPUS_FORMAT.md
+  sha256: e0360920d53a27840551f3a0e30c57678e72503de3e19fa3e8091b1a1dbdf868
 - path: docs/SKILL_VETTING.md
   sha256: 6fdd47fa9b8df72c0e145b27dfc3fa31a2fc5e4f3d407624d03736c5f155432c
 - path: docs/SKILL_VETTING_DEEP.md
@@ -274,6 +290,10 @@ files:
   sha256: 2a46f257b33ab4aeb6c7f7123ad297c8203cdbef60613be9c954d52e30058512
 - path: docs/V6_6_RELEASE_SIGNING_PROVENANCE_CHANGELOG.md
   sha256: 3793ccead24af9590d82165da42d21a59a51555ae693e032f3452b7ae8c2eb03
+- path: docs/V6_7_COMMAND_NORMALIZATION_POLICY_HARDENING_CHANGELOG.md
+  sha256: 9d7d7d554ec9d0c29a3aa0aa9bb529de955e757649c8db261701bf30755e8e37
+- path: docs/V6_8_SKILLS_CORPUS_FINALIZATION_CHANGELOG.md
+  sha256: b49d6d25aa9044f5e7132feda2413d2405d5d15f816fa87dd16013268dada2cf
 - path: evals/approval/scope_approval_v5_3.yaml
   sha256: b9182225e08e666ee0242e871d2cb14509111e2e5b99d109bd0d2ddf78490f74
 - path: evals/audit/durable_audit_v5_4.yaml
@@ -289,17 +309,17 @@ files:
 - path: evals/behavior/cloud_secops_v5_7.yaml
   sha256: 8cc2f3483ad345d8fb9d40079e780dbe55c5f654e53435edbbf1a840f1476110
 - path: evals/behavior/data_driven_policy_v5_1.yaml
-  sha256: 842660f19897f4c2be9b54c2f037eae679a255430daa83e4c1b3c4493cca0e4a
+  sha256: 08ba89537bbb4b44322cd35596eed8f5f4b515233fac2c811ccd1893e469d01d
 - path: evals/behavior/database.yaml
   sha256: 187773b64714672ba91fcbb1a8d2fd980acae96f3fcd32782e3fc0410972625e
 - path: evals/behavior/destructive_commands.yaml
   sha256: e3ae4b627e18ea01250532823464292087ed8d9b5c081cf22510b777aa9e211c
 - path: evals/behavior/durable_audit_v5_4.yaml
-  sha256: 6991f86d43eb89c6c5c1737933dd4e002ad0f6a41195f25ea7d00e84b662ec64
+  sha256: ac670d033fa375937c3cd1fa1894e8c315ec5aca232d58e9651744bf0d741ac4
 - path: evals/behavior/forensics_case_v5_9.yaml
-  sha256: 9d0e61120d1da16dfe9ef967a4d4f053e21726bedcc60dc779387f360c60423e
+  sha256: 8b6b00612b76f4d4ca956b68cf7b1082152fee2bec4e03716397fa873d1cd338
 - path: evals/behavior/identity_secrets_v5_8.yaml
-  sha256: dc0804c4891fdfeff38695060a9d2473d3ab18c2287bdc05bb403a1d51d07798
+  sha256: 918703db93c58795101dfaaf5991778051534b939a552cdd05de3ad5bfe25377
 - path: evals/behavior/kubernetes.yaml
   sha256: f8d6ccd14a81ffd2072d3525399c156a2860d94d8062ca7dda62de4953659622
 - path: evals/behavior/penetration_testing.yaml
@@ -313,7 +333,7 @@ files:
 - path: evals/behavior/runtime_completeness.yaml
   sha256: 283164ba826677bca31a23ee7161a0cfe912cf0ed5df7a46ea666be737a14faf
 - path: evals/behavior/runtime_enforcement_v5.yaml
-  sha256: d8000a38cb3b0ecc5201a260acf2475509ad40a57477c2d235c65c4daea69c8c
+  sha256: 83735d3798ffc5fba5c46807d9c3afbff55245412e883fac527ad01174cb771c
 - path: evals/behavior/runtime_integration.yaml
   sha256: 9e1ad820c876ea066ddcc08c23a198dcfabe4125d9559d9b97ba60068d6a1848
 - path: evals/behavior/rust_architect.yaml
@@ -321,9 +341,9 @@ files:
 - path: evals/behavior/rust_toolchain_mastery.yaml
   sha256: 31d71ab124066f1de32df9ca5f3cce8beafc332f7c9956b4a2a3d2da491a0a80
 - path: evals/behavior/sandbox_tool_execution_v5_5.yaml
-  sha256: 18df4d729c703688c3e4cf76d87423710052cb5868352e58653fc00c87834c36
+  sha256: a7528724dffb519487e0050bda71e86ff07eccc2501b141852ca259b0d75ee2a
 - path: evals/behavior/scope_approval_v5_3.yaml
-  sha256: 5418aee9c647471dd04b046b6f72d4cbb087ed1d23c11286453b4d439f6886fb
+  sha256: fd441b753d990d258f29ada1265dff57e3264b958cf4d9a812177cb2d7467740
 - path: evals/behavior/secrets.yaml
   sha256: df73188dc9bc2cf0a0853829904e459c37d1a55f565957df85901cfefc58e6b5
 - path: evals/behavior/soc_detection_v5_6.yaml
@@ -333,7 +353,7 @@ files:
 - path: evals/behavior/terraform.yaml
   sha256: 3e7bc668e14bdc90a15c00c1b28b09671461ffc6792c7bc043c0b8fb5d60f2a2
 - path: evals/behavior/tool_specific_normalizers_v5_2.yaml
-  sha256: 61c96b358ded531751c3329aaadbf896ef77ea057b3258129536cae4720dfb28
+  sha256: 27e4a47a15a5e6a9e545dfb6890a921f62e3ada6739d90f9b3c80e6289a7af91
 - path: evals/behavior/upstream_catalog_adapters.yaml
   sha256: cf4aedf0d85d5649603f3f6e1f9235904bee52b27d9495a50dd2423a2b4964ad
 - path: evals/cloud_secops/cloud_secops_v5_7.yaml
@@ -344,8 +364,10 @@ files:
   sha256: 4c645ad10167997269b05600fdf68495b01bff36954c0e8f8cbb2167e8a3d707
 - path: evals/immunity_adversarial/command_adversarial_v6_5.yaml
   sha256: b96f18965997b3667c8af387e2232b1824ff30ed5981bdfcbc67e68ead409708
+- path: evals/immunity_adversarial/destructive_command_policy_v6_7.yaml
+  sha256: b4f409f6b62b4d826a8f41cec7846b38c5820d6a48863aa83d94438d9c5cea13
 - path: evals/manifest.yaml
-  sha256: 57f0cfad52e864fdfb2a7e8c3e0d029027e889ea86e7b4183d77a8078c2a798c
+  sha256: 9b9dc6acf005f2ab4d8c543b2ddf23eee8106953acdffc53760660c9227e4eb9
 - path: evals/normalizer/runtime_normalizers_cargo.yaml
   sha256: caa625969ee1726b140d4eb64d74514cefed549b5d3d053cb1d620657bd23b61
 - path: evals/normalizer/runtime_normalizers_docker_git_db_http.yaml
@@ -360,6 +382,8 @@ files:
   sha256: 02f34e8fb82f6c6f4f93e13182ce41c0436b1ce9fa9ea21bbe5bbac4ba356bb2
 - path: evals/secops_detection/soc_detection_v5_6.yaml
   sha256: 5f9448e3799335536fa44d5e54cbbf90b5fa6deaa634c7067963db2259ccf281
+- path: examples/README.md
+  sha256: 53c205ae6c497fae32b864eabd5cb95a21a0284aa2242b71d098637c24ef4fe4
 - path: examples/cloud_secops/cloud_secops_demo.json
   sha256: 110a8bb4c15fbfc6bf9a23fd80d39fec52c421f3fdb3db974111c5e82c3bbd0d
 - path: examples/data_driven_policy/cargo_clippy_workspace_all_targets_all_features_d_warnings.json
@@ -374,6 +398,8 @@ files:
   sha256: 1f3e3a6b3828da3073150df70d0305cc2f77475b0bb99dec93b1e5168281d398
 - path: examples/durable_audit/audit_evidence_demo.json
   sha256: aa01b09deee518a730780e6fe8e48d61a078a8432b14a36514fa468303ae6ca7
+- path: examples/evals/README.md
+  sha256: 20165589143dc9b6b302355ba4bc39d6f70d1c338d82c0e3d442b3e1b48a615e
 - path: examples/forensics_case/forensics_case_demo.json
   sha256: 74c0d03e419aca8e76a28ec8815213e407d377c1ebcc2dec9822b457c44f5755
 - path: examples/identity_secrets/identity_secrets_demo.json
@@ -390,6 +416,10 @@ files:
   sha256: 974f6d188a7eaa0a01c4e2f674ee6600b658208ca46ab3e3de19a53a6bb52222
 - path: examples/normalized_actions/terraform_destroy.json
   sha256: 447d275ca450115dc5499259aa669299c4dea16fd2bd134080ed567dd6b81d96
+- path: examples/policies/README.md
+  sha256: eaf15f7694cfd442da66d704019825143407e30cdc2f9fdd96b3df89376aa8f4
+- path: examples/reports/README.md
+  sha256: 0f25d3671aa2b09eacc3fdb0886635dfd8513f7cbbf5d33ec55e513f63888ad4
 - path: examples/sandbox_tool_execution/tool_router_demo.json
   sha256: 708fe5b5fd0001f8677e2d47f1c50d71725aac2810f58de3439df72403b72ef2
 - path: examples/scope_approvals/cargo_publish_scope_cargo_workspace_actions_publish.json
@@ -400,6 +430,10 @@ files:
   sha256: 56618960847e5dec3b11e4a6b0a61514f2db02774475cb3c0e518427f97755b3
 - path: examples/scope_approvals/terraform_destroy_auto_approve_scope_terraform_workspace_actions_destroy.json
   sha256: 40e4a775c971b53f5b19e3030758574a2d39e3da917f4397d1ae7b9d4dcb30d3
+- path: examples/signing/README.md
+  sha256: 8cce36e3261af28421edded322c71f44b8d9903dc559d0c152a43d09af2c96f9
+- path: examples/skills/README.md
+  sha256: 09d1a388cdbe1388fc8777334cf5ffd40767d3041e3b09f46a62c4b804b068a0
 - path: examples/soc_detection/soc_detection_demo.json
   sha256: 4b2d73b78dacbf77908d564323e92da809c12871977cf914897934d3f2cab5b5
 - path: examples/tool_specific_normalizers/bash_c_terraform_destroy.json
@@ -424,14 +458,22 @@ files:
   sha256: 3edf33f92556dfc368845c87b30ef28d1e90ca4158b533b933b1dcf3b787c09d
 - path: external_tools.yaml
   sha256: 2eece6ec0d0c739a57197f112ffeefe9eab1669c850703d7641b4010415aa1f2
+- path: immunity_mapping/argv_normalization_contract.yaml
+  sha256: bcfbd13e71539f844a8bda413f27fc21fe06559b32b000e6d57670e7addab532
+- path: immunity_mapping/cloud_cli_dangerous_ops.yaml
+  sha256: 0fad2bf873067f06cbbae85eead36bfb4e6299972d504e3dc80e309c56668234
 - path: immunity_mapping/command_pattern_mapping.yaml
-  sha256: f717d4e838d84f7bc2a09d10b286f38374a32b40608e7048bffc84ae7f7c974e
+  sha256: 2f9a7322d0b0feb5bde23c7b5abef2b608937d21bb7209e75481d7c6ab4f58d3
 - path: immunity_mapping/command_pattern_tests.yaml
-  sha256: 5689333521c429833ea3b371f041173b61abee202eaae1e7ad9627c0ccf651a2
+  sha256: 8f92ff07aa18cc991ea3b88c986edcccf1d1ea98dfc2d17e70d6d7024433caad
 - path: immunity_mapping/decision_mapping.yaml
   sha256: deaca35e15a0a7ec25d16dc58c9f862bc3df8bf472134f04268b7c71d9189fe2
+- path: immunity_mapping/destructive_command_tests.yaml
+  sha256: b4f409f6b62b4d826a8f41cec7846b38c5820d6a48863aa83d94438d9c5cea13
 - path: immunity_mapping/immunity_manifest.yaml
   sha256: 22b626dd018dc3c9934973726cb0e214a49880e767a3da91faf4bdebedd0e9cf
+- path: immunity_mapping/package_publish_policy.yaml
+  sha256: b2261362ef1ed4408dc572ad2e19f45dcaee54f63f276380de19b4e4a6b77ffb
 - path: immunity_mapping/risk_mapping.yaml
   sha256: 123cf7bf5c9839e604d7775a599b027a95a57040862ba0f9fb9a4d7ea1009109
 - path: immunity_mapping/sensitive_targets.yaml
@@ -445,11 +487,11 @@ files:
 - path: integration/eval_to_learning_loop.yaml
   sha256: 80c9e673c3bdaa82f2daf904e84568c0bd671f9fdb451151464166704a26b1fa
 - path: integration/loader_manifest.yaml
-  sha256: e29f976cddc377d0476d10166501e8c8ffe667122c186534e12bc5d8c7c7ab08
+  sha256: 36681ed697a925fc0f2cee380ba8fbc220b09ae79c846fb3b7369bbab4269811
 - path: integration/policy_to_immunity_matrix.yaml
   sha256: 71cb845e36c3732f39f447ae579f1ddbad081b419cc7b77901acf362c31345e2
 - path: integration/provenance_manifest.yaml
-  sha256: 6c89b7c7881aefcc1ef7a24a14fcbf551317882cf2c74e644ae39dc052eb3d7e
+  sha256: 2e89c4e4a8692914f32a9ab6305e4298763ffe2d02a279bb267fcdd56db2db2f
 - path: integration/quarantine_policy.yaml
   sha256: 054c459f5564dc1ef220b31439a41ab61f64f6efeab1f5111728c46dbe31406b
 - path: integration/release_signature.placeholder
@@ -467,9 +509,9 @@ files:
 - path: integration/vetting_rules.yaml
   sha256: ed560b90baf3f0997a932317c7f537b6b430ef69a030dfd19dbaf789735fd8ae
 - path: output_templates.yaml
-  sha256: 2629d85b81deed6e4e839e75692b94bf9ac91dbd0a48a4fccd8c300add6f2d1f
+  sha256: a52d9d412e19dfea61643f66ec950162dded6c379671fc755a12f58ebfb62adf
 - path: package.yaml
-  sha256: fb72a6cb1e62f431a256df6b1ccbe50899ec3c626d3fbcc4eb2bde861fff5b4b
+  sha256: a1689b1c305c6d51b16ea87dec22a49242fe3240c930a9839d0e427c0d132979
 - path: policy_rules/ai_security.yaml
   sha256: 505fb52ae4b94c21f89f9a73b74b19ce8fe4f241a7e4b1b0198dea9736df2766
 - path: policy_rules/cargo.yaml
@@ -533,7 +575,7 @@ files:
 - path: profile_decision_matrix.yaml
   sha256: 7bc939633db9f52184885f878f417995c0a1bd3550899d1cf65b7fae4e9edde4
 - path: registry.yaml
-  sha256: 25a3fad6116e6b206bc0a0e9787dced943123778dafe0ab4dadffdcff02a80d5
+  sha256: 69867dad79d054b4b97e86de4770f278608f0f34dcf247c0c24edfa5d0054555
 - path: risk_matrix.yaml
   sha256: 096fe0e97e05c0c07a4c8d481f07ec7b15d04b1d7da506aa3f720edeffc7c32e
 - path: runtime/decision_enums.yaml
@@ -552,16 +594,22 @@ files:
   sha256: e617b99ae7fc8bdcc8deaf17995b97da631ee89dad34f121daeed65054600f3c
 - path: schemas/approval_state.schema.json
   sha256: a4b4c19ea72a54029e3bce6999df045295edbd4b4419387f6400b64e6fa6bddd
+- path: schemas/argv_normalization_contract.schema.json
+  sha256: bfd7b6395d755f01e60a9edcd6e5b7bc5afc48da872bf8e20d787b32ffccc7e6
 - path: schemas/audit_event.schema.json
   sha256: b89cf4a3fffc8f4558f1778d4d8d93d5bb37cb48c39e48e454f92dfeefae0aa8
 - path: schemas/autonomy_profiles.schema.json
   sha256: cb771e5f0c95f29c006d99c66917f3869216ea196175679c9eb28b6ac18168b9
+- path: schemas/cloud_cli_dangerous_ops.schema.json
+  sha256: c842d2db86eca4c34792dc80929c8eff8db33ed77f9a5500f2b220f562f61699
 - path: schemas/command_pattern_mapping.schema.json
   sha256: 1f8bd646540fe3e4edf6126e53349c9fb919cbe3020c4651a2f39b5dad600f1d
 - path: schemas/command_pattern_tests.schema.json
   sha256: d6d1870dd0da19ec4c6084a744206692b8d041975f8c2dde944c07c8539803a2
 - path: schemas/decision_mapping.schema.yaml
   sha256: b4b3eeb9ca39a96f0b9b44f06803e10bdf5a99d1bf693942b22867fcabe01fab
+- path: schemas/destructive_command_tests.schema.json
+  sha256: cc60d6298433b6b5494dd0a71dfb4679a9788a1a8e1c359cb7c7cb452c22a827
 - path: schemas/eval_manifest.schema.json
   sha256: e3163ebf69fd560cbb0c882260baedd599cdb4b7e736282062502c7818f8eb9b
 - path: schemas/eval_result.schema.json
@@ -578,6 +626,8 @@ files:
   sha256: 958ba6a1acf85819cf3a76e2c9206c392e2e55ce15fbabf978059a2b057ac5b0
 - path: schemas/output_templates.schema.json
   sha256: 85dd9f0caa186ff4344e2a7752243a5318360a9921ce0f4864fbe5c10a06523c
+- path: schemas/package_publish_policy.schema.json
+  sha256: f7f48069581f59fd9b57b83d9f2389a12217591978e91b010a4ced0bdbe12485
 - path: schemas/pentest_scope.schema.json
   sha256: a5e57f33dde17a2409c4c7b90c3b7181258746261df35a5c4d42117b57bc4750
 - path: schemas/policy_decision.schema.json
@@ -650,6 +700,10 @@ files:
   sha256: a8c7adce1506f5bb977f56ec90521704bafb73f72fdc80fca976dc63bbed5e3d
 - path: scripts/validate_pack_v6_1.py
   sha256: 70fae86dc7086257db59234b1ed436edee0f9fc2b68ad0df09eca982d4e95f78
+- path: scripts/validate_policy_hardening_v6_7.py
+  sha256: e603fc9502951553eb89288bb3b39f53659672399e215ef426a0a2fa0d4a0779
+- path: scripts/validate_public_repository_cleanup_v6_8.py
+  sha256: 5ac2b056684483a34d4e7131b6a19812e1b2e2884dcf97d2a9a423743a15b424
 - path: scripts/validate_release_signing_v6_6.py
   sha256: 47fb2ed65b093cca85679c6484f1a413ea5eb51c7bd8e9e4fb0dc7d3bf107dad
 - path: scripts/validate_skill_vetting_rules_v6_4.py
@@ -841,7 +895,7 @@ files:
 - path: shared/testing_notes.md
   sha256: 1da8b1412b5bee5a35083a289d71c9667a09251357f7725fc2b5e553cb3b7655
 - path: skill_graph.yaml
-  sha256: 9310be19918a0b33aff6c2cc3efe986c1525efa23ae7d6ea8004681e297ea21a
+  sha256: b43d8751d12bcd588e1d20a9adb98fdcf9f98264eee8c3c4ca88864e32a15442
 - path: templates/clippy.toml
   sha256: fafc21021224f77a94d7418d58fb5d62ea978e16c6399124f6faf05ba476f2ed
 - path: templates/deny.toml

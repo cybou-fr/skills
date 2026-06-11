@@ -1,4 +1,4 @@
-version: '6.6'
+version: '6.8'
 package: cybou-devops-secops-agent-skills
 description: AgentSkills-compatible runtime-oriented DevOps/SecOps skill library for CYBOU or other AI workers.
 default_mode: read_only
@@ -2936,8 +2936,8 @@ skills:
   - hiding clippy or test failures
   - unsafe runtime changes without miri/security review
   autonomy_level: 2
-- id: runtime-normalized-action-engine
-  path: devops/runtime-normalized-action-engine/SKILL.md
+- id: cybou-core-normalized-action-engine
+  path: devops/cybou-core-normalized-action-engine/SKILL.md
   category: devops
   triggers:
   - runtime normalized action engine
@@ -2958,8 +2958,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-policy-decision-engine
-  path: devops/runtime-policy-decision-engine/SKILL.md
+- id: cybou-core-policy-decision-engine
+  path: devops/cybou-core-policy-decision-engine/SKILL.md
   category: devops
   triggers:
   - runtime policy decision engine
@@ -2980,8 +2980,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-approval-state-manager
-  path: devops/runtime-approval-state-manager/SKILL.md
+- id: cybou-core-approval-state-manager
+  path: devops/cybou-core-approval-state-manager/SKILL.md
   category: devops
   triggers:
   - runtime approval state manager
@@ -3002,8 +3002,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-audit-event-pipeline
-  path: devops/runtime-audit-event-pipeline/SKILL.md
+- id: cybou-core-audit-event-pipeline
+  path: devops/cybou-core-audit-event-pipeline/SKILL.md
   category: devops
   triggers:
   - runtime audit event pipeline
@@ -3024,8 +3024,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-redaction-boundary
-  path: devops/runtime-redaction-boundary/SKILL.md
+- id: cybou-core-redaction-boundary
+  path: devops/cybou-core-redaction-boundary/SKILL.md
   category: devops
   triggers:
   - runtime redaction boundary
@@ -3046,8 +3046,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-tool-router
-  path: devops/runtime-tool-router/SKILL.md
+- id: cybou-core-tool-router
+  path: devops/cybou-core-tool-router/SKILL.md
   category: devops
   triggers:
   - runtime tool router
@@ -3068,8 +3068,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-behavior-test-engine
-  path: devops/runtime-behavior-test-engine/SKILL.md
+- id: cybou-core-behavior-test-engine
+  path: devops/cybou-core-behavior-test-engine/SKILL.md
   category: devops
   triggers:
   - runtime behavior test engine
@@ -3090,8 +3090,8 @@ skills:
   - bypassing tool router
   - executing without policy decision
   autonomy_level: 2
-- id: runtime-policy-loader
-  path: devops/runtime-policy-loader/SKILL.md
+- id: cybou-core-policy-loader
+  path: devops/cybou-core-policy-loader/SKILL.md
   category: devops
   triggers:
   - runtime policy loader
@@ -3108,15 +3108,15 @@ skills:
   - runtime_policy_design
   output_template: data_driven_policy_report
   related_skills:
-  - runtime-policy-decision-engine
-  - runtime-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-normalized-action-engine
   - cybou-policy-engine-implementation
   do_not_use_for:
   - bypassing policy files
   - executing tools during policy loading
   autonomy_level: 2
-- id: runtime-rule-matcher
-  path: devops/runtime-rule-matcher/SKILL.md
+- id: cybou-core-rule-matcher
+  path: devops/cybou-core-rule-matcher/SKILL.md
   category: devops
   triggers:
   - runtime rule matcher
@@ -3133,15 +3133,15 @@ skills:
   - runtime_policy_design
   output_template: data_driven_policy_report
   related_skills:
-  - runtime-policy-decision-engine
-  - runtime-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-normalized-action-engine
   - cybou-policy-engine-implementation
   do_not_use_for:
   - bypassing policy files
   - executing tools during policy loading
   autonomy_level: 2
-- id: runtime-risk-engine
-  path: devops/runtime-risk-engine/SKILL.md
+- id: cybou-core-risk-engine
+  path: devops/cybou-core-risk-engine/SKILL.md
   category: devops
   triggers:
   - runtime risk engine
@@ -3158,15 +3158,15 @@ skills:
   - runtime_policy_design
   output_template: data_driven_policy_report
   related_skills:
-  - runtime-policy-decision-engine
-  - runtime-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-normalized-action-engine
   - cybou-policy-engine-implementation
   do_not_use_for:
   - bypassing policy files
   - executing tools during policy loading
   autonomy_level: 2
-- id: runtime-profile-scope-engine
-  path: devops/runtime-profile-scope-engine/SKILL.md
+- id: cybou-core-profile-scope-engine
+  path: devops/cybou-core-profile-scope-engine/SKILL.md
   category: devops
   triggers:
   - runtime profile scope engine
@@ -3183,15 +3183,15 @@ skills:
   - runtime_policy_design
   output_template: data_driven_policy_report
   related_skills:
-  - runtime-policy-decision-engine
-  - runtime-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-normalized-action-engine
   - cybou-policy-engine-implementation
   do_not_use_for:
   - bypassing policy files
   - executing tools during policy loading
   autonomy_level: 2
-- id: runtime-policy-regression-suite
-  path: devops/runtime-policy-regression-suite/SKILL.md
+- id: cybou-core-policy-regression-suite
+  path: devops/cybou-core-policy-regression-suite/SKILL.md
   category: devops
   triggers:
   - runtime policy regression suite
@@ -3208,15 +3208,15 @@ skills:
   - runtime_policy_design
   output_template: data_driven_policy_report
   related_skills:
-  - runtime-policy-decision-engine
-  - runtime-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-normalized-action-engine
   - cybou-policy-engine-implementation
   do_not_use_for:
   - bypassing policy files
   - executing tools during policy loading
   autonomy_level: 2
-- id: runtime-shell-normalizer
-  path: devops/runtime-shell-normalizer/SKILL.md
+- id: cybou-core-shell-normalizer
+  path: devops/cybou-core-shell-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime shell normalizer
@@ -3231,15 +3231,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-cargo-normalizer
-  path: devops/runtime-cargo-normalizer/SKILL.md
+- id: cybou-core-cargo-normalizer
+  path: devops/cybou-core-cargo-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime cargo normalizer
@@ -3254,15 +3254,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-kubectl-normalizer
-  path: devops/runtime-kubectl-normalizer/SKILL.md
+- id: cybou-core-kubectl-normalizer
+  path: devops/cybou-core-kubectl-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime kubectl normalizer
@@ -3277,15 +3277,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-terraform-normalizer
-  path: devops/runtime-terraform-normalizer/SKILL.md
+- id: cybou-core-terraform-normalizer
+  path: devops/cybou-core-terraform-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime terraform normalizer
@@ -3300,15 +3300,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-docker-normalizer
-  path: devops/runtime-docker-normalizer/SKILL.md
+- id: cybou-core-docker-normalizer
+  path: devops/cybou-core-docker-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime docker normalizer
@@ -3323,15 +3323,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-git-normalizer
-  path: devops/runtime-git-normalizer/SKILL.md
+- id: cybou-core-git-normalizer
+  path: devops/cybou-core-git-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime git normalizer
@@ -3346,15 +3346,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-database-normalizer
-  path: devops/runtime-database-normalizer/SKILL.md
+- id: cybou-core-database-normalizer
+  path: devops/cybou-core-database-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime database normalizer
@@ -3369,15 +3369,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-http-fetch-normalizer
-  path: devops/runtime-http-fetch-normalizer/SKILL.md
+- id: cybou-core-http-fetch-normalizer
+  path: devops/cybou-core-http-fetch-normalizer/SKILL.md
   category: devops
   triggers:
   - runtime http fetch normalizer
@@ -3392,15 +3392,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-normalizer-regression-suite
-  path: devops/runtime-normalizer-regression-suite/SKILL.md
+- id: cybou-core-normalizer-regression-suite
+  path: devops/cybou-core-normalizer-regression-suite/SKILL.md
   category: devops
   triggers:
   - runtime normalizer regression suite
@@ -3415,15 +3415,15 @@ skills:
   - runtime_normalizer_design
   output_template: tool_specific_normalizer_report
   related_skills:
-  - runtime-normalized-action-engine
-  - runtime-policy-decision-engine
-  - runtime-policy-regression-suite
+  - cybou-core-normalized-action-engine
+  - cybou-core-policy-decision-engine
+  - cybou-core-policy-regression-suite
   do_not_use_for:
   - executing commands
   - bypassing policy evaluation
   autonomy_level: 2
-- id: runtime-scope-matcher
-  path: devops/runtime-scope-matcher/SKILL.md
+- id: cybou-core-scope-matcher
+  path: devops/cybou-core-scope-matcher/SKILL.md
   category: devops
   triggers:
   - runtime scope matcher
@@ -3439,17 +3439,17 @@ skills:
   - approval_runtime_design
   output_template: scope_approval_report
   related_skills:
-  - runtime-approval-state-manager
-  - runtime-policy-decision-engine
-  - runtime-tool-router
+  - cybou-core-approval-state-manager
+  - cybou-core-policy-decision-engine
+  - cybou-core-tool-router
   do_not_use_for:
   - global approvals
   - unbounded production approvals
   - approval without audit
   - overriding hard deny decisions
   autonomy_level: 2
-- id: runtime-approval-store
-  path: devops/runtime-approval-store/SKILL.md
+- id: cybou-core-approval-store
+  path: devops/cybou-core-approval-store/SKILL.md
   category: devops
   triggers:
   - runtime approval store
@@ -3465,17 +3465,17 @@ skills:
   - approval_runtime_design
   output_template: scope_approval_report
   related_skills:
-  - runtime-approval-state-manager
-  - runtime-policy-decision-engine
-  - runtime-tool-router
+  - cybou-core-approval-state-manager
+  - cybou-core-policy-decision-engine
+  - cybou-core-tool-router
   do_not_use_for:
   - global approvals
   - unbounded production approvals
   - approval without audit
   - overriding hard deny decisions
   autonomy_level: 2
-- id: runtime-approval-cli
-  path: devops/runtime-approval-cli/SKILL.md
+- id: cybou-core-approval-cli
+  path: devops/cybou-core-approval-cli/SKILL.md
   category: devops
   triggers:
   - runtime approval cli
@@ -3491,17 +3491,17 @@ skills:
   - approval_runtime_design
   output_template: scope_approval_report
   related_skills:
-  - runtime-approval-state-manager
-  - runtime-policy-decision-engine
-  - runtime-tool-router
+  - cybou-core-approval-state-manager
+  - cybou-core-policy-decision-engine
+  - cybou-core-tool-router
   do_not_use_for:
   - global approvals
   - unbounded production approvals
   - approval without audit
   - overriding hard deny decisions
   autonomy_level: 2
-- id: runtime-approval-policy-integration
-  path: devops/runtime-approval-policy-integration/SKILL.md
+- id: cybou-core-approval-policy-integration
+  path: devops/cybou-core-approval-policy-integration/SKILL.md
   category: devops
   triggers:
   - runtime approval policy integration
@@ -3517,17 +3517,17 @@ skills:
   - approval_runtime_design
   output_template: scope_approval_report
   related_skills:
-  - runtime-approval-state-manager
-  - runtime-policy-decision-engine
-  - runtime-tool-router
+  - cybou-core-approval-state-manager
+  - cybou-core-policy-decision-engine
+  - cybou-core-tool-router
   do_not_use_for:
   - global approvals
   - unbounded production approvals
   - approval without audit
   - overriding hard deny decisions
   autonomy_level: 2
-- id: runtime-approval-regression-suite
-  path: devops/runtime-approval-regression-suite/SKILL.md
+- id: cybou-core-approval-regression-suite
+  path: devops/cybou-core-approval-regression-suite/SKILL.md
   category: devops
   triggers:
   - runtime approval regression suite
@@ -3543,17 +3543,17 @@ skills:
   - approval_runtime_design
   output_template: scope_approval_report
   related_skills:
-  - runtime-approval-state-manager
-  - runtime-policy-decision-engine
-  - runtime-tool-router
+  - cybou-core-approval-state-manager
+  - cybou-core-policy-decision-engine
+  - cybou-core-tool-router
   do_not_use_for:
   - global approvals
   - unbounded production approvals
   - approval without audit
   - overriding hard deny decisions
   autonomy_level: 2
-- id: runtime-durable-audit-store
-  path: devops/runtime-durable-audit-store/SKILL.md
+- id: cybou-core-durable-audit-store
+  path: devops/cybou-core-durable-audit-store/SKILL.md
   category: devops
   triggers:
   - runtime durable audit store
@@ -3569,16 +3569,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-evidence-store
-  path: devops/runtime-evidence-store/SKILL.md
+- id: cybou-core-evidence-store
+  path: devops/cybou-core-evidence-store/SKILL.md
   category: devops
   triggers:
   - runtime evidence store
@@ -3594,16 +3594,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-audit-cli
-  path: devops/runtime-audit-cli/SKILL.md
+- id: cybou-core-audit-cli
+  path: devops/cybou-core-audit-cli/SKILL.md
   category: devops
   triggers:
   - runtime audit cli
@@ -3619,16 +3619,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-tamper-evidence
-  path: devops/runtime-tamper-evidence/SKILL.md
+- id: cybou-core-tamper-evidence
+  path: devops/cybou-core-tamper-evidence/SKILL.md
   category: devops
   triggers:
   - runtime tamper evidence
@@ -3644,16 +3644,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-evidence-redaction-integration
-  path: devops/runtime-evidence-redaction-integration/SKILL.md
+- id: cybou-core-evidence-redaction-integration
+  path: devops/cybou-core-evidence-redaction-integration/SKILL.md
   category: devops
   triggers:
   - runtime evidence redaction integration
@@ -3669,16 +3669,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-audit-regression-suite
-  path: devops/runtime-audit-regression-suite/SKILL.md
+- id: cybou-core-audit-regression-suite
+  path: devops/cybou-core-audit-regression-suite/SKILL.md
   category: devops
   triggers:
   - runtime audit regression suite
@@ -3694,16 +3694,16 @@ skills:
   - audit_runtime_design
   output_template: durable_audit_report
   related_skills:
-  - runtime-audit-event-pipeline
-  - runtime-redaction-boundary
+  - cybou-core-audit-event-pipeline
+  - cybou-core-redaction-boundary
   - evidence-handling
   do_not_use_for:
   - storing secret values
   - deleting audit history
   - hiding policy decisions
   autonomy_level: 2
-- id: runtime-sandbox-profile-engine
-  path: devops/runtime-sandbox-profile-engine/SKILL.md
+- id: cybou-core-sandbox-profile-engine
+  path: devops/cybou-core-sandbox-profile-engine/SKILL.md
   category: devops
   triggers:
   - runtime sandbox profile engine
@@ -3719,18 +3719,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-tool-execution-boundary
-  path: devops/runtime-tool-execution-boundary/SKILL.md
+- id: cybou-core-tool-execution-boundary
+  path: devops/cybou-core-tool-execution-boundary/SKILL.md
   category: devops
   triggers:
   - runtime tool execution boundary
@@ -3746,18 +3746,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-filesystem-boundary
-  path: devops/runtime-filesystem-boundary/SKILL.md
+- id: cybou-core-filesystem-boundary
+  path: devops/cybou-core-filesystem-boundary/SKILL.md
   category: devops
   triggers:
   - runtime filesystem boundary
@@ -3773,18 +3773,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-network-boundary
-  path: devops/runtime-network-boundary/SKILL.md
+- id: cybou-core-network-boundary
+  path: devops/cybou-core-network-boundary/SKILL.md
   category: devops
   triggers:
   - runtime network boundary
@@ -3800,18 +3800,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-output-limit-boundary
-  path: devops/runtime-output-limit-boundary/SKILL.md
+- id: cybou-core-output-limit-boundary
+  path: devops/cybou-core-output-limit-boundary/SKILL.md
   category: devops
   triggers:
   - runtime output limit boundary
@@ -3827,18 +3827,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-tool-router-execution-prototype
-  path: devops/runtime-tool-router-execution-prototype/SKILL.md
+- id: cybou-core-tool-router-execution-prototype
+  path: devops/cybou-core-tool-router-execution-prototype/SKILL.md
   category: devops
   triggers:
   - runtime tool router execution prototype
@@ -3854,18 +3854,18 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
   - unrestricted filesystem access
   - unrestricted network
   autonomy_level: 2
-- id: runtime-sandbox-regression-suite
-  path: devops/runtime-sandbox-regression-suite/SKILL.md
+- id: cybou-core-sandbox-regression-suite
+  path: devops/cybou-core-sandbox-regression-suite/SKILL.md
   category: devops
   triggers:
   - runtime sandbox regression suite
@@ -3881,10 +3881,10 @@ skills:
   - sandbox_runtime_design
   output_template: sandbox_execution_report
   related_skills:
-  - runtime-tool-router
-  - runtime-policy-decision-engine
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-tool-router
+  - cybou-core-policy-decision-engine
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - direct tool execution
   - unbounded output
@@ -3919,7 +3919,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -3955,7 +3955,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -3991,7 +3991,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4027,7 +4027,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4063,7 +4063,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4099,7 +4099,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4135,7 +4135,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4171,7 +4171,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4208,7 +4208,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4245,7 +4245,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4281,7 +4281,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4317,7 +4317,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4353,7 +4353,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4389,7 +4389,7 @@ skills:
   - security-log-review
   - siem-alert-enrichment
   - secops-incident-response
-  - runtime-evidence-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deploying detections without approval
   - closing alerts without approval
@@ -4426,7 +4426,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4463,7 +4463,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4499,7 +4499,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4536,7 +4536,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4573,7 +4573,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4610,7 +4610,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4647,7 +4647,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4685,7 +4685,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4723,7 +4723,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4761,7 +4761,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4799,7 +4799,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4837,7 +4837,7 @@ skills:
   - soc-alert-triage
   - incident-timeline-builder
   - ioc-extraction-and-enrichment
-  - runtime-durable-audit-store
+  - cybou-core-durable-audit-store
   do_not_use_for:
   - modifying IAM without approval
   - disabling logging
@@ -4875,7 +4875,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -4915,7 +4915,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -4954,7 +4954,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -4992,7 +4992,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5030,7 +5030,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5070,7 +5070,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5110,7 +5110,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5149,7 +5149,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5188,7 +5188,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5227,7 +5227,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5265,7 +5265,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5303,7 +5303,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5342,7 +5342,7 @@ skills:
   - secret-rotation-playbook
   - iam-review
   - cloud-iam-least-privilege-diff
-  - runtime-redaction-boundary
+  - cybou-core-redaction-boundary
   do_not_use_for:
   - printing secrets
   - rotating secrets without approval
@@ -5377,8 +5377,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5412,8 +5412,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5447,8 +5447,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5482,8 +5482,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5517,8 +5517,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5552,8 +5552,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5587,8 +5587,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5622,8 +5622,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5657,8 +5657,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5692,8 +5692,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5727,8 +5727,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history
@@ -5762,8 +5762,8 @@ skills:
   related_skills:
   - incident-timeline-builder
   - post-incident-evidence-pack
-  - runtime-durable-audit-store
-  - runtime-evidence-store
+  - cybou-core-durable-audit-store
+  - cybou-core-evidence-store
   do_not_use_for:
   - deleting evidence
   - altering audit history

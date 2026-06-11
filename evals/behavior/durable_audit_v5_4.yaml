@@ -6,8 +6,8 @@ scenarios:
     risk: low
     decision: allow_read_only
     required_skills:
-    - runtime-audit-cli
-    - runtime-durable-audit-store
+    - cybou-core-audit-cli
+    - cybou-core-durable-audit-store
     tool: cargo
 - id: v54-evidence-redaction
   input: capture evidence from tool output containing token and redact it
@@ -15,7 +15,7 @@ scenarios:
     risk: medium
     decision: allow_read_only_and_redact
     required_skills:
-    - runtime-evidence-redaction-integration
-    - runtime-evidence-store
+    - cybou-core-evidence-redaction-integration
+    - cybou-core-evidence-store
     tool: log_reader
     redaction_required: true

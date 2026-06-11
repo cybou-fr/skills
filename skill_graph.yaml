@@ -1,4 +1,4 @@
-version: '6.6'
+version: '6.8'
 description: Skill relationship graph for CYBOU runtime routing and co-loading.
 global_always_consider:
 - task-classification
@@ -1231,8 +1231,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id103
     output_template: rust_dependency_hygiene_report
-  runtime-normalized-action-engine:
-    path: devops/runtime-normalized-action-engine/SKILL.md
+  cybou-core-normalized-action-engine:
+    path: devops/cybou-core-normalized-action-engine/SKILL.md
     category: devops
     related: &id104
     - cybou-policy-engine-implementation
@@ -1242,8 +1242,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id104
     output_template: runtime_enforcement_report
-  runtime-policy-decision-engine:
-    path: devops/runtime-policy-decision-engine/SKILL.md
+  cybou-core-policy-decision-engine:
+    path: devops/cybou-core-policy-decision-engine/SKILL.md
     category: devops
     related: &id105
     - cybou-policy-engine-implementation
@@ -1253,8 +1253,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id105
     output_template: runtime_enforcement_report
-  runtime-approval-state-manager:
-    path: devops/runtime-approval-state-manager/SKILL.md
+  cybou-core-approval-state-manager:
+    path: devops/cybou-core-approval-state-manager/SKILL.md
     category: devops
     related: &id106
     - cybou-policy-engine-implementation
@@ -1264,8 +1264,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id106
     output_template: runtime_enforcement_report
-  runtime-audit-event-pipeline:
-    path: devops/runtime-audit-event-pipeline/SKILL.md
+  cybou-core-audit-event-pipeline:
+    path: devops/cybou-core-audit-event-pipeline/SKILL.md
     category: devops
     related: &id107
     - cybou-policy-engine-implementation
@@ -1275,8 +1275,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id107
     output_template: runtime_enforcement_report
-  runtime-redaction-boundary:
-    path: devops/runtime-redaction-boundary/SKILL.md
+  cybou-core-redaction-boundary:
+    path: devops/cybou-core-redaction-boundary/SKILL.md
     category: devops
     related: &id108
     - cybou-policy-engine-implementation
@@ -1286,8 +1286,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id108
     output_template: runtime_enforcement_report
-  runtime-tool-router:
-    path: devops/runtime-tool-router/SKILL.md
+  cybou-core-tool-router:
+    path: devops/cybou-core-tool-router/SKILL.md
     category: devops
     related: &id109
     - cybou-policy-engine-implementation
@@ -1297,8 +1297,8 @@ skills:
     - risk-and-approval
     may_escalate_to: *id109
     output_template: runtime_enforcement_report
-  runtime-behavior-test-engine:
-    path: devops/runtime-behavior-test-engine/SKILL.md
+  cybou-core-behavior-test-engine:
+    path: devops/cybou-core-behavior-test-engine/SKILL.md
     category: devops
     related: &id110
     - cybou-policy-engine-implementation
@@ -1308,448 +1308,448 @@ skills:
     - risk-and-approval
     may_escalate_to: *id110
     output_template: runtime_enforcement_report
-  runtime-policy-loader:
-    path: devops/runtime-policy-loader/SKILL.md
+  cybou-core-policy-loader:
+    path: devops/cybou-core-policy-loader/SKILL.md
     category: devops
     related:
-    - runtime-policy-decision-engine
-    - runtime-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     output_template: data_driven_policy_report
-  runtime-rule-matcher:
-    path: devops/runtime-rule-matcher/SKILL.md
+  cybou-core-rule-matcher:
+    path: devops/cybou-core-rule-matcher/SKILL.md
     category: devops
     related:
-    - runtime-policy-decision-engine
-    - runtime-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     output_template: data_driven_policy_report
-  runtime-risk-engine:
-    path: devops/runtime-risk-engine/SKILL.md
+  cybou-core-risk-engine:
+    path: devops/cybou-core-risk-engine/SKILL.md
     category: devops
     related:
-    - runtime-policy-decision-engine
-    - runtime-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     output_template: data_driven_policy_report
-  runtime-profile-scope-engine:
-    path: devops/runtime-profile-scope-engine/SKILL.md
+  cybou-core-profile-scope-engine:
+    path: devops/cybou-core-profile-scope-engine/SKILL.md
     category: devops
     related:
-    - runtime-policy-decision-engine
-    - runtime-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     output_template: data_driven_policy_report
-  runtime-policy-regression-suite:
-    path: devops/runtime-policy-regression-suite/SKILL.md
+  cybou-core-policy-regression-suite:
+    path: devops/cybou-core-policy-regression-suite/SKILL.md
     category: devops
     related:
-    - runtime-policy-decision-engine
-    - runtime-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
+    - cybou-core-normalized-action-engine
     - cybou-policy-engine-implementation
-    - runtime-policy-decision-engine
+    - cybou-core-policy-decision-engine
     output_template: data_driven_policy_report
-  runtime-shell-normalizer:
-    path: devops/runtime-shell-normalizer/SKILL.md
+  cybou-core-shell-normalizer:
+    path: devops/cybou-core-shell-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-cargo-normalizer:
-    path: devops/runtime-cargo-normalizer/SKILL.md
+  cybou-core-cargo-normalizer:
+    path: devops/cybou-core-cargo-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-kubectl-normalizer:
-    path: devops/runtime-kubectl-normalizer/SKILL.md
+  cybou-core-kubectl-normalizer:
+    path: devops/cybou-core-kubectl-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-terraform-normalizer:
-    path: devops/runtime-terraform-normalizer/SKILL.md
+  cybou-core-terraform-normalizer:
+    path: devops/cybou-core-terraform-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-docker-normalizer:
-    path: devops/runtime-docker-normalizer/SKILL.md
+  cybou-core-docker-normalizer:
+    path: devops/cybou-core-docker-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-git-normalizer:
-    path: devops/runtime-git-normalizer/SKILL.md
+  cybou-core-git-normalizer:
+    path: devops/cybou-core-git-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-database-normalizer:
-    path: devops/runtime-database-normalizer/SKILL.md
+  cybou-core-database-normalizer:
+    path: devops/cybou-core-database-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-http-fetch-normalizer:
-    path: devops/runtime-http-fetch-normalizer/SKILL.md
+  cybou-core-http-fetch-normalizer:
+    path: devops/cybou-core-http-fetch-normalizer/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-normalizer-regression-suite:
-    path: devops/runtime-normalizer-regression-suite/SKILL.md
+  cybou-core-normalizer-regression-suite:
+    path: devops/cybou-core-normalizer-regression-suite/SKILL.md
     category: devops
     related:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     always_load_before:
     - task-classification
     - risk-and-approval
     - environment-detection
     may_escalate_to:
-    - runtime-normalized-action-engine
-    - runtime-policy-decision-engine
-    - runtime-policy-regression-suite
+    - cybou-core-normalized-action-engine
+    - cybou-core-policy-decision-engine
+    - cybou-core-policy-regression-suite
     output_template: tool_specific_normalizer_report
-  runtime-scope-matcher:
-    path: devops/runtime-scope-matcher/SKILL.md
+  cybou-core-scope-matcher:
+    path: devops/cybou-core-scope-matcher/SKILL.md
     category: devops
     related: &id111
-    - runtime-approval-state-manager
-    - runtime-policy-decision-engine
-    - runtime-tool-router
+    - cybou-core-approval-state-manager
+    - cybou-core-policy-decision-engine
+    - cybou-core-tool-router
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id111
     output_template: scope_approval_report
-  runtime-approval-store:
-    path: devops/runtime-approval-store/SKILL.md
+  cybou-core-approval-store:
+    path: devops/cybou-core-approval-store/SKILL.md
     category: devops
     related: &id112
-    - runtime-approval-state-manager
-    - runtime-policy-decision-engine
-    - runtime-tool-router
+    - cybou-core-approval-state-manager
+    - cybou-core-policy-decision-engine
+    - cybou-core-tool-router
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id112
     output_template: scope_approval_report
-  runtime-approval-cli:
-    path: devops/runtime-approval-cli/SKILL.md
+  cybou-core-approval-cli:
+    path: devops/cybou-core-approval-cli/SKILL.md
     category: devops
     related: &id113
-    - runtime-approval-state-manager
-    - runtime-policy-decision-engine
-    - runtime-tool-router
+    - cybou-core-approval-state-manager
+    - cybou-core-policy-decision-engine
+    - cybou-core-tool-router
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id113
     output_template: scope_approval_report
-  runtime-approval-policy-integration:
-    path: devops/runtime-approval-policy-integration/SKILL.md
+  cybou-core-approval-policy-integration:
+    path: devops/cybou-core-approval-policy-integration/SKILL.md
     category: devops
     related: &id114
-    - runtime-approval-state-manager
-    - runtime-policy-decision-engine
-    - runtime-tool-router
+    - cybou-core-approval-state-manager
+    - cybou-core-policy-decision-engine
+    - cybou-core-tool-router
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id114
     output_template: scope_approval_report
-  runtime-approval-regression-suite:
-    path: devops/runtime-approval-regression-suite/SKILL.md
+  cybou-core-approval-regression-suite:
+    path: devops/cybou-core-approval-regression-suite/SKILL.md
     category: devops
     related: &id115
-    - runtime-approval-state-manager
-    - runtime-policy-decision-engine
-    - runtime-tool-router
+    - cybou-core-approval-state-manager
+    - cybou-core-policy-decision-engine
+    - cybou-core-tool-router
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id115
     output_template: scope_approval_report
-  runtime-durable-audit-store:
-    path: devops/runtime-durable-audit-store/SKILL.md
+  cybou-core-durable-audit-store:
+    path: devops/cybou-core-durable-audit-store/SKILL.md
     category: devops
     related: &id116
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id116
     output_template: durable_audit_report
-  runtime-evidence-store:
-    path: devops/runtime-evidence-store/SKILL.md
+  cybou-core-evidence-store:
+    path: devops/cybou-core-evidence-store/SKILL.md
     category: devops
     related: &id117
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id117
     output_template: durable_audit_report
-  runtime-audit-cli:
-    path: devops/runtime-audit-cli/SKILL.md
+  cybou-core-audit-cli:
+    path: devops/cybou-core-audit-cli/SKILL.md
     category: devops
     related: &id118
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id118
     output_template: durable_audit_report
-  runtime-tamper-evidence:
-    path: devops/runtime-tamper-evidence/SKILL.md
+  cybou-core-tamper-evidence:
+    path: devops/cybou-core-tamper-evidence/SKILL.md
     category: devops
     related: &id119
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id119
     output_template: durable_audit_report
-  runtime-evidence-redaction-integration:
-    path: devops/runtime-evidence-redaction-integration/SKILL.md
+  cybou-core-evidence-redaction-integration:
+    path: devops/cybou-core-evidence-redaction-integration/SKILL.md
     category: devops
     related: &id120
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id120
     output_template: durable_audit_report
-  runtime-audit-regression-suite:
-    path: devops/runtime-audit-regression-suite/SKILL.md
+  cybou-core-audit-regression-suite:
+    path: devops/cybou-core-audit-regression-suite/SKILL.md
     category: devops
     related: &id121
-    - runtime-audit-event-pipeline
-    - runtime-redaction-boundary
+    - cybou-core-audit-event-pipeline
+    - cybou-core-redaction-boundary
     - evidence-handling
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id121
     output_template: durable_audit_report
-  runtime-sandbox-profile-engine:
-    path: devops/runtime-sandbox-profile-engine/SKILL.md
+  cybou-core-sandbox-profile-engine:
+    path: devops/cybou-core-sandbox-profile-engine/SKILL.md
     category: devops
     related: &id122
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id122
     output_template: sandbox_execution_report
-  runtime-tool-execution-boundary:
-    path: devops/runtime-tool-execution-boundary/SKILL.md
+  cybou-core-tool-execution-boundary:
+    path: devops/cybou-core-tool-execution-boundary/SKILL.md
     category: devops
     related: &id123
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id123
     output_template: sandbox_execution_report
-  runtime-filesystem-boundary:
-    path: devops/runtime-filesystem-boundary/SKILL.md
+  cybou-core-filesystem-boundary:
+    path: devops/cybou-core-filesystem-boundary/SKILL.md
     category: devops
     related: &id124
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id124
     output_template: sandbox_execution_report
-  runtime-network-boundary:
-    path: devops/runtime-network-boundary/SKILL.md
+  cybou-core-network-boundary:
+    path: devops/cybou-core-network-boundary/SKILL.md
     category: devops
     related: &id125
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id125
     output_template: sandbox_execution_report
-  runtime-output-limit-boundary:
-    path: devops/runtime-output-limit-boundary/SKILL.md
+  cybou-core-output-limit-boundary:
+    path: devops/cybou-core-output-limit-boundary/SKILL.md
     category: devops
     related: &id126
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id126
     output_template: sandbox_execution_report
-  runtime-tool-router-execution-prototype:
-    path: devops/runtime-tool-router-execution-prototype/SKILL.md
+  cybou-core-tool-router-execution-prototype:
+    path: devops/cybou-core-tool-router-execution-prototype/SKILL.md
     category: devops
     related: &id127
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
     may_escalate_to: *id127
     output_template: sandbox_execution_report
-  runtime-sandbox-regression-suite:
-    path: devops/runtime-sandbox-regression-suite/SKILL.md
+  cybou-core-sandbox-regression-suite:
+    path: devops/cybou-core-sandbox-regression-suite/SKILL.md
     category: devops
     related: &id128
-    - runtime-tool-router
-    - runtime-policy-decision-engine
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-tool-router
+    - cybou-core-policy-decision-engine
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1762,7 +1762,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1775,7 +1775,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1788,7 +1788,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1801,7 +1801,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1814,7 +1814,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1827,7 +1827,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1840,7 +1840,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1853,7 +1853,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1866,7 +1866,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1879,7 +1879,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1892,7 +1892,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1905,7 +1905,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1918,7 +1918,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1931,7 +1931,7 @@ skills:
     - security-log-review
     - siem-alert-enrichment
     - secops-incident-response
-    - runtime-evidence-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1944,7 +1944,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1957,7 +1957,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1970,7 +1970,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1983,7 +1983,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -1996,7 +1996,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2009,7 +2009,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2022,7 +2022,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2035,7 +2035,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2048,7 +2048,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2061,7 +2061,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2074,7 +2074,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2087,7 +2087,7 @@ skills:
     - soc-alert-triage
     - incident-timeline-builder
     - ioc-extraction-and-enrichment
-    - runtime-durable-audit-store
+    - cybou-core-durable-audit-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2101,7 +2101,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2115,7 +2115,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2129,7 +2129,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2143,7 +2143,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2157,7 +2157,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2171,7 +2171,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2185,7 +2185,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2199,7 +2199,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2213,7 +2213,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2227,7 +2227,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2241,7 +2241,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2255,7 +2255,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2269,7 +2269,7 @@ skills:
     - secret-rotation-playbook
     - iam-review
     - cloud-iam-least-privilege-diff
-    - runtime-redaction-boundary
+    - cybou-core-redaction-boundary
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2281,8 +2281,8 @@ skills:
     related: &id168
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2294,8 +2294,8 @@ skills:
     related: &id169
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2307,8 +2307,8 @@ skills:
     related: &id170
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2320,8 +2320,8 @@ skills:
     related: &id171
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2333,8 +2333,8 @@ skills:
     related: &id172
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2346,8 +2346,8 @@ skills:
     related: &id173
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2359,8 +2359,8 @@ skills:
     related: &id174
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2372,8 +2372,8 @@ skills:
     related: &id175
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2385,8 +2385,8 @@ skills:
     related: &id176
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2398,8 +2398,8 @@ skills:
     related: &id177
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2411,8 +2411,8 @@ skills:
     related: &id178
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval
@@ -2424,8 +2424,8 @@ skills:
     related: &id179
     - incident-timeline-builder
     - post-incident-evidence-pack
-    - runtime-durable-audit-store
-    - runtime-evidence-store
+    - cybou-core-durable-audit-store
+    - cybou-core-evidence-store
     always_load_before:
     - task-classification
     - risk-and-approval

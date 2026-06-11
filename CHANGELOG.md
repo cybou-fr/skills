@@ -151,13 +151,13 @@ This is a SOC/detection prototype. Production requires real SIEM/EDR/cloud conne
   - `sandbox_tests/`
   - `scripts/run_sandbox_tests.py`
 - New skills:
-  - `runtime-sandbox-profile-engine`
-  - `runtime-tool-execution-boundary`
-  - `runtime-filesystem-boundary`
-  - `runtime-network-boundary`
-  - `runtime-output-limit-boundary`
-  - `runtime-tool-router-execution-prototype`
-  - `runtime-sandbox-regression-suite`
+  - `cybou-core-sandbox-profile-engine`
+  - `cybou-core-tool-execution-boundary`
+  - `cybou-core-filesystem-boundary`
+  - `cybou-core-network-boundary`
+  - `cybou-core-output-limit-boundary`
+  - `cybou-core-tool-router-execution-prototype`
+  - `cybou-core-sandbox-regression-suite`
 
 ### Improved
 
@@ -188,12 +188,12 @@ This is still a Python prototype. Production requires OS/container sandboxing, s
 - Audit fixtures:
   - `audit_tests/`
 - New skills:
-  - `runtime-durable-audit-store`
-  - `runtime-evidence-store`
-  - `runtime-audit-cli`
-  - `runtime-tamper-evidence`
-  - `runtime-evidence-redaction-integration`
-  - `runtime-audit-regression-suite`
+  - `cybou-core-durable-audit-store`
+  - `cybou-core-evidence-store`
+  - `cybou-core-audit-cli`
+  - `cybou-core-tamper-evidence`
+  - `cybou-core-evidence-redaction-integration`
+  - `cybou-core-audit-regression-suite`
 
 ### Improved
 
@@ -223,11 +223,11 @@ This is a prototype. Production needs authenticated durable storage, WORM/append
 - Approval fixtures:
   - `approval_tests/`
 - New skills:
-  - `runtime-scope-matcher`
-  - `runtime-approval-store`
-  - `runtime-approval-cli`
-  - `runtime-approval-policy-integration`
-  - `runtime-approval-regression-suite`
+  - `cybou-core-scope-matcher`
+  - `cybou-core-approval-store`
+  - `cybou-core-approval-cli`
+  - `cybou-core-approval-policy-integration`
+  - `cybou-core-approval-regression-suite`
 
 ### Improved
 
@@ -265,15 +265,15 @@ This remains a local JSON approval-store prototype. Production needs authenticat
 - Strict runtime behavior test:
   - `tests/tool_specific_normalizers_v5_2.yaml`
 - New skills:
-  - `runtime-shell-normalizer`
-  - `runtime-cargo-normalizer`
-  - `runtime-kubectl-normalizer`
-  - `runtime-terraform-normalizer`
-  - `runtime-docker-normalizer`
-  - `runtime-git-normalizer`
-  - `runtime-database-normalizer`
-  - `runtime-http-fetch-normalizer`
-  - `runtime-normalizer-regression-suite`
+  - `cybou-core-shell-normalizer`
+  - `cybou-core-cargo-normalizer`
+  - `cybou-core-kubectl-normalizer`
+  - `cybou-core-terraform-normalizer`
+  - `cybou-core-docker-normalizer`
+  - `cybou-core-git-normalizer`
+  - `cybou-core-database-normalizer`
+  - `cybou-core-http-fetch-normalizer`
+  - `cybou-core-normalizer-regression-suite`
 
 ### Improved
 
@@ -303,11 +303,11 @@ This is still a Python prototype. Production implementation should port normaliz
 - Strict data-driven policy tests:
   - `tests/data_driven_policy_v5_1.yaml`
 - New runtime skills:
-  - `runtime-policy-loader`
-  - `runtime-rule-matcher`
-  - `runtime-risk-engine`
-  - `runtime-profile-scope-engine`
-  - `runtime-policy-regression-suite`
+  - `cybou-core-policy-loader`
+  - `cybou-core-rule-matcher`
+  - `cybou-core-risk-engine`
+  - `cybou-core-profile-scope-engine`
+  - `cybou-core-policy-regression-suite`
 
 ### Improved
 
@@ -341,13 +341,13 @@ This is still a prototype. Production implementation should move these component
 - Strict v5 runtime behavior tests:
   - `tests/runtime_enforcement_v5.yaml`
 - Runtime enforcement skills:
-  - `runtime-normalized-action-engine`
-  - `runtime-policy-decision-engine`
-  - `runtime-approval-state-manager`
-  - `runtime-audit-event-pipeline`
-  - `runtime-redaction-boundary`
-  - `runtime-tool-router`
-  - `runtime-behavior-test-engine`
+  - `cybou-core-normalized-action-engine`
+  - `cybou-core-policy-decision-engine`
+  - `cybou-core-approval-state-manager`
+  - `cybou-core-audit-event-pipeline`
+  - `cybou-core-redaction-boundary`
+  - `cybou-core-tool-router`
+  - `cybou-core-behavior-test-engine`
 - Example normalized action / policy decision / audit event outputs.
 
 ### Improved

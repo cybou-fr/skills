@@ -1,4 +1,4 @@
-version: '6.5'
+version: '6.7'
 patterns:
 - id: remote-pipe-shell
   regex: (?i)\b(curl|wget)\b[^\n|;]*\|\s*(sudo\s+)?(sh|bash|zsh|python|python3|perl|ruby|node)\b
@@ -120,6 +120,81 @@ patterns:
   verdict: NeedsApproval
   risk: high
   reason: force-with-lease still rewrites remote history
+- id: find-delete-root
+  regex: (?i)\bfind\s+/\s+.*-delete\b
+  verdict: Deny
+  risk: critical
+  reason: find delete from root
+- id: chmod-recursive-root
+  regex: (?i)\bchmod\s+(-R|--recursive)\s+(777|666|a\+rw[x]?)\s+/
+  verdict: Deny
+  risk: critical
+  reason: recursive unsafe permissions on root
+- id: chown-recursive-root
+  regex: (?i)\bchown\s+(-R|--recursive)\s+[^ ]+\s+/
+  verdict: NeedsApproval
+  risk: high
+  reason: recursive ownership change on root
+- id: tar-extract-to-root
+  regex: (?i)\btar\b.*(\s-C\s+|\s--directory\s+)/(\s|$)
+  verdict: NeedsApproval
+  risk: high
+  reason: archive extraction into root filesystem
+- id: curl-pipe-env-bash
+  regex: (?i)\b(curl|wget)\b[^\n|;]*\|\s*env\s+(bash|sh|zsh|python|python3)\b
+  verdict: Deny
+  risk: critical
+  reason: remote script piped through env interpreter
+- id: helm-uninstall
+  regex: (?i)\bhelm\b.*\b(uninstall|delete)\b
+  verdict: NeedsApproval
+  risk: high
+  reason: helm release removal
+- id: aws-s3-rm-recursive
+  regex: (?i)\baws\b\s+s3\s+rm\b.*--recursive
+  verdict: NeedsApproval
+  risk: high
+  reason: recursive S3 deletion
+- id: cloud-delete-destructive
+  regex: (?i)\b(aws|az|gcloud)\b.*\b(delete|remove|destroy|terminate)\b
+  verdict: NeedsApproval
+  risk: high
+  reason: cloud resource mutation/destruction
+- id: git-push-mirror
+  regex: (?i)\bgit\b.*\bpush\b.*--mirror
+  verdict: NeedsApproval
+  risk: high
+  reason: mirror push rewrites/deletes remote refs
+- id: git-reset-hard
+  regex: (?i)\bgit\b.*\breset\b.*--hard
+  verdict: NeedsApproval
+  risk: medium
+  reason: hard reset discards local work
+- id: drop-schema-cascade
+  regex: (?i)\bDROP\s+SCHEMA\b.*\bCASCADE\b
+  verdict: Deny
+  risk: critical
+  reason: schema drop cascade
+- id: docker-host-namespaces
+  regex: (?i)\bdocker\b.*\brun\b.*--(pid|net|ipc)=host
+  verdict: Deny
+  risk: critical
+  reason: container joins host namespaces
+- id: cargo-publish
+  regex: (?i)\bcargo\s+publish\b
+  verdict: NeedsApproval
+  risk: high
+  reason: publishes crate externally
+- id: npm-publish
+  regex: (?i)\bnpm\s+publish\b
+  verdict: NeedsApproval
+  risk: high
+  reason: publishes package externally
+- id: pip-upload
+  regex: (?i)\b(twine\s+upload|python\s+-m\s+twine\s+upload)\b
+  verdict: NeedsApproval
+  risk: high
+  reason: publishes python package externally
 matching_policy:
   first_match: false
   take_highest_risk: true
