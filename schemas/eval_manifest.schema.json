@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/eval_manifest.schema.json",
+  "title": "Cybou Eval Manifest",
+  "type": "object",
+  "required": [
+    "version",
+    "suites",
+    "runner_contract"
+  ]
+}

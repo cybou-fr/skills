@@ -1,4 +1,4 @@
-version: '6.4'
+version: '6.6'
 description: Skill relationship graph for CYBOU runtime routing and co-loading.
 global_always_consider:
 - task-classification

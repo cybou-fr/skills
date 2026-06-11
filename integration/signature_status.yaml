@@ -1,0 +1,7 @@
+version: '6.6'
+status: unsigned_placeholder
+reason: No private signing key is available in this build environment.
+community_loader_behavior: warn_and_metadata_only
+enterprise_loader_behavior: deny_until_signed
+expected_signature_file: integration/release_signature.placeholder
+expected_signed_payload: integration/provenance_manifest.yaml

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/trusted_publishers.schema.json",
+  "title": "Cybou Trusted Publishers",
+  "type": "object",
+  "required": [
+    "version",
+    "publishers",
+    "unknown_publisher_policy"
+  ]
+}

@@ -1,5 +1,5 @@
 name: cybou-devops-secops-agent-skills
-version: 6.4.0
+version: 6.6.0
 format: agentskills-compatible-runtime-pack
 maintainer: CYBOU / Stanislav Saveliev
 default_autonomy_level: 1

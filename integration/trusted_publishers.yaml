@@ -1,0 +1,14 @@
+version: '6.6'
+publishers:
+- id: cybou-fr
+  display_name: Cybou France
+  role: primary_publisher
+  trust: trusted
+  accepted_key_ids:
+  - cybou-fr-release-key-2026-placeholder
+  accepted_identities:
+  - github:cybou-fr/skills
+  - domain:cybou.fr
+unknown_publisher_policy:
+  community: warn_and_metadata_only
+  enterprise: deny

@@ -1,0 +1,29 @@
+version: '6.6'
+signature_required:
+  community: false
+  enterprise: true
+accepted_algorithms:
+- minisign-ed25519
+- cosign-sigstore
+- gpg-ed25519
+preferred_algorithm: minisign-ed25519
+trusted_publishers: integration/trusted_publishers.yaml
+signed_material:
+- integration/provenance_manifest.yaml
+- integration/file_hashes.yaml
+- registry.yaml
+- output_templates.yaml
+- policy_rules/
+- activity_policies/
+- immunity_mapping/
+- evals/
+- schemas/
+signature_files:
+  release_signature: integration/release_signature.placeholder
+  signature_status: integration/signature_status.yaml
+loader_policy:
+  community_unsigned: warn_and_metadata_only
+  community_bad_signature: quarantine
+  enterprise_unsigned: deny
+  enterprise_bad_signature: deny
+  hash_mismatch: deny

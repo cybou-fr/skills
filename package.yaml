@@ -1,7 +1,7 @@
 name: cybou-devops-secops-agent-skills
-version: 6.4.0
+version: 6.6.0
 license: Proprietary-or-custom
-format: cybou-core-integration-skill-vetting-supply-chain
+format: cybou-core-integration-release-signing-provenance
 description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
 entrypoints:
   registry: registry.yaml
@@ -138,6 +138,30 @@ cybou_extensions:
 - scripts/validate_supply_chain_v6_4.py
 - scripts/validate_skill_vetting_rules_v6_4.py
 - scripts/validate_command_patterns_v6_4.py
+- evals/manifest.yaml
+- evals/immunity_adversarial/command_adversarial_v6_5.yaml
+- schemas/eval_result.schema.json
+- schemas/learning_candidate.schema.json
+- schemas/eval_manifest.schema.json
+- docs/EVAL_RUNNER_CONTRACT.md
+- docs/LEARNING_GATE.md
+- docs/ADVERSARIAL_IMMUNITY_TESTS.md
+- docs/V6_5_EVAL_RUNNER_ADVERSARIAL_CHANGELOG.md
+- scripts/validate_eval_contract_v6_5.py
+- scripts/validate_adversarial_immunity_v6_5.py
+- integration/signing_policy.yaml
+- integration/trusted_publishers.yaml
+- integration/provenance_manifest.yaml
+- integration/signature_status.yaml
+- integration/release_signature.placeholder
+- schemas/signing_policy.schema.json
+- schemas/trusted_publishers.schema.json
+- schemas/provenance_manifest.schema.json
+- schemas/signature_status.schema.json
+- docs/RELEASE_SIGNING.md
+- docs/ENTERPRISE_TRUST_MODE.md
+- docs/V6_6_RELEASE_SIGNING_PROVENANCE_CHANGELOG.md
+- scripts/validate_release_signing_v6_6.py
 role: external_clean_corpus_for_cybou_core
 authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
 not_authoritative_runtime:
@@ -153,3 +177,6 @@ loader_contract: integration/loader_manifest.yaml
 immunity_compatibility: immunity_mapping/immunity_manifest.yaml
 supply_chain_manifest: integration/supply_chain_manifest.yaml
 vetting_rules: integration/vetting_rules.yaml
+eval_runner_contract: evals/manifest.yaml
+release_signing: integration/signing_policy.yaml
+provenance_manifest: integration/provenance_manifest.yaml

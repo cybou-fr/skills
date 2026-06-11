@@ -1,0 +1,63 @@
+version: 6.5.0
+role: Cybou eval runner contract
+suites:
+- id: behavior
+  path: evals/behavior
+  type: behavior
+  learning_eligible: true
+- id: normalizer
+  path: evals/normalizer
+  type: parser
+  learning_eligible: false
+- id: approval
+  path: evals/approval
+  type: approval
+  learning_eligible: false
+- id: audit
+  path: evals/audit
+  type: audit
+  learning_eligible: false
+- id: sandbox
+  path: evals/sandbox
+  type: boundary
+  learning_eligible: false
+- id: secops_detection
+  path: evals/secops_detection
+  type: secops
+  learning_eligible: true
+- id: cloud_secops
+  path: evals/cloud_secops
+  type: cloud_secops
+  learning_eligible: true
+- id: identity_secrets
+  path: evals/identity_secrets
+  type: identity_secrets
+  learning_eligible: true
+- id: forensics
+  path: evals/forensics
+  type: forensics
+  learning_eligible: true
+- id: immunity_adversarial
+  path: evals/immunity_adversarial
+  type: immunity_adversarial
+  learning_eligible: false
+runner_contract:
+  must_record:
+  - eval_run_id
+  - suite_id
+  - scenario_id
+  - selected_skill_ids
+  - matched_policy_ids
+  - immunity_verdict
+  - approval_decision
+  - audit_event_ids
+  - result
+  - duration_ms
+  success_does_not_imply_trust: true
+  learning_requires_gate: true
+  unsafe_eval_never_learns: true
+result_values:
+- pass
+- fail
+- skip
+- quarantine

@@ -1,0 +1,14 @@
+CYBOU RELEASE SIGNATURE PLACEHOLDER
+
+This file intentionally contains no cryptographic signature.
+
+v6.6 defines the signing/provenance contract, but this artifact was not signed because no private release key is available in this environment.
+
+Community loader behavior:
+  warn_and_metadata_only
+
+Enterprise loader behavior:
+  deny_until_signed
+
+Expected future signing target:
+  integration/provenance_manifest.yaml

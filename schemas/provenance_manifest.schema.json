@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/provenance_manifest.schema.json",
+  "title": "Cybou Provenance Manifest",
+  "type": "object",
+  "required": [
+    "version",
+    "package",
+    "release_type",
+    "source_repository",
+    "source_ref",
+    "build",
+    "integrity"
+  ]
+}

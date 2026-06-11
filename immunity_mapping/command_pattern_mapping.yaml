@@ -1,12 +1,12 @@
-version: '6.3'
+version: '6.5'
 patterns:
 - id: remote-pipe-shell
-  regex: (curl|wget)\b.*\|\s*(sh|bash|zsh|python|perl|ruby)\b
+  regex: (?i)\b(curl|wget)\b[^\n|;]*\|\s*(sudo\s+)?(sh|bash|zsh|python|python3|perl|ruby|node)\b
   verdict: Deny
   risk: critical
   reason: remote script piped to interpreter
 - id: rm-rf-root
-  regex: (?i)(^|\s)(sudo\s+)?rm\s+(-[A-Za-z]*r[A-Za-z]*f[A-Za-z]*|-[A-Za-z]*f[A-Za-z]*r[A-Za-z]*|--recursive\s+--force|--force\s+--recursive)\s+(--\s+)?(/(\s|$)|/\*|~(\s|$)|\$HOME(\s|$)|\"\$HOME\"|'?\$HOME'?)
+  regex: (?i)(^|\s)(sudo\s+)?(command\s+|env\s+)?(/bin/|/usr/bin/)?rm\s+(-[A-Za-z]*r[A-Za-z]*f[A-Za-z]*|-[A-Za-z]*f[A-Za-z]*r[A-Za-z]*|--recursive\s+--force|--force\s+--recursive)\s+(--\s+)?(/(\s|$)|/\*|~(\s|$)|\$HOME(\s|$)|\"\$HOME\"|'?\$HOME'?)
   verdict: Deny
   risk: critical
   reason: destructive root/home removal including rm -rf / variants
@@ -81,7 +81,7 @@ patterns:
   risk: high
   reason: sensitive credential/config path
 - id: nested-interpreter
-  regex: \b(bash|sh|zsh|python|perl|ruby|node)\s+-c\b
+  regex: (?i)\b(bash|sh|zsh|python|python3|perl|ruby|node)\s+(-c|-lc|-e)\b
   verdict: NeedsApproval
   risk: high
   reason: nested interpreter execution
@@ -90,6 +90,36 @@ patterns:
   verdict: Deny
   risk: critical
   reason: encoded payload execution
+- id: interpreter-rm-rf-root
+  regex: (?is)\b(python|python3|perl|ruby|node|bash|sh|zsh)\b.*\b(os\.system|subprocess|child_process|system|exec|run)\b.*(rm\s*[-'\"]*,?\s*['\"]?-?[A-Za-z]*r[A-Za-z]*f[A-Za-z]*|rm\s+-[A-Za-z]*r[A-Za-z]*f[A-Za-z]*).*?(\/|['\"]\/['\"])
+  verdict: Deny
+  risk: critical
+  reason: nested interpreter attempts destructive root removal
+- id: bash-lc-rm-rf-root
+  regex: (?i)\b(bash|sh|zsh)\s+(-c|-lc)\s+['\"][^'\"]*rm\s+-[A-Za-z]*r[A-Za-z]*f[A-Za-z]*\s+/
+  verdict: Deny
+  risk: critical
+  reason: shell -c destructive root removal
+- id: kubectl-delete-system-namespace
+  regex: (?i)\bkubectl\b.*\bdelete\b.*\b(ns|namespace|namespaces)\b.*\b(kube-system|default|prod|production|payments)\b
+  verdict: Deny
+  risk: critical
+  reason: sensitive namespace deletion
+- id: docker-host-root-mount
+  regex: (?i)\bdocker\b.*\brun\b.*(-v|--volume)\s+/:/[^/\s]+
+  verdict: Deny
+  risk: critical
+  reason: host root mounted into container
+- id: psql-drop-database
+  regex: (?i)\b(psql|mysql|mariadb|sqlite3)\b.*\bDROP\s+DATABASE\b
+  verdict: Deny
+  risk: critical
+  reason: database drop through CLI
+- id: git-force-with-lease
+  regex: (?i)\bgit\b.*\bpush\b.*--force-with-lease
+  verdict: NeedsApproval
+  risk: high
+  reason: force-with-lease still rewrites remote history
 matching_policy:
   first_match: false
   take_highest_risk: true

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cybou.fr/schemas/signature_status.schema.json",
+  "title": "Cybou Signature Status",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "community_loader_behavior",
+    "enterprise_loader_behavior"
+  ]
+}
