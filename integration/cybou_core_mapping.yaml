@@ -3,7 +3,7 @@ pack_role: external_skills_policies_templates_evals_corpus
 target_project: Cybou
 authoritative_runtime: cybou-core Rust worker + cybou-guest MicroVM + cybou-proto vsock protocol
 not_authoritative_runtime:
-- runtime_prototype/*.py
+- legacy_removed_legacy-removed-runtime-prototype/*.py
 - scripts/*_cli.py from v5 reference prototypes
 target_crates:
   cybou-core:

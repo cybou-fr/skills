@@ -1,4 +1,4 @@
-version: '4.2'
+version: 6.8.1
 objects:
   normalized_action: schemas/normalized_action.schema.json
   policy_decision: schemas/policy_decision.schema.json
@@ -7,3 +7,5 @@ objects:
   approval_state: schemas/approval_state.schema.json
   audit_event: schemas/audit_event.schema.json
   scope_object: schemas/scope_object.schema.json
+migrated_from: runtime/runtime_objects.yaml
+repository_role: skills_corpus_metadata

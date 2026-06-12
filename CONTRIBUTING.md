@@ -1,59 +1,38 @@
 # Contributing to Cybou Skills
 
-This repository contains external Cybou skills, policies, schemas, evals and trust metadata.
+This repository contains the external Cybou skills corpus. It does not contain Cybou runtime code.
 
-It does **not** contain Cybou runtime code.
-
-## Contribution types
-
-Accepted contribution types:
+## What can be contributed
 
 ```text
-new SKILL.md files
-skill metadata fixes
-policy rule improvements
+SKILL.md files
+output templates
+policy metadata
 eval scenarios
 schema improvements
-documentation improvements
-output templates
-tool adapter metadata
+documentation
+validator improvements
 ```
 
-Not accepted here:
+## What must not be contributed
 
 ```text
-cybou-core Rust code
-runtime patches
-CLI implementation patches
+Cybou Core Rust implementation
+MicroVM code
 guest execution code
-MicroVM implementation code
+CLI implementation patches
+runtime patches
+secrets or credentials
 ```
 
-Those belong in the Cybou runtime repository.
-
-## Skill contribution rules
-
-Every skill must:
+## Skill PR checklist
 
 ```text
-have valid YAML frontmatter
-have a stable id
-have a clear description
-declare required tools
-declare risk level
-use an existing output template or add one
-avoid direct execution instructions
-avoid prompt-injection patterns
-avoid secret exposure
-```
-
-## Safety rule
-
-A skill may propose reasoning and procedures. It must never claim execution authority.
-
-```text
-Skills improve reasoning.
-Rust decides safety.
-MicroVM contains execution.
-Audit records everything.
+1. Put the skill in the correct category directory.
+2. Add valid YAML frontmatter.
+3. Use a stable lowercase kebab-case id.
+4. Avoid direct execution instructions.
+5. Avoid prompt injection patterns.
+6. Avoid secret exposure.
+7. Run python scripts/validate_all.py.
 ```

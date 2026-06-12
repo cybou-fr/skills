@@ -1,4 +1,4 @@
-version: '4.1'
+version: 6.8.1
 risks:
 - low
 - medium
@@ -29,3 +29,5 @@ decisions:
 - policy_gated
 - defensive_review_only
 - synthetic_fixture_assessment
+migrated_from: runtime/decision_enums.yaml
+repository_role: skills_corpus_metadata

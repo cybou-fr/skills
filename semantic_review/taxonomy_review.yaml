@@ -1,0 +1,22 @@
+version: '6.9'
+category_counts:
+  core: 8
+  devops: 95
+  productivity: 16
+  secops: 88
+risk_counts:
+  critical: 2
+  high: 78
+  low: 10
+  medium: 117
+mode_counts:
+  approval_required: 1
+  draft_only: 95
+  guarded: 1
+  read_only: 110
+findings:
+- skill_id: notebook-analysis-workflow
+  issue: category_path_mismatch
+  category: devops
+  path_category: productivity
+recommendation: Resolve category/path mismatches before public stable release.

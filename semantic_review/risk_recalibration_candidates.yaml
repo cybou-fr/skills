@@ -1,0 +1,344 @@
+version: '6.9'
+method: keyword heuristic over id/description/tools/triggers
+candidates:
+- skill_id: task-classification
+  current_risk: low
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, incident'
+  action: manual_review
+- skill_id: risk-and-approval
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, iam, incident, prod, production, secret'
+  action: manual_review
+- skill_id: command-safety
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: terraform'
+  action: manual_review
+- skill_id: environment-detection
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, iam, kubernetes, prod, production'
+  action: manual_review
+- skill_id: approval-request
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, iam, prod, production, secret'
+  action: manual_review
+- skill_id: kubernetes-readonly-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, kubernetes'
+  action: manual_review
+- skill_id: helm-readonly-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, incident, kubernetes'
+  action: manual_review
+- skill_id: cicd-failure-analysis
+  current_risk: low
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy'
+  action: manual_review
+- skill_id: log-analysis
+  current_risk: low
+  suggested_risk: high
+  reason: 'risk-sensitive terms: incident, root'
+  action: manual_review
+- skill_id: pull-request-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, iam, kubernetes, secret, terraform'
+  action: manual_review
+- skill_id: prometheus-alert-analysis
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: incident, kubernetes, prod'
+  action: manual_review
+- skill_id: container-security-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: kubernetes, privileged'
+  action: manual_review
+- skill_id: pentest-retainer-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: prod, production'
+  action: manual_review
+- skill_id: screenshot-analysis-workflow
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: prod'
+  action: manual_review
+- skill_id: web-artifact-builder
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy'
+  action: manual_review
+- skill_id: theme-design-system-factory
+  current_risk: low
+  suggested_risk: high
+  reason: 'risk-sensitive terms: token'
+  action: manual_review
+- skill_id: figma-design-handoff
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: token'
+  action: manual_review
+- skill_id: image-generation-brief
+  current_risk: low
+  suggested_risk: high
+  reason: 'risk-sensitive terms: prod'
+  action: manual_review
+- skill_id: ci-fix-proposal
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy, secret'
+  action: manual_review
+- skill_id: sentry-issue-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy'
+  action: manual_review
+- skill_id: knowledge-capture-workflow
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: incident'
+  action: manual_review
+- skill_id: security-best-practices-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: prod'
+  action: manual_review
+- skill_id: rust-security-hardening
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: rust-toolchain-management
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: prod'
+  action: manual_review
+- skill_id: rust-release-and-semver
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: publish'
+  action: manual_review
+- skill_id: incident-timeline-builder
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: incident'
+  action: manual_review
+- skill_id: sigma-rule-authoring
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: deploy'
+  action: manual_review
+- skill_id: cloudtrail-security-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: azure-entra-id-alert-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: credential'
+  action: manual_review
+- skill_id: gcp-audit-log-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: post-incident-evidence-pack
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: incident'
+  action: manual_review
+- skill_id: aws-cloudtrail-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: aws-guardduty-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: aws-iam-privilege-path-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: aws-securityhub-finding-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, prod'
+  action: manual_review
+- skill_id: azure-activity-log-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: azure-defender-finding-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: gcp-security-command-center-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: cloud-iam-least-privilege-diff
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: cloud-logging-control-plane-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: cloud-incident-containment-plan
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, incident'
+  action: manual_review
+- skill_id: cloud-asset-exposure-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, secret'
+  action: manual_review
+- skill_id: cloud-secops-regression-suite
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam'
+  action: manual_review
+- skill_id: identity-lifecycle-risk-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: privileged-access-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, privileged, secret'
+  action: manual_review
+- skill_id: service-account-key-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, secret'
+  action: manual_review
+- skill_id: oauth-app-consent-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: publish, secret'
+  action: manual_review
+- skill_id: secrets-exposure-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: secrets-rotation-orchestration-plan
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: vault-and-secrets-manager-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: kms-key-policy-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: access-key-hygiene-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: iam, root, secret'
+  action: manual_review
+- skill_id: session-token-and-cookie-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret, token'
+  action: manual_review
+- skill_id: mfa-and-conditional-access-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: identity-incident-containment-plan
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: credential, incident, secret'
+  action: manual_review
+- skill_id: secrets-and-identity-regression-suite
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: secret'
+  action: manual_review
+- skill_id: incident-case-record-management
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: forensic-artifact-inventory
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: chain-of-custody-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: incident-timeline-reconstruction
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: forensic-log-triage
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident, secret'
+  action: manual_review
+- skill_id: host-forensics-triage-plan
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: cloud-forensics-evidence-pack
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, iam, incident'
+  action: manual_review
+- skill_id: edr-forensics-evidence-pack
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: post-incident-case-summary
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident, root'
+  action: manual_review
+- skill_id: legal-hold-and-retention-plan
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: case-management-integration-review
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+- skill_id: forensics-regression-suite
+  current_risk: medium
+  suggested_risk: high
+  reason: 'risk-sensitive terms: forensics, incident'
+  action: manual_review
+note: Risk suggestions require human review and should not be applied blindly.

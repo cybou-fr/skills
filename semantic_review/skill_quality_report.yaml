@@ -1,0 +1,405 @@
+version: '6.9'
+skills_reviewed: 207
+summary:
+  category_counts:
+    core: 8
+    devops: 95
+    productivity: 16
+    secops: 88
+  risk_counts:
+    critical: 2
+    high: 78
+    low: 10
+    medium: 117
+  mode_counts:
+    approval_required: 1
+    draft_only: 95
+    guarded: 1
+    read_only: 110
+  duplicate_candidates: 60
+  risk_recalibration_candidates: 68
+  category_findings: 1
+  trigger_findings: 0
+  template_findings: 0
+  short_quality_items: 95
+quality_items:
+- skill_id: frontend-design-review
+  issues:
+  - short_body
+  body_len: 792
+- skill_id: ci-fix-proposal
+  issues:
+  - short_body
+  body_len: 745
+- skill_id: sentry-issue-triage
+  issues:
+  - short_body
+  body_len: 746
+- skill_id: goal-definition-workflow
+  issues:
+  - short_body
+  body_len: 737
+- skill_id: meeting-intelligence-workflow
+  issues:
+  - short_body
+  body_len: 793
+- skill_id: knowledge-capture-workflow
+  issues:
+  - short_body
+  body_len: 779
+- skill_id: research-documentation-workflow
+  issues:
+  - short_body
+  body_len: 761
+- skill_id: speech-transcription-workflow
+  issues:
+  - short_body
+  body_len: 778
+- skill_id: security-best-practices-review
+  issues:
+  - short_body
+  body_len: 754
+- skill_id: security-ownership-map
+  issues:
+  - short_body
+  body_len: 761
+- skill_id: cybou-core-policy-decision-engine
+  issues:
+  - short_body
+  body_len: 775
+- skill_id: cybou-core-approval-state-manager
+  issues:
+  - short_body
+  body_len: 592
+- skill_id: cybou-core-audit-event-pipeline
+  issues:
+  - short_body
+  body_len: 558
+- skill_id: cybou-core-redaction-boundary
+  issues:
+  - short_body
+  body_len: 575
+- skill_id: cybou-core-tool-router
+  issues:
+  - short_body
+  body_len: 590
+- skill_id: cybou-core-behavior-test-engine
+  issues:
+  - short_body
+  body_len: 547
+- skill_id: cybou-core-rule-matcher
+  issues:
+  - short_body
+  body_len: 659
+- skill_id: cybou-core-risk-engine
+  issues:
+  - short_body
+  body_len: 602
+- skill_id: cybou-core-profile-scope-engine
+  issues:
+  - short_body
+  body_len: 606
+- skill_id: cybou-core-policy-regression-suite
+  issues:
+  - short_body
+  body_len: 548
+- skill_id: cybou-core-shell-normalizer
+  issues:
+  - short_body
+  body_len: 664
+- skill_id: cybou-core-cargo-normalizer
+  issues:
+  - short_body
+  body_len: 706
+- skill_id: cybou-core-kubectl-normalizer
+  issues:
+  - short_body
+  body_len: 647
+- skill_id: cybou-core-terraform-normalizer
+  issues:
+  - short_body
+  body_len: 663
+- skill_id: cybou-core-docker-normalizer
+  issues:
+  - short_body
+  body_len: 675
+- skill_id: cybou-core-git-normalizer
+  issues:
+  - short_body
+  body_len: 709
+- skill_id: cybou-core-database-normalizer
+  issues:
+  - short_body
+  body_len: 712
+- skill_id: cybou-core-http-fetch-normalizer
+  issues:
+  - short_body
+  body_len: 656
+- skill_id: cybou-core-normalizer-regression-suite
+  issues:
+  - short_body
+  body_len: 629
+- skill_id: cybou-core-scope-matcher
+  issues:
+  - short_body
+  body_len: 566
+- skill_id: cybou-core-approval-store
+  issues:
+  - short_body
+  body_len: 638
+- skill_id: cybou-core-approval-cli
+  issues:
+  - short_body
+  body_len: 574
+- skill_id: cybou-core-approval-policy-integration
+  issues:
+  - short_body
+  body_len: 590
+- skill_id: cybou-core-approval-regression-suite
+  issues:
+  - short_body
+  body_len: 604
+- skill_id: cybou-core-durable-audit-store
+  issues:
+  - short_body
+  body_len: 647
+- skill_id: cybou-core-evidence-store
+  issues:
+  - short_body
+  body_len: 637
+- skill_id: cybou-core-audit-cli
+  issues:
+  - short_body
+  body_len: 599
+- skill_id: cybou-core-tamper-evidence
+  issues:
+  - short_body
+  body_len: 620
+- skill_id: cybou-core-evidence-redaction-integration
+  issues:
+  - short_body
+  body_len: 636
+- skill_id: cybou-core-audit-regression-suite
+  issues:
+  - short_body
+  body_len: 614
+- skill_id: cybou-core-sandbox-profile-engine
+  issues:
+  - short_body
+  body_len: 785
+- skill_id: cybou-core-tool-execution-boundary
+  issues:
+  - short_body
+  body_len: 748
+- skill_id: cybou-core-filesystem-boundary
+  issues:
+  - short_body
+  body_len: 661
+- skill_id: cybou-core-network-boundary
+  issues:
+  - short_body
+  body_len: 666
+- skill_id: cybou-core-output-limit-boundary
+  issues:
+  - short_body
+  body_len: 674
+- skill_id: cybou-core-tool-router-execution-prototype
+  issues:
+  - short_body
+  body_len: 648
+- skill_id: cybou-core-sandbox-regression-suite
+  issues:
+  - short_body
+  body_len: 651
+- skill_id: soc-alert-triage
+  issues:
+  - short_body
+  body_len: 728
+- skill_id: incident-timeline-builder
+  issues:
+  - short_body
+  body_len: 744
+- skill_id: ioc-extraction-and-enrichment
+  issues:
+  - short_body
+  body_len: 739
+- skill_id: sigma-rule-authoring
+  issues:
+  - short_body
+  body_len: 729
+- skill_id: yara-rule-authoring
+  issues:
+  - short_body
+  body_len: 695
+- skill_id: edr-alert-triage
+  issues:
+  - short_body
+  body_len: 701
+- skill_id: cloudtrail-security-triage
+  issues:
+  - short_body
+  body_len: 714
+- skill_id: guardduty-finding-triage
+  issues:
+  - short_body
+  body_len: 684
+- skill_id: azure-entra-id-alert-triage
+  issues:
+  - short_body
+  body_len: 723
+- skill_id: gcp-audit-log-triage
+  issues:
+  - short_body
+  body_len: 697
+- skill_id: threat-hunting-query-builder
+  issues:
+  - short_body
+  body_len: 701
+- skill_id: case-management-workflow
+  issues:
+  - short_body
+  body_len: 701
+- skill_id: post-incident-evidence-pack
+  issues:
+  - short_body
+  body_len: 690
+- skill_id: detection-regression-suite
+  issues:
+  - short_body
+  body_len: 679
+- skill_id: aws-guardduty-triage
+  issues:
+  - short_body
+  body_len: 769
+- skill_id: aws-securityhub-finding-triage
+  issues:
+  - short_body
+  body_len: 699
+- skill_id: azure-activity-log-triage
+  issues:
+  - short_body
+  body_len: 705
+- skill_id: azure-defender-finding-triage
+  issues:
+  - short_body
+  body_len: 703
+- skill_id: gcp-security-command-center-triage
+  issues:
+  - short_body
+  body_len: 696
+- skill_id: cloud-iam-least-privilege-diff
+  issues:
+  - short_body
+  body_len: 723
+- skill_id: cloud-logging-control-plane-review
+  issues:
+  - short_body
+  body_len: 718
+- skill_id: cloud-incident-containment-plan
+  issues:
+  - short_body
+  body_len: 728
+- skill_id: cloud-asset-exposure-review
+  issues:
+  - short_body
+  body_len: 687
+- skill_id: cloud-secops-regression-suite
+  issues:
+  - short_body
+  body_len: 686
+- skill_id: identity-lifecycle-risk-review
+  issues:
+  - short_body
+  body_len: 760
+- skill_id: privileged-access-review
+  issues:
+  - short_body
+  body_len: 754
+- skill_id: service-account-key-review
+  issues:
+  - short_body
+  body_len: 760
+- skill_id: oauth-app-consent-review
+  issues:
+  - short_body
+  body_len: 751
+- skill_id: secrets-exposure-triage
+  issues:
+  - short_body
+  body_len: 743
+- skill_id: secrets-rotation-orchestration-plan
+  issues:
+  - short_body
+  body_len: 751
+- skill_id: vault-and-secrets-manager-review
+  issues:
+  - short_body
+  body_len: 741
+- skill_id: kms-key-policy-review
+  issues:
+  - short_body
+  body_len: 755
+- skill_id: access-key-hygiene-review
+  issues:
+  - short_body
+  body_len: 749
+- skill_id: session-token-and-cookie-review
+  issues:
+  - short_body
+  body_len: 729
+- skill_id: mfa-and-conditional-access-review
+  issues:
+  - short_body
+  body_len: 723
+- skill_id: identity-incident-containment-plan
+  issues:
+  - short_body
+  body_len: 748
+- skill_id: secrets-and-identity-regression-suite
+  issues:
+  - short_body
+  body_len: 751
+- skill_id: forensic-artifact-inventory
+  issues:
+  - short_body
+  body_len: 786
+- skill_id: chain-of-custody-review
+  issues:
+  - short_body
+  body_len: 751
+- skill_id: incident-timeline-reconstruction
+  issues:
+  - short_body
+  body_len: 761
+- skill_id: forensic-log-triage
+  issues:
+  - short_body
+  body_len: 774
+- skill_id: host-forensics-triage-plan
+  issues:
+  - short_body
+  body_len: 742
+- skill_id: cloud-forensics-evidence-pack
+  issues:
+  - short_body
+  body_len: 763
+- skill_id: edr-forensics-evidence-pack
+  issues:
+  - short_body
+  body_len: 757
+- skill_id: post-incident-case-summary
+  issues:
+  - short_body
+  body_len: 748
+- skill_id: legal-hold-and-retention-plan
+  issues:
+  - short_body
+  body_len: 738
+- skill_id: case-management-integration-review
+  issues:
+  - short_body
+  body_len: 748
+- skill_id: forensics-regression-suite
+  issues:
+  - short_body
+  body_len: 732

@@ -1,0 +1,478 @@
+version: '6.9'
+findings: []
+duplicate_trigger_groups:
+- trigger: cloudtrail
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: secret
+  skills:
+  - redaction
+  - secret-detection
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: service account
+  skills:
+  - iam-review
+  - kubernetes-security-review
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: soc
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: detection
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: alert triage
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: ioc
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: sigma
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: yara
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: edr
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: threat hunting
+  skills:
+  - soc-alert-triage
+  - incident-timeline-builder
+  - ioc-extraction-and-enrichment
+  - sigma-rule-authoring
+  - yara-rule-authoring
+  - edr-alert-triage
+  - cloudtrail-security-triage
+  - guardduty-finding-triage
+  - azure-entra-id-alert-triage
+  - gcp-audit-log-triage
+  - threat-hunting-query-builder
+  - case-management-workflow
+  - post-incident-evidence-pack
+  - detection-regression-suite
+- trigger: forensics
+  skills:
+  - evidence-handling
+  - incident-case-record-management
+  - forensic-artifact-inventory
+  - chain-of-custody-review
+  - incident-timeline-reconstruction
+  - forensic-log-triage
+  - host-forensics-triage-plan
+  - cloud-forensics-evidence-pack
+  - edr-forensics-evidence-pack
+  - post-incident-case-summary
+  - legal-hold-and-retention-plan
+  - case-management-integration-review
+  - forensics-regression-suite
+- trigger: chain of custody
+  skills:
+  - evidence-handling
+  - incident-case-record-management
+  - forensic-artifact-inventory
+  - chain-of-custody-review
+  - incident-timeline-reconstruction
+  - forensic-log-triage
+  - host-forensics-triage-plan
+  - cloud-forensics-evidence-pack
+  - edr-forensics-evidence-pack
+  - post-incident-case-summary
+  - legal-hold-and-retention-plan
+  - case-management-integration-review
+  - forensics-regression-suite
+- trigger: timeline
+  skills:
+  - log-analysis
+  - incident-case-record-management
+  - forensic-artifact-inventory
+  - chain-of-custody-review
+  - incident-timeline-reconstruction
+  - forensic-log-triage
+  - host-forensics-triage-plan
+  - cloud-forensics-evidence-pack
+  - edr-forensics-evidence-pack
+  - post-incident-case-summary
+  - legal-hold-and-retention-plan
+  - case-management-integration-review
+  - forensics-regression-suite
+- trigger: iam
+  skills:
+  - iam-review
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: aws
+  skills:
+  - cloud-readonly-triage
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: gcp
+  skills:
+  - cloud-readonly-triage
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: azure
+  skills:
+  - cloud-readonly-triage
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: identity
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: kms
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: key management
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: oauth
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: mfa
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: conditional access
+  skills:
+  - identity-lifecycle-risk-review
+  - privileged-access-review
+  - service-account-key-review
+  - oauth-app-consent-review
+  - secrets-exposure-triage
+  - secrets-rotation-orchestration-plan
+  - vault-and-secrets-manager-review
+  - kms-key-policy-review
+  - access-key-hygiene-review
+  - session-token-and-cookie-review
+  - mfa-and-conditional-access-review
+  - identity-incident-containment-plan
+  - secrets-and-identity-regression-suite
+- trigger: cloud secops
+  skills:
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: guardduty
+  skills:
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: entra
+  skills:
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: security command center
+  skills:
+  - aws-cloudtrail-triage
+  - aws-guardduty-triage
+  - aws-iam-privilege-path-review
+  - aws-securityhub-finding-triage
+  - azure-activity-log-triage
+  - azure-defender-finding-triage
+  - gcp-security-command-center-triage
+  - cloud-iam-least-privilege-diff
+  - cloud-logging-control-plane-review
+  - cloud-incident-containment-plan
+  - cloud-asset-exposure-review
+  - cloud-secops-regression-suite
+- trigger: incident case
+  skills:
+  - incident-case-record-management
+  - forensic-artifact-inventory
+  - chain-of-custody-review
+  - incident-timeline-reconstruction
+  - forensic-log-triage
+  - host-forensics-triage-plan
+  - cloud-forensics-evidence-pack
+  - edr-forensics-evidence-pack
+  - post-incident-case-summary
+  - legal-hold-and-retention-plan
+  - case-management-integration-review
+  - forensics-regression-suite
+- trigger: case management
+  skills:
+  - incident-case-record-management
+  - forensic-artifact-inventory
+  - chain-of-custody-review
+  - incident-timeline-reconstruction
+  - forensic-log-triage
+  - host-forensics-triage-plan
+  - cloud-forensics-evidence-pack
+  - edr-forensics-evidence-pack
+  - post-incident-case-summary
+  - legal-hold-and-retention-plan
+  - case-management-integration-review
+  - forensics-regression-suite
+normalization_rules:
+- trim outer whitespace
+- lowercase trigger matching at runtime
+- prefer concise trigger phrases
+- avoid generic triggers shared by too many skills
+- keep semantic trigger aliases in registry metadata, not skill body

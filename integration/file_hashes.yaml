@@ -1,23 +1,25 @@
-version: '6.8'
+version: '6.9'
 algorithm: sha256
-generated_at: '2026-06-11T11:14:52.773744+00:00'
+generated_at: '2026-06-11T21:20:51.327031+00:00'
 files:
+- path: .github/workflows/validate.yml
+  sha256: 00f7141c7b59c93f2a99a2e64de29615cd48bd675d9def2438fb77054fe0f7da
 - path: .gitignore
   sha256: 7cb6bc50a51a1ccea416c0c7388212d2f24a0e634982476fa3ca8be74100c728
 - path: AGENTS.md
-  sha256: f50bd9e0021ae3367abd7684dd3b4103171941b9be8d7f05a65a466ca1bcbdd0
+  sha256: 9ea58254ce0701b841a772c998645dcdb10dc2699cd83fe365b4a954f21bb931
 - path: CHANGELOG.md
-  sha256: 0105e021eca82bba629745bcc9ce8ca5781874d69cce3c9732853bf0fd700cab
+  sha256: 9fbd5e39bec2bf7c23d0d47392d8a35edbb85831e55c98d52fd23516fa56ba76
 - path: CONTRIBUTING.md
-  sha256: 052f846d7583a2d8f44fb5e9988598723e674ed4ec04f519f0084704358985c4
+  sha256: 56cfe37acdfc8b5006a29ce8290a273036eaff910f00bd73b47427fdd90a8ed6
 - path: README.md
-  sha256: bb194f6f53e23af39afed43414f052878cbaf489e44b97ab5b81d99c085d3bc6
+  sha256: 6cdd6369bb84b50631b899e6f52d2ebf3ef7c141a5df7527a813e726a548ae59
 - path: RELEASE.md
-  sha256: fe0f9fc90e9520110663a2430c2bfc29e2fc2e92ba7c119248cf726e4f53a416
+  sha256: 78f6f59398f8262ae5d3c246bf25fba433a1813f9c01e5901078c8fa12fde99a
 - path: SECURITY.md
-  sha256: cdc5a197ab6ed6ad76108e3a97dd39e7272c2550fafa0c951b0f0e503d3dead5
+  sha256: 177afdc3853181c2152bcd9beaaed3f4095b0852b8094ca5f8555639428c0932
 - path: SKILL_AUTHORING_GUIDE.md
-  sha256: 6ac485472abfa2d023aae3f3b2d77cb4510437c9c75317b745db107fbdc6ebe0
+  sha256: 8eee8b96d648cb076b3be8296c79da30c80d337e2a87c5a6207407d77d419636
 - path: activity_policies/ai_security_assessment.yaml
   sha256: 09e4d9282d4dc9ca519e54ac7133713daf5b810e1840a0bd6d3440780037dcbe
 - path: activity_policies/penetration_testing.yaml
@@ -25,7 +27,7 @@ files:
 - path: ai_security_controls.yaml
   sha256: 1668653ce8f8f274ca28c58bfc739e24c7d48a86adcb98d6e8cbecc49a11be12
 - path: autonomy_profiles.yaml
-  sha256: 0284ff85717db850869ff22c0a344e21fdefe37893f53ee33d503b13266d28a7
+  sha256: f829b01bc04b25c41bd5dd4c32ad7b6ad7d8e4fbc1eb8d7b2a1b595408a12a22
 - path: core/approval-request/SKILL.md
   sha256: 164cc3a45954e82c9c91177372fcabb1917235a525a60bd49298294818fb64fa
 - path: core/command-safety/SKILL.md
@@ -43,7 +45,7 @@ files:
 - path: core/task-classification/SKILL.md
   sha256: 00900d433255ed8e6d7cd31b622a10c27b60ea814366748505ef52bd8e108583
 - path: cybou.yaml
-  sha256: 76aca840ff83499fc11a8a40ba4f8434ddc55215788aa98886e51cf67208ee05
+  sha256: 33c937978d9687367e6f45e78fcba6ee47a563d2746ce07c9c39f2f93e64d494
 - path: cybou_rust_architecture_map.yaml
   sha256: 000e0dd3e2e07d4f86178a43e8298d41c32e96987c7c07c258d6cc0dcc6e279a
 - path: devops/backup-restore-review/SKILL.md
@@ -251,17 +253,21 @@ files:
 - path: docs/EVAL_TO_LEARNING_LOOP.md
   sha256: 20d037a1bed617a89678044a121c8c97d088e8773a4d62a6f75523a7b1febc64
 - path: docs/HYGIENE_PATCH_V6_1.md
-  sha256: f9483d2fa212abbae4f70817513ca3a80acde0cde2a0b9050453fa7ca208349c
+  sha256: 1931eca50e2dc0fd3daeb20e5d283d20d32d22a39b30c9faa212fe5b347d0e92
 - path: docs/IMMUNITY_COMPATIBILITY.md
-  sha256: ce23abbf4f3a940030b3a18c42c77396a74042ad214b1df67a6a9b1f764074b4
+  sha256: f09a6a4b63c33c9473e6d574fbe87b43d387aaf8b87b4e143897542b48aa25a2
 - path: docs/LEARNING_GATE.md
   sha256: 50313b05add17442ed2358a1e3c29856300b9aa2260f2c7c071197fdaf86662b
+- path: docs/METADATA_CANONICALIZATION_V6_8_1.md
+  sha256: b4793cfb33151404035b55b4af9ef7721cca3a6ed96c850b559bc7c65ccb22bf
 - path: docs/MICROVM_BOUNDARY_MODEL.md
   sha256: d9d772adf0e8e39b41db987b6f26d03e4a701ad373b2e110aeb30fd83ff4c680
 - path: docs/POLICY_HARDENING_V6_7.md
   sha256: 336bb54bc4760a972f31feac93e01e3f338483ce92c4185d64c56245c4b257e7
 - path: docs/POLICY_TO_IMMUNITY_MAPPING.md
   sha256: 5b227e7bafc17d20b9818d7da331e33b67867cb954e56a532ea2adfd351dfd7a
+- path: docs/PUBLIC_RELEASE_CHECKLIST.md
+  sha256: a4e0b9f7a1a090d4d9d9818dcbbd41999d159578f311833ba795ea12f6baaaac
 - path: docs/PUBLIC_REPOSITORY_CLEANUP_V6_8.md
   sha256: e8902b8366abfbe31697291b1a7ecad76c4d4c0f866bd4a28062b67b7d48f334
 - path: docs/RELEASE_SIGNING.md
@@ -270,10 +276,16 @@ files:
   sha256: 17ab76934e53656e89118d70bb23332bfb32e5b1abb5e80f70212029e05387a6
 - path: docs/REPOSITORY_LAYOUT.md
   sha256: e377df68819bae12d7a3d1f80fa41039fa8e1419154d39a4cc6d6d117a2d7280
+- path: docs/RISK_RECALIBRATION_GUIDE.md
+  sha256: 06fa1ff35f4bd20e5ccdae510a4f2571efa672643944ae8f8f05ded84da107a3
 - path: docs/SCHEMA_REFERENCE.md
   sha256: be6b41505d5be1f86529d3365b8ee01f44defd9a82150b48a2c0eaf98a852f27
+- path: docs/SEMANTIC_SKILL_CORPUS_REVIEW.md
+  sha256: 19bbe7aee400dacbfda8de64d581b2b31e870313edb2d0284801a01ff0291b4c
 - path: docs/SKILL_CORPUS_FORMAT.md
   sha256: e0360920d53a27840551f3a0e30c57678e72503de3e19fa3e8091b1a1dbdf868
+- path: docs/SKILL_TAXONOMY_REVIEW.md
+  sha256: 3a35e7f2dcfd66e0a803085a33dbcf8c86f522fc8f6e0b7fdd94408186e4cc92
 - path: docs/SKILL_VETTING.md
   sha256: 6fdd47fa9b8df72c0e145b27dfc3fa31a2fc5e4f3d407624d03736c5f155432c
 - path: docs/SKILL_VETTING_DEEP.md
@@ -283,7 +295,7 @@ files:
 - path: docs/V6_2_LOADER_CONTRACT_CHANGELOG.md
   sha256: c33944ae9eafd996bc34eb75f4c7943dff2d7a58345ab6251323f67c74a039d4
 - path: docs/V6_3_IMMUNITY_COMPATIBILITY_CHANGELOG.md
-  sha256: ad0139925c15cb9a2c2a36b409f4e6e030810b73067262e3aa2fd46e9088b905
+  sha256: 4e04213861aa4db1526342eedf78fe8a53ed3f206d3940e5c07350565c2900bf
 - path: docs/V6_4_SKILL_VETTING_SUPPLY_CHAIN_CHANGELOG.md
   sha256: d18466a057daadf480a1b2dec5964b749faf7d7e00838c55d5a611c0dc399c6e
 - path: docs/V6_5_EVAL_RUNNER_ADVERSARIAL_CHANGELOG.md
@@ -292,8 +304,16 @@ files:
   sha256: 3793ccead24af9590d82165da42d21a59a51555ae693e032f3452b7ae8c2eb03
 - path: docs/V6_7_COMMAND_NORMALIZATION_POLICY_HARDENING_CHANGELOG.md
   sha256: 9d7d7d554ec9d0c29a3aa0aa9bb529de955e757649c8db261701bf30755e8e37
+- path: docs/V6_8_1_METADATA_CANONICALIZATION_CHANGELOG.md
+  sha256: d2d3530f06a5f73e0c73466fa77b2e7eed20e3f099ffc3142ef4f07c58aca370
+- path: docs/V6_8_2_VALIDATOR_CI_DOCS_CHANGELOG.md
+  sha256: 43c4f23f32177e9f654dcb5575062285fdced74f65f44403e1bef15998989d61
 - path: docs/V6_8_SKILLS_CORPUS_FINALIZATION_CHANGELOG.md
   sha256: b49d6d25aa9044f5e7132feda2413d2405d5d15f816fa87dd16013268dada2cf
+- path: docs/V6_9_SEMANTIC_SKILL_CORPUS_REVIEW_CHANGELOG.md
+  sha256: 7fb81079cdaa1197ac3472888b66b9b037c7055619a4368c9f36be6f7009ff8a
+- path: docs/VALIDATION_GUIDE.md
+  sha256: d1da51308a2533a1585c96e9e6a024f0f9ab4ac363b49e3543e6ab19ff5f0a40
 - path: evals/approval/scope_approval_v5_3.yaml
   sha256: b9182225e08e666ee0242e871d2cb14509111e2e5b99d109bd0d2ddf78490f74
 - path: evals/audit/durable_audit_v5_4.yaml
@@ -400,6 +420,8 @@ files:
   sha256: aa01b09deee518a730780e6fe8e48d61a078a8432b14a36514fa468303ae6ca7
 - path: examples/evals/README.md
   sha256: 20165589143dc9b6b302355ba4bc39d6f70d1c338d82c0e3d442b3e1b48a615e
+- path: examples/evals/minimal_eval.yaml
+  sha256: 2561b27697fad67a985e4c10249c9dfc1f14586916d51bf692adea35efdba3f4
 - path: examples/forensics_case/forensics_case_demo.json
   sha256: 74c0d03e419aca8e76a28ec8815213e407d377c1ebcc2dec9822b457c44f5755
 - path: examples/identity_secrets/identity_secrets_demo.json
@@ -418,6 +440,8 @@ files:
   sha256: 447d275ca450115dc5499259aa669299c4dea16fd2bd134080ed567dd6b81d96
 - path: examples/policies/README.md
   sha256: eaf15f7694cfd442da66d704019825143407e30cdc2f9fdd96b3df89376aa8f4
+- path: examples/policies/minimal_policy.yaml
+  sha256: 1acc87f29e8b683e53994a45dad44f11c01af1a6bb316e57e5804eb5328dd599
 - path: examples/reports/README.md
   sha256: 0f25d3671aa2b09eacc3fdb0886635dfd8513f7cbbf5d33ec55e513f63888ad4
 - path: examples/sandbox_tool_execution/tool_router_demo.json
@@ -432,8 +456,12 @@ files:
   sha256: 40e4a775c971b53f5b19e3030758574a2d39e3da917f4397d1ae7b9d4dcb30d3
 - path: examples/signing/README.md
   sha256: 8cce36e3261af28421edded322c71f44b8d9903dc559d0c152a43d09af2c96f9
+- path: examples/signing/unsigned_dev_release.md
+  sha256: fc1136efeb041f2c413674fc46122e278d8438f17e758d85ef31f72dabc9ad96
 - path: examples/skills/README.md
   sha256: 09d1a388cdbe1388fc8777334cf5ffd40767d3041e3b09f46a62c4b804b068a0
+- path: examples/skills/minimal/EXAMPLE_SKILL.md
+  sha256: d2ae5ddcff0c516718b139dbdd78f3d5a9640c7f76449e6b76450ad9d54e711f
 - path: examples/soc_detection/soc_detection_demo.json
   sha256: 4b2d73b78dacbf77908d564323e92da809c12871977cf914897934d3f2cab5b5
 - path: examples/tool_specific_normalizers/bash_c_terraform_destroy.json
@@ -481,17 +509,21 @@ files:
 - path: immunity_mapping/tool_class_mapping.yaml
   sha256: 3aa7339947a4ea69eb53fd962a9d8820d4580b23824abc4050dae4f2534f281f
 - path: integration/cybou_core_mapping.yaml
-  sha256: 17b48fc2cae6fd7e9b38d571b0c07476100ee1a0cee4c4c7b5de8c1f0676bf25
+  sha256: 529f84e0a841e008b8cea4e44b4ec95b5a3bd1ad85733e5ec106695cd127cdc4
+- path: integration/decision_enums.yaml
+  sha256: 75e6cc6ee212d87c24cc63e1b33ce19bab1149a3776133f9591535d3249b2151
 - path: integration/decision_mapping.yaml
   sha256: e15105035beed613581a4cb428c97e007a7a12827b9398face9669d8a5f28a6a
 - path: integration/eval_to_learning_loop.yaml
   sha256: 80c9e673c3bdaa82f2daf904e84568c0bd671f9fdb451151464166704a26b1fa
 - path: integration/loader_manifest.yaml
-  sha256: 36681ed697a925fc0f2cee380ba8fbc220b09ae79c846fb3b7369bbab4269811
+  sha256: 1faf1ab8d4efdfd2826ba6c04e1fe9e059b61094ebe0782a060a71f50ae40693
+- path: integration/object_mapping.yaml
+  sha256: 92101c7397b620b06f8a0baf5505e00562a992f3da6e96d8cbf6dd87a933788a
 - path: integration/policy_to_immunity_matrix.yaml
   sha256: 71cb845e36c3732f39f447ae579f1ddbad081b419cc7b77901acf362c31345e2
 - path: integration/provenance_manifest.yaml
-  sha256: 2e89c4e4a8692914f32a9ab6305e4298763ffe2d02a279bb267fcdd56db2db2f
+  sha256: c295a1ed1d6192e23225995c20226f1114fa1ae8c96c0bd27a52655aea784936
 - path: integration/quarantine_policy.yaml
   sha256: 054c459f5564dc1ef220b31439a41ab61f64f6efeab1f5111728c46dbe31406b
 - path: integration/release_signature.placeholder
@@ -509,9 +541,9 @@ files:
 - path: integration/vetting_rules.yaml
   sha256: ed560b90baf3f0997a932317c7f537b6b430ef69a030dfd19dbaf789735fd8ae
 - path: output_templates.yaml
-  sha256: a52d9d412e19dfea61643f66ec950162dded6c379671fc755a12f58ebfb62adf
+  sha256: 16a930eaa23d557b19a1c83f5381237e2a86a679c57f2541ef975310fb0e66be
 - path: package.yaml
-  sha256: a1689b1c305c6d51b16ea87dec22a49242fe3240c930a9839d0e427c0d132979
+  sha256: 36e33796268fa746623bb5714f67ce77bd540b889d41ab532c55e8c67e78243a
 - path: policy_rules/ai_security.yaml
   sha256: 505fb52ae4b94c21f89f9a73b74b19ce8fe4f241a7e4b1b0198dea9736df2766
 - path: policy_rules/cargo.yaml
@@ -575,15 +607,9 @@ files:
 - path: profile_decision_matrix.yaml
   sha256: 7bc939633db9f52184885f878f417995c0a1bd3550899d1cf65b7fae4e9edde4
 - path: registry.yaml
-  sha256: 69867dad79d054b4b97e86de4770f278608f0f34dcf247c0c24edfa5d0054555
+  sha256: 9e66c0b950382558e4d8eb227fd822a5e7461dcddde7eb332f81934dcbe42e85
 - path: risk_matrix.yaml
   sha256: 096fe0e97e05c0c07a4c8d481f07ec7b15d04b1d7da506aa3f720edeffc7c32e
-- path: runtime/decision_enums.yaml
-  sha256: a433e6673a6dcb30daf34abf8f19a4104718d2fcb76537581a493ffa0116632b
-- path: runtime/integration_manifest.yaml
-  sha256: feb6ae1abfbdad0fcaa9b1c5e5d83419afeef3e7c1ba8fed8895981c44a3eaec
-- path: runtime/runtime_objects.yaml
-  sha256: 53c38a6fe4f5c97a96364daddf29f9ae047432fd81f8328c3a090da87fd98823
 - path: rust_toolchain_quality_matrix.yaml
   sha256: 10c2aef2664c462470fdc6d2302af613a3f08b8bfdfbaab18196f7003ca23dd8
 - path: sandbox_profiles.yaml
@@ -642,6 +668,10 @@ files:
   sha256: acd4d46450b43b10262a363fc3c5f0dae3db101cbfeaefe7010feb5b5829a83c
 - path: schemas/scope_object.schema.json
   sha256: 7bd4dae7da4056c7311be94a3aed0d87e0797953b7ecbff61d28520e076b2f30
+- path: schemas/semantic_review_manifest.schema.json
+  sha256: ed94ef3ce7a9c2b01f300a2e00b2324df24c29c897bfd5dec9534742a31fc5ec
+- path: schemas/semantic_review_report.schema.json
+  sha256: cf08c010d0bddbaae4506219dde53401851b96f6b2ccc05ec2d4f393ec4cbaea
 - path: schemas/sensitive_targets.schema.json
   sha256: a09fa4ab6b5258da1ab901b246e8f424026644229885cafe94c1e9129da218ba
 - path: schemas/severity_model.schema.json
@@ -690,6 +720,8 @@ files:
   sha256: d24811242e3f6fbcd5cb97245084fcee5560fc5fd31be0c633d7b8e176d3906c
 - path: scripts/validate_adversarial_immunity_v6_5.py
   sha256: 940403828bc4c78e86f2e5b7102ff7b4f89d379ad2d7944b2d1e87d1e2705e36
+- path: scripts/validate_all.py
+  sha256: e9444c48739414d59bf8cbd5c4e704fe0366d3bf12b7bfa56dcc8b3ca733a972
 - path: scripts/validate_command_patterns_v6_4.py
   sha256: a799a9013288fcf0c322a05eef58a32ea808202a601624e60ff38c177b4d6d67
 - path: scripts/validate_eval_contract_v6_5.py
@@ -698,14 +730,20 @@ files:
   sha256: 8574595d19c0d475099c2eba666fb6a1bfc441a680ea1205c4b05a9a7d31afad
 - path: scripts/validate_loader_contract_v6_2.py
   sha256: a8c7adce1506f5bb977f56ec90521704bafb73f72fdc80fca976dc63bbed5e3d
+- path: scripts/validate_metadata_canonicalization_v6_8_1.py
+  sha256: 37ce5a6089ec8e07cfcde90590c566b4e7a9b19f25e2b2cdb5fcd662bd1a0487
 - path: scripts/validate_pack_v6_1.py
   sha256: 70fae86dc7086257db59234b1ed436edee0f9fc2b68ad0df09eca982d4e95f78
 - path: scripts/validate_policy_hardening_v6_7.py
   sha256: e603fc9502951553eb89288bb3b39f53659672399e215ef426a0a2fa0d4a0779
+- path: scripts/validate_public_docs_v6_8_2.py
+  sha256: 10ac0801efd54d3655db05ffd61de9424b274a1342fab525bed4d0feafc78c68
 - path: scripts/validate_public_repository_cleanup_v6_8.py
   sha256: 5ac2b056684483a34d4e7131b6a19812e1b2e2884dcf97d2a9a423743a15b424
 - path: scripts/validate_release_signing_v6_6.py
   sha256: 47fb2ed65b093cca85679c6484f1a413ea5eb51c7bd8e9e4fb0dc7d3bf107dad
+- path: scripts/validate_semantic_review_v6_9.py
+  sha256: 3158210588dd7e3667f547ac28fcc07b124f2f1da1abdf2d6769c56f51ba15c1
 - path: scripts/validate_skill_vetting_rules_v6_4.py
   sha256: 322369aa05f6201e1719b1bc915d70442e757ebcdd1bdeb9b2271d2dda5559f0
 - path: scripts/validate_supply_chain_v6_4.py
@@ -886,6 +924,20 @@ files:
   sha256: a25049697b5c7256d22595bb169955f6b74fd05c1a183dc5fb36e0de8a2d459c
 - path: secops/yara-rule-authoring/SKILL.md
   sha256: 09f390ea8bec6928b2bf231d0ec195b54a15b7504e5c28640235e0d9cca28be3
+- path: semantic_review/duplicate_candidates.yaml
+  sha256: 89a768563151a1a4e2a4ae85e8c6bc7b0f5aa3cf89b4192e2ab7dd1b9c97a4a5
+- path: semantic_review/output_template_consistency.yaml
+  sha256: 06108b32b349b1713b4e863263822f4319686680bf5b9e5f837ada1f6d03a05b
+- path: semantic_review/risk_recalibration_candidates.yaml
+  sha256: 7d9eb06d5b3ad3305f0575e8a338780f4a3bfa72a9a1eb0d87ef31ef875cc49d
+- path: semantic_review/semantic_review_manifest.yaml
+  sha256: 4bfe1657e63936c49d53c9d7b1e5b7e0bf9a0af9a209e43ba907ba7ef9316f5e
+- path: semantic_review/skill_quality_report.yaml
+  sha256: 9c55dca95abca1d04c7a15f62c593b51133ce5136afdce0f2d7fa96c982b0b2a
+- path: semantic_review/taxonomy_review.yaml
+  sha256: 4142973c27e5f00e3260824a07a8a44166340d3ddeda6df4e3330648d46ef4b6
+- path: semantic_review/trigger_normalization_review.yaml
+  sha256: 4195d5c177c3bd235c54b70b282ae72bdab20a3876de1655b62499959db5c7c1
 - path: severity_model.yaml
   sha256: 7e7e0dfd0e5e98e68b9972909affd1abdd22bb88c504c288606e177c2775ddf5
 - path: shared/examples/skill_invocation_examples.md
@@ -895,7 +947,7 @@ files:
 - path: shared/testing_notes.md
   sha256: 1da8b1412b5bee5a35083a289d71c9667a09251357f7725fc2b5e553cb3b7655
 - path: skill_graph.yaml
-  sha256: b43d8751d12bcd588e1d20a9adb98fdcf9f98264eee8c3c4ca88864e32a15442
+  sha256: 454f4190cc95589512f48d9cf16699509d2aab70b0b703c66ba10a29fdde2757
 - path: templates/clippy.toml
   sha256: fafc21021224f77a94d7418d58fb5d62ea978e16c6399124f6faf05ba476f2ed
 - path: templates/deny.toml

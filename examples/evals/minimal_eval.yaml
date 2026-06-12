@@ -1,0 +1,10 @@
+version: 6.8.2
+suite: minimal_example
+scenarios:
+- id: minimal-readonly-pass
+  input: Check that a README states the repository boundary.
+  expected:
+    result: pass
+    must_mention:
+    - skills corpus
+    - not runtime code

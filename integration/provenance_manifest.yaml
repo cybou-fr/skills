@@ -1,4 +1,4 @@
-version: 6.8.0
+version: '6.9'
 package: cybou-core-integration-pack
 release_type: skills_corpus_only
 source_repository: github:cybou-fr/skills
@@ -7,8 +7,8 @@ source_commit: PLACEHOLDER_COMMIT_SHA
 build:
   builder: chatgpt-artifact-generation
   build_time_utc: '2026-06-10T23:33:33.686821+00:00'
-  base_version: 6.7.0
-  output: cybou_core_integration_pack_v6_8_skills_corpus_finalization.zip
+  base_version: 6.8.2
+  output: cybou_skills_corpus_v6_9_semantic_skill_corpus_review.zip
 integrity:
   file_hashes: integration/file_hashes.yaml
   hash_algorithm: sha256

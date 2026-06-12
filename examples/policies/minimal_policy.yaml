@@ -1,0 +1,9 @@
+version: 6.8.2
+policy_id: minimal-readonly-policy-example
+description: Example policy metadata for read-only operations.
+rules:
+- id: allow-readonly-example
+  match:
+    mode: read_only
+  decision: allow_read_only
+  risk: low

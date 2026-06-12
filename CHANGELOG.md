@@ -6,11 +6,11 @@
 ### Added
 
 - Forensics/case runtime helper:
-  - `runtime_prototype/forensics_case.py`
+  - `legacy-removed-runtime-prototype/forensics_case.py`
 - Case CLI:
   - `scripts/case_cli.py`
 - Forensics tests:
-  - `forensics_tests/`
+  - `legacy-removed-forensics-tests/`
   - `scripts/run_forensics_tests.py`
 - New adapters:
   - case management
@@ -39,11 +39,11 @@ This is still a prototype. Production needs immutable storage, access control, l
 ### Added
 
 - Identity/secrets runtime helpers:
-  - `runtime_prototype/identity_secrets.py`
+  - `legacy-removed-runtime-prototype/identity_secrets.py`
 - Identity/secrets CLI:
   - `scripts/identity_secrets_cli.py`
 - Identity/secrets tests:
-  - `identity_secrets_tests/`
+  - `legacy-removed-identity-secrets-tests/`
   - `scripts/run_identity_secrets_tests.py`
 - New adapters:
   - AWS Secrets Manager
@@ -74,11 +74,11 @@ This is still a prototype. Production needs real IdP/secrets manager APIs, tenan
 ### Added
 
 - Cloud SecOps runtime helpers:
-  - `runtime_prototype/cloud_secops.py`
+  - `legacy-removed-runtime-prototype/cloud_secops.py`
 - Cloud SecOps CLI:
   - `scripts/cloud_secops_cli.py`
 - Cloud SecOps tests:
-  - `cloud_secops_tests/`
+  - `legacy-removed-cloud-secops-tests/`
   - `scripts/run_cloud_secops_tests.py`
 - Cloud provider adapters:
   - AWS CloudTrail
@@ -109,14 +109,14 @@ This is still a prototype. Production needs real cloud APIs, tenant-aware scopin
 ### Added
 
 - SOC/detection runtime modules:
-  - `runtime_prototype/ioc_extractor.py`
-  - `runtime_prototype/detection_rules.py`
-  - `runtime_prototype/incident_timeline.py`
-  - `runtime_prototype/soc_triage.py`
+  - `legacy-removed-runtime-prototype/ioc_extractor.py`
+  - `legacy-removed-runtime-prototype/detection_rules.py`
+  - `legacy-removed-runtime-prototype/incident_timeline.py`
+  - `legacy-removed-runtime-prototype/soc_triage.py`
 - SOC CLI:
   - `scripts/soc_cli.py`
 - Detection regression tests:
-  - `detection_tests/`
+  - `legacy-removed-detection-tests/`
   - `scripts/run_detection_tests.py`
 - New adapters:
   - EDR, threat intel, case management, Sigma/YARA repositories, CloudTrail, GuardDuty, Entra ID and GCP audit logs.
@@ -140,15 +140,15 @@ This is a SOC/detection prototype. Production requires real SIEM/EDR/cloud conne
 - Sandbox profiles:
   - `sandbox_profiles.yaml`
 - Sandbox profile engine:
-  - `runtime_prototype/sandbox_profiles.py`
+  - `legacy-removed-runtime-prototype/sandbox_profiles.py`
 - Tool execution boundary:
-  - `runtime_prototype/execution_boundary.py`
+  - `legacy-removed-runtime-prototype/execution_boundary.py`
 - Tool router execution prototype:
-  - `runtime_prototype/tool_router.py`
+  - `legacy-removed-runtime-prototype/tool_router.py`
 - Tool router CLI:
   - `scripts/tool_router_cli.py`
 - Sandbox regression tests:
-  - `sandbox_tests/`
+  - `legacy-removed-sandbox-tests/`
   - `scripts/run_sandbox_tests.py`
 - New skills:
   - `cybou-core-sandbox-profile-engine`
@@ -178,15 +178,15 @@ This is still a Python prototype. Production requires OS/container sandboxing, s
 ### Added
 
 - Durable audit store:
-  - `runtime_prototype/audit_store.py`
+  - `legacy-removed-runtime-prototype/audit_store.py`
 - Evidence store:
-  - `runtime_prototype/evidence_store.py`
+  - `legacy-removed-runtime-prototype/evidence_store.py`
 - Audit CLI:
   - `scripts/audit_cli.py`
 - Audit test runner:
   - `scripts/run_audit_tests.py`
 - Audit fixtures:
-  - `audit_tests/`
+  - `legacy-removed-audit-tests/`
 - New skills:
   - `cybou-core-durable-audit-store`
   - `cybou-core-evidence-store`
@@ -213,15 +213,15 @@ This is a prototype. Production needs authenticated durable storage, WORM/append
 ### Added
 
 - Scope matcher:
-  - `runtime_prototype/scope_matcher.py`
+  - `legacy-removed-runtime-prototype/scope_matcher.py`
 - Approval store prototype:
-  - `runtime_prototype/approval_store.py`
+  - `legacy-removed-runtime-prototype/approval_store.py`
 - Approval CLI:
   - `scripts/approval_cli.py`
 - Approval test runner:
   - `scripts/run_approval_tests.py`
 - Approval fixtures:
-  - `approval_tests/`
+  - `legacy-removed-approval-tests/`
 - New skills:
   - `cybou-core-scope-matcher`
   - `cybou-core-approval-store`
@@ -246,7 +246,7 @@ This remains a local JSON approval-store prototype. Production needs authenticat
 ### Added
 
 - Tool-specific normalizer package:
-  - `runtime_prototype/tool_normalizers/`
+  - `legacy-removed-runtime-prototype/tool_normalizers/`
 - Normalizers:
   - shell
   - cargo
@@ -257,11 +257,11 @@ This remains a local JSON approval-store prototype. Production needs authenticat
   - database
   - http_fetch
 - Compatibility wrapper:
-  - `runtime_prototype/normalizers.py`
+  - `legacy-removed-runtime-prototype/normalizers.py`
 - Normalizer regression runner:
   - `scripts/run_normalizer_tests.py`
 - Normalizer regression fixtures:
-  - `normalizer_tests/`
+  - `legacy-removed-normalizer-tests/`
 - Strict runtime behavior test:
   - `tests/tool_specific_normalizers_v5_2.yaml`
 - New skills:
@@ -292,10 +292,10 @@ This is still a Python prototype. Production implementation should port normaliz
 ### Added
 
 - Data-driven runtime policy modules:
-  - `runtime_prototype/policy_loader.py`
-  - `runtime_prototype/rule_matcher.py`
-  - `runtime_prototype/risk_engine.py`
-  - `runtime_prototype/profile_engine.py`
+  - `legacy-removed-runtime-prototype/policy_loader.py`
+  - `legacy-removed-runtime-prototype/rule_matcher.py`
+  - `legacy-removed-runtime-prototype/risk_engine.py`
+  - `legacy-removed-runtime-prototype/profile_engine.py`
 - Policy bundle inspector:
   - `scripts/inspect_policy_bundle.py`
 - Data-driven examples:
@@ -311,7 +311,7 @@ This is still a Python prototype. Production implementation should port normaliz
 
 ### Improved
 
-- `runtime_prototype/policy.py` now loads policy bundle data from the package.
+- `legacy-removed-runtime-prototype/policy.py` now loads policy bundle data from the package.
 - Rule matching reports YAML rule IDs when they match.
 - Risk engine applies risk floors, side effects, environment and sensitive data.
 - Profile/scope engine participates in policy decisions.
@@ -328,16 +328,16 @@ This is still a prototype. Production implementation should move these component
 ### Added
 
 - Executable Python runtime prototype:
-  - `runtime_prototype/models.py`
-  - `runtime_prototype/normalizers.py`
-  - `runtime_prototype/policy.py`
-  - `runtime_prototype/audit.py`
-  - `runtime_prototype/redaction.py`
+  - `legacy-removed-runtime-prototype/models.py`
+  - `legacy-removed-runtime-prototype/normalizers.py`
+  - `legacy-removed-runtime-prototype/policy.py`
+  - `legacy-removed-runtime-prototype/audit.py`
+  - `legacy-removed-runtime-prototype/redaction.py`
 - CLI scripts:
-  - `scripts/normalize_command.py`
-  - `scripts/evaluate_policy.py`
-  - `scripts/route_task.py`
-  - `scripts/simulate_tool_call.py`
+  - `legacy-removed-normalize-command`
+  - `legacy-removed-evaluate-policy`
+  - `legacy-removed-route-task`
+  - `legacy-removed-simulate-tool-call`
 - Strict v5 runtime behavior tests:
   - `tests/runtime_enforcement_v5.yaml`
 - Runtime enforcement skills:
@@ -520,7 +520,7 @@ This release does not vendor or copy upstream skill contents. It adds CYBOU-nati
 - `schemas/scope_object.schema.json`
 - `schemas/approval_state.schema.json`
 - `schemas/audit_event.schema.json`
-- `scripts/run_behavior_tests.py`
+- `legacy-removed-run-behavior-tests`
 - `tests/runtime_integration.yaml`
 
 ### Improved

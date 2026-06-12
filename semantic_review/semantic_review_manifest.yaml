@@ -1,0 +1,32 @@
+version: '6.9'
+role: semantic skill corpus review
+generated_at: '2026-06-11T21:19:01.259452+00:00'
+scope:
+  skills_reviewed: 207
+  registry_skills: 207
+  categories:
+    core: 8
+    devops: 95
+    productivity: 16
+    secops: 88
+  risks:
+    critical: 2
+    high: 78
+    low: 10
+    medium: 117
+  modes:
+    approval_required: 1
+    draft_only: 95
+    guarded: 1
+    read_only: 110
+artifacts:
+- semantic_review/skill_quality_report.yaml
+- semantic_review/taxonomy_review.yaml
+- semantic_review/duplicate_candidates.yaml
+- semantic_review/risk_recalibration_candidates.yaml
+- semantic_review/trigger_normalization_review.yaml
+- semantic_review/output_template_consistency.yaml
+principles:
+- semantic review does not automatically rewrite skills
+- manual review required for risk/category/duplicate decisions
+- structural validators remain authoritative for package integrity

@@ -7,7 +7,7 @@ Prepare the pack for real ingestion by `cybou-core` and future publication as `c
 ## Changes
 
 - Strict YAML frontmatter for all `SKILL.md` files.
-- Removed `runtime_prototype/`.
+- Removed `legacy-removed-runtime-prototype/`.
 - Removed duplicated legacy test directories.
 - Removed all `*.pyc` and `__pycache__`.
 - Removed v5 prototype scripts.

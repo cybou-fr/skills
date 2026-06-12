@@ -13,7 +13,7 @@
 - `schemas/command_pattern_mapping.schema.json`
 - `schemas/sensitive_targets.schema.json`
 - `docs/IMMUNITY_COMPATIBILITY.md`
-- `docs/RUST_IMMUNITY_CONTRACT_SKETCH.rs`
+- `legacy-removed-rust-immunity-contract-sketch`
 - `scripts/validate_immunity_compat_v6_3.py`
 
 ## Purpose

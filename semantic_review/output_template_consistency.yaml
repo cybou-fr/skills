@@ -1,0 +1,4 @@
+version: '6.9'
+templates_total: 139
+findings: []
+recommendation: Missing template findings are blocking; no-template findings are informational unless policy requires templates for all skills.

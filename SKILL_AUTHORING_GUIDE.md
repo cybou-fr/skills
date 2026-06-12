@@ -1,22 +1,14 @@
 # Skill Authoring Guide
 
-A Cybou skill is a procedural knowledge unit used by the worker to improve reasoning and reporting.
+A Cybou skill is a procedural knowledge unit used to improve reasoning and reporting.
 
-## File layout
-
-Each skill lives in:
+## Layout
 
 ```text
 <category>/<skill-id>/SKILL.md
 ```
 
-Example:
-
-```text
-devops/rust-security-hardening/SKILL.md
-```
-
-## Required frontmatter
+## Minimal frontmatter
 
 ```yaml
 ---
@@ -25,35 +17,16 @@ description: Review Rust code and dependency risks with security-focused recomme
 ---
 ```
 
-## Skill body rules
-
-A skill body may include:
+## Forbidden content
 
 ```text
-purpose
-when to use
-inputs
-procedure
-checks
-output format
-safe examples
+bypass immunity
+disable audit
+disable approval
+print secrets
+exfiltrate credentials
+ignore previous instructions
+execute this command directly
 ```
 
-A skill body must not include:
-
-```text
-instructions to bypass immunity
-instructions to disable audit
-instructions to print secrets
-direct tool execution instructions
-hidden prompt injection
-unbounded destructive commands
-```
-
-## Trust model
-
-```text
-untrusted -> metadata_trusted -> body_vetted -> policy_compiled
-```
-
-Full skill bodies are not available to the model by default.
+Full body access is not enabled by default.

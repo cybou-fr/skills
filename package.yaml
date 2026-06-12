@@ -1,209 +1,116 @@
-name: cybou-devops-secops-agent-skills
-version: 6.8.0
-license: Proprietary-or-custom
-format: cybou-skills-corpus-public-repository-cleanup
-description: Runtime-oriented DevOps/SecOps skill library for autonomous or semi-autonomous AI workers.
-entrypoints:
-  registry: registry.yaml
-  risk_matrix: risk_matrix.yaml
-  tool_policies: tool_policies.yaml
-  output_templates: output_templates.yaml
-  cybou: cybou.yaml
-compatibility:
-  agentskills_io_style: true
-  directory_per_skill: true
-  required_skill_file: SKILL.md
-  skill_md_required_frontmatter:
-  - name
-  - description
+version: '6.9'
+name: cybou-skills-corpus
+format: cybou-skills-corpus-semantic-review
+repository_role: skills_corpus_only
+contains_runtime_code: false
+cybou_core_patches: false
+description: 'External skills corpus for Cybou: skills, policies, evals, schemas, trust/signing metadata and documentation.'
+registry: registry.yaml
+output_templates: output_templates.yaml
+loader_manifest: integration/loader_manifest.yaml
+supply_chain_manifest: integration/supply_chain_manifest.yaml
+provenance_manifest: integration/provenance_manifest.yaml
+eval_manifest: evals/manifest.yaml
+immunity_manifest: immunity_mapping/immunity_manifest.yaml
+renamed_skill_prefixes:
+  runtime-: cybou-core-
+canonical_directories:
+- core
+- devops
+- secops
+- productivity
+- policy_rules
+- activity_policies
+- tool_adapters
+- scope_objects
+- schemas
+- evals
+- integration
+- immunity_mapping
+- docs
+- examples
+- scripts
 cybou_extensions:
-- registry.yaml
-- risk_matrix.yaml
-- tool_policies.yaml
-- output_templates.yaml
+- README.md
+- CONTRIBUTING.md
+- SECURITY.md
+- SKILL_AUTHORING_GUIDE.md
+- RELEASE.md
+- AGENTS.md
 - cybou.yaml
-- policy_rules/
-- tests/
-- schemas/
-- activity_policies/
-- severity_model.yaml
-- templates/pentest_scope.yaml
-- runtime/
-- autonomy_profiles.yaml
+- registry.yaml
+- output_templates.yaml
 - skill_graph.yaml
-- tool_adapters/
-- scope_objects/
-- scripts/run_behavior_tests.py
-- ai_security_controls.yaml
-- activity_policies/ai_security_assessment.yaml
-- policy_rules/ai_security.yaml
-- tool_adapters/ai_security.yaml
-- external_tools.yaml
-- profile_decision_matrix.yaml
-- runtime/runtime_objects.yaml
-- upstream_catalog_mapping.yaml
-- cybou_rust_architecture_map.yaml
-- rust_toolchain_quality_matrix.yaml
-- templates/rust-toolchain.toml
-- templates/rustfmt.toml
-- templates/clippy.toml
-- templates/deny.toml
-- runtime_prototype/
-- scripts/normalize_command.py
-- scripts/evaluate_policy.py
-- scripts/simulate_tool_call.py
-- scripts/route_task.py
-- examples/normalized_actions/
-- runtime_prototype/policy_loader.py
-- runtime_prototype/rule_matcher.py
-- runtime_prototype/risk_engine.py
-- runtime_prototype/profile_engine.py
-- scripts/inspect_policy_bundle.py
-- examples/data_driven_policy/
-- runtime_prototype/tool_normalizers/
-- scripts/run_normalizer_tests.py
-- normalizer_tests/
-- runtime_prototype/approval_store.py
-- runtime_prototype/scope_matcher.py
-- scripts/approval_cli.py
-- scripts/run_approval_tests.py
-- approval_tests/
-- runtime_prototype/audit_store.py
-- runtime_prototype/evidence_store.py
-- scripts/audit_cli.py
-- scripts/run_audit_tests.py
-- audit_tests/
-- sandbox_profiles.yaml
-- runtime_prototype/sandbox_profiles.py
-- runtime_prototype/execution_boundary.py
-- runtime_prototype/tool_router.py
-- scripts/tool_router_cli.py
-- scripts/run_sandbox_tests.py
-- sandbox_tests/
-- runtime_prototype/ioc_extractor.py
-- runtime_prototype/detection_rules.py
-- runtime_prototype/incident_timeline.py
-- runtime_prototype/soc_triage.py
-- scripts/soc_cli.py
-- scripts/run_detection_tests.py
-- detection_tests/
-- runtime_prototype/cloud_secops.py
-- scripts/cloud_secops_cli.py
-- scripts/run_cloud_secops_tests.py
-- cloud_secops_tests/
-- runtime_prototype/identity_secrets.py
-- scripts/identity_secrets_cli.py
-- scripts/run_identity_secrets_tests.py
-- identity_secrets_tests/
-- runtime_prototype/forensics_case.py
-- scripts/case_cli.py
-- scripts/run_forensics_tests.py
-- forensics_tests/
-- integration/
-- docs/
-- evals/
-- reference_prototype/README.md
-- integration/decision_mapping.yaml
-- integration/tool_classes.yaml
-- scripts/validate_pack_v6_1.py
-- docs/HYGIENE_PATCH_V6_1.md
+- autonomy_profiles.yaml
 - integration/loader_manifest.yaml
-- docs/CYBOU_CORE_LOADER_CONTRACT.md
-- docs/SCHEMA_REFERENCE.md
-- docs/V6_2_LOADER_CONTRACT_CHANGELOG.md
-- schemas/skill_frontmatter.schema.json
-- schemas/registry.schema.json
-- schemas/policy_rule.schema.json
-- schemas/tool_classes.schema.json
-- schemas/eval_scenario.schema.json
-- schemas/loader_manifest.schema.json
-- scripts/validate_loader_contract_v6_2.py
-- immunity_mapping/
-- docs/IMMUNITY_COMPATIBILITY.md
-- docs/V6_3_IMMUNITY_COMPATIBILITY_CHANGELOG.md
-- docs/RUST_IMMUNITY_CONTRACT_SKETCH.rs
-- scripts/validate_immunity_compat_v6_3.py
-- schemas/immunity_manifest.schema.json
-- schemas/command_pattern_mapping.schema.json
-- schemas/sensitive_targets.schema.json
-- integration/supply_chain_manifest.yaml
 - integration/file_hashes.yaml
-- integration/vetting_rules.yaml
-- integration/quarantine_policy.yaml
-- immunity_mapping/command_pattern_tests.yaml
-- docs/SUPPLY_CHAIN_TRUST.md
-- docs/SKILL_VETTING_DEEP.md
-- docs/COMMAND_PATTERN_TESTING.md
-- docs/V6_4_SKILL_VETTING_SUPPLY_CHAIN_CHANGELOG.md
-- scripts/validate_supply_chain_v6_4.py
-- scripts/validate_skill_vetting_rules_v6_4.py
-- scripts/validate_command_patterns_v6_4.py
-- evals/manifest.yaml
-- evals/immunity_adversarial/command_adversarial_v6_5.yaml
-- schemas/eval_result.schema.json
-- schemas/learning_candidate.schema.json
-- schemas/eval_manifest.schema.json
-- docs/EVAL_RUNNER_CONTRACT.md
-- docs/LEARNING_GATE.md
-- docs/ADVERSARIAL_IMMUNITY_TESTS.md
-- docs/V6_5_EVAL_RUNNER_ADVERSARIAL_CHANGELOG.md
-- scripts/validate_eval_contract_v6_5.py
-- scripts/validate_adversarial_immunity_v6_5.py
+- integration/supply_chain_manifest.yaml
 - integration/signing_policy.yaml
 - integration/trusted_publishers.yaml
 - integration/provenance_manifest.yaml
 - integration/signature_status.yaml
 - integration/release_signature.placeholder
-- schemas/signing_policy.schema.json
-- schemas/trusted_publishers.schema.json
-- schemas/provenance_manifest.schema.json
-- schemas/signature_status.schema.json
-- docs/RELEASE_SIGNING.md
-- docs/ENTERPRISE_TRUST_MODE.md
-- docs/V6_6_RELEASE_SIGNING_PROVENANCE_CHANGELOG.md
-- scripts/validate_release_signing_v6_6.py
+- integration/decision_mapping.yaml
+- integration/tool_classes.yaml
+- integration/vetting_rules.yaml
+- integration/quarantine_policy.yaml
+- integration/decision_enums.yaml
+- integration/object_mapping.yaml
+- evals/manifest.yaml
+- immunity_mapping/immunity_manifest.yaml
 - immunity_mapping/argv_normalization_contract.yaml
+- immunity_mapping/command_pattern_mapping.yaml
+- immunity_mapping/command_pattern_tests.yaml
 - immunity_mapping/destructive_command_tests.yaml
 - immunity_mapping/cloud_cli_dangerous_ops.yaml
 - immunity_mapping/package_publish_policy.yaml
-- schemas/argv_normalization_contract.schema.json
-- schemas/destructive_command_tests.schema.json
-- schemas/cloud_cli_dangerous_ops.schema.json
-- schemas/package_publish_policy.schema.json
-- docs/COMMAND_NORMALIZATION_CONTRACT.md
-- docs/POLICY_HARDENING_V6_7.md
-- docs/V6_7_COMMAND_NORMALIZATION_POLICY_HARDENING_CHANGELOG.md
-- scripts/validate_policy_hardening_v6_7.py
-- CONTRIBUTING.md
-- SECURITY.md
-- SKILL_AUTHORING_GUIDE.md
-- RELEASE.md
 - docs/REPOSITORY_BOUNDARIES.md
 - docs/SKILL_CORPUS_FORMAT.md
 - docs/PUBLIC_REPOSITORY_CLEANUP_V6_8.md
-- docs/V6_8_SKILLS_CORPUS_FINALIZATION_CHANGELOG.md
+- docs/METADATA_CANONICALIZATION_V6_8_1.md
+- docs/V6_8_1_METADATA_CANONICALIZATION_CHANGELOG.md
+- scripts/validate_pack_v6_1.py
+- scripts/validate_loader_contract_v6_2.py
+- scripts/validate_immunity_compat_v6_3.py
+- scripts/validate_supply_chain_v6_4.py
+- scripts/validate_skill_vetting_rules_v6_4.py
+- scripts/validate_command_patterns_v6_4.py
+- scripts/validate_eval_contract_v6_5.py
+- scripts/validate_adversarial_immunity_v6_5.py
+- scripts/validate_release_signing_v6_6.py
+- scripts/validate_policy_hardening_v6_7.py
 - scripts/validate_public_repository_cleanup_v6_8.py
-role: external_clean_corpus_for_cybou_core
-authoritative_runtime: cybou-core Rust + cybou-guest MicroVM + cybou-proto
-not_authoritative_runtime:
-- runtime_prototype/*.py
-hygiene_patch:
-  removed_legacy_runtime_prototype: true
-  removed_python_bytecode: true
-  canonical_eval_layout: evals/
-  frontmatter_strict_yaml: true
-  decision_mapping: integration/decision_mapping.yaml
-  tool_classes: integration/tool_classes.yaml
-loader_contract: integration/loader_manifest.yaml
-immunity_compatibility: immunity_mapping/immunity_manifest.yaml
-supply_chain_manifest: integration/supply_chain_manifest.yaml
-vetting_rules: integration/vetting_rules.yaml
-eval_runner_contract: evals/manifest.yaml
-release_signing: integration/signing_policy.yaml
-provenance_manifest: integration/provenance_manifest.yaml
-command_normalization_contract: immunity_mapping/argv_normalization_contract.yaml
-repository_role: skills_corpus_only
-contains_runtime_code: false
-cybou_core_patches: false
-renamed_skill_prefixes:
-  runtime-: cybou-core-
+- scripts/validate_metadata_canonicalization_v6_8_1.py
+- docs/VALIDATION_GUIDE.md
+- docs/PUBLIC_RELEASE_CHECKLIST.md
+- .github/workflows/validate.yml
+- scripts/validate_all.py
+- scripts/validate_public_docs_v6_8_2.py
+- examples/evals/minimal_eval.yaml
+- examples/policies/minimal_policy.yaml
+- examples/signing/unsigned_dev_release.md
+- docs/V6_8_2_VALIDATOR_CI_DOCS_CHANGELOG.md
+- examples/skills/minimal/EXAMPLE_SKILL.md
+- semantic_review/semantic_review_manifest.yaml
+- semantic_review/skill_quality_report.yaml
+- semantic_review/taxonomy_review.yaml
+- semantic_review/duplicate_candidates.yaml
+- semantic_review/risk_recalibration_candidates.yaml
+- semantic_review/trigger_normalization_review.yaml
+- semantic_review/output_template_consistency.yaml
+- schemas/semantic_review_manifest.schema.json
+- schemas/semantic_review_report.schema.json
+- docs/SEMANTIC_SKILL_CORPUS_REVIEW.md
+- docs/SKILL_TAXONOMY_REVIEW.md
+- docs/RISK_RECALIBRATION_GUIDE.md
+- docs/V6_9_SEMANTIC_SKILL_CORPUS_REVIEW_CHANGELOG.md
+- scripts/validate_semantic_review_v6_9.py
+previous_metadata_issues_fixed:
+  cybou_yaml_missing_entrypoints: true
+  package_yaml_stale_extensions: true
+  top_level_runtime_directory_removed: true
+  agents_v3_label_removed: true
+public_docs_polished: true
+ci_workflow: .github/workflows/validate.yml
+validate_all: scripts/validate_all.py
+semantic_review_manifest: semantic_review/semantic_review_manifest.yaml

@@ -1,4 +1,4 @@
-version: 6.8.0
+version: '6.9'
 loader_contract: Cybou Core Skills Loader Contract v1
 role: metadata-first external corpus
 required_files:
@@ -37,6 +37,12 @@ required_files:
 - SKILL_AUTHORING_GUIDE.md
 - RELEASE.md
 - docs/REPOSITORY_BOUNDARIES.md
+- scripts/validate_metadata_canonicalization_v6_8_1.py
+- scripts/validate_all.py
+- scripts/validate_public_docs_v6_8_2.py
+- .github/workflows/validate.yml
+- semantic_review/semantic_review_manifest.yaml
+- scripts/validate_semantic_review_v6_9.py
 canonical_dirs:
 - core/
 - devops/
@@ -52,17 +58,17 @@ canonical_dirs:
 - integration/
 - scripts/
 non_canonical_dirs_forbidden:
-- runtime_prototype/
-- reference_prototype/
+- legacy_removed_legacy-removed-runtime-prototype/
+- legacy_removed_legacy-removed-reference-prototype/
 - tests/
-- normalizer_tests/
-- approval_tests/
-- audit_tests/
-- sandbox_tests/
-- detection_tests/
-- cloud_secops_tests/
-- identity_secrets_tests/
-- forensics_tests/
+- legacy_removed_legacy-removed-normalizer-tests/
+- legacy_removed_legacy-removed-approval-tests/
+- legacy_removed_legacy-removed-audit-tests/
+- legacy_removed_legacy-removed-sandbox-tests/
+- legacy_removed_legacy-removed-detection-tests/
+- legacy_removed_legacy-removed-cloud-secops-tests/
+- legacy_removed_legacy-removed-identity-secrets-tests/
+- legacy_removed_legacy-removed-forensics-tests/
 - __pycache__/
 validation:
   frontmatter_yaml: strict
@@ -119,3 +125,15 @@ repository_boundary:
   role: skills_corpus_only
   forbidden_runtime_code: true
   validate_with: scripts/validate_public_repository_cleanup_v6_8.py
+metadata_canonicalization:
+  status: canonicalized
+  validate_with: scripts/validate_metadata_canonicalization_v6_8_1.py
+  top_level_runtime_dir: removed
+validator_hygiene:
+  validate_all: scripts/validate_all.py
+  ci_workflow: .github/workflows/validate.yml
+  public_docs_validator: scripts/validate_public_docs_v6_8_2.py
+semantic_review:
+  manifest: semantic_review/semantic_review_manifest.yaml
+  validate_with: scripts/validate_semantic_review_v6_9.py
+  advisory_only: true

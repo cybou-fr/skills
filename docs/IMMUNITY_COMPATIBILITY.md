@@ -72,7 +72,7 @@ cybou-core/src/immunity/policy_bundle.rs
 Suggested contract sketch:
 
 ```text
-docs/RUST_IMMUNITY_CONTRACT_SKETCH.rs
+removed Rust contract sketch
 ```
 
 ## Security rule
