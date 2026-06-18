@@ -1,0 +1,63 @@
+version: '7.0'
+corpus_version: '7.0'
+skill_format_version: operational_contract_v1
+package: cybou-devops-secops-agent-skills
+migration_note: >-
+  Pilot override registry for the first v7 operational_contract_v1 migration.
+  Merge these entries into registry.yaml without dropping unmigrated skills.
+skills:
+  - id: package-manager-safety
+    path: devops/package-manager-safety/SKILL.md
+    category: devops
+    skill_format: operational_contract_v1
+    default_risk: high
+    default_mode: review_only
+    requires_tools:
+      preferred: [mcp:filesystem:read_file, mcp:git:diff, mcp:package_registry:metadata]
+      fallback: [shell, package_manager]
+    policy_refs: [policy_rules/package_managers.yaml, policy_rules/shell.yaml, policy_rules/git.yaml]
+    output_template: package_manager_safety_report
+  - id: linux-diagnostics
+    path: devops/linux-diagnostics/SKILL.md
+    category: devops
+    skill_format: operational_contract_v1
+    default_risk: low
+    default_mode: read_only
+    requires_tools:
+      preferred: [mcp:host:metrics, mcp:filesystem:read_file]
+      fallback: [shell]
+    policy_refs: [policy_rules/shell.yaml]
+    output_template: linux_diagnostics_report
+  - id: kubernetes-readonly-triage
+    path: devops/kubernetes-readonly-triage/SKILL.md
+    category: devops
+    skill_format: operational_contract_v1
+    default_risk: medium
+    default_mode: read_only
+    requires_tools:
+      preferred: [mcp:kubernetes:get, mcp:kubernetes:describe, mcp:kubernetes:logs]
+      fallback: [kubectl]
+    policy_refs: [policy_rules/kubectl.yaml, policy_rules/shell.yaml]
+    output_template: kubernetes_triage_report
+  - id: database-safety
+    path: devops/database-safety/SKILL.md
+    category: devops
+    skill_format: operational_contract_v1
+    default_risk: high
+    default_mode: read_only
+    requires_tools:
+      preferred: [mcp:database:metadata, mcp:database:readonly_query, mcp:filesystem:read_file]
+      fallback: [database, shell]
+    policy_refs: [policy_rules/database.yaml, policy_rules/shell.yaml]
+    output_template: database_safety_report
+  - id: terraform-plan-review
+    path: devops/terraform-plan-review/SKILL.md
+    category: devops
+    skill_format: operational_contract_v1
+    default_risk: high
+    default_mode: read_only
+    requires_tools:
+      preferred: [mcp:filesystem:read_file, mcp:git:diff, mcp:terraform:plan_reader]
+      fallback: [terraform, shell, git]
+    policy_refs: [policy_rules/terraform.yaml, policy_rules/shell.yaml, policy_rules/git.yaml]
+    output_template: terraform_plan_review_report

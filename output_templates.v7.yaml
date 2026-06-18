@@ -1,0 +1,189 @@
+version: '7.0'
+templates:
+  package_manager_safety_report: |
+    ## Package manager safety report
+
+    ### Summary
+    ...
+
+    ### Environment and ecosystem
+    Package manager:
+    Registry/index:
+    Environment:
+
+    ### Evidence inspected
+    - ...
+
+    ### Commands or tools used
+    - ...
+
+    ### Dependency and registry findings
+    Package source:
+    Lockfile impact:
+    Install scripts:
+    Transitive dependency concerns:
+
+    ### Risk classification
+    Estimated risk:
+    Risk drivers:
+
+    ### Actions taken
+    - ...
+
+    ### Blocked actions
+    - ...
+
+    ### Recommended next steps
+    1. ...
+
+  linux_diagnostics_report: |
+    ## Linux diagnostics report
+
+    ### Summary
+    ...
+
+    ### Environment
+    Host:
+    Environment classification:
+
+    ### Evidence inspected
+    - ...
+
+    ### Commands or tools used
+    - ...
+
+    ### Findings
+    Symptom:
+    Likely cause:
+    Supporting evidence:
+
+    ### Risk classification
+    Estimated risk:
+    Risk drivers:
+
+    ### Actions taken
+    - ...
+
+    ### Blocked actions
+    - ...
+
+    ### Safe next step
+    ...
+
+    ### Recommended next steps
+    1. ...
+
+  kubernetes_triage_report: |
+    ## Kubernetes triage report
+
+    ### Summary
+    ...
+
+    ### Context
+    Cluster/current context:
+    Namespace:
+    Resource:
+    Symptom:
+
+    ### Evidence inspected
+    - ...
+
+    ### Commands or tools used
+    - ...
+
+    ### Findings
+    Likely cause:
+    Supporting evidence:
+
+    ### Risk classification
+    Estimated risk:
+    Risk drivers:
+
+    ### Actions taken
+    - ...
+
+    ### Blocked actions
+    - ...
+
+    ### Safe next command
+    ...
+
+    ### Recommended next steps
+    1. ...
+
+  database_safety_report: |
+    ## Database safety report
+
+    ### Summary
+    ...
+
+    ### Context
+    Database type:
+    Environment:
+    Data sensitivity:
+
+    ### Evidence inspected
+    - ...
+
+    ### Commands or tools used
+    - ...
+
+    ### Query or migration classification
+    Operation type:
+    Backup status:
+    Rollback status:
+
+    ### Risk classification
+    Estimated risk:
+    Risk drivers:
+
+    ### Actions taken
+    - ...
+
+    ### Blocked actions
+    - ...
+
+    ### Recommended next steps
+    1. ...
+
+  terraform_plan_review_report: |
+    ## Terraform plan review report
+
+    ### Summary
+    ...
+
+    ### Environment
+    Workspace/module:
+    Environment classification:
+
+    ### Evidence inspected
+    - ...
+
+    ### Commands or tools used
+    - ...
+
+    ### Plan action counts
+    Create:
+    Update:
+    Delete:
+    Replace:
+
+    ### Blast radius
+    Services affected:
+    Downtime risk:
+    Data loss risk:
+    Security exposure:
+    Rollback complexity:
+
+    ### Risk classification
+    Estimated risk:
+    Risk drivers:
+
+    ### Actions taken
+    - ...
+
+    ### Blocked actions
+    - ...
+
+    ### Recommendation
+    ...

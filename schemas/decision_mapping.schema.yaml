@@ -1,6 +1,0 @@
-type: object
-required:
-- version
-- target_runtime_verdicts
-- mapping
-- validation_rule

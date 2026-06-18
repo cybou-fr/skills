@@ -1,12 +1,36 @@
-version: '5.9'
-default_policy: deny_write_without_approval
+corpus_version: '7.0'
+policy_version: '7.0'
+skill_format_version: operational_contract_v1
+default_policy: deny_write_without_policy_scope
+enforcement_note: Runtime Tool Router enforces these rules. SKILL.md is guidance only.
 policy_rule_directory: policy_rules/
-enforcement_note: Runtime Tool Router must enforce these rules. SKILL.md is guidance only.
+activity_policy_directory: activity_policies/
 global_limits:
   default_timeout_seconds: 30
   default_max_output_bytes: 20000
   redact_secrets: true
   unknown_environment_write_policy: deny
+  prefer_mcp_for_host_resources: true
+tool_preference:
+  host_files:
+    preferred: [mcp:filesystem:read_file, mcp:fetch]
+    fallback: [shell]
+    note: Use shell only for VM-local files or explicitly mounted workspace files.
+  repository_diffs:
+    preferred: [mcp:git:diff, mcp:github:get_pull_request]
+    fallback: [git]
+  kubernetes:
+    preferred: [mcp:kubernetes:get, mcp:kubernetes:describe, mcp:kubernetes:logs]
+    fallback: [kubectl]
+  web_search:
+    preferred: [mcp:duckduckgo]
+    fallback: [http_fetch]
+  databases:
+    preferred: [mcp:database:metadata, mcp:database:readonly_query]
+    fallback: [database]
+  packages:
+    preferred: [mcp:filesystem:read_file, mcp:git:diff]
+    fallback: [shell, package_manager]
 tools:
   shell:
     rules: policy_rules/shell.yaml
@@ -34,4 +58,3 @@ tools:
     rules: policy_rules/cargo.yaml
   rust_toolchain:
     rules: policy_rules/rust_toolchain.yaml
-activity_policy_directory: activity_policies/

@@ -1,9 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cybou.fr/schemas/semantic_review_report.schema.json",
-  "title": "Cybou Semantic Review Report",
-  "type": "object",
-  "required": [
-    "version"
-  ]
-}
