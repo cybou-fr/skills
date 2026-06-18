@@ -1,0 +1,16 @@
+version: "8.0"
+templates:
+  prompt_injection_defense_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Injection indicators, Risk classification, Actions taken, Blocked actions, Recommendation]
+  malicious_dependency_review_report:
+    required_sections: [Summary, Package or dependency inspected, Evidence inspected, Tools or commands used, Suspicious indicators, Risk classification, Actions taken, Blocked actions, Recommendation]
+  supply_chain_security_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Findings, Provenance and signing, Risk classification, Actions taken, Blocked actions, Recommendation]
+  secret_detection_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Findings, Risk classification, Actions taken, Blocked actions, Recommended remediation]
+  model_data_leakage_review_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Leakage findings, Risk classification, Actions taken, Blocked actions, Recommended remediation]
+  rag_poisoning_defense_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Poisoning indicators, Risk classification, Actions taken, Blocked actions, Recommendation]
+  ai_agent_tool_abuse_review_report:
+    required_sections: [Summary, Scope inspected, Tools or commands used, Suspicious tool calls, Risk classification, Actions taken, Blocked actions, Recommendation]

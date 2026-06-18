@@ -1,0 +1,60 @@
+version: "8.0"
+skill_format_version: operational_contract_v1
+notes: "Overlay registry entries for v8 AI/SecOps operational-contract migration. Merge into registry.yaml or use as pilot overrides."
+skills:
+  - id: prompt-injection-defense
+    path: secops/prompt-injection-defense/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:pattern_scanner:scan, mcp:filesystem:read_file, mcp:fetch]
+      fallback: [shell, ripgrep]
+  - id: malicious-dependency-review
+    path: secops/malicious-dependency-review/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:filesystem:read_file, mcp:git:diff, mcp:package_registry:metadata, mcp:secret_scanner:scan]
+      fallback: [shell, git, npm, python, cargo, go, apt]
+  - id: supply-chain-security
+    path: secops/supply-chain-security/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:git:diff, mcp:github:get_pull_request, mcp:filesystem:read_file, mcp:secret_scanner:scan]
+      fallback: [shell, git, rg, jq]
+  - id: secret-detection
+    path: secops/secret-detection/SKILL.md
+    category: secops
+    default_mode: read_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:secret_scanner:scan, mcp:filesystem:read_file, mcp:git:diff]
+      fallback: [shell, gitleaks, trufflehog, ripgrep]
+  - id: model-data-leakage-review
+    path: secops/model-data-leakage-review/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:secret_scanner:scan, mcp:pattern_scanner:scan, mcp:filesystem:read_file]
+      fallback: [shell, ripgrep, jq]
+  - id: rag-poisoning-defense
+    path: secops/rag-poisoning-defense/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:pattern_scanner:scan, mcp:filesystem:read_file, mcp:fetch, mcp:vector_store:metadata]
+      fallback: [shell, ripgrep, jq]
+  - id: ai-agent-tool-abuse-review
+    path: secops/ai-agent-tool-abuse-review/SKILL.md
+    category: secops
+    default_mode: review_only
+    default_risk: high
+    requires_tools:
+      preferred: [mcp:pattern_scanner:scan, mcp:filesystem:read_file, mcp:audit_log:query]
+      fallback: [shell, jq, ripgrep]
