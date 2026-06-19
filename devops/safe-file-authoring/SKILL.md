@@ -1,6 +1,6 @@
 ---
 name: safe-file-authoring
-version: "9.0"
+version: "9.1"
 skill_format: operational_contract_v1
 category: devops/filesystem
 default_mode: guarded
@@ -233,3 +233,32 @@ Create evals for:
 - blocks unquoted heredoc for nginx/systemd content;
 - validation failure blocks reload/restart;
 - permission denied does not escalate blindly.
+
+
+## V9.1 Integration hardening
+
+### preferred_tool: explicit write_file contract
+
+When available, prefer the host-governed file writer rather than shell heredocs:
+
+```text
+write_file(path="<target>", content="<literal-content>", mode="0644")
+```
+
+Then verify with read-back and a syntax-specific validator.
+
+### read_only: YAML validation fallback
+
+```bash
+python3 - <<'PY'
+try:
+    import yaml
+    with open('<target>', 'r', encoding='utf-8') as f:
+        yaml.safe_load(f)
+    print('YAML OK')
+except ModuleNotFoundError:
+    print('YAML validation skipped: PyYAML unavailable')
+except Exception as e:
+    raise SystemExit(f'YAML invalid: {e}')
+PY
+```

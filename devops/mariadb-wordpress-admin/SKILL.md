@@ -1,6 +1,6 @@
 ---
 name: mariadb-wordpress-admin
-version: "9.0"
+version: "9.1"
 skill_format: operational_contract_v1
 category: devops/database
 default_mode: guarded
@@ -122,7 +122,17 @@ Use `mariadb -e` equivalents if `mysql` is unavailable.
 ### read_only: verify app user login without exposing password in report
 
 ```bash
-MYSQL_PWD='<strong-password>' mysql -u '<wp_user>' -h localhost -e "SHOW DATABASES; SELECT DATABASE();" '<wp_db>'
+tmp_cnf=$(mktemp)
+chmod 0600 "$tmp_cnf"
+cat > "$tmp_cnf" <<'EOF'
+[client]
+user=<wp_user>
+password=<strong-password>
+host=localhost
+database=<wp_db>
+EOF
+mysql --defaults-extra-file="$tmp_cnf" -e "SELECT DATABASE(), CURRENT_USER(); SHOW TABLES;"
+rm -f "$tmp_cnf"
 ```
 
 Do not print the real password in final output.
@@ -245,3 +255,35 @@ Create evals for:
 - creates DB/user/grants with least privilege;
 - blocks `GRANT ALL ON *.*`;
 - redacts password in output.
+
+
+## V9.1 Integration hardening
+
+### read_only: admin access discovery with sudo/no-sudo fallback
+
+```bash
+mysql -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
+sudo mysql -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
+mariadb -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
+sudo mariadb -e "SELECT CURRENT_USER(), VERSION();"
+```
+
+### guarded: credential-safe login test
+
+Prefer a temporary client config over `MYSQL_PWD` so the password is not exposed in environment/process context:
+
+```bash
+tmp_cnf=$(mktemp)
+chmod 0600 "$tmp_cnf"
+cat > "$tmp_cnf" <<'EOF'
+[client]
+user=<wp_user>
+password=<strong-password>
+host=localhost
+database=<wp_db>
+EOF
+mysql --defaults-extra-file="$tmp_cnf" -e "SELECT DATABASE(), CURRENT_USER(); SHOW TABLES;"
+rm -f "$tmp_cnf"
+```
+
+Do not print the temporary file content. `MYSQL_PWD` is blocked in this skill.

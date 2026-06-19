@@ -1,12 +1,13 @@
-version: "9.0"
+version: "9.1"
+purpose: Output templates for narrow external DevOps skills.
 templates:
   debian13_service_discovery_report:
-    required_sections: [Summary, Environment, Package inspected, Unit discovery, Commands/tools used, Risk classification, Actions taken, Blocked actions, Recommendation]
+    required_sections: [summary, environment, package_inspected, discovery_commands_used, units_sockets_found, selected_canonical_unit, risk_classification, actions_taken, blocked_actions, next_steps]
   python_venv_service_report:
-    required_sections: [Summary, Environment, Application, Venv/dependencies, Systemd unit, Risk classification, Actions taken, Blocked actions, Recommendation]
+    required_sections: [summary, environment, app_directory, venv_dependency_actions, unit_file, validation_commands, service_status, risk_classification, actions_taken, blocked_actions, next_steps]
   nginx_php_fpm_wordpress_report:
-    required_sections: [Summary, Environment, WordPress site, Config changes, Commands/tools used, Risk classification, Actions taken, Blocked actions, Recommendation]
+    required_sections: [summary, environment, php_fpm_unit_socket_discovery, nginx_config_written_or_proposed, validation_result, reload_result, security_controls, risk_classification, actions_taken, blocked_actions, next_steps]
   mariadb_wordpress_admin_report:
-    required_sections: [Summary, Environment, WordPress DB plan, Commands/tools used, Verification, Risk classification, Actions taken, Blocked actions, Recommendation]
+    required_sections: [summary, environment, admin_access_method, database_user_operations, grants, login_test, risk_classification, actions_taken, blocked_actions, next_steps]
   safe_file_authoring_report:
-    required_sections: [Summary, Target, Authoring method, Validation, Risk classification, Actions taken, Blocked actions, Recommendation]
+    required_sections: [summary, target_path, authoring_method, backup_status, validation_result, risk_classification, actions_taken, blocked_actions, next_steps]

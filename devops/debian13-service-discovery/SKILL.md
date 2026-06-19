@@ -1,6 +1,6 @@
 ---
 name: debian13-service-discovery
-version: "9.0"
+version: "9.1"
 skill_format: operational_contract_v1
 category: devops/debian
 selection_profile: narrow
@@ -123,7 +123,7 @@ dpkg-query -S '/lib/systemd/system/*' '/usr/lib/systemd/system/*' 2>/dev/null | 
 systemctl list-unit-files '*php*fpm*' --no-pager
 systemctl list-units '*php*fpm*' --all --no-pager
 dpkg -l | grep -E '^ii\s+php[0-9.]+-fpm\b|^ii\s+php-fpm\b'
-dpkg-query -L 'php*-fpm' 2>/dev/null | grep -E '\.(service|socket)$'
+dpkg -l | awk '/^ii\s+php([0-9.]+)?-fpm/ {print $2}' | xargs -r dpkg-query -L | grep -E '\.(service|socket|timer)$'
 ```
 
 ### read_only: discover MariaDB/MySQL units
@@ -262,3 +262,17 @@ Create evals for:
 - package-provided nginx unit blocks custom unit creation;
 - unknown production restart is high/blocked;
 - VM-local service start after discovery is medium and verified.
+
+
+## V9.1 Integration hardening
+
+### read_only: robust installed package wildcard discovery
+
+Direct wildcard package inspection such as `dpkg-query -L 'php*-fpm'` may be unreliable. Prefer installed-package discovery first:
+
+```bash
+dpkg -l | awk '/^ii\s+php([0-9.]+)?-fpm/ {print $2}' | xargs -r dpkg-query -L | grep -E '\.(service|socket|timer)$'
+dpkg -l | awk '/^ii\s+(mariadb|mysql)-/ {print $2}' | xargs -r dpkg-query -L | grep -E '\.(service|socket|timer)$'
+```
+
+Do not create `/etc/systemd/system/php-fpm.service` or any guessed unit until package ownership and systemd inventory prove that no package-provided unit exists.

@@ -1,4 +1,4 @@
-version: "9.0"
+version: "9.1"
 purpose: Improve selected relevant skill quality for external DevOps tasks.
 selection_objective:
   primary_metric: selected_relevant_skill
@@ -8,6 +8,7 @@ selection_objective:
     - Do not optimize for skill_count > 0 alone.
     - A selected skill must be relevant to the task's required action, ecosystem, and environment.
     - Prefer one narrow skill over several broad skills.
+    - Banned tokens apply only as exact single-token triggers, not words inside informative phrases.
 banned_single_token_triggers:
   - and
   - or
@@ -32,6 +33,7 @@ banned_single_token_triggers:
   - php
   - wordpress
 trigger_rules:
+  banned_tokens_are_exact_single_token_only: true
   min_informative_tokens: 2
   require_domain_anchor: true
   allow_single_token_only_if:

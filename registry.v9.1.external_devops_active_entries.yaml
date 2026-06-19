@@ -1,0 +1,118 @@
+version: "9.1"
+purpose: Active registry entries for v9.1 narrow external DevOps skills.
+skills:
+  - id: debian13-service-discovery
+    path: devops/debian13-service-discovery/SKILL.md
+    category: devops/debian
+    triggers:
+      - debian 13 service discovery
+      - package provided systemd unit
+      - systemctl list-unit-files
+      - php-fpm unit name
+      - mariadb service unit name
+      - nginx package service
+      - service unit not found after apt install
+      - unit file discovery before manual unit
+    negative_triggers: [system, service, unit, http, url, and]
+    selection_profile: narrow
+    default_risk: low
+    default_mode: read_only
+    requires_tools: [shell, apt, dpkg, systemctl]
+    tool_preferences:
+      preferred: [mcp:filesystem:read_file]
+      fallback: [shell, apt, dpkg, systemctl]
+    input_types: [debian_service_request, package_metadata, systemd_inventory]
+    output_template: debian13_service_discovery_report
+    related_skills: [linux-diagnostics, safe-file-authoring]
+    do_not_use_for: [general education, pure definitions, tutorial-only questions, generic http/url tasks]
+    autonomy_level: 1
+  - id: python-venv-service
+    path: devops/python-venv-service/SKILL.md
+    category: devops/python
+    triggers:
+      - Debian PEP 668 Python service
+      - FastAPI uvicorn systemd venv
+      - externally-managed-environment pip
+      - venv/bin/python systemd ExecStart
+      - python3 -m venv service
+      - uvicorn.service with virtualenv
+    negative_triggers: [python, service, system, api, http]
+    selection_profile: narrow
+    default_risk: medium
+    default_mode: guarded
+    requires_tools: [shell, python3, systemctl]
+    tool_preferences:
+      preferred: [mcp:filesystem:read_file, mcp:filesystem:write_file]
+      fallback: [shell, python3, systemctl]
+    input_types: [python_service_request, systemd_unit, dependency_file]
+    output_template: python_venv_service_report
+    related_skills: [package-manager-safety, malicious-dependency-review, safe-file-authoring, debian13-service-discovery]
+    do_not_use_for: [general education, pure definitions, tutorial-only questions, generic python coding]
+    autonomy_level: 2
+  - id: nginx-php-fpm-wordpress
+    path: devops/nginx-php-fpm-wordpress/SKILL.md
+    category: devops/web
+    triggers:
+      - nginx php-fpm wordpress
+      - WordPress nginx XML-RPC deny
+      - PHP-FPM socket discovery
+      - nginx fastcgi_pass unix socket
+      - nginx -t before reload wordpress
+      - php-fpm unit not found nginx
+    negative_triggers: [nginx, wordpress, php, http, url]
+    selection_profile: narrow
+    default_risk: medium
+    default_mode: guarded
+    requires_tools: [shell, nginx, systemctl]
+    tool_preferences:
+      preferred: [mcp:filesystem:read_file, mcp:filesystem:write_file]
+      fallback: [shell, nginx, systemctl]
+    input_types: [wordpress_stack_request, nginx_config, php_fpm_inventory]
+    output_template: nginx_php_fpm_wordpress_report
+    related_skills: [debian13-service-discovery, safe-file-authoring, mariadb-wordpress-admin]
+    do_not_use_for: [general education, pure definitions, tutorial-only questions, generic http/url tasks]
+    autonomy_level: 2
+  - id: mariadb-wordpress-admin
+    path: devops/mariadb-wordpress-admin/SKILL.md
+    category: devops/database
+    triggers:
+      - WordPress MariaDB database user grants
+      - mysql -e create database user grants
+      - mariadb wordpress admin
+      - socket auth mysql root Debian
+      - avoid PostgreSQL drift WordPress
+    negative_triggers: [database, sql, user, admin, wordpress]
+    selection_profile: narrow
+    default_risk: medium
+    default_mode: guarded
+    requires_tools: [shell, mysql, mariadb]
+    tool_preferences:
+      preferred: [mcp:filesystem:read_file]
+      fallback: [shell, mysql, mariadb]
+    input_types: [wordpress_database_request, mariadb_admin_request]
+    output_template: mariadb_wordpress_admin_report
+    related_skills: [database-safety, secret-detection, safe-file-authoring]
+    do_not_use_for: [general education, pure definitions, tutorial-only questions, PostgreSQL database tasks]
+    autonomy_level: 2
+  - id: safe-file-authoring
+    path: devops/safe-file-authoring/SKILL.md
+    category: devops/filesystem
+    triggers:
+      - safe file authoring quoted heredoc
+      - write_file preferred fallback tee heredoc
+      - robust heredoc nginx variables
+      - systemd unit write_file tee
+      - avoid unterminated quote heredoc
+    negative_triggers: [file, write, config, shell]
+    selection_profile: narrow
+    default_risk: medium
+    default_mode: guarded
+    requires_tools: [shell]
+    tool_preferences:
+      preferred: [mcp:filesystem:write_file, mcp:filesystem:read_file]
+      fallback: [shell]
+    input_types: [file_authoring_request, config_content, heredoc_risk]
+    output_template: safe_file_authoring_report
+    related_skills: [command-safety, linux-diagnostics]
+    do_not_use_for: [general education, pure definitions, tutorial-only questions, generic writing tasks]
+    autonomy_level: 2

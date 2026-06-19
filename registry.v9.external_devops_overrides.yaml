@@ -1,5 +1,5 @@
-version: "9.0"
-corpus_version: "9.0"
+version: "9.1"
+corpus_version: "9.1"
 skill_format_version: operational_contract_v1
 purpose: Narrow external DevOps skills and selection-quality overrides.
 

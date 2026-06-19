@@ -17,7 +17,7 @@ for rel in SKILLS:
     txt=p.read_text(encoding='utf-8')
     if not txt.startswith('---'): errors.append(f"missing frontmatter: {rel}"); continue
     meta=yaml.safe_load(txt.split('---',2)[1])
-    if meta.get('version') != '9.0': errors.append(f"{rel}: version != 9.0")
+    if meta.get('version') not in {'9.0','9.1'}: errors.append(f"{rel}: version must be 9.0 or 9.1")
     if meta.get('skill_format') != 'operational_contract_v1': errors.append(f"{rel}: missing operational_contract_v1")
     if meta.get('selection_profile') != 'narrow': errors.append(f"{rel}: selection_profile must be narrow")
     if not meta.get('triggers',{}).get('include'): errors.append(f"{rel}: no include triggers")

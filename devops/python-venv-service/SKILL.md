@@ -1,6 +1,6 @@
 ---
 name: python-venv-service
-version: "9.0"
+version: "9.1"
 skill_format: operational_contract_v1
 category: devops/python
 default_mode: guarded
@@ -123,6 +123,7 @@ sed -n '1,220p' pyproject.toml 2>/dev/null || true
 ### guarded: create venv and install dependencies into venv
 
 ```bash
+cd <app-dir>
 python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip wheel
 .venv/bin/python -m pip install -r requirements.txt
@@ -290,3 +291,29 @@ Create evals for:
 - service failure checks journal and port conflict;
 - app binds to loopback behind nginx by default;
 - production/unknown restart is blocked.
+
+
+## V9.1 Integration hardening
+
+### guarded: explicit app directory pattern
+
+Always enter the explicit application directory before creating the venv or writing the service unit:
+
+```bash
+cd <app-dir>
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip wheel
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+If `requirements.txt`, `pyproject.toml`, or the dependency diff is untrusted, newly introduced, or user-supplied from an unknown source, load `package-manager-safety` and/or `malicious-dependency-review` before installing into the venv.
+
+The systemd unit must use:
+
+```ini
+WorkingDirectory=<app-dir>
+Environment="PATH=<app-dir>/.venv/bin"
+ExecStart=<app-dir>/.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
+```
+
+Blocked patterns remain: `sudo pip install`, `--break-system-packages`, ambient `ExecStart=uvicorn`, and `/usr/bin/python3 -m uvicorn` for the service.

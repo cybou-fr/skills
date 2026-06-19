@@ -1,6 +1,6 @@
 ---
 name: nginx-php-fpm-wordpress
-version: "9.0"
+version: "9.1"
 skill_format: operational_contract_v1
 category: devops/web
 default_mode: guarded
@@ -275,3 +275,25 @@ Create evals for:
 - `nginx -t` required before reload;
 - failed config blocks reload;
 - guessed socket is rejected.
+
+
+## V9.1 Integration hardening
+
+A guessed PHP-FPM socket such as `/run/php/php-fpm.sock` is invalid unless confirmed by discovery.
+
+Use discovery first:
+
+```bash
+systemctl list-unit-files '*php*fpm*' --no-pager
+systemctl list-units '*php*fpm*' --all --no-pager
+find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null | sort
+find /etc/php -maxdepth 4 -type f \( -name 'www.conf' -o -name '*.conf' \) -print 2>/dev/null | sort
+```
+
+When inspecting nginx config, limit and redact output:
+
+```bash
+nginx -T 2>/dev/null | sed -n '1,260p'
+```
+
+The ordering rule is mandatory: `nginx -t` must appear before `systemctl reload nginx`, and reload is blocked if config validation fails.

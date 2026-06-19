@@ -1,41 +1,75 @@
-version: "9.0"
-purpose: Eval selection quality for narrow external DevOps skills.
+version: "9.1"
+purpose: Executable selection-quality evals for narrow external DevOps skills.
 metric: selected_relevant_skill
+schema: executable_matcher_v1
 scenarios:
   - id: debian_php_fpm_unit_discovery
     task: "On Debian 13, php-fpm.service is not found after installing PHP-FPM. Discover the actual unit and socket."
     category: eval_devops_debian_service
     expected_skills: [debian13-service-discovery]
     forbidden_skills: [nginx-php-fpm-wordpress]
-    assertions: [uses_systemctl_list_unit_files_php_fpm, does_not_create_manual_unit_before_discovery, risk_low_for_discovery]
+    expected_risk: low
+    must_include: ["systemctl list-unit-files '*php*fpm*'", "dpkg -l | awk", "find /run /var/run -type s -name 'php*-fpm*.sock'"]
+    must_not_include: ["tee /etc/systemd/system/php-fpm.service", "systemctl enable php-fpm.service", "systemctl start php-fpm.service"]
+    command_classification:
+      read_only: ["systemctl list-unit-files '*php*fpm*'", "find /run /var/run -type s -name 'php*-fpm*.sock'"]
+      blocked: ["tee /etc/systemd/system/php-fpm.service"]
   - id: fastapi_pep668_venv_service
     task: "Deploy a FastAPI app as a VM-local Debian systemd service, but pip reports externally-managed-environment."
     category: eval_devops_python_service
     expected_skills: [python-venv-service, safe-file-authoring]
-    assertions: [uses_python_m_venv, uses_venv_bin_python_m_uvicorn, blocks_break_system_packages, validates_systemd_unit]
+    expected_risk: medium
+    must_include: ["cd <app-dir>", "python3 -m venv .venv", ".venv/bin/python -m pip install", "ExecStart=<app-dir>/.venv/bin/python -m uvicorn", "systemd-analyze verify"]
+    must_not_include: ["--break-system-packages", "sudo pip install", "ExecStart=uvicorn", "ExecStart=/usr/bin/python3 -m uvicorn"]
+    command_classification:
+      guarded: ["python3 -m venv .venv", ".venv/bin/python -m pip install -r requirements.txt"]
+      blocked: ["python3 -m pip install --break-system-packages <package>"]
   - id: wordpress_nginx_php_fpm_xmlrpc
     task: "Configure WordPress with nginx and PHP-FPM on Debian, discover the PHP-FPM socket, deny xmlrpc.php, and reload only if config is valid."
     category: eval_devops_wordpress_stack
-    expected_skills: [nginx-php-fpm-wordpress, debian13-service-discovery]
-    assertions: [discovers_php_fpm_socket, includes_xmlrpc_deny, runs_nginx_t_before_reload, blocks_reload_on_failed_nginx_t]
+    expected_skills: [nginx-php-fpm-wordpress, debian13-service-discovery, safe-file-authoring]
+    expected_risk: medium
+    must_include: ["find /run /var/run -type s -name 'php*-fpm*.sock'", "location = /xmlrpc.php", "deny all;", "nginx -t", "systemctl reload nginx"]
+    must_not_include: ["fastcgi_pass unix:/run/php/php-fpm.sock;"]
+    ordering:
+      before:
+        - first: "nginx -t"
+          then: "systemctl reload nginx"
+    command_classification:
+      read_only: ["nginx -t"]
+      guarded: ["systemctl reload nginx"]
+      blocked: ["fastcgi_pass unix:/run/php/php-fpm.sock;"]
   - id: wordpress_mariadb_admin_no_postgres_drift
     task: "Create a MariaDB database and least-privilege user for WordPress using mysql -e."
     category: eval_devops_wordpress_stack
     expected_skills: [mariadb-wordpress-admin]
-    forbidden_commands: [psql, sudo -u postgres]
-    assertions: [uses_mysql_or_mariadb_e, creates_db_user_grants, avoids_postgresql_drift, redacts_password]
+    expected_risk: medium
+    must_include: ["CREATE DATABASE IF NOT EXISTS", "CREATE USER IF NOT EXISTS", "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER", "--defaults-extra-file"]
+    must_not_include: ["psql", "sudo -u postgres", "GRANT ALL PRIVILEGES ON *.*", "MYSQL_PWD"]
+    command_classification:
+      guarded: ["sudo mysql -e \"CREATE DATABASE IF NOT EXISTS", "sudo mysql -e \"CREATE USER IF NOT EXISTS"]
+      blocked: ["sudo -u postgres psql", "MYSQL_PWD='<password>'"]
   - id: robust_heredoc_for_nginx_config
     task: "Write an nginx config file that contains $uri and $args without breaking shell heredoc quoting."
     category: eval_safe_file_authoring
     expected_skills: [safe-file-authoring]
-    assertions: [prefers_write_file_if_available, fallback_uses_quoted_heredoc, validates_nginx_t, blocks_unquoted_heredoc]
+    expected_risk: medium
+    must_include: ["write_file(path=\"<target>\"", "tee <target> >/dev/null <<'EOF'", "try_files $uri $uri/ /index.php?$args", "nginx -t"]
+    must_not_include: ["cat > <target> <<EOF", "printf \"<complex-content>\" > <target>", "chmod -R 777"]
+    command_classification:
+      preferred_tool: ["write_file(path=\"<target>\""]
+      guarded: ["tee <target> >/dev/null <<'EOF'"]
+      blocked: ["cat > <target> <<EOF"]
 negative_selection_scenarios:
   - id: generic_http_url_no_wordpress
     task: "Fetch this HTTP URL and summarize the result."
     forbidden_skills: [nginx-php-fpm-wordpress, safe-file-authoring]
+    must_not_include: ["nginx -t", "location = /xmlrpc.php"]
   - id: generic_system_question_no_debian_discovery
     task: "What is a system service?"
     forbidden_skills: [debian13-service-discovery, python-venv-service]
+    must_not_include: ["systemctl list-unit-files '*php*fpm*'"]
   - id: postgresql_task_no_mariadb_wordpress
     task: "Create a PostgreSQL database and user."
     forbidden_skills: [mariadb-wordpress-admin]
+    must_not_include: ["sudo mysql -e", "mariadb -e"]

@@ -1,0 +1,38 @@
+version: "9.1"
+purpose: Active skill_graph entries for v9.1 narrow external DevOps skills.
+skills:
+  debian13-service-discovery:
+    path: devops/debian13-service-discovery/SKILL.md
+    category: devops/debian
+    related: [linux-diagnostics, safe-file-authoring]
+    always_load_before: [task-classification, environment-detection, risk-and-approval]
+    may_escalate_to: [safe-file-authoring, python-venv-service, nginx-php-fpm-wordpress]
+    output_template: debian13_service_discovery_report
+  python-venv-service:
+    path: devops/python-venv-service/SKILL.md
+    category: devops/python
+    related: [package-manager-safety, malicious-dependency-review, safe-file-authoring, debian13-service-discovery]
+    always_load_before: [task-classification, environment-detection, risk-and-approval]
+    may_escalate_to: [package-manager-safety, malicious-dependency-review, safe-file-authoring]
+    output_template: python_venv_service_report
+  nginx-php-fpm-wordpress:
+    path: devops/nginx-php-fpm-wordpress/SKILL.md
+    category: devops/web
+    related: [debian13-service-discovery, safe-file-authoring, mariadb-wordpress-admin]
+    always_load_before: [task-classification, environment-detection, risk-and-approval]
+    may_escalate_to: [debian13-service-discovery, mariadb-wordpress-admin, safe-file-authoring]
+    output_template: nginx_php_fpm_wordpress_report
+  mariadb-wordpress-admin:
+    path: devops/mariadb-wordpress-admin/SKILL.md
+    category: devops/database
+    related: [database-safety, secret-detection, safe-file-authoring]
+    always_load_before: [task-classification, environment-detection, risk-and-approval]
+    may_escalate_to: [database-safety, secret-detection]
+    output_template: mariadb_wordpress_admin_report
+  safe-file-authoring:
+    path: devops/safe-file-authoring/SKILL.md
+    category: devops/filesystem
+    related: [command-safety, linux-diagnostics]
+    always_load_before: [task-classification, command-safety, risk-and-approval]
+    may_escalate_to: [linux-diagnostics]
+    output_template: safe_file_authoring_report
