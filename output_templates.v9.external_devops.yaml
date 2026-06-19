@@ -1,0 +1,12 @@
+version: "9.0"
+templates:
+  debian13_service_discovery_report:
+    required_sections: [Summary, Environment, Package inspected, Unit discovery, Commands/tools used, Risk classification, Actions taken, Blocked actions, Recommendation]
+  python_venv_service_report:
+    required_sections: [Summary, Environment, Application, Venv/dependencies, Systemd unit, Risk classification, Actions taken, Blocked actions, Recommendation]
+  nginx_php_fpm_wordpress_report:
+    required_sections: [Summary, Environment, WordPress site, Config changes, Commands/tools used, Risk classification, Actions taken, Blocked actions, Recommendation]
+  mariadb_wordpress_admin_report:
+    required_sections: [Summary, Environment, WordPress DB plan, Commands/tools used, Verification, Risk classification, Actions taken, Blocked actions, Recommendation]
+  safe_file_authoring_report:
+    required_sections: [Summary, Target, Authoring method, Validation, Risk classification, Actions taken, Blocked actions, Recommendation]

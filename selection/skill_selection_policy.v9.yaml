@@ -1,0 +1,78 @@
+version: "9.0"
+purpose: Improve selected relevant skill quality for external DevOps tasks.
+selection_objective:
+  primary_metric: selected_relevant_skill
+  secondary_metric: nonzero_skill_selection
+  reject_metric: irrelevant_skill_selected
+  notes:
+    - Do not optimize for skill_count > 0 alone.
+    - A selected skill must be relevant to the task's required action, ecosystem, and environment.
+    - Prefer one narrow skill over several broad skills.
+banned_single_token_triggers:
+  - and
+  - or
+  - the
+  - a
+  - an
+  - system
+  - service
+  - unit
+  - url
+  - http
+  - https
+  - file
+  - write
+  - config
+  - database
+  - sql
+  - user
+  - admin
+  - python
+  - nginx
+  - php
+  - wordpress
+trigger_rules:
+  min_informative_tokens: 2
+  require_domain_anchor: true
+  allow_single_token_only_if:
+    - token_is_exact_skill_id
+    - token_is_registered_product_name_with_category_match
+  penalize_if_trigger_is_banned_single_token: true
+  penalize_if_task_category_not_allowed: true
+  prefer_exact_phrase_over_sparse_keywords: true
+  prefer_negative_trigger_match_to_block_selection: true
+category_allowlists:
+  eval_devops_debian_service:
+    allow: [devops/debian, devops/services, devops/filesystem]
+    deny: [secops/*, ai/*, office/*, writing/*, web-search/*]
+  eval_devops_python_service:
+    allow: [devops/python, devops/services, devops/filesystem]
+    deny: [secops/*, database/*, kubernetes/*, terraform/*]
+  eval_devops_wordpress_stack:
+    allow: [devops/web, devops/database, devops/debian, devops/filesystem]
+    deny: [postgresql/*, kubernetes/*, terraform/*, ai/*]
+  eval_safe_file_authoring:
+    allow: [devops/filesystem, devops/services, devops/web]
+    deny: [secops/offensive, web-search/*]
+negative_selection_examples:
+  - task: "Fetch this URL and summarize it."
+    must_not_select: [nginx-php-fpm-wordpress, safe-file-authoring]
+    reason: "url/http alone is not a DevOps stack config task."
+  - task: "What is a system service?"
+    must_not_select: [debian13-service-discovery, python-venv-service]
+    reason: "generic education is not package-to-unit discovery."
+  - task: "Create a PostgreSQL database."
+    must_not_select: [mariadb-wordpress-admin]
+    reason: "explicit PostgreSQL intent conflicts with MariaDB WordPress skill."
+  - task: "Write a Python function."
+    must_not_select: [python-venv-service]
+    reason: "generic Python coding lacks venv/systemd/PEP668 anchors."
+positive_selection_examples:
+  - task: "php-fpm.service is not found after installing PHP-FPM on Debian 13. Find the correct unit."
+    should_select: [debian13-service-discovery]
+  - task: "Deploy a FastAPI app as a Debian systemd service without system pip due to PEP 668."
+    should_select: [python-venv-service, safe-file-authoring]
+  - task: "Configure nginx for WordPress with PHP-FPM socket and block xmlrpc.php."
+    should_select: [nginx-php-fpm-wordpress, debian13-service-discovery]
+  - task: "Create a MariaDB database and least-privilege user for WordPress."
+    should_select: [mariadb-wordpress-admin]

@@ -1,0 +1,146 @@
+{
+  "verdicts": {
+    "273c25d49184c5659df213385e5454c4d13a13df92d670f1227fa7f40914c125": {
+      "name": "brand-guidelines-application",
+      "verdict": "Safe",
+      "at": 1781871092
+    },
+    "7efd93e4a74ce15b6fcf6c12517e63794b4cf2830df4830db6c14ebc3993a412": {
+      "name": "docx-document-workflow",
+      "verdict": "Safe",
+      "at": 1781871095
+    },
+    "1cf18e4d8fed9f92c011b9db4bd40e5818c27718feea4bbfaa857c5953ee40eb": {
+      "name": "evidence-handling",
+      "verdict": "Safe",
+      "at": 1781871097
+    },
+    "62c53d31b2528776d53737c645755ac2a4066257001f26c121e1d40ebdca7c3f": {
+      "name": "xlsx-spreadsheet-workflow",
+      "verdict": "Safe",
+      "at": 1781871117
+    },
+    "604d600e47662c7c311448ed92cf58e4e5edc0489ac65ba288315eb049bbd866": {
+      "name": "approval-request",
+      "verdict": "Safe",
+      "at": 1781871091
+    },
+    "1c1ded98797a00eb8088696f348879fec44c7bcb803bd57523d0f033c91f8acc": {
+      "name": "screenshot-analysis-workflow",
+      "verdict": "Safe",
+      "at": 1781871112
+    },
+    "5bfe6abaa7e03cb4795b9075d0e21578f6b831d8ba85814eb59216099d7d841f": {
+      "name": "risk-and-approval",
+      "verdict": "Safe",
+      "at": 1781871110
+    },
+    "a97cc3e3f046d1223b81fe96132e279f777b663342cb356ea13bc7ee20543ff7": {
+      "name": "figma-design-handoff",
+      "verdict": "Safe",
+      "at": 1781871098
+    },
+    "47f0fb083a0229a2c99ffc9f56195b24b59ef51ad3b039f2155d2d74137587dd": {
+      "name": "image-generation-brief",
+      "verdict": "Safe",
+      "at": 1781871100
+    },
+    "3c9e9740bee3aa514fde6d25c6a6a6ad31c71db879005e9b814feac9938f709c": {
+      "name": "notebook-analysis-workflow",
+      "verdict": "Safe",
+      "at": 1781871104
+    },
+    "8c61598a6b7d5c871bb608d63d02156a18826d79903305504011794106ba304d": {
+      "name": "document-processing-router",
+      "verdict": "Safe",
+      "at": 1781871093
+    },
+    "0a2d8f62b4fa5d02642c2dfb80f27d26846c9e2c64f4208be581e6a2a045c4f7": {
+      "name": "goal-definition-workflow",
+      "verdict": "Safe",
+      "at": 1781871099
+    },
+    "382e15e8bbdcdd5b794016a68e8dac355e1518d5f427cd3581444c28f3feb2b3": {
+      "name": "pdf-document-workflow",
+      "verdict": "Safe",
+      "at": 1781871105
+    },
+    "e58e7afe31224c7d343a010bf0794422e68554a2e3a1763cc9b54872a8f09f36": {
+      "name": "theme-design-system-factory",
+      "verdict": "Safe",
+      "at": 1781871116
+    },
+    "1fc584e08d96925ae10d7b6b68221111b1cddeb864ec796c14bdc1096f6b8e54": {
+      "name": "redaction",
+      "verdict": "Safe",
+      "at": 1781871107
+    },
+    "00a4349ade305739b2b32f770c5bdc75e4c4f3471a7c200010db4ab389f22a12": {
+      "name": "environment-detection",
+      "verdict": "Safe",
+      "at": 1781871096
+    },
+    "cae30174907245288fa9c51e1e8a4dee8e6155ded7f4165c456b9bc934d0ef53": {
+      "name": "issue-tracker-workflow",
+      "verdict": "Safe",
+      "at": 1781871101
+    },
+    "b349074dae0c75ad16fc7c6936291942cc020b7d1f598f7eebb5edc90564f6f1": {
+      "name": "knowledge-capture-workflow",
+      "verdict": "Safe",
+      "at": 1781871102
+    },
+    "492b2cad7ac0bb978142f4a3f40c6cbc14cad4d8763f5da2e472559ff5bbe6f3": {
+      "name": "meeting-intelligence-workflow",
+      "verdict": "Safe",
+      "at": 1781871103
+    },
+    "1840fbf8387ff24a866a6e59491304987cdac151217a7b4eefa8db0a0891fee8": {
+      "name": "pptx-presentation-workflow",
+      "verdict": "Safe",
+      "at": 1781871106
+    },
+    "25d644aebbb144690367d8cc7f8be34a7fa14413dae59f88e13b3477b19bd38c": {
+      "name": "research-documentation-workflow",
+      "verdict": "Safe",
+      "at": 1781871108
+    },
+    "fc0db14bdca1d94a749f78cdd9044d1cf169640c8934e3eb38cedee5ee58c5b2": {
+      "name": "command-safety",
+      "verdict": {
+        "Unsafe": {
+          "reason": "static check: malicious pattern `rm -rf /`"
+        }
+      },
+      "at": 1781871092
+    },
+    "04e0a1332fee608d408a2b5d90540a659266c17ca7d90bb423bc1db8feefdac6": {
+      "name": "http-fetch-safety",
+      "verdict": {
+        "Unsafe": {
+          "reason": "static check: malicious pattern `fetch-and-execute pipe (curl/wget | sh)`"
+        }
+      },
+      "at": 1781871099
+    },
+    "90f406f6faab5fa16c5f6d02c66a332a541356aa8886b2147b7d207bd63d8563": {
+      "name": "speech-transcription-workflow",
+      "verdict": "Safe",
+      "at": 1781871113
+    },
+    "a2d22e51501ede95c3b4c36cda5b4b5e6d32343031f0f74607aa0ae6324a9ecd": {
+      "name": "task-classification",
+      "verdict": "Safe",
+      "at": 1781871115
+    },
+    "d2f5ade3542169955be4d027f8a4e1a32a2e7ff55d5107388713aae3b1f51713": {
+      "name": "rust-security-hardening",
+      "verdict": {
+        "Unsafe": {
+          "reason": "\"execute this command directly\" is a high-risk directive that grants the agent operating authority over the host system."
+        }
+      },
+      "at": 1781871111
+    }
+  }
+}

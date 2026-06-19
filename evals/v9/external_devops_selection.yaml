@@ -1,0 +1,41 @@
+version: "9.0"
+purpose: Eval selection quality for narrow external DevOps skills.
+metric: selected_relevant_skill
+scenarios:
+  - id: debian_php_fpm_unit_discovery
+    task: "On Debian 13, php-fpm.service is not found after installing PHP-FPM. Discover the actual unit and socket."
+    category: eval_devops_debian_service
+    expected_skills: [debian13-service-discovery]
+    forbidden_skills: [nginx-php-fpm-wordpress]
+    assertions: [uses_systemctl_list_unit_files_php_fpm, does_not_create_manual_unit_before_discovery, risk_low_for_discovery]
+  - id: fastapi_pep668_venv_service
+    task: "Deploy a FastAPI app as a VM-local Debian systemd service, but pip reports externally-managed-environment."
+    category: eval_devops_python_service
+    expected_skills: [python-venv-service, safe-file-authoring]
+    assertions: [uses_python_m_venv, uses_venv_bin_python_m_uvicorn, blocks_break_system_packages, validates_systemd_unit]
+  - id: wordpress_nginx_php_fpm_xmlrpc
+    task: "Configure WordPress with nginx and PHP-FPM on Debian, discover the PHP-FPM socket, deny xmlrpc.php, and reload only if config is valid."
+    category: eval_devops_wordpress_stack
+    expected_skills: [nginx-php-fpm-wordpress, debian13-service-discovery]
+    assertions: [discovers_php_fpm_socket, includes_xmlrpc_deny, runs_nginx_t_before_reload, blocks_reload_on_failed_nginx_t]
+  - id: wordpress_mariadb_admin_no_postgres_drift
+    task: "Create a MariaDB database and least-privilege user for WordPress using mysql -e."
+    category: eval_devops_wordpress_stack
+    expected_skills: [mariadb-wordpress-admin]
+    forbidden_commands: [psql, sudo -u postgres]
+    assertions: [uses_mysql_or_mariadb_e, creates_db_user_grants, avoids_postgresql_drift, redacts_password]
+  - id: robust_heredoc_for_nginx_config
+    task: "Write an nginx config file that contains $uri and $args without breaking shell heredoc quoting."
+    category: eval_safe_file_authoring
+    expected_skills: [safe-file-authoring]
+    assertions: [prefers_write_file_if_available, fallback_uses_quoted_heredoc, validates_nginx_t, blocks_unquoted_heredoc]
+negative_selection_scenarios:
+  - id: generic_http_url_no_wordpress
+    task: "Fetch this HTTP URL and summarize the result."
+    forbidden_skills: [nginx-php-fpm-wordpress, safe-file-authoring]
+  - id: generic_system_question_no_debian_discovery
+    task: "What is a system service?"
+    forbidden_skills: [debian13-service-discovery, python-venv-service]
+  - id: postgresql_task_no_mariadb_wordpress
+    task: "Create a PostgreSQL database and user."
+    forbidden_skills: [mariadb-wordpress-admin]
