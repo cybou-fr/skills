@@ -1,0 +1,64 @@
+version: '10.0'
+purpose: Bilingual EN+FR skill selection policy for external DevOps narrow skills.
+primary_metric: selected_relevant_skill_en_fr
+trigger_policy:
+  mode: merged_en_fr_single_triggers_list
+  min_english_triggers_per_skill: 3
+  min_french_triggers_per_skill: 3
+  forbidden_split_fields:
+  - triggers_en
+  - triggers_fr
+  allow_multiword_domain_phrases: true
+  banned_single_token_triggers_en:
+  - system
+  - service
+  - unit
+  - http
+  - url
+  - and
+  - file
+  - write
+  - config
+  - database
+  - sql
+  - user
+  - admin
+  - python
+  - nginx
+  - php
+  - wordpress
+  banned_single_token_triggers_fr:
+  - système
+  - service
+  - unité
+  - http
+  - url
+  - et
+  - fichier
+  - écrire
+  - configuration
+  - base
+  - sql
+  - utilisateur
+  - admin
+  - python
+  - nginx
+  - php
+  - wordpress
+  command_tokens_must_remain_untranslated:
+  - systemctl
+  - nginx -t
+  - mysql -e
+  - mariadb -e
+  - write_file
+  - mcp:filesystem:write_file
+  - dpkg
+  - apt-cache
+selection_expectations:
+  french_task_selects_same_narrow_skill_as_english_task: true
+  generic_french_words_do_not_select_narrow_skills: true
+  summary_is_bilingual_one_line_until_loader_uses_summary_fr: true
+reporting:
+  score_relevant_skill_not_skill_count: true
+  track_false_positive_rate_fr: true
+  track_generic_skill_overselection_fr: true

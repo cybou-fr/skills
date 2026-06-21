@@ -1,45 +1,66 @@
 ---
 name: nginx-php-fpm-wordpress
-version: "9.1"
+version: '10.0'
 skill_format: operational_contract_v1
 category: devops/web
 default_mode: guarded
 default_risk: medium
 selection_profile: narrow
-summary: Configure nginx + PHP-FPM for WordPress with socket/unit discovery, XML-RPC deny, and nginx -t before reload.
+summary: Configure nginx + PHP-FPM for WordPress with socket/unit discovery, XML-RPC deny, and nginx -t before reload. / Configurer
+  nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
 requires_tools:
   preferred:
-    - mcp:filesystem:read_file
-    - mcp:filesystem:write_file
+  - mcp:filesystem:read_file
+  - mcp:filesystem:write_file
   fallback:
-    - shell
-    - nginx
-    - systemctl
+  - shell
+  - nginx
+  - systemctl
 policy_refs:
-  - policy_rules/shell.yaml
+- policy_rules/shell.yaml
 triggers:
   include:
-    - nginx php-fpm wordpress
-    - WordPress nginx XML-RPC deny
-    - PHP-FPM socket discovery
-    - nginx fastcgi_pass unix socket
-    - nginx -t before reload wordpress
-    - php-fpm unit not found nginx
+  - nginx php-fpm wordpress
+  - WordPress nginx XML-RPC deny
+  - PHP-FPM socket discovery
+  - nginx fastcgi_pass unix socket
+  - nginx -t before reload wordpress
+  - php-fpm unit not found nginx
+  - nginx php fpm wordpress
+  - configuration nginx wordpress
+  - socket php fpm
+  - unité php fpm
+  - bloquer xmlrpc wordpress
+  - refuser xmlrpc php
+  - nginx test avant reload
+  - nginx -t avant rechargement
+  - fastcgi pass socket php fpm
+  - découvrir socket php fpm wordpress
+  - configuration wordpress nginx php fpm
+  - ne pas deviner socket php fpm
   exclude:
-    - generic nginx question
-    - generic http url
-    - static website only
+  - generic nginx question
+  - generic http url
+  - static website only
 negative_triggers:
-  - nginx
-  - wordpress
-  - php
-  - http
-  - url
+- nginx
+- wordpress
+- php
+- http
+- url
 activation_examples:
-  - "Configure WordPress on Debian with nginx and discovered PHP-FPM socket."
-  - "Deny xmlrpc.php and run nginx -t before reload."
+- Configure WordPress on Debian with nginx and discovered PHP-FPM socket.
+- Deny xmlrpc.php and run nginx -t before reload.
+- Configurer WordPress sur Debian avec nginx et le socket PHP-FPM découvert.
+- Bloquer xmlrpc.php et exécuter nginx -t avant de recharger nginx.
 output_template: nginx_php_fpm_wordpress_report
+summary_fr: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+i18n:
+  fr:
+    summary: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+    body: body.fr.md
 ---
+
 
 # Nginx PHP-FPM WordPress
 

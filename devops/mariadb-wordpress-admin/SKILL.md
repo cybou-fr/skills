@@ -1,42 +1,66 @@
 ---
 name: mariadb-wordpress-admin
-version: "9.1"
+version: '10.0'
 skill_format: operational_contract_v1
 category: devops/database
 default_mode: guarded
 default_risk: medium
 selection_profile: narrow
 summary: Administer MariaDB for WordPress using mysql/mariadb CLI, socket auth basics, DB/user/grants, and no PostgreSQL drift.
+  / Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et sans dérive
+  PostgreSQL.
 requires_tools:
   preferred:
-    - mcp:filesystem:read_file
+  - mcp:filesystem:read_file
   fallback:
-    - shell
-    - mysql
-    - mariadb
+  - shell
+  - mysql
+  - mariadb
 policy_refs:
-  - policy_rules/shell.yaml
+- policy_rules/shell.yaml
 triggers:
   include:
-    - MariaDB WordPress database user grants
-    - mysql -e create database wordpress
-    - mariadb socket auth Debian
-    - create WordPress DB user grants
-    - avoid PostgreSQL for WordPress MariaDB
+  - MariaDB WordPress database user grants
+  - mysql -e create database wordpress
+  - mariadb socket auth Debian
+  - create WordPress DB user grants
+  - avoid PostgreSQL for WordPress MariaDB
+  - base mariadb wordpress
+  - créer utilisateur mariadb wordpress
+  - droits mariadb wordpress
+  - mysql -e wordpress
+  - authentification socket mariadb
+  - éviter postgresql wordpress
+  - ne pas utiliser psql
+  - créer base wordpress mariadb
+  - grants mariadb wordpress
+  - utilisateur mysql wordpress
+  - mariadb wordpress sans postgres
+  - vérifier connexion mysql wordpress
   exclude:
-    - PostgreSQL migration
-    - generic database question
-    - sqlite only
+  - PostgreSQL migration
+  - generic database question
+  - sqlite only
 negative_triggers:
-  - database
-  - sql
-  - user
-  - admin
+- database
+- sql
+- user
+- admin
 activation_examples:
-  - "Create MariaDB database and user for WordPress using mysql -e."
-  - "Fix drift where agent tries psql for MariaDB WordPress."
+- Create MariaDB database and user for WordPress using mysql -e.
+- Fix drift where agent tries psql for MariaDB WordPress.
+- Créer la base MariaDB et l'utilisateur WordPress avec mysql -e.
+- Corriger une dérive où l'agent essaie psql pour une installation WordPress/MariaDB.
 output_template: mariadb_wordpress_admin_report
+summary_fr: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et
+  sans dérive PostgreSQL.
+i18n:
+  fr:
+    summary: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et
+      sans dérive PostgreSQL.
+    body: body.fr.md
 ---
+
 
 # MariaDB WordPress Admin
 

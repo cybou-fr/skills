@@ -1,0 +1,375 @@
+version: '10.0'
+purpose: Active bilingual registry entries for v10 external DevOps narrow skills. EN+FR triggers are merged in the single
+  triggers list for current loader compatibility.
+skills:
+- id: debian13-service-discovery
+  path: devops/debian13-service-discovery/SKILL.md
+  category: devops/debian
+  triggers:
+  - debian 13 service discovery
+  - package provided systemd unit
+  - systemctl list-unit-files
+  - php-fpm unit name
+  - mariadb service unit name
+  - nginx package service
+  - service unit not found after apt install
+  - découverte services debian 13
+  - découvrir unité systemd
+  - service fourni par paquet debian
+  - correspondance paquet service
+  - lister unités systemd
+  - ne pas créer unité manuelle
+  - php fpm unité introuvable
+  - service php fpm introuvable
+  - nom unité mariadb
+  - paquet fournit service systemd
+  - unité systemd fournie par paquet
+  - systemctl list-unit-files debian
+  negative_triggers:
+  - system
+  - service
+  - unit
+  - http
+  - url
+  - and
+  selection_profile: narrow
+  default_risk: low
+  default_mode: read_only
+  requires_tools:
+  - shell
+  - apt
+  - dpkg
+  - systemctl
+  tool_preferences:
+    preferred:
+    - mcp:filesystem:read_file
+    fallback:
+    - shell
+    - apt
+    - dpkg
+    - systemctl
+  input_types:
+  - debian_service_request
+  - package_metadata
+  - systemd_inventory
+  output_template: debian13_service_discovery_report
+  related_skills:
+  - linux-diagnostics
+  - safe-file-authoring
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  - generic http/url tasks
+  autonomy_level: 1
+  version: '10.0'
+  skill_format: operational_contract_v1
+  summary: Discover Debian 13 package-provided services and unit names before changing or creating systemd units. / Découvrir
+    les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités systemd.
+  summary_fr: Découvrir les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités
+    systemd.
+  i18n:
+    fr:
+      summary: Découvrir les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités
+        systemd.
+      body: body.fr.md
+  bilingual:
+    mode: merged_en_fr
+    min_english_triggers: 3
+    min_french_triggers: 3
+    co_primary_languages:
+    - en
+    - fr
+- id: python-venv-service
+  path: devops/python-venv-service/SKILL.md
+  category: devops/python
+  triggers:
+  - Debian PEP 668 Python service
+  - FastAPI uvicorn systemd venv
+  - externally-managed-environment pip
+  - venv/bin/python systemd ExecStart
+  - python3 -m venv service
+  - uvicorn.service with virtualenv
+  - environnement virtuel python
+  - service systemd fastapi
+  - fastapi avec venv
+  - python pep 668 debian
+  - paquet python géré extérieurement
+  - erreur externally managed environment
+  - uvicorn systemd venv
+  - venv bin python
+  - service python sans pip système
+  - créer venv debian fastapi
+  - exécuter fastapi avec systemd
+  - pip bloqué pep 668
+  negative_triggers:
+  - python
+  - service
+  - system
+  - api
+  - http
+  selection_profile: narrow
+  default_risk: medium
+  default_mode: guarded
+  requires_tools:
+  - shell
+  - python3
+  - systemctl
+  tool_preferences:
+    preferred:
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
+    fallback:
+    - shell
+    - python3
+    - systemctl
+  input_types:
+  - python_service_request
+  - systemd_unit
+  - dependency_file
+  output_template: python_venv_service_report
+  related_skills:
+  - package-manager-safety
+  - malicious-dependency-review
+  - safe-file-authoring
+  - debian13-service-discovery
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  - generic python coding
+  autonomy_level: 2
+  version: '10.0'
+  skill_format: operational_contract_v1
+  summary: Build Debian-safe Python venv services using PEP 668, FastAPI/Uvicorn systemd patterns, and venv/bin/python. /
+    Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+  summary_fr: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+  i18n:
+    fr:
+      summary: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+      body: body.fr.md
+  bilingual:
+    mode: merged_en_fr
+    min_english_triggers: 3
+    min_french_triggers: 3
+    co_primary_languages:
+    - en
+    - fr
+- id: nginx-php-fpm-wordpress
+  path: devops/nginx-php-fpm-wordpress/SKILL.md
+  category: devops/web
+  triggers:
+  - nginx php-fpm wordpress
+  - WordPress nginx XML-RPC deny
+  - PHP-FPM socket discovery
+  - nginx fastcgi_pass unix socket
+  - nginx -t before reload wordpress
+  - php-fpm unit not found nginx
+  - nginx php fpm wordpress
+  - configuration nginx wordpress
+  - socket php fpm
+  - unité php fpm
+  - bloquer xmlrpc wordpress
+  - refuser xmlrpc php
+  - nginx test avant reload
+  - nginx -t avant rechargement
+  - fastcgi pass socket php fpm
+  - découvrir socket php fpm wordpress
+  - configuration wordpress nginx php fpm
+  - ne pas deviner socket php fpm
+  negative_triggers:
+  - nginx
+  - wordpress
+  - php
+  - http
+  - url
+  selection_profile: narrow
+  default_risk: medium
+  default_mode: guarded
+  requires_tools:
+  - shell
+  - nginx
+  - systemctl
+  tool_preferences:
+    preferred:
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
+    fallback:
+    - shell
+    - nginx
+    - systemctl
+  input_types:
+  - wordpress_stack_request
+  - nginx_config
+  - php_fpm_inventory
+  output_template: nginx_php_fpm_wordpress_report
+  related_skills:
+  - debian13-service-discovery
+  - safe-file-authoring
+  - mariadb-wordpress-admin
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  - generic http/url tasks
+  autonomy_level: 2
+  version: '10.0'
+  skill_format: operational_contract_v1
+  summary: Configure nginx + PHP-FPM for WordPress with socket/unit discovery, XML-RPC deny, and nginx -t before reload. /
+    Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+  summary_fr: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+  i18n:
+    fr:
+      summary: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+      body: body.fr.md
+  bilingual:
+    mode: merged_en_fr
+    min_english_triggers: 3
+    min_french_triggers: 3
+    co_primary_languages:
+    - en
+    - fr
+- id: mariadb-wordpress-admin
+  path: devops/mariadb-wordpress-admin/SKILL.md
+  category: devops/database
+  triggers:
+  - MariaDB WordPress database user grants
+  - mysql -e create database wordpress
+  - mariadb socket auth Debian
+  - create WordPress DB user grants
+  - avoid PostgreSQL for WordPress MariaDB
+  - base mariadb wordpress
+  - créer utilisateur mariadb wordpress
+  - droits mariadb wordpress
+  - mysql -e wordpress
+  - authentification socket mariadb
+  - éviter postgresql wordpress
+  - ne pas utiliser psql
+  - créer base wordpress mariadb
+  - grants mariadb wordpress
+  - utilisateur mysql wordpress
+  - mariadb wordpress sans postgres
+  - vérifier connexion mysql wordpress
+  negative_triggers:
+  - database
+  - sql
+  - user
+  - admin
+  - wordpress
+  selection_profile: narrow
+  default_risk: medium
+  default_mode: guarded
+  requires_tools:
+  - shell
+  - mysql
+  - mariadb
+  tool_preferences:
+    preferred:
+    - mcp:filesystem:read_file
+    fallback:
+    - shell
+    - mysql
+    - mariadb
+  input_types:
+  - wordpress_database_request
+  - mariadb_admin_request
+  output_template: mariadb_wordpress_admin_report
+  related_skills:
+  - database-safety
+  - secret-detection
+  - safe-file-authoring
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  - PostgreSQL database tasks
+  autonomy_level: 2
+  version: '10.0'
+  skill_format: operational_contract_v1
+  summary: Administer MariaDB for WordPress using mysql/mariadb CLI, socket auth basics, DB/user/grants, and no PostgreSQL
+    drift. / Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et
+    sans dérive PostgreSQL.
+  summary_fr: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits
+    et sans dérive PostgreSQL.
+  i18n:
+    fr:
+      summary: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits
+        et sans dérive PostgreSQL.
+      body: body.fr.md
+  bilingual:
+    mode: merged_en_fr
+    min_english_triggers: 3
+    min_french_triggers: 3
+    co_primary_languages:
+    - en
+    - fr
+- id: safe-file-authoring
+  path: devops/safe-file-authoring/SKILL.md
+  category: devops/filesystem
+  triggers:
+  - safe write file heredoc
+  - quoted heredoc tee file authoring
+  - install -d tee system config
+  - write_file fallback shell
+  - avoid unterminated heredoc
+  - robust file creation systemd nginx config
+  - écrire fichier en sécurité
+  - création fichier robuste
+  - heredoc cité
+  - tee avec heredoc
+  - éviter cat heredoc non cité
+  - créer répertoire install -d
+  - écrire configuration sans casser guillemets
+  - write_file préféré
+  - fallback tee heredoc
+  - éviter heredoc interrompu
+  - fichier config nginx avec variables
+  - écrire unité systemd avec tee
+  negative_triggers:
+  - file
+  - write
+  - config
+  - shell
+  selection_profile: narrow
+  default_risk: medium
+  default_mode: guarded
+  requires_tools:
+  - shell
+  tool_preferences:
+    preferred:
+    - mcp:filesystem:write_file
+    - mcp:filesystem:read_file
+    fallback:
+    - shell
+  input_types:
+  - file_authoring_request
+  - config_content
+  - heredoc_risk
+  output_template: safe_file_authoring_report
+  related_skills:
+  - command-safety
+  - linux-diagnostics
+  do_not_use_for:
+  - general education
+  - pure definitions
+  - tutorial-only questions
+  - generic writing tasks
+  autonomy_level: 2
+  version: '10.0'
+  skill_format: operational_contract_v1
+  summary: Safely author files using MCP write_file when available, or robust install -d + tee / quoted heredoc shell fallback.
+    / Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell fallback.
+  summary_fr: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en
+    shell fallback.
+  i18n:
+    fr:
+      summary: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en
+        shell fallback.
+      body: body.fr.md
+  bilingual:
+    mode: merged_en_fr
+    min_english_triggers: 3
+    min_french_triggers: 3
+    co_primary_languages:
+    - en
+    - fr

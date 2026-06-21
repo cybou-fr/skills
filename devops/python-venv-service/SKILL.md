@@ -1,46 +1,67 @@
 ---
 name: python-venv-service
-version: "9.1"
+version: '10.0'
 skill_format: operational_contract_v1
 category: devops/python
 default_mode: guarded
 default_risk: medium
 selection_profile: narrow
-summary: Build Debian-safe Python venv services using PEP 668, FastAPI/Uvicorn systemd patterns, and venv/bin/python.
+summary: Build Debian-safe Python venv services using PEP 668, FastAPI/Uvicorn systemd patterns, and venv/bin/python. / Créer
+  des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
 requires_tools:
   preferred:
-    - mcp:filesystem:read_file
-    - mcp:filesystem:write_file
+  - mcp:filesystem:read_file
+  - mcp:filesystem:write_file
   fallback:
-    - shell
-    - python3
-    - systemctl
+  - shell
+  - python3
+  - systemctl
 policy_refs:
-  - policy_rules/shell.yaml
-  - policy_rules/package_managers.yaml
+- policy_rules/shell.yaml
+- policy_rules/package_managers.yaml
 triggers:
   include:
-    - Debian PEP 668 Python service
-    - FastAPI uvicorn systemd venv
-    - externally-managed-environment pip
-    - venv/bin/python systemd ExecStart
-    - python3 -m venv service
-    - uvicorn.service with virtualenv
+  - Debian PEP 668 Python service
+  - FastAPI uvicorn systemd venv
+  - externally-managed-environment pip
+  - venv/bin/python systemd ExecStart
+  - python3 -m venv service
+  - uvicorn.service with virtualenv
+  - environnement virtuel python
+  - service systemd fastapi
+  - fastapi avec venv
+  - python pep 668 debian
+  - paquet python géré extérieurement
+  - erreur externally managed environment
+  - uvicorn systemd venv
+  - venv bin python
+  - service python sans pip système
+  - créer venv debian fastapi
+  - exécuter fastapi avec systemd
+  - pip bloqué pep 668
   exclude:
-    - generic Python script question
-    - generic service question
-    - unrelated package manager safety
+  - generic Python script question
+  - generic service question
+  - unrelated package manager safety
 negative_triggers:
-  - python
-  - service
-  - system
-  - api
-  - http
+- python
+- service
+- system
+- api
+- http
 activation_examples:
-  - "Deploy a FastAPI app on Debian 13 using venv and systemd without system pip."
-  - "PEP 668 blocks pip install; create venv and use venv/bin/python."
+- Deploy a FastAPI app on Debian 13 using venv and systemd without system pip.
+- PEP 668 blocks pip install; create venv and use venv/bin/python.
+- Déployer une application FastAPI sur Debian 13 avec venv et systemd sans utiliser le pip système.
+- PEP 668 bloque pip install; créer un venv et utiliser venv/bin/python.
 output_template: python_venv_service_report
+summary_fr: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+i18n:
+  fr:
+    summary: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+    body: body.fr.md
 ---
+
 
 # Python Venv Service
 

@@ -1,49 +1,72 @@
 ---
 name: debian13-service-discovery
-version: "9.1"
+version: '10.0'
 skill_format: operational_contract_v1
 category: devops/debian
 selection_profile: narrow
-summary: Discover Debian 13 package-provided services and unit names before changing or creating systemd units.
+summary: Discover Debian 13 package-provided services and unit names before changing or creating systemd units. / Découvrir
+  les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités systemd.
 default_mode: read_only
 default_risk: low
 requires_tools:
   preferred:
-    - mcp:filesystem:read_file
+  - mcp:filesystem:read_file
   fallback:
-    - shell
-    - apt
-    - dpkg
-    - systemctl
+  - shell
+  - apt
+  - dpkg
+  - systemctl
 policy_refs:
-  - policy_rules/shell.yaml
-  - policy_rules/package_managers.yaml
+- policy_rules/shell.yaml
+- policy_rules/package_managers.yaml
 triggers:
   include:
-    - debian 13 service discovery
-    - package provided systemd unit
-    - systemctl list-unit-files
-    - php-fpm unit name
-    - mariadb service unit name
-    - nginx package service
-    - service unit not found after apt install
+  - debian 13 service discovery
+  - package provided systemd unit
+  - systemctl list-unit-files
+  - php-fpm unit name
+  - mariadb service unit name
+  - nginx package service
+  - service unit not found after apt install
+  - découverte services debian 13
+  - découvrir unité systemd
+  - service fourni par paquet debian
+  - correspondance paquet service
+  - lister unités systemd
+  - ne pas créer unité manuelle
+  - php fpm unité introuvable
+  - service php fpm introuvable
+  - nom unité mariadb
+  - paquet fournit service systemd
+  - unité systemd fournie par paquet
+  - systemctl list-unit-files debian
   exclude:
-    - generic system question
-    - url fetch
-    - http request only
-    - unrelated package install
+  - generic system question
+  - url fetch
+  - http request only
+  - unrelated package install
 negative_triggers:
-  - system
-  - service
-  - unit
-  - http
-  - url
-  - and
+- system
+- service
+- unit
+- http
+- url
+- and
 activation_examples:
-  - "After installing php-fpm on Debian 13, find the real service name before enabling it."
-  - "Do not create a custom unit until dpkg/systemctl prove the package did not ship one."
+- After installing php-fpm on Debian 13, find the real service name before enabling it.
+- Do not create a custom unit until dpkg/systemctl prove the package did not ship one.
+- Après l'installation de PHP-FPM sur Debian 13, trouver le vrai nom d'unité avant de l'activer.
+- Ne crée pas d'unité systemd manuelle tant que dpkg/systemctl n'ont pas prouvé que le paquet n'en fournit pas.
 output_template: debian13_service_discovery_report
+summary_fr: Découvrir les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités
+  systemd.
+i18n:
+  fr:
+    summary: Découvrir les services et noms d'unités fournis par les paquets Debian 13 avant de modifier ou créer des unités
+      systemd.
+    body: body.fr.md
 ---
+
 
 # Debian 13 Service Discovery
 

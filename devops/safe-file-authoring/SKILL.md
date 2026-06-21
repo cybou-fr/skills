@@ -1,42 +1,65 @@
 ---
 name: safe-file-authoring
-version: "9.1"
+version: '10.0'
 skill_format: operational_contract_v1
 category: devops/filesystem
 default_mode: guarded
 default_risk: medium
 selection_profile: narrow
 summary: Safely author files using MCP write_file when available, or robust install -d + tee / quoted heredoc shell fallback.
+  / Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell fallback.
 requires_tools:
   preferred:
-    - mcp:filesystem:write_file
-    - mcp:filesystem:read_file
+  - mcp:filesystem:write_file
+  - mcp:filesystem:read_file
   fallback:
-    - shell
+  - shell
 policy_refs:
-  - policy_rules/shell.yaml
+- policy_rules/shell.yaml
 triggers:
   include:
-    - safe write file heredoc
-    - quoted heredoc tee file authoring
-    - install -d tee system config
-    - write_file fallback shell
-    - avoid unterminated heredoc
-    - robust file creation systemd nginx config
+  - safe write file heredoc
+  - quoted heredoc tee file authoring
+  - install -d tee system config
+  - write_file fallback shell
+  - avoid unterminated heredoc
+  - robust file creation systemd nginx config
+  - écrire fichier en sécurité
+  - création fichier robuste
+  - heredoc cité
+  - tee avec heredoc
+  - éviter cat heredoc non cité
+  - créer répertoire install -d
+  - écrire configuration sans casser guillemets
+  - write_file préféré
+  - fallback tee heredoc
+  - éviter heredoc interrompu
+  - fichier config nginx avec variables
+  - écrire unité systemd avec tee
   exclude:
-    - generic file question
-    - read file only
-    - code formatting only
+  - generic file question
+  - read file only
+  - code formatting only
 negative_triggers:
-  - file
-  - write
-  - config
-  - shell
+- file
+- write
+- config
+- shell
 activation_examples:
-  - "Create a systemd unit without heredoc quoting bugs."
-  - "Use write_file if available, otherwise install -d plus tee with quoted EOF."
+- Create a systemd unit without heredoc quoting bugs.
+- Use write_file if available, otherwise install -d plus tee with quoted EOF.
+- Créer une unité systemd sans bogue de guillemets heredoc.
+- Utiliser write_file si disponible, sinon install -d et tee avec EOF cité.
 output_template: safe_file_authoring_report
+summary_fr: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell
+  fallback.
+i18n:
+  fr:
+    summary: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en
+      shell fallback.
+    body: body.fr.md
 ---
+
 
 # Safe File Authoring
 

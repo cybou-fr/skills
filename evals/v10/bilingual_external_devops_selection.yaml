@@ -1,0 +1,359 @@
+version: '10.0'
+purpose: Executable EN/FR paired evals for bilingual external DevOps skill selection.
+schema: executable_matcher_v1
+metric: selected_relevant_skill_en_fr
+scenarios:
+- id: en_debian13_service_discovery_1
+  skill: debian13-service-discovery
+  lang: en
+  task: On Debian 13, php-fpm.service is not found after installing PHP-FPM. Discover the actual packaged unit before creating anything.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - debian13-service-discovery
+  forbidden_skills: []
+  expected_risk: low
+  must_include:
+  - systemctl list-unit-files '*php*fpm*'
+  - dpkg -l | awk
+  must_not_include:
+  - /etc/systemd/system/php-fpm.service
+  - cat > /etc/systemd/system/php-fpm.service
+  metric: selected_relevant_skill
+- id: fr_debian13_service_discovery_2
+  skill: debian13-service-discovery
+  lang: fr
+  task: Sur Debian 13, php-fpm.service est introuvable après installation de PHP-FPM. Découvre la vraie unité fournie par le paquet avant de créer
+    quoi que ce soit.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - debian13-service-discovery
+  forbidden_skills: []
+  expected_risk: low
+  must_include:
+  - systemctl list-unit-files '*php*fpm*'
+  - dpkg -l | awk
+  must_not_include:
+  - /etc/systemd/system/php-fpm.service
+  - cat > /etc/systemd/system/php-fpm.service
+  metric: selected_relevant_skill
+- id: mixed_debian13_service_discovery_3
+  skill: debian13-service-discovery
+  lang: mixed
+  task: 'Debian 13: le service php-fpm est introuvable; use package -> systemd unit discovery, pas d''unité manuelle.'
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - debian13-service-discovery
+  forbidden_skills: []
+  expected_risk: low
+  must_include:
+  - systemctl list-unit-files '*php*fpm*'
+  - dpkg-query -L
+  must_not_include:
+  - tee /etc/systemd/system/php-fpm.service
+  metric: selected_relevant_skill
+- &id001
+  id: fr_negative_debian13_service_discovery_4
+  skill: debian13-service-discovery
+  lang: fr_negative
+  task: Qu'est-ce qu'un service système ?
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - debian13-service-discovery
+  forbidden_skills:
+  - debian13-service-discovery
+  expected_risk: low
+  must_include: []
+  must_not_include:
+  - systemctl list-unit-files '*php*fpm*'
+  metric: selected_relevant_skill
+- id: en_python_venv_service_1
+  skill: python-venv-service
+  lang: en
+  task: Deploy a FastAPI app as a Debian systemd service while pip reports externally-managed-environment.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - python-venv-service
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - cd <app-dir>
+  - python3 -m venv .venv
+  - .venv/bin/python -m pip install
+  - ExecStart=<app-dir>/.venv/bin/python -m uvicorn
+  must_not_include:
+  - --break-system-packages
+  - sudo pip install
+  - ExecStart=uvicorn
+  metric: selected_relevant_skill
+- id: fr_python_venv_service_2
+  skill: python-venv-service
+  lang: fr
+  task: Déploie une application FastAPI comme service systemd Debian alors que pip signale externally-managed-environment.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - python-venv-service
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - cd <app-dir>
+  - python3 -m venv .venv
+  - .venv/bin/python -m pip install
+  - ExecStart=<app-dir>/.venv/bin/python -m uvicorn
+  must_not_include:
+  - --break-system-packages
+  - sudo pip install
+  - ExecStart=uvicorn
+  metric: selected_relevant_skill
+- id: mixed_python_venv_service_3
+  skill: python-venv-service
+  lang: mixed
+  task: FastAPI systemd avec venv sur Debian; PEP 668 bloque pip install système.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - python-venv-service
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - python3 -m venv .venv
+  - venv/bin/python
+  - systemd-analyze verify
+  must_not_include:
+  - --break-system-packages
+  - /usr/bin/python3 -m uvicorn
+  metric: selected_relevant_skill
+- &id002
+  id: fr_negative_python_venv_service_4
+  skill: python-venv-service
+  lang: fr_negative
+  task: Explique la syntaxe d'une fonction Python simple.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - python-venv-service
+  forbidden_skills:
+  - python-venv-service
+  expected_risk: low
+  must_include: []
+  must_not_include:
+  - systemd-analyze verify
+  - python3 -m venv .venv
+  metric: selected_relevant_skill
+- id: en_nginx_php_fpm_wordpress_1
+  skill: nginx-php-fpm-wordpress
+  lang: en
+  task: Configure WordPress with nginx and PHP-FPM, discover the real PHP-FPM socket, deny xmlrpc.php, and reload only after nginx -t.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  - debian13-service-discovery
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - find /run /var/run -type s -name 'php*-fpm*.sock'
+  - location = /xmlrpc.php
+  - deny all;
+  - nginx -t
+  - systemctl reload nginx
+  must_not_include:
+  - fastcgi_pass unix:/run/php/php-fpm.sock;
+  metric: selected_relevant_skill
+- id: fr_nginx_php_fpm_wordpress_2
+  skill: nginx-php-fpm-wordpress
+  lang: fr
+  task: Configure WordPress avec nginx et PHP-FPM, découvre le vrai socket PHP-FPM, bloque xmlrpc.php et recharge seulement après nginx -t.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  - debian13-service-discovery
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - find /run /var/run -type s -name 'php*-fpm*.sock'
+  - location = /xmlrpc.php
+  - deny all;
+  - nginx -t
+  - systemctl reload nginx
+  must_not_include:
+  - fastcgi_pass unix:/run/php/php-fpm.sock;
+  metric: selected_relevant_skill
+- id: mixed_nginx_php_fpm_wordpress_3
+  skill: nginx-php-fpm-wordpress
+  lang: mixed
+  task: 'WordPress nginx php-fpm: bloque XML-RPC, découvre socket, nginx -t avant reload.'
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - location = /xmlrpc.php
+  - nginx -t
+  - php*-fpm*.sock
+  must_not_include:
+  - 'systemctl reload nginx # before nginx -t'
+  metric: selected_relevant_skill
+- &id003
+  id: fr_negative_nginx_php_fpm_wordpress_4
+  skill: nginx-php-fpm-wordpress
+  lang: fr_negative
+  task: Résume cette URL HTTP.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  forbidden_skills:
+  - nginx-php-fpm-wordpress
+  expected_risk: low
+  must_include: []
+  must_not_include:
+  - nginx -t
+  - location = /xmlrpc.php
+  metric: selected_relevant_skill
+- id: en_mariadb_wordpress_admin_1
+  skill: mariadb-wordpress-admin
+  lang: en
+  task: Create a MariaDB database and least-privilege user for WordPress using mysql -e without PostgreSQL drift.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - mariadb-wordpress-admin
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - CREATE DATABASE IF NOT EXISTS
+  - CREATE USER IF NOT EXISTS
+  - GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER
+  - --defaults-extra-file
+  must_not_include:
+  - psql
+  - sudo -u postgres
+  - GRANT ALL PRIVILEGES ON *.*
+  - MYSQL_PWD
+  metric: selected_relevant_skill
+- id: fr_mariadb_wordpress_admin_2
+  skill: mariadb-wordpress-admin
+  lang: fr
+  task: Crée une base MariaDB et un utilisateur à privilèges minimaux pour WordPress avec mysql -e sans dérive PostgreSQL.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - mariadb-wordpress-admin
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - CREATE DATABASE IF NOT EXISTS
+  - CREATE USER IF NOT EXISTS
+  - GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER
+  - --defaults-extra-file
+  must_not_include:
+  - psql
+  - sudo -u postgres
+  - GRANT ALL PRIVILEGES ON *.*
+  - MYSQL_PWD
+  metric: selected_relevant_skill
+- id: mixed_mariadb_wordpress_admin_3
+  skill: mariadb-wordpress-admin
+  lang: mixed
+  task: 'WordPress DB: créer base mariadb/user/grants avec mysql -e, not psql.'
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - mariadb-wordpress-admin
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - mysql -e
+  - CREATE DATABASE IF NOT EXISTS
+  - CREATE USER IF NOT EXISTS
+  must_not_include:
+  - psql
+  - postgres
+  metric: selected_relevant_skill
+- &id004
+  id: fr_negative_mariadb_wordpress_admin_4
+  skill: mariadb-wordpress-admin
+  lang: fr_negative
+  task: Crée une base PostgreSQL et un utilisateur pour une application Rails.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - mariadb-wordpress-admin
+  forbidden_skills:
+  - mariadb-wordpress-admin
+  expected_risk: medium
+  must_include: []
+  must_not_include:
+  - sudo mysql -e
+  - mariadb -e
+  metric: selected_relevant_skill
+- id: en_safe_file_authoring_1
+  skill: safe-file-authoring
+  lang: en
+  task: Write an nginx config containing $uri and $args without breaking shell heredoc quoting; prefer write_file.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - write_file(path="<target>"
+  - tee <target> >/dev/null <<'EOF'
+  - try_files $uri $uri/ /index.php?$args
+  must_not_include:
+  - cat > <target> <<EOF
+  - printf "<complex-content>" > <target>
+  - chmod -R 777
+  metric: selected_relevant_skill
+- id: fr_safe_file_authoring_2
+  skill: safe-file-authoring
+  lang: fr
+  task: Écris une configuration nginx contenant $uri et $args sans casser les guillemets heredoc; préfère write_file.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - write_file(path="<target>"
+  - tee <target> >/dev/null <<'EOF'
+  - try_files $uri $uri/ /index.php?$args
+  must_not_include:
+  - cat > <target> <<EOF
+  - printf "<complex-content>" > <target>
+  - chmod -R 777
+  metric: selected_relevant_skill
+- id: mixed_safe_file_authoring_3
+  skill: safe-file-authoring
+  lang: mixed
+  task: 'Créer fichier config with $uri: utilise write_file ou tee heredoc cité, pas cat heredoc non cité.'
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - safe-file-authoring
+  forbidden_skills: []
+  expected_risk: medium
+  must_include:
+  - write_file(path="<target>"
+  - <<'EOF'
+  must_not_include:
+  - <<EOF
+  metric: selected_relevant_skill
+- &id005
+  id: fr_negative_safe_file_authoring_4
+  skill: safe-file-authoring
+  lang: fr_negative
+  task: Lis ce fichier et résume son contenu sans le modifier.
+  category: eval_bilingual_external_devops_selection
+  expected_skills:
+  - safe-file-authoring
+  forbidden_skills:
+  - safe-file-authoring
+  expected_risk: low
+  must_include: []
+  must_not_include:
+  - tee <target>
+  - write_file(path=
+  metric: selected_relevant_skill
+negative_selection_scenarios:
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
