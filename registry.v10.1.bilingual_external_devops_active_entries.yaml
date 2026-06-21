@@ -1,0 +1,144 @@
+version: '10.1'
+purpose: Active registry entries for v10.1 bilingual external DevOps skills. Merge
+  into registry.yaml via scripts/apply_v10_1_registry_integration.py.
+skills:
+- id: debian13-service-discovery
+  path: devops/debian13-service-discovery/SKILL.md
+  category: devops
+  default_risk: low
+  default_mode: read_only
+  description: Discover Debian package-provided systemd services before authoring
+    units.
+  description_fr: Découvrir les services systemd fournis par les paquets Debian avant
+    d’écrire des unités.
+  summary: Discover Debian package-provided systemd services before authoring units.
+    / Découvrir les services systemd fournis par les paquets Debian avant d’écrire
+    des unités.
+  summary_fr: Découvrir les services systemd fournis par les paquets Debian avant
+    d’écrire des unités.
+  triggers:
+  - debian service discovery
+  - systemd unit discovery
+  - package service mapping
+  - php fpm service discovery
+  - do not recreate packaged service
+  - list unit files
+  - découverte service debian
+  - découvrir unité systemd
+  - correspondance paquet service
+  - service php fpm introuvable
+  - ne pas recréer unité fournie par paquet
+  - lister unités systemd
+  selection_profile: narrow_bilingual
+- id: python-venv-service
+  path: devops/python-venv-service/SKILL.md
+  category: devops
+  default_risk: medium
+  default_mode: guarded
+  description: Run Python/FastAPI services on Debian using a PEP 668-safe virtual
+    environment and systemd.
+  description_fr: Exécuter des services Python/FastAPI sur Debian avec un environnement
+    virtuel compatible PEP 668 et systemd.
+  summary: Run Python/FastAPI services on Debian using a PEP 668-safe virtual environment
+    and systemd. / Exécuter des services Python/FastAPI sur Debian avec un environnement
+    virtuel compatible PEP 668 et systemd.
+  summary_fr: Exécuter des services Python/FastAPI sur Debian avec un environnement
+    virtuel compatible PEP 668 et systemd.
+  triggers:
+  - python venv service
+  - fastapi systemd service
+  - uvicorn systemd venv
+  - pep 668 python
+  - externally managed environment
+  - venv bin python
+  - environnement virtuel python
+  - service systemd fastapi
+  - uvicorn systemd venv
+  - python pep 668 debian
+  - environnement géré extérieurement
+  - venv bin python
+  selection_profile: narrow_bilingual
+- id: nginx-php-fpm-wordpress
+  path: devops/nginx-php-fpm-wordpress/SKILL.md
+  category: devops
+  default_risk: medium
+  default_mode: guarded
+  description: Configure WordPress behind nginx with discovered PHP-FPM sockets and
+    XML-RPC denial.
+  description_fr: Configurer WordPress derrière nginx avec découverte des sockets
+    PHP-FPM et blocage XML-RPC.
+  summary: Configure WordPress behind nginx with discovered PHP-FPM sockets and XML-RPC
+    denial. / Configurer WordPress derrière nginx avec découverte des sockets PHP-FPM
+    et blocage XML-RPC.
+  summary_fr: Configurer WordPress derrière nginx avec découverte des sockets PHP-FPM
+    et blocage XML-RPC.
+  triggers:
+  - nginx php fpm wordpress
+  - wordpress nginx config
+  - php fpm socket discovery
+  - block wordpress xmlrpc
+  - nginx test before reload
+  - xmlrpc php deny
+  - nginx php fpm wordpress
+  - configuration nginx wordpress
+  - découverte socket php fpm
+  - bloquer xmlrpc wordpress
+  - nginx test avant rechargement
+  - refuser xmlrpc php
+  selection_profile: narrow_bilingual
+- id: mariadb-wordpress-admin
+  path: devops/mariadb-wordpress-admin/SKILL.md
+  category: devops
+  default_risk: medium
+  default_mode: guarded
+  description: Administer WordPress MariaDB databases and grants without PostgreSQL
+    drift.
+  description_fr: Administrer les bases et privilèges MariaDB de WordPress sans dérive
+    vers PostgreSQL.
+  summary: Administer WordPress MariaDB databases and grants without PostgreSQL drift.
+    / Administrer les bases et privilèges MariaDB de WordPress sans dérive vers PostgreSQL.
+  summary_fr: Administrer les bases et privilèges MariaDB de WordPress sans dérive
+    vers PostgreSQL.
+  triggers:
+  - mariadb wordpress admin
+  - wordpress database user grants
+  - mysql e wordpress
+  - mariadb socket auth
+  - avoid postgresql wordpress
+  - do not use psql
+  - base mariadb wordpress
+  - utilisateur mariadb wordpress
+  - droits mariadb wordpress
+  - mysql -e wordpress
+  - authentification socket mariadb
+  - éviter postgresql wordpress
+  - ne pas utiliser psql
+  selection_profile: narrow_bilingual
+- id: safe-file-authoring
+  path: devops/safe-file-authoring/SKILL.md
+  category: devops
+  default_risk: medium
+  default_mode: guarded
+  description: Author files safely with write_file and verify generated content before
+    finishing.
+  description_fr: Écrire des fichiers en sécurité avec write_file et vérifier le contenu
+    généré avant de terminer.
+  summary: Author files safely with write_file and verify generated content before
+    finishing. / Écrire des fichiers en sécurité avec write_file et vérifier le contenu
+    généré avant de terminer.
+  summary_fr: Écrire des fichiers en sécurité avec write_file et vérifier le contenu
+    généré avant de terminer.
+  triggers:
+  - safe file authoring
+  - write file safely
+  - mcp filesystem write file
+  - avoid shell file writes
+  - verify generated config
+  - systemd unit write file
+  - écrire fichier en sécurité
+  - write_file fichier
+  - mcp filesystem write file
+  - éviter écriture shell fichier
+  - vérifier configuration générée
+  - écrire unité systemd avec write_file
+  selection_profile: narrow_bilingual

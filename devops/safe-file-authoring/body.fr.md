@@ -1,168 +1,93 @@
-# Safe File Authoring — corps français
+# Écriture sûre de fichiers
 
-> Version française step-for-step du contrat opérationnel. Les commandes, chemins, noms d'outils, tags de risque et clés de sortie restent identiques à `SKILL.md`.
+
+> Corps FR structurellement équivalent à SKILL.md. Les commandes, chemins, noms d’outils et labels de risque restent inchangés.
 
 ## 1. Quand utiliser
 
-Utiliser ce skill pour les tâches décrites par `SKILL.md` lorsque la demande opérateur est en français ou mixte EN/FR. Le comportement attendu est identique au corps anglais.
+Use this skill whenever an agent must create or replace a config file, service unit, source file, script, nginx site, SQL client config, or any other multi-line file.
 
-Résumé FR: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell fallback.
+## 2. Mode opératoire
 
-## 2. Quand ne pas utiliser
+Default mode: guarded. The preferred operation is a host-governed file write followed by concrete validation.
 
-Ne pas utiliser pour des demandes génériques qui ne contiennent pas l'intention étroite du skill. Les mots génériques français comme `service`, `système`, `fichier`, `configuration`, `http` ou `url` ne doivent jamais suffire seuls à sélectionner ce skill.
-
-## 3. Mode opératoire
-
-Respecter le même `default_mode`, le même périmètre d'autonomie VM-local et les mêmes conditions d'arrêt que dans `SKILL.md`. Ne pas traduire ni modifier les commandes exécutables.
-
-## 4. Cartographie du risque
+## 3. Cartographie du risque
 
 ### low
-- inspection en lecture seule;
-- découverte ou validation sans changement d'état;
-- rapporter les résultats avec secrets masqués.
+- inspect an existing file;
+- validate generated content without writing.
 
 ### medium
-- changement VM-local réversible et validé;
-- écriture de configuration dans un périmètre autorisé;
-- démarrage/rechargement local seulement si la politique runtime l'autorise.
+- write a VM-local file with `write_file` or `mcp:filesystem:write_file`;
+- validate and reload a VM-local service after syntax check.
 
 ### high
-- modification de production ou d'environnement inconnu;
-- action touchant secrets, droits, base de données ou service exposé;
-- changement sans rollback clair.
+- write production config;
+- write secret-bearing files.
 
 ### critical
-- suppression irréversible;
-- désactivation de contrôles sécurité/audit;
-- action destructive ou globale hors périmètre.
+- overwrite security controls or system-critical files without rollback.
 
-## 5. Ordre de préférence des outils
+## 4. Ordre préféré des outils
 
-1. Préférer les outils MCP/host-governed déclarés dans le frontmatter quand ils existent.
-2. Utiliser le shell seulement pour l'inspection/exécution VM-local autorisée.
-3. Ne jamais utiliser le shell pour contourner la politique runtime, les contrôles secrets ou les limites d'approbation.
+1. Use `mcp:filesystem:write_file` or `write_file` for content creation.
+2. Use `mcp:filesystem:read_file` to inspect the written file.
+3. Use domain validators such as `systemd-analyze verify`, `nginx -t`, JSON parser, or application-specific syntax checks.
+4. If no safe file-write tool exists, stop and emit a blocked action instead of using shell redirection.
 
-## 6. Modèles de commandes
+## 5. Contrat write_file
 
-Les blocs de commandes ci-dessous sont repris sans traduction depuis `SKILL.md` afin de garder le contrat strictement identique.
+```text
+write_file(path="<target-path>", mode="0644", content="<complete literal content>")
+```
+
+For secret-bearing files:
+
+```text
+write_file(path="<target-path>", mode="0600", content="<complete literal content>")
+```
+
+## 6. Commandes de validation
 
 ```bash
-test -e <target> && ls -l <target> || true
-test -f <target> && sed -n '1,220p' <target> || true
-namei -l <target-dir>
+test -f <target-path>
+stat -c '%a %U %G %n' <target-path>
+sed -n '1,220p' <target-path>
 ```
 
 ```bash
-install -d -m 0755 <target-dir>
-if test -f <target>; then cp -a <target> <target>.bak.$(date +%Y%m%d%H%M%S); fi
+systemd-analyze verify <target-path>
+nginx -t
+python3 -m json.tool <target-path>
+python3 -m py_compile <target-path>
 ```
 
-```bash
-tee <target> >/dev/null <<'EOF'
-<literal-content>
-EOF
-```
+## 7. Modèles bloqués
 
-```bash
-install -d -m 0755 <target-dir>
-tmp=$(mktemp <target-dir>/.<basename>.tmp.XXXXXX)
-cat > "$tmp" <<'EOF'
-<literal-content>
-EOF
-chmod 0644 "$tmp"
-mv "$tmp" <target>
-```
+Do not create multi-line files with shell redirection, shell string interpolation, or ad-hoc command output. If a file-writing tool is unavailable, stop and report that safe authoring is blocked.
 
-```bash
-sed -n '1,260p' <target>
-systemd-analyze verify <target>          # for systemd units
-nginx -t                                # for nginx config
-python3 -m json.tool <target>            # for JSON
-python3 - <<'PY'
-import sys, yaml
-for p in sys.argv[1:]: yaml.safe_load(open(p))
-PY <target>                              # for YAML if PyYAML exists
-```
+## 8. Vérifier avant de terminer
 
-```bash
-cat > <target> <<EOF        # unquoted heredoc for complex config
-printf "<complex-content>" > <target>
-sed -i '...' <critical-file>
-chmod -R 777 <path>
-chown -R <user>:<group> <path>
-```
+A file-authoring task is not complete until the file exists, permissions are checked, content is inspected, and the domain-specific validator has run.
 
-```bash
-test -f <target> && sed -n '1,260p' <target> || true
-```
-
-```bash
-namei -l <target>
-ls -ld <target-dir>
-```
+## 9. Format de sortie requis
 
 ```markdown
 ## Safe file authoring report
 
 ### Summary
 
-### Target
-- Path:
-- Existing file:
-- Backup:
+### File path
 
-### Authoring method
-- Tool/pattern:
-- Parent directory created:
-- Permissions:
+### Tool used
 
 ### Validation
-- Validator:
-- Result:
+
+### Permissions
+
+### Blocked shell-write patterns
 
 ### Risk classification
-- estimated_risk:
-- risk drivers:
 
-### Actions taken
-
-### Blocked actions
-
-### Recommendation
+### Next step
 ```
-
-```text
-write_file(path="<target>", content="<literal-content>", mode="0644")
-```
-
-```bash
-python3 - <<'PY'
-try:
-    import yaml
-    with open('<target>', 'r', encoding='utf-8') as f:
-        yaml.safe_load(f)
-    print('YAML OK')
-except ModuleNotFoundError:
-    print('YAML validation skipped: PyYAML unavailable')
-except Exception as e:
-    raise SystemExit(f'YAML invalid: {e}')
-PY
-```
-
-## 7. Récupération d'échec
-
-Suivre les mêmes chemins de récupération que dans `SKILL.md`: symptôme → inspection → classification → action sûre → condition d'arrêt → sortie. Si l'environnement est inconnu ou production, ne pas exécuter d'action write/restart destructive automatiquement.
-
-## 8. Conditions d'arrêt / blocage
-
-S'arrêter si la demande sort de l'enveloppe d'autonomie VM-local, si un secret serait exposé, si l'action est destructive, ou si le skill étroit n'est pas réellement pertinent pour la tâche.
-
-## 9. Format de sortie requis
-
-Utiliser le même `output_template` que `SKILL.md`. Les titres peuvent être en français, mais les clés parsables comme `estimated_risk`, `actions_taken`, `blocked_actions`, `commands_used` doivent rester stables si elles sont consommées par downstream tooling.
-
-## 10. Exigences d'évaluation
-
-Les evals doivent exister en paire EN/FR et vérifier `selected_relevant_skill`, les commandes attendues, les commandes interdites, le niveau de risque et l'absence de sélection par mots génériques.

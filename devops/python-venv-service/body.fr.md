@@ -1,88 +1,74 @@
-# Python Venv Service — corps français
+# Service Python avec venv
 
-> Version française step-for-step du contrat opérationnel. Les commandes, chemins, noms d'outils, tags de risque et clés de sortie restent identiques à `SKILL.md`.
+
+> Corps FR structurellement équivalent à SKILL.md. Les commandes, chemins, noms d’outils et labels de risque restent inchangés.
 
 ## 1. Quand utiliser
 
-Utiliser ce skill pour les tâches décrites par `SKILL.md` lorsque la demande opérateur est en français ou mixte EN/FR. Le comportement attendu est identique au corps anglais.
+Use this skill for Debian Python applications, especially FastAPI/uvicorn services, where system Python is externally managed by PEP 668 and dependencies must be installed into a virtual environment.
 
-Résumé FR: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+## 2. Mode opératoire
 
-## 2. Quand ne pas utiliser
+Default mode: guarded. Creating a VM-local venv and service plan is medium risk. Production service changes are high risk.
 
-Ne pas utiliser pour des demandes génériques qui ne contiennent pas l'intention étroite du skill. Les mots génériques français comme `service`, `système`, `fichier`, `configuration`, `http` ou `url` ne doivent jamais suffire seuls à sélectionner ce skill.
-
-## 3. Mode opératoire
-
-Respecter le même `default_mode`, le même périmètre d'autonomie VM-local et les mêmes conditions d'arrêt que dans `SKILL.md`. Ne pas traduire ni modifier les commandes exécutables.
-
-## 4. Cartographie du risque
+## 3. Cartographie du risque
 
 ### low
-- inspection en lecture seule;
-- découverte ou validation sans changement d'état;
-- rapporter les résultats avec secrets masqués.
+- inspect Python version and existing venv;
+- inspect requirements and service files.
 
 ### medium
-- changement VM-local réversible et validé;
-- écriture de configuration dans un périmètre autorisé;
-- démarrage/rechargement local seulement si la politique runtime l'autorise.
+- create a VM-local virtual environment;
+- install dependencies from trusted requirements in the venv;
+- author a service file through `write_file` in an isolated VM.
 
 ### high
-- modification de production ou d'environnement inconnu;
-- action touchant secrets, droits, base de données ou service exposé;
-- changement sans rollback clair.
+- modify production service units;
+- install untrusted dependencies;
+- expose a network service externally.
 
 ### critical
-- suppression irréversible;
-- désactivation de contrôles sécurité/audit;
-- action destructive ou globale hors périmètre.
+- use `--break-system-packages`;
+- overwrite system Python packages.
 
-## 5. Ordre de préférence des outils
+## 4. Ordre préféré des outils
 
-1. Préférer les outils MCP/host-governed déclarés dans le frontmatter quand ils existent.
-2. Utiliser le shell seulement pour l'inspection/exécution VM-local autorisée.
-3. Ne jamais utiliser le shell pour contourner la politique runtime, les contrôles secrets ou les limites d'approbation.
+1. Use `mcp:filesystem:read_file` for requirements and existing units.
+2. Use `mcp:filesystem:write_file` or `write_file` for any service file content.
+3. Use shell for venv creation and service verification.
+4. If dependencies are untrusted or newly changed, load `package-manager-safety` before install.
 
-## 6. Modèles de commandes
-
-Les blocs de commandes ci-dessous sont repris sans traduction depuis `SKILL.md` afin de garder le contrat strictement identique.
+## 5. Modèles de commandes
 
 ```bash
-cat /etc/os-release
 python3 --version
-python3 -m pip --version 2>&1 || true
-python3 - <<'PY'
-import sysconfig, pathlib
-p = pathlib.Path(sysconfig.get_paths().get('stdlib','')) / 'EXTERNALLY-MANAGED'
-print(p)
-print('externally_managed=', p.exists())
-PY
-```
-
-```bash
-pwd
-find . -maxdepth 2 -type f \( -name 'requirements*.txt' -o -name 'pyproject.toml' -o -name 'main.py' -o -name 'app.py' \) -print
-sed -n '1,220p' requirements.txt 2>/dev/null || true
-sed -n '1,220p' pyproject.toml 2>/dev/null || true
+python3 -m venv --help | head -20
+cd <app-dir>
+python3 -m venv .venv
+.venv/bin/python -m pip --version
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
 ```
 
 ```bash
 cd <app-dir>
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m pip show fastapi uvicorn 2>/dev/null || true
+.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
 ```
+
+Preferred service authoring uses a file tool, not shell file redirection:
+
+```text
+write_file(path="/etc/systemd/system/<service>.service", mode="0644", content="<systemd unit content>")
+```
+
+Systemd unit pattern:
 
 ```ini
 [Unit]
-Description=<app-name> FastAPI service
-After=network-online.target
-Wants=network-online.target
+Description=<service description>
+After=network.target
 
 [Service]
-Type=simple
 User=<service-user>
 Group=<service-group>
 WorkingDirectory=<app-dir>
@@ -90,60 +76,28 @@ Environment="PATH=<app-dir>/.venv/bin"
 ExecStart=<app-dir>/.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
 Restart=on-failure
 RestartSec=5
-NoNewPrivileges=true
-PrivateTmp=true
-ProtectSystem=full
-ProtectHome=true
 
 [Install]
 WantedBy=multi-user.target
 ```
 
 ```bash
-install -d -m 0755 /etc/systemd/system
-tee /etc/systemd/system/<app-name>.service >/dev/null <<'EOF'
-<unit-content>
-EOF
-systemd-analyze verify /etc/systemd/system/<app-name>.service
+systemd-analyze verify /etc/systemd/system/<service>.service
 systemctl daemon-reload
-systemctl enable <app-name>.service
-systemctl start <app-name>.service
-systemctl status <app-name>.service --no-pager
-journalctl -u <app-name>.service -n 80 --no-pager
+systemctl enable --now <service>.service
+systemctl status <service>.service --no-pager
+curl -fsS http://127.0.0.1:<port>/ || true
 ```
 
-```bash
-ss -tulpn | grep -E ':(<port>)\b' || true
-curl -fsS http://127.0.0.1:<port>/health || curl -fsS http://127.0.0.1:<port>/ || true
-```
+## 6. Blocked patterns
 
-```bash
-pip install <package>
-sudo pip install <package>
-python3 -m pip install --break-system-packages <package>
-ExecStart=/usr/bin/python3 -m uvicorn <module>:<app>
-ExecStart=uvicorn <module>:<app>
-```
+Do not use system pip, sudo pip, or `--break-system-packages`. Do not run `ExecStart=uvicorn ...` without the venv interpreter path.
 
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-```
+## 7. Vérifier avant de terminer
 
-```bash
-python3 -m venv --help 2>&1 || true
-apt-cache policy python3-venv
-```
+A mutating task is not complete until the service file verifies, the daemon reload succeeds, the service is active, and a local HTTP or process check has run.
 
-```bash
-systemctl status <app-name>.service --no-pager
-journalctl -u <app-name>.service -n 120 --no-pager
-systemctl cat <app-name>.service --no-pager
-```
-
-```bash
-ss -tulpn | grep -E ':(<port>)\b'
-```
+## 8. Format de sortie requis
 
 ```markdown
 ## Python venv service report
@@ -151,62 +105,18 @@ ss -tulpn | grep -E ':(<port>)\b'
 ### Summary
 
 ### Environment
-- OS:
-- Python:
-- PEP 668 externally managed:
 
-### Application
-- Directory:
-- Module/app:
-- Port:
-- Service user:
+### Venv path
 
-### Venv/dependencies
-- Venv path:
-- Dependency source:
-- Commands/tools used:
+### Service file path
 
-### Systemd unit
-- Unit path:
-- ExecStart:
-- Verification result:
+### Commands/tools used
 
-### Risk classification
-- estimated_risk:
-- risk drivers:
-
-### Actions taken
+### Verification
 
 ### Blocked actions
 
-### Recommendation
+### Risk classification
+
+### Next step
 ```
-
-```bash
-cd <app-dir>
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-```ini
-WorkingDirectory=<app-dir>
-Environment="PATH=<app-dir>/.venv/bin"
-ExecStart=<app-dir>/.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
-```
-
-## 7. Récupération d'échec
-
-Suivre les mêmes chemins de récupération que dans `SKILL.md`: symptôme → inspection → classification → action sûre → condition d'arrêt → sortie. Si l'environnement est inconnu ou production, ne pas exécuter d'action write/restart destructive automatiquement.
-
-## 8. Conditions d'arrêt / blocage
-
-S'arrêter si la demande sort de l'enveloppe d'autonomie VM-local, si un secret serait exposé, si l'action est destructive, ou si le skill étroit n'est pas réellement pertinent pour la tâche.
-
-## 9. Format de sortie requis
-
-Utiliser le même `output_template` que `SKILL.md`. Les titres peuvent être en français, mais les clés parsables comme `estimated_risk`, `actions_taken`, `blocked_actions`, `commands_used` doivent rester stables si elles sont consommées par downstream tooling.
-
-## 10. Exigences d'évaluation
-
-Les evals doivent exister en paire EN/FR et vérifier `selected_relevant_skill`, les commandes attendues, les commandes interdites, le niveau de risque et l'absence de sélection par mots génériques.

@@ -1,0 +1,33 @@
+version: "10.1"
+policy: bilingual_skill_selection_and_fr_grounding
+primary_metric: selected_relevant_skill_fr
+principles:
+  - French tasks must select the same narrow skill as equivalent English tasks.
+  - Triggers use one merged EN+FR list; do not split triggers_en/triggers_fr.
+  - Flat description_fr or summary_fr is required because the loader reads it today.
+  - body.fr.md is optional training/corpus material; it is not required for runtime selection yet.
+  - Commands, paths, tool names, JSON keys, categories, risk labels and runtime enums remain untranslated.
+  - File authoring must use write_file/mcp:filesystem:write_file; shell file writes are blocked.
+banned_single_token_triggers:
+  - system
+  - service
+  - file
+  - config
+  - url
+  - http
+  - système
+  - service
+  - fichier
+  - configuration
+  - url
+allow_multiword_domain_phrases: true
+minimums:
+  english_triggers_per_skill: 4
+  french_triggers_per_skill: 4
+metrics:
+  primary:
+    - selected_relevant_skill_en
+    - selected_relevant_skill_fr
+  secondary:
+    - false_positive_rate_fr
+    - generic_skill_overselection_fr

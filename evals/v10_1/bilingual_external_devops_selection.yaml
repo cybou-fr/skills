@@ -1,0 +1,229 @@
+version: '10.1'
+evals:
+- id: en_debian13-service-discovery
+  lang: en
+  task: Handle a Debian external DevOps task about debian service discovery using
+    the narrow skill.
+  expected_skills:
+  - debian13-service-discovery
+  must_include:
+  - debian service discovery
+  - systemd unit discovery
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: low
+- id: fr_debian13-service-discovery
+  lang: fr
+  task: Traite une tâche DevOps Debian concernant découverte service debian avec le
+    skill étroit pertinent.
+  expected_skills:
+  - debian13-service-discovery
+  must_include:
+  - découverte service debian
+  - découvrir unité systemd
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: low
+- id: en_python-venv-service
+  lang: en
+  task: Handle a Debian external DevOps task about python venv service using the narrow
+    skill.
+  expected_skills:
+  - python-venv-service
+  must_include:
+  - python venv service
+  - fastapi systemd service
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_python-venv-service
+  lang: fr
+  task: Traite une tâche DevOps Debian concernant environnement virtuel python avec
+    le skill étroit pertinent.
+  expected_skills:
+  - python-venv-service
+  must_include:
+  - environnement virtuel python
+  - service systemd fastapi
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: en_nginx-php-fpm-wordpress
+  lang: en
+  task: Handle a Debian external DevOps task about nginx php fpm wordpress using the
+    narrow skill.
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  must_include:
+  - nginx php fpm wordpress
+  - wordpress nginx config
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_nginx-php-fpm-wordpress
+  lang: fr
+  task: Traite une tâche DevOps Debian concernant nginx php fpm wordpress avec le
+    skill étroit pertinent.
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  must_include:
+  - nginx php fpm wordpress
+  - configuration nginx wordpress
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: en_mariadb-wordpress-admin
+  lang: en
+  task: Handle a Debian external DevOps task about mariadb wordpress admin using the
+    narrow skill.
+  expected_skills:
+  - mariadb-wordpress-admin
+  must_include:
+  - mariadb wordpress admin
+  - wordpress database user grants
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_mariadb-wordpress-admin
+  lang: fr
+  task: Traite une tâche DevOps Debian concernant base mariadb wordpress avec le skill
+    étroit pertinent.
+  expected_skills:
+  - mariadb-wordpress-admin
+  must_include:
+  - base mariadb wordpress
+  - utilisateur mariadb wordpress
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: en_safe-file-authoring
+  lang: en
+  task: Handle a Debian external DevOps task about safe file authoring using the narrow
+    skill.
+  expected_skills:
+  - safe-file-authoring
+  must_include:
+  - safe file authoring
+  - write file safely
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_safe-file-authoring
+  lang: fr
+  task: Traite une tâche DevOps Debian concernant écrire fichier en sécurité avec
+    le skill étroit pertinent.
+  expected_skills:
+  - safe-file-authoring
+  must_include:
+  - écrire fichier en sécurité
+  - write_file fichier
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'echo '
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_php_fpm_unit_discovery_no_manual_unit
+  lang: fr
+  task: Sur Debian 13, php-fpm.service est introuvable. Trouve le vrai service fourni
+    par le paquet sans créer d’unité manuelle.
+  expected_skills:
+  - debian13-service-discovery
+  must_include:
+  - systemctl list-unit-files
+  - php
+  - fpm
+  must_not_include:
+  - /etc/systemd/system/php-fpm.service
+  - cat <<
+  - <<EOF
+  expected_risk: low
+- id: fr_fastapi_pep668_write_file_unit
+  lang: fr
+  task: Déploie FastAPI sous Debian avec PEP 668, venv et systemd sans pip système
+    ni écriture shell du fichier unit.
+  expected_skills:
+  - python-venv-service
+  - safe-file-authoring
+  must_include:
+  - python3 -m venv
+  - .venv/bin/python
+  - write_file
+  must_not_include:
+  - --break-system-packages
+  - sudo pip
+  - cat <<
+  - <<EOF
+  - 'tee '
+  expected_risk: medium
+- id: fr_wordpress_mariadb_no_postgres_no_if_not_exists
+  lang: fr
+  task: Crée la base MariaDB WordPress et les droits utilisateur, sans utiliser PostgreSQL
+    et sans CREATE DATABASE IF NOT EXISTS.
+  expected_skills:
+  - mariadb-wordpress-admin
+  must_include:
+  - mysql -e
+  - SHOW GRANTS
+  must_not_include:
+  - psql
+  - sudo -u postgres
+  - CREATE DATABASE IF NOT EXISTS
+  expected_risk: medium
+- id: fr_nginx_wordpress_xmlrpc_write_file_before_reload
+  lang: fr
+  task: Configure nginx pour WordPress avec socket PHP-FPM découvert, bloque xmlrpc.php,
+    utilise write_file et fais nginx -t avant reload.
+  expected_skills:
+  - nginx-php-fpm-wordpress
+  - safe-file-authoring
+  must_include:
+  - find /run
+  - write_file
+  - nginx -t
+  - systemctl reload nginx
+  must_not_include:
+  - cat <<
+  - <<EOF
+  - 'tee '
+  - 'systemctl reload nginx
+
+    nginx -t'
+  expected_risk: medium

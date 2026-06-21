@@ -1,138 +1,92 @@
 ---
 name: nginx-php-fpm-wordpress
-version: '10.0'
-skill_format: operational_contract_v1
-category: devops/web
-default_mode: guarded
+description: Configure WordPress behind nginx with discovered PHP-FPM sockets and XML-RPC denial.
+description_fr: Configurer WordPress derrière nginx avec découverte des sockets PHP-FPM et blocage XML-RPC.
+summary: "Configure WordPress behind nginx with discovered PHP-FPM sockets and XML-RPC denial. / Configurer WordPress derrière nginx avec découverte des sockets PHP-FPM et blocage XML-RPC."
+summary_fr: Configurer WordPress derrière nginx avec découverte des sockets PHP-FPM et blocage XML-RPC.
+category: devops
 default_risk: medium
-selection_profile: narrow
-summary: Configure nginx + PHP-FPM for WordPress with socket/unit discovery, XML-RPC deny, and nginx -t before reload. / Configurer
-  nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+default_mode: guarded
+skill_format: operational_contract_v1
+version: "10.1"
 requires_tools:
   preferred:
-  - mcp:filesystem:read_file
-  - mcp:filesystem:write_file
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
   fallback:
-  - shell
-  - nginx
-  - systemctl
-policy_refs:
-- policy_rules/shell.yaml
+    - shell
 triggers:
-  include:
-  - nginx php-fpm wordpress
-  - WordPress nginx XML-RPC deny
-  - PHP-FPM socket discovery
-  - nginx fastcgi_pass unix socket
-  - nginx -t before reload wordpress
-  - php-fpm unit not found nginx
+  - nginx php fpm wordpress
+  - wordpress nginx config
+  - php fpm socket discovery
+  - block wordpress xmlrpc
+  - nginx test before reload
+  - xmlrpc php deny
   - nginx php fpm wordpress
   - configuration nginx wordpress
-  - socket php fpm
-  - unité php fpm
+  - découverte socket php fpm
   - bloquer xmlrpc wordpress
+  - nginx test avant rechargement
   - refuser xmlrpc php
-  - nginx test avant reload
-  - nginx -t avant rechargement
-  - fastcgi pass socket php fpm
-  - découvrir socket php fpm wordpress
-  - configuration wordpress nginx php fpm
-  - ne pas deviner socket php fpm
-  exclude:
-  - generic nginx question
-  - generic http url
-  - static website only
-negative_triggers:
-- nginx
-- wordpress
-- php
-- http
-- url
-activation_examples:
-- Configure WordPress on Debian with nginx and discovered PHP-FPM socket.
-- Deny xmlrpc.php and run nginx -t before reload.
-- Configurer WordPress sur Debian avec nginx et le socket PHP-FPM découvert.
-- Bloquer xmlrpc.php et exécuter nginx -t avant de recharger nginx.
-output_template: nginx_php_fpm_wordpress_report
-summary_fr: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
-i18n:
-  fr:
-    summary: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
-    body: body.fr.md
 ---
-
 
 # Nginx PHP-FPM WordPress
 
 ## 1. Use when
 
-Use for WordPress deployments on Debian-like systems using nginx and PHP-FPM. It handles PHP-FPM unit/socket discovery, nginx server block authoring, XML-RPC denial, and safe validation before reload.
+Use this skill when configuring WordPress with nginx and PHP-FPM on Debian. The agent must discover the real PHP-FPM unit/socket before writing nginx config.
 
-## 2. Do not use when
+## 2. Operating mode
 
-Do not use for Apache, non-PHP apps, generic nginx troubleshooting, static-only sites, or generic URL/HTTP tasks.
+Default mode: guarded. Discovery is low risk. Writing nginx config and reload is medium in a VM and high in production.
 
-Do not trigger from `nginx`, `php`, `wordpress`, `http`, or `url` alone without WordPress + PHP-FPM + nginx configuration intent.
-
-## 3. Operating mode
-
-Default is guarded VM-local config authoring. Always run `nginx -t` before any reload. Do not reload nginx if config test fails.
-
-## 4. Risk mapping
+## 3. Risk mapping
 
 ### low
-- inspect nginx config;
-- discover PHP-FPM socket/unit;
-- run `nginx -t`;
-- inspect service status/logs.
+- inspect nginx config and PHP-FPM units;
+- discover sockets and pool config.
 
 ### medium
-- write VM-local nginx site config;
-- enable site symlink;
-- reload nginx after successful `nginx -t`;
-- restart VM-local PHP-FPM after config validation.
+- author VM-local nginx server block through `write_file`;
+- reload nginx after `nginx -t` passes.
 
 ### high
-- production nginx reload;
-- public DNS/TLS changes;
-- modify global nginx config without backup;
-- change PHP-FPM pool for production.
+- change production TLS, vhost, or PHP handling.
 
 ### critical
-- disable security restrictions;
-- expose `wp-config.php`;
-- allow arbitrary PHP execution outside WordPress root;
-- reload broken production nginx config.
+- reload broken config;
+- guess a PHP-FPM socket without discovery.
 
-## 5. Preferred tool order
+## 4. Preferred tool order
 
-1. Use MCP file tools for reading/writing config if available.
-2. Use shell fallback for VM-local discovery and validation.
-3. Discover PHP-FPM socket/unit before writing `fastcgi_pass`.
-4. Run `nginx -t` before reload.
+1. Use `debian13-service-discovery` for PHP-FPM unit discovery.
+2. Use `mcp:filesystem:read_file` for existing nginx and pool configs.
+3. Use `mcp:filesystem:write_file` or `write_file` for config authoring.
+4. Use shell for `nginx -t` and reload verification.
 
-## 6. Command templates
-
-### read_only: discover PHP-FPM version, unit, and socket
+## 5. Discovery commands
 
 ```bash
 systemctl list-unit-files '*php*fpm*' --no-pager
-systemctl list-units '*php*fpm*' --all --no-pager
+systemctl status 'php*-fpm.service' --no-pager || true
 find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null
-find /etc/php -maxdepth 4 -type f -path '*/fpm/pool.d/*.conf' -print 2>/dev/null
-php -v 2>/dev/null || true
+find /etc/php -path '*/fpm/pool.d/*.conf' -type f -print 2>/dev/null
 ```
-
-### read_only: inspect nginx state
 
 ```bash
-nginx -T 2>/dev/null | sed -n '1,260p'
 nginx -t
-systemctl status nginx --no-pager
-journalctl -u nginx -n 80 --no-pager
+nginx -T 2>/dev/null | sed -n '1,260p'
 ```
 
-### guarded: WordPress nginx server block template
+## 6. Config authoring pattern
+
+Preferred authoring uses a file tool:
+
+```text
+write_file(path="/etc/nginx/sites-available/<site>", mode="0644", content="<nginx server block content>")
+```
+
+Required nginx content properties:
 
 ```nginx
 server {
@@ -140,14 +94,6 @@ server {
     server_name <domain>;
     root <wordpress-root>;
     index index.php index.html;
-
-    access_log /var/log/nginx/<site>.access.log;
-    error_log /var/log/nginx/<site>.error.log;
-
-    client_max_body_size 64m;
-
-    location = /favicon.ico { log_not_found off; access_log off; }
-    location = /robots.txt { allow all; log_not_found off; access_log off; }
 
     location = /xmlrpc.php {
         deny all;
@@ -161,160 +107,50 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:<php-fpm-socket>;
-    }
-
-    location ~* /(?:uploads|files)/.*\.php$ {
-        deny all;
-    }
-
-    location ~ /\.ht {
-        deny all;
+        fastcgi_pass unix:<discovered-php-fpm-socket>;
     }
 }
 ```
 
-### guarded: write and enable site safely
+## 7. Reload sequence
 
 ```bash
-install -d -m 0755 /etc/nginx/sites-available /etc/nginx/sites-enabled
-tee /etc/nginx/sites-available/<site>.conf >/dev/null <<'EOF'
-<server-block>
-EOF
-ln -sfn /etc/nginx/sites-available/<site>.conf /etc/nginx/sites-enabled/<site>.conf
+ln -sfn /etc/nginx/sites-available/<site> /etc/nginx/sites-enabled/<site>
 nginx -t
 systemctl reload nginx
 systemctl status nginx --no-pager
+curl -I http://127.0.0.1/ || true
+curl -I http://127.0.0.1/xmlrpc.php || true
 ```
 
-### read_only: validate WordPress root and security files
+## 8. Verify-before-finish
 
-```bash
-test -f <wordpress-root>/wp-config.php && echo wp-config-present
-test -f <wordpress-root>/index.php && echo index-present
-find <wordpress-root> -maxdepth 2 -type f -name 'xmlrpc.php' -print
-namei -l <wordpress-root>
-```
+A mutating task is not complete until the PHP-FPM socket was discovered, config was authored through `write_file`, `nginx -t` passed, nginx was reloaded, and local HTTP/XML-RPC verification commands ran.
 
-### blocked
+## 9. Stop / block conditions
 
-```bash
-systemctl reload nginx   # blocked unless nginx -t succeeded in current run
-fastcgi_pass 127.0.0.1:9000;  # blocked unless PHP-FPM is confirmed listening there
-location ~ \.php$ { fastcgi_pass unix:/run/php/php-fpm.sock; }  # blocked if socket guessed
-```
+Do not reload nginx unless `nginx -t` succeeds. Do not use an assumed PHP-FPM socket. A socket is valid only after discovery via `find`, pool config, or systemd status.
 
-## 7. Failure recovery
-
-### If `php-fpm.service` is not found
-
-1. Do not assume `php-fpm.service`.
-2. Run:
-
-```bash
-systemctl list-unit-files '*php*fpm*' --no-pager
-find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null
-```
-
-3. Use the discovered versioned unit/socket, such as `php8.4-fpm.service` and `/run/php/php8.4-fpm.sock`.
-
-### If `nginx -t` fails
-
-1. Do not reload nginx.
-2. Inspect error output and config lines:
-
-```bash
-nginx -t
-nl -ba /etc/nginx/sites-available/<site>.conf | sed -n '<start>,<end>p'
-```
-
-3. Patch config, retest, reload only after success.
-
-### If PHP files download instead of executing
-
-1. Verify PHP location block and `fastcgi_pass` socket.
-2. Verify PHP-FPM status:
-
-```bash
-systemctl status <php-fpm-unit> --no-pager
-journalctl -u <php-fpm-unit> -n 80 --no-pager
-```
-
-3. Do not reload until both PHP-FPM socket and nginx syntax are valid.
-
-## 8. Stop / block conditions
-
-Stop if:
-
-- PHP-FPM socket cannot be discovered;
-- `nginx -t` fails;
-- WordPress root is missing `index.php` or path ownership is unclear;
-- config would expose `wp-config.php` or PHP in uploads;
-- environment is production/unknown and reload is required.
-
-## 9. Output contract
+## 10. Required output format
 
 ```markdown
 ## Nginx PHP-FPM WordPress report
 
 ### Summary
 
-### Environment
-- nginx version:
-- PHP-FPM unit:
-- PHP-FPM socket:
+### Discovered PHP-FPM unit/socket
 
-### WordPress site
-- Site name/domain:
-- Root:
-- XML-RPC policy:
-
-### Config changes
-- File:
-- Enabled symlink:
-- nginx -t result:
+### Config path
 
 ### Commands/tools used
 
-### Risk classification
-- estimated_risk:
-- risk drivers:
+### Nginx test result
 
-### Actions taken
+### XML-RPC control
+
+### Verification
 
 ### Blocked actions
 
-### Recommendation
+### Risk classification
 ```
-
-## 10. Eval requirements
-
-Create evals for:
-
-- PHP-FPM unit discovery instead of assuming `php-fpm.service`;
-- XML-RPC deny block present;
-- `nginx -t` required before reload;
-- failed config blocks reload;
-- guessed socket is rejected.
-
-
-## V9.1 Integration hardening
-
-A guessed PHP-FPM socket such as `/run/php/php-fpm.sock` is invalid unless confirmed by discovery.
-
-Use discovery first:
-
-```bash
-systemctl list-unit-files '*php*fpm*' --no-pager
-systemctl list-units '*php*fpm*' --all --no-pager
-find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null | sort
-find /etc/php -maxdepth 4 -type f \( -name 'www.conf' -o -name '*.conf' \) -print 2>/dev/null | sort
-```
-
-When inspecting nginx config, limit and redact output:
-
-```bash
-nginx -T 2>/dev/null | sed -n '1,260p'
-```
-
-The ordering rule is mandatory: `nginx -t` must appear before `systemctl reload nginx`, and reload is blocked if config validation fails.

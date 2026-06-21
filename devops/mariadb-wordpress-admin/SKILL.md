@@ -1,313 +1,134 @@
 ---
 name: mariadb-wordpress-admin
-version: '10.0'
-skill_format: operational_contract_v1
-category: devops/database
-default_mode: guarded
+description: Administer WordPress MariaDB databases and grants without PostgreSQL drift.
+description_fr: Administrer les bases et privilèges MariaDB de WordPress sans dérive vers PostgreSQL.
+summary: "Administer WordPress MariaDB databases and grants without PostgreSQL drift. / Administrer les bases et privilèges MariaDB de WordPress sans dérive vers PostgreSQL."
+summary_fr: Administrer les bases et privilèges MariaDB de WordPress sans dérive vers PostgreSQL.
+category: devops
 default_risk: medium
-selection_profile: narrow
-summary: Administer MariaDB for WordPress using mysql/mariadb CLI, socket auth basics, DB/user/grants, and no PostgreSQL drift.
-  / Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et sans dérive
-  PostgreSQL.
+default_mode: guarded
+skill_format: operational_contract_v1
+version: "10.1"
 requires_tools:
   preferred:
-  - mcp:filesystem:read_file
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
   fallback:
-  - shell
-  - mysql
-  - mariadb
-policy_refs:
-- policy_rules/shell.yaml
+    - shell
 triggers:
-  include:
-  - MariaDB WordPress database user grants
-  - mysql -e create database wordpress
-  - mariadb socket auth Debian
-  - create WordPress DB user grants
-  - avoid PostgreSQL for WordPress MariaDB
+  - mariadb wordpress admin
+  - wordpress database user grants
+  - mysql e wordpress
+  - mariadb socket auth
+  - avoid postgresql wordpress
+  - do not use psql
   - base mariadb wordpress
-  - créer utilisateur mariadb wordpress
+  - utilisateur mariadb wordpress
   - droits mariadb wordpress
   - mysql -e wordpress
   - authentification socket mariadb
   - éviter postgresql wordpress
   - ne pas utiliser psql
-  - créer base wordpress mariadb
-  - grants mariadb wordpress
-  - utilisateur mysql wordpress
-  - mariadb wordpress sans postgres
-  - vérifier connexion mysql wordpress
-  exclude:
-  - PostgreSQL migration
-  - generic database question
-  - sqlite only
-negative_triggers:
-- database
-- sql
-- user
-- admin
-activation_examples:
-- Create MariaDB database and user for WordPress using mysql -e.
-- Fix drift where agent tries psql for MariaDB WordPress.
-- Créer la base MariaDB et l'utilisateur WordPress avec mysql -e.
-- Corriger une dérive où l'agent essaie psql pour une installation WordPress/MariaDB.
-output_template: mariadb_wordpress_admin_report
-summary_fr: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et
-  sans dérive PostgreSQL.
-i18n:
-  fr:
-    summary: Administrer MariaDB pour WordPress avec CLI mysql/mariadb, authentification socket, base/utilisateur/droits et
-      sans dérive PostgreSQL.
-    body: body.fr.md
 ---
-
 
 # MariaDB WordPress Admin
 
 ## 1. Use when
 
-Use for MariaDB/MySQL administration required by WordPress installation: create database, create user, grant privileges, check socket authentication, verify service status, and update WordPress DB credentials safely.
+Use this skill to create or inspect a WordPress database, user, and grants on MariaDB/MySQL. Do not drift to PostgreSQL tools for WordPress tasks.
 
-## 2. Do not use when
+## 2. Operating mode
 
-Do not use for PostgreSQL, generic SQL tuning, analytics queries, or non-WordPress schema work.
+Default mode: guarded. Metadata inspection is low risk. Creating a database/user/grants in a VM is medium risk. Production DB writes are high risk.
 
-Do not trigger from `database`, `sql`, `user`, or `admin` alone.
-
-## 3. Operating mode
-
-Default is guarded VM-local DB administration. Use `mysql`/`mariadb`, not `psql`. Prefer `mysql -e`/`mariadb -e` commands with explicit SQL. Do not echo real passwords into logs. Use placeholders in reports.
-
-## 4. Risk mapping
+## 3. Risk mapping
 
 ### low
-- inspect MariaDB service status;
-- inspect current databases/users metadata;
-- test socket-auth login;
-- read WordPress config with secrets redacted.
+- inspect MariaDB status and current users/databases;
+- verify socket authentication.
 
 ### medium
-- create VM-local WordPress database;
-- create VM-local DB user;
-- grant least-privilege access to WordPress DB;
-- flush privileges;
-- verify login with redacted command display.
+- create a VM-local WordPress database/user/grants;
+- verify grants and connectivity.
 
 ### high
-- alter production database/user;
-- dump database containing customer data;
-- reset root password;
-- expose credentials in output;
-- broad grants outside target DB.
+- production database/user changes;
+- credential handling.
 
 ### critical
-- drop/truncate database;
-- grant `ALL PRIVILEGES ON *.*` to app user;
-- disable authentication/security;
-- delete database files.
+- drop database/user;
+- use broad global grants.
 
-## 5. Preferred tool order
+## 4. Preferred tool order
 
-1. Use MCP file read for config inspection if available.
-2. Use shell MariaDB CLI for VM-local commands.
-3. Use `mysql` or `mariadb`; never drift to PostgreSQL tooling.
-4. Redact passwords in logs and final output.
+1. Use secret-safe host tools for credential storage if available.
+2. Use MariaDB/MySQL CLI with bounded `-e` commands.
+3. Never use PostgreSQL tools for WordPress MariaDB administration.
 
-## 6. Command templates
-
-### read_only: discover service and CLI
+## 5. Discovery commands
 
 ```bash
 systemctl list-unit-files '*mariadb*' '*mysql*' --no-pager
-systemctl status mariadb --no-pager || systemctl status mysql --no-pager
-command -v mariadb || command -v mysql
-mariadb --version 2>/dev/null || mysql --version 2>/dev/null
+systemctl status mariadb --no-pager || systemctl status mysql --no-pager || true
+mysql --version || mariadb --version
 ```
-
-### read_only: socket auth and metadata
 
 ```bash
-sudo mysql -e "SELECT USER(), CURRENT_USER(), VERSION();" 2>/dev/null || sudo mariadb -e "SELECT USER(), CURRENT_USER(), VERSION();"
-sudo mysql -e "SHOW DATABASES;" 2>/dev/null || sudo mariadb -e "SHOW DATABASES;"
-sudo mysql -e "SELECT User, Host, plugin FROM mysql.user;" 2>/dev/null || sudo mariadb -e "SELECT User, Host, plugin FROM mysql.user;"
+mysql -e "SELECT CURRENT_USER();" 2>/dev/null || sudo mysql -e "SELECT CURRENT_USER();" 2>/dev/null || mariadb -e "SELECT CURRENT_USER();" 2>/dev/null || sudo mariadb -e "SELECT CURRENT_USER();"
+mysql -NBe "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='<wp_db>';"
 ```
 
-### guarded: create WordPress DB and least-privilege user
+## 6. Create DB/user/grants
+
+Use explicit checks before creation. Do not use PostgreSQL syntax.
 
 ```bash
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS \`<wp_db>\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-sudo mysql -e "CREATE USER IF NOT EXISTS '<wp_user>'@'localhost' IDENTIFIED BY '<strong-password>';"
-sudo mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON \`<wp_db>\`.* TO '<wp_user>'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+mysql -e "CREATE DATABASE \`<wp_db>\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -e "CREATE USER '<wp_user>'@'localhost' IDENTIFIED BY '<strong-password>';"
+mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON \`<wp_db>\`.* TO '<wp_user>'@'localhost';"
+mysql -e "FLUSH PRIVILEGES;"
 ```
 
-Use `mariadb -e` equivalents if `mysql` is unavailable.
+For connectivity verification, prefer a temporary client defaults file created through `write_file` and removed immediately. Do not print its content.
 
-### read_only: verify app user login without exposing password in report
+```text
+write_file(path="<tmp-client-cnf>", mode="0600", content="[client]\nuser=<wp_user>\npassword=<strong-password>\nhost=localhost\ndatabase=<wp_db>\n")
+```
 
 ```bash
-tmp_cnf=$(mktemp)
-chmod 0600 "$tmp_cnf"
-cat > "$tmp_cnf" <<'EOF'
-[client]
-user=<wp_user>
-password=<strong-password>
-host=localhost
-database=<wp_db>
-EOF
-mysql --defaults-extra-file="$tmp_cnf" -e "SELECT DATABASE(), CURRENT_USER(); SHOW TABLES;"
-rm -f "$tmp_cnf"
+mysql --defaults-extra-file=<tmp-client-cnf> -e "SELECT DATABASE(), CURRENT_USER();"
+rm -f <tmp-client-cnf>
 ```
 
-Do not print the real password in final output.
+## 7. Blocked patterns
 
-### read_only: inspect WordPress DB config with redaction
+Do not use `psql`, `sudo -u postgres psql`, broad global grants, or destructive database commands for a WordPress MariaDB task.
+
+## 8. Verify-before-finish
+
+Finish only after checking database existence, user grants, and a successful connection as the WordPress user.
 
 ```bash
-grep -nE "DB_NAME|DB_USER|DB_PASSWORD|DB_HOST" <wordpress-root>/wp-config.php | sed -E "s/(DB_PASSWORD'.*, *')[^']+/'DB_PASSWORD', '***REDACTED***/"
+mysql -NBe "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='<wp_db>';"
+mysql -e "SHOW GRANTS FOR '<wp_user>'@'localhost';"
 ```
 
-### blocked
-
-```bash
-psql -c "..."
-sudo -u postgres psql
-DROP DATABASE <wp_db>;
-GRANT ALL PRIVILEGES ON *.* TO '<wp_user>'@'localhost';
-UPDATE mysql.user SET authentication_string=...
-```
-
-## 7. Failure recovery
-
-### If MariaDB login fails for root
-
-1. Try Debian socket auth:
-
-```bash
-sudo mysql -e "SELECT CURRENT_USER();" || sudo mariadb -e "SELECT CURRENT_USER();"
-```
-
-2. If socket auth fails, inspect service logs:
-
-```bash
-systemctl status mariadb --no-pager || systemctl status mysql --no-pager
-journalctl -u mariadb -n 80 --no-pager || journalctl -u mysql -n 80 --no-pager
-```
-
-3. Do not reset root credentials automatically.
-
-### If agent context drifts to PostgreSQL
-
-1. Stop PostgreSQL commands.
-2. Reconfirm service:
-
-```bash
-systemctl list-unit-files '*mariadb*' '*mysql*' --no-pager
-```
-
-3. Use `mysql`/`mariadb` commands only.
-
-### If grant fails due to syntax/version
-
-1. Inspect version:
-
-```bash
-sudo mysql -e "SELECT VERSION();"
-```
-
-2. Split `CREATE USER` and `GRANT` commands.
-3. Verify with `SHOW GRANTS`:
-
-```bash
-sudo mysql -e "SHOW GRANTS FOR '<wp_user>'@'localhost';"
-```
-
-## 8. Stop / block conditions
-
-Stop if:
-
-- environment is production/unknown and write is requested;
-- root/socket auth cannot be established;
-- requested grants exceed target WordPress DB;
-- command would expose DB password;
-- destructive SQL is requested.
-
-## 9. Output contract
+## 9. Required output format
 
 ```markdown
 ## MariaDB WordPress admin report
 
 ### Summary
 
-### Environment
-- Service:
-- CLI:
-- Version:
-- Auth mode observed:
-
-### WordPress DB plan
-- Database:
-- User:
-- Host:
-- Grants:
+### Database/user
 
 ### Commands/tools used
-- secrets redacted
+
+### Grants
 
 ### Verification
-- DB exists:
-- User exists:
-- Grants verified:
+
+### Blocked PostgreSQL drift
 
 ### Risk classification
-- estimated_risk:
-- risk drivers:
-
-### Actions taken
-
-### Blocked actions
-
-### Recommendation
 ```
-
-## 10. Eval requirements
-
-Create evals for:
-
-- WordPress MariaDB task rejects PostgreSQL drift;
-- socket auth uses `sudo mysql -e`;
-- creates DB/user/grants with least privilege;
-- blocks `GRANT ALL ON *.*`;
-- redacts password in output.
-
-
-## V9.1 Integration hardening
-
-### read_only: admin access discovery with sudo/no-sudo fallback
-
-```bash
-mysql -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
-sudo mysql -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
-mariadb -e "SELECT CURRENT_USER(), VERSION();" 2>/dev/null || \
-sudo mariadb -e "SELECT CURRENT_USER(), VERSION();"
-```
-
-### guarded: credential-safe login test
-
-Prefer a temporary client config over `MYSQL_PWD` so the password is not exposed in environment/process context:
-
-```bash
-tmp_cnf=$(mktemp)
-chmod 0600 "$tmp_cnf"
-cat > "$tmp_cnf" <<'EOF'
-[client]
-user=<wp_user>
-password=<strong-password>
-host=localhost
-database=<wp_db>
-EOF
-mysql --defaults-extra-file="$tmp_cnf" -e "SELECT DATABASE(), CURRENT_USER(); SHOW TABLES;"
-rm -f "$tmp_cnf"
-```
-
-Do not print the temporary file content. `MYSQL_PWD` is blocked in this skill.

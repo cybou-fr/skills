@@ -1,67 +1,63 @@
-# Nginx Php Fpm Wordpress — corps français
+# Nginx PHP-FPM WordPress
 
-> Version française step-for-step du contrat opérationnel. Les commandes, chemins, noms d'outils, tags de risque et clés de sortie restent identiques à `SKILL.md`.
+
+> Corps FR structurellement équivalent à SKILL.md. Les commandes, chemins, noms d’outils et labels de risque restent inchangés.
 
 ## 1. Quand utiliser
 
-Utiliser ce skill pour les tâches décrites par `SKILL.md` lorsque la demande opérateur est en français ou mixte EN/FR. Le comportement attendu est identique au corps anglais.
+Use this skill when configuring WordPress with nginx and PHP-FPM on Debian. The agent must discover the real PHP-FPM unit/socket before writing nginx config.
 
-Résumé FR: Configurer nginx + PHP-FPM pour WordPress avec découverte socket/unité, blocage XML-RPC et nginx -t avant rechargement.
+## 2. Mode opératoire
 
-## 2. Quand ne pas utiliser
+Default mode: guarded. Discovery is low risk. Writing nginx config and reload is medium in a VM and high in production.
 
-Ne pas utiliser pour des demandes génériques qui ne contiennent pas l'intention étroite du skill. Les mots génériques français comme `service`, `système`, `fichier`, `configuration`, `http` ou `url` ne doivent jamais suffire seuls à sélectionner ce skill.
-
-## 3. Mode opératoire
-
-Respecter le même `default_mode`, le même périmètre d'autonomie VM-local et les mêmes conditions d'arrêt que dans `SKILL.md`. Ne pas traduire ni modifier les commandes exécutables.
-
-## 4. Cartographie du risque
+## 3. Cartographie du risque
 
 ### low
-- inspection en lecture seule;
-- découverte ou validation sans changement d'état;
-- rapporter les résultats avec secrets masqués.
+- inspect nginx config and PHP-FPM units;
+- discover sockets and pool config.
 
 ### medium
-- changement VM-local réversible et validé;
-- écriture de configuration dans un périmètre autorisé;
-- démarrage/rechargement local seulement si la politique runtime l'autorise.
+- author VM-local nginx server block through `write_file`;
+- reload nginx after `nginx -t` passes.
 
 ### high
-- modification de production ou d'environnement inconnu;
-- action touchant secrets, droits, base de données ou service exposé;
-- changement sans rollback clair.
+- change production TLS, vhost, or PHP handling.
 
 ### critical
-- suppression irréversible;
-- désactivation de contrôles sécurité/audit;
-- action destructive ou globale hors périmètre.
+- reload broken config;
+- guess a PHP-FPM socket without discovery.
 
-## 5. Ordre de préférence des outils
+## 4. Ordre préféré des outils
 
-1. Préférer les outils MCP/host-governed déclarés dans le frontmatter quand ils existent.
-2. Utiliser le shell seulement pour l'inspection/exécution VM-local autorisée.
-3. Ne jamais utiliser le shell pour contourner la politique runtime, les contrôles secrets ou les limites d'approbation.
+1. Use `debian13-service-discovery` for PHP-FPM unit discovery.
+2. Use `mcp:filesystem:read_file` for existing nginx and pool configs.
+3. Use `mcp:filesystem:write_file` or `write_file` for config authoring.
+4. Use shell for `nginx -t` and reload verification.
 
-## 6. Modèles de commandes
-
-Les blocs de commandes ci-dessous sont repris sans traduction depuis `SKILL.md` afin de garder le contrat strictement identique.
+## 5. Commandes de découverte
 
 ```bash
 systemctl list-unit-files '*php*fpm*' --no-pager
-systemctl list-units '*php*fpm*' --all --no-pager
+systemctl status 'php*-fpm.service' --no-pager || true
 find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null
-find /etc/php -maxdepth 4 -type f -path '*/fpm/pool.d/*.conf' -print 2>/dev/null
-php -v 2>/dev/null || true
+find /etc/php -path '*/fpm/pool.d/*.conf' -type f -print 2>/dev/null
 ```
 
 ```bash
-nginx -T 2>/dev/null | sed -n '1,260p'
 nginx -t
-systemctl status nginx --no-pager
-journalctl -u nginx -n 80 --no-pager
+nginx -T 2>/dev/null | sed -n '1,260p'
 ```
+
+## 6. Modèle d’écriture de configuration
+
+Preferred authoring uses a file tool:
+
+```text
+write_file(path="/etc/nginx/sites-available/<site>", mode="0644", content="<nginx server block content>")
+```
+
+Required nginx content properties:
 
 ```nginx
 server {
@@ -69,14 +65,6 @@ server {
     server_name <domain>;
     root <wordpress-root>;
     index index.php index.html;
-
-    access_log /var/log/nginx/<site>.access.log;
-    error_log /var/log/nginx/<site>.error.log;
-
-    client_max_body_size 64m;
-
-    location = /favicon.ico { log_not_found off; access_log off; }
-    location = /robots.txt { allow all; log_not_found off; access_log off; }
 
     location = /xmlrpc.php {
         deny all;
@@ -90,114 +78,50 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:<php-fpm-socket>;
-    }
-
-    location ~* /(?:uploads|files)/.*\.php$ {
-        deny all;
-    }
-
-    location ~ /\.ht {
-        deny all;
+        fastcgi_pass unix:<discovered-php-fpm-socket>;
     }
 }
 ```
 
+## 7. Séquence de rechargement
+
 ```bash
-install -d -m 0755 /etc/nginx/sites-available /etc/nginx/sites-enabled
-tee /etc/nginx/sites-available/<site>.conf >/dev/null <<'EOF'
-<server-block>
-EOF
-ln -sfn /etc/nginx/sites-available/<site>.conf /etc/nginx/sites-enabled/<site>.conf
+ln -sfn /etc/nginx/sites-available/<site> /etc/nginx/sites-enabled/<site>
 nginx -t
 systemctl reload nginx
 systemctl status nginx --no-pager
+curl -I http://127.0.0.1/ || true
+curl -I http://127.0.0.1/xmlrpc.php || true
 ```
 
-```bash
-test -f <wordpress-root>/wp-config.php && echo wp-config-present
-test -f <wordpress-root>/index.php && echo index-present
-find <wordpress-root> -maxdepth 2 -type f -name 'xmlrpc.php' -print
-namei -l <wordpress-root>
-```
+## 8. Vérifier avant de terminer
 
-```bash
-systemctl reload nginx   # blocked unless nginx -t succeeded in current run
-fastcgi_pass 127.0.0.1:9000;  # blocked unless PHP-FPM is confirmed listening there
-location ~ \.php$ { fastcgi_pass unix:/run/php/php-fpm.sock; }  # blocked if socket guessed
-```
+Une tâche mutante n’est pas terminée tant que la socket PHP-FPM a été découverte, la configuration a été écrite via `write_file`, `nginx -t` a réussi, nginx a été rechargé et les vérifications HTTP/XML-RPC locales ont été exécutées.
 
-```bash
-systemctl list-unit-files '*php*fpm*' --no-pager
-find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null
-```
+## 9. Conditions d’arrêt / blocage
 
-```bash
-nginx -t
-nl -ba /etc/nginx/sites-available/<site>.conf | sed -n '<start>,<end>p'
-```
+Do not reload nginx unless `nginx -t` succeeds. Do not use an assumed PHP-FPM socket. A socket is valid only after discovery via `find`, pool config, or systemd status.
 
-```bash
-systemctl status <php-fpm-unit> --no-pager
-journalctl -u <php-fpm-unit> -n 80 --no-pager
-```
+## 10. Format de sortie requis
 
 ```markdown
 ## Nginx PHP-FPM WordPress report
 
 ### Summary
 
-### Environment
-- nginx version:
-- PHP-FPM unit:
-- PHP-FPM socket:
+### Discovered PHP-FPM unit/socket
 
-### WordPress site
-- Site name/domain:
-- Root:
-- XML-RPC policy:
-
-### Config changes
-- File:
-- Enabled symlink:
-- nginx -t result:
+### Config path
 
 ### Commands/tools used
 
-### Risk classification
-- estimated_risk:
-- risk drivers:
+### Nginx test result
 
-### Actions taken
+### XML-RPC control
+
+### Verification
 
 ### Blocked actions
 
-### Recommendation
+### Risk classification
 ```
-
-```bash
-systemctl list-unit-files '*php*fpm*' --no-pager
-systemctl list-units '*php*fpm*' --all --no-pager
-find /run /var/run -type s -name 'php*-fpm*.sock' 2>/dev/null | sort
-find /etc/php -maxdepth 4 -type f \( -name 'www.conf' -o -name '*.conf' \) -print 2>/dev/null | sort
-```
-
-```bash
-nginx -T 2>/dev/null | sed -n '1,260p'
-```
-
-## 7. Récupération d'échec
-
-Suivre les mêmes chemins de récupération que dans `SKILL.md`: symptôme → inspection → classification → action sûre → condition d'arrêt → sortie. Si l'environnement est inconnu ou production, ne pas exécuter d'action write/restart destructive automatiquement.
-
-## 8. Conditions d'arrêt / blocage
-
-S'arrêter si la demande sort de l'enveloppe d'autonomie VM-local, si un secret serait exposé, si l'action est destructive, ou si le skill étroit n'est pas réellement pertinent pour la tâche.
-
-## 9. Format de sortie requis
-
-Utiliser le même `output_template` que `SKILL.md`. Les titres peuvent être en français, mais les clés parsables comme `estimated_risk`, `actions_taken`, `blocked_actions`, `commands_used` doivent rester stables si elles sont consommées par downstream tooling.
-
-## 10. Exigences d'évaluation
-
-Les evals doivent exister en paire EN/FR et vérifier `selected_relevant_skill`, les commandes attendues, les commandes interdites, le niveau de risque et l'absence de sélection par mots génériques.

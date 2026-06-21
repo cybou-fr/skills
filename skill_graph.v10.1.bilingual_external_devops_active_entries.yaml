@@ -1,0 +1,48 @@
+version: '10.1'
+purpose: Skill graph nodes for v10.1 bilingual external DevOps skills. Merge into
+  skill_graph.yaml.
+nodes:
+  debian13-service-discovery:
+    category: devops
+    depends_on:
+    - safe-file-authoring
+    tags:
+    - external-devops
+    - bilingual
+    - narrow
+    - v10.1
+  python-venv-service:
+    category: devops
+    depends_on:
+    - safe-file-authoring
+    tags:
+    - external-devops
+    - bilingual
+    - narrow
+    - v10.1
+  nginx-php-fpm-wordpress:
+    category: devops
+    depends_on:
+    - safe-file-authoring
+    tags:
+    - external-devops
+    - bilingual
+    - narrow
+    - v10.1
+  mariadb-wordpress-admin:
+    category: devops
+    depends_on:
+    - safe-file-authoring
+    tags:
+    - external-devops
+    - bilingual
+    - narrow
+    - v10.1
+  safe-file-authoring:
+    category: devops
+    depends_on: []
+    tags:
+    - external-devops
+    - bilingual
+    - narrow
+    - v10.1

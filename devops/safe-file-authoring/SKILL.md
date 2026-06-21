@@ -1,287 +1,122 @@
 ---
 name: safe-file-authoring
-version: '10.0'
-skill_format: operational_contract_v1
-category: devops/filesystem
-default_mode: guarded
+description: Author files safely with write_file and verify generated content before finishing.
+description_fr: Écrire des fichiers en sécurité avec write_file et vérifier le contenu généré avant de terminer.
+summary: "Author files safely with write_file and verify generated content before finishing. / Écrire des fichiers en sécurité avec write_file et vérifier le contenu généré avant de terminer."
+summary_fr: Écrire des fichiers en sécurité avec write_file et vérifier le contenu généré avant de terminer.
+category: devops
 default_risk: medium
-selection_profile: narrow
-summary: Safely author files using MCP write_file when available, or robust install -d + tee / quoted heredoc shell fallback.
-  / Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell fallback.
+default_mode: guarded
+skill_format: operational_contract_v1
+version: "10.1"
 requires_tools:
   preferred:
-  - mcp:filesystem:write_file
-  - mcp:filesystem:read_file
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
   fallback:
-  - shell
-policy_refs:
-- policy_rules/shell.yaml
+    - shell
 triggers:
-  include:
-  - safe write file heredoc
-  - quoted heredoc tee file authoring
-  - install -d tee system config
-  - write_file fallback shell
-  - avoid unterminated heredoc
-  - robust file creation systemd nginx config
+  - safe file authoring
+  - write file safely
+  - mcp filesystem write file
+  - avoid shell file writes
+  - verify generated config
+  - systemd unit write file
   - écrire fichier en sécurité
-  - création fichier robuste
-  - heredoc cité
-  - tee avec heredoc
-  - éviter cat heredoc non cité
-  - créer répertoire install -d
-  - écrire configuration sans casser guillemets
-  - write_file préféré
-  - fallback tee heredoc
-  - éviter heredoc interrompu
-  - fichier config nginx avec variables
-  - écrire unité systemd avec tee
-  exclude:
-  - generic file question
-  - read file only
-  - code formatting only
-negative_triggers:
-- file
-- write
-- config
-- shell
-activation_examples:
-- Create a systemd unit without heredoc quoting bugs.
-- Use write_file if available, otherwise install -d plus tee with quoted EOF.
-- Créer une unité systemd sans bogue de guillemets heredoc.
-- Utiliser write_file si disponible, sinon install -d et tee avec EOF cité.
-output_template: safe_file_authoring_report
-summary_fr: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en shell
-  fallback.
-i18n:
-  fr:
-    summary: Écrire des fichiers en sécurité avec MCP write_file si disponible, sinon install -d + tee et heredoc cité en
-      shell fallback.
-    body: body.fr.md
+  - write_file fichier
+  - mcp filesystem write file
+  - éviter écriture shell fichier
+  - vérifier configuration générée
+  - écrire unité systemd avec write_file
 ---
-
 
 # Safe File Authoring
 
 ## 1. Use when
 
-Use when an agent must create or replace text files such as systemd units, nginx configs, env files, scripts, or application config inside an allowed VM/local workspace.
+Use this skill whenever an agent must create or replace a config file, service unit, source file, script, nginx site, SQL client config, or any other multi-line file.
 
-Prefer `write_file`/MCP file authoring tools when available. Use shell fallback only with robust quoting patterns.
+## 2. Operating mode
 
-## 2. Do not use when
+Default mode: guarded. The preferred operation is a host-governed file write followed by concrete validation.
 
-Do not use for generic file reading, code explanation, or writing secrets into logs. Do not trigger from `file`, `write`, `config`, or `shell` alone.
-
-## 3. Operating mode
-
-Default is guarded authoring. File writes are allowed only within explicitly permitted paths and autonomy envelope. Always create parent directories deliberately and verify file content after write.
-
-## 4. Risk mapping
+## 3. Risk mapping
 
 ### low
-- inspect target path;
-- read existing file;
-- generate patch/diff without writing;
-- validate syntax after writing in sandbox.
+- inspect an existing file;
+- validate generated content without writing.
 
 ### medium
-- write VM-local config file with backup;
-- create parent directory with safe mode;
-- write systemd/nginx config in isolated VM then validate.
+- write a VM-local file with `write_file` or `mcp:filesystem:write_file`;
+- validate and reload a VM-local service after syntax check.
 
 ### high
-- overwrite production config;
-- write executable scripts in privileged path;
-- write files containing secrets;
-- change ownership/permissions broadly.
+- write production config;
+- write secret-bearing files.
 
 ### critical
-- overwrite `/etc/sudoers`, SSH authorized keys, PAM configs, or security policy files without explicit policy;
-- recursive chmod/chown;
-- destructive truncation of unknown files;
-- write secrets to world-readable paths.
+- overwrite security controls or system-critical files without rollback.
 
-## 5. Preferred tool order
+## 4. Preferred tool order
 
-1. Use `mcp:filesystem:write_file` if available.
-2. Use `mcp:filesystem:read_file` to verify existing state.
-3. Use shell fallback with `install -d` and `tee` plus single-quoted heredoc delimiter.
-4. Do not use fragile unquoted heredocs for content containing `$`, backticks, quotes, or shell substitutions.
+1. Use `mcp:filesystem:write_file` or `write_file` for content creation.
+2. Use `mcp:filesystem:read_file` to inspect the written file.
+3. Use domain validators such as `systemd-analyze verify`, `nginx -t`, JSON parser, or application-specific syntax checks.
+4. If no safe file-write tool exists, stop and emit a blocked action instead of using shell redirection.
 
-## 6. Command templates
+## 5. File write contract
 
-### read_only: inspect target
-
-```bash
-test -e <target> && ls -l <target> || true
-test -f <target> && sed -n '1,220p' <target> || true
-namei -l <target-dir>
+```text
+write_file(path="<target-path>", mode="0644", content="<complete literal content>")
 ```
 
-### guarded: create parent and backup existing file
+For secret-bearing files:
 
-```bash
-install -d -m 0755 <target-dir>
-if test -f <target>; then cp -a <target> <target>.bak.$(date +%Y%m%d%H%M%S); fi
+```text
+write_file(path="<target-path>", mode="0600", content="<complete literal content>")
 ```
 
-### guarded: robust quoted heredoc with tee
+## 6. Validation commands
 
 ```bash
-tee <target> >/dev/null <<'EOF'
-<literal-content>
-EOF
+test -f <target-path>
+stat -c '%a %U %G %n' <target-path>
+sed -n '1,220p' <target-path>
 ```
-
-The delimiter must be single-quoted as `<<'EOF'` when content contains `$`, backticks, quotes, regexes, nginx variables, systemd environment lines, YAML, JSON, or shell snippets.
-
-### guarded: atomic temp file pattern
 
 ```bash
-install -d -m 0755 <target-dir>
-tmp=$(mktemp <target-dir>/.<basename>.tmp.XXXXXX)
-cat > "$tmp" <<'EOF'
-<literal-content>
-EOF
-chmod 0644 "$tmp"
-mv "$tmp" <target>
+systemd-analyze verify <target-path>
+nginx -t
+python3 -m json.tool <target-path>
+python3 -m py_compile <target-path>
 ```
 
-Use this pattern when partial writes would be harmful.
+## 7. Blocked patterns
 
-### read_only: verify and validate by file type
+Do not create multi-line files with shell redirection, shell string interpolation, or ad-hoc command output. If a file-writing tool is unavailable, stop and report that safe authoring is blocked.
 
-```bash
-sed -n '1,260p' <target>
-systemd-analyze verify <target>          # for systemd units
-nginx -t                                # for nginx config
-python3 -m json.tool <target>            # for JSON
-python3 - <<'PY'
-import sys, yaml
-for p in sys.argv[1:]: yaml.safe_load(open(p))
-PY <target>                              # for YAML if PyYAML exists
-```
+## 8. Verify-before-finish
 
-### blocked
+A file-authoring task is not complete until the file exists, permissions are checked, content is inspected, and the domain-specific validator has run.
 
-```bash
-cat > <target> <<EOF        # unquoted heredoc for complex config
-printf "<complex-content>" > <target>
-sed -i '...' <critical-file>
-chmod -R 777 <path>
-chown -R <user>:<group> <path>
-```
-
-## 7. Failure recovery
-
-### If heredoc fails or quote is unterminated
-
-1. Stop appending more shell lines.
-2. Inspect target and shell script context:
-
-```bash
-test -f <target> && sed -n '1,260p' <target> || true
-```
-
-3. Rewrite using `write_file` if available or quoted heredoc/atomic temp pattern.
-4. Validate syntax before using the file.
-
-### If permission denied
-
-1. Inspect path ownership:
-
-```bash
-namei -l <target>
-ls -ld <target-dir>
-```
-
-2. Do not escalate blindly.
-3. If VM-local privileged config is in scope, use the runtime-approved privileged write path.
-
-### If validation fails
-
-1. Do not reload/restart dependent service.
-2. Show validation error and relevant file lines.
-3. Patch the file, revalidate, then continue only after success.
-
-## 8. Stop / block conditions
-
-Stop if:
-
-- target path is outside allowed workspace/autonomy envelope;
-- content includes secrets that would be logged or world-readable;
-- write would overwrite critical auth/security files;
-- validation fails;
-- only available pattern is an unsafe/unquoted heredoc for complex content.
-
-## 9. Output contract
+## 9. Required output format
 
 ```markdown
 ## Safe file authoring report
 
 ### Summary
 
-### Target
-- Path:
-- Existing file:
-- Backup:
+### File path
 
-### Authoring method
-- Tool/pattern:
-- Parent directory created:
-- Permissions:
+### Tool used
 
 ### Validation
-- Validator:
-- Result:
+
+### Permissions
+
+### Blocked shell-write patterns
 
 ### Risk classification
-- estimated_risk:
-- risk drivers:
 
-### Actions taken
-
-### Blocked actions
-
-### Recommendation
-```
-
-## 10. Eval requirements
-
-Create evals for:
-
-- prefers `write_file` when available;
-- uses `install -d` + quoted heredoc fallback;
-- blocks unquoted heredoc for nginx/systemd content;
-- validation failure blocks reload/restart;
-- permission denied does not escalate blindly.
-
-
-## V9.1 Integration hardening
-
-### preferred_tool: explicit write_file contract
-
-When available, prefer the host-governed file writer rather than shell heredocs:
-
-```text
-write_file(path="<target>", content="<literal-content>", mode="0644")
-```
-
-Then verify with read-back and a syntax-specific validator.
-
-### read_only: YAML validation fallback
-
-```bash
-python3 - <<'PY'
-try:
-    import yaml
-    with open('<target>', 'r', encoding='utf-8') as f:
-        yaml.safe_load(f)
-    print('YAML OK')
-except ModuleNotFoundError:
-    print('YAML validation skipped: PyYAML unavailable')
-except Exception as e:
-    raise SystemExit(f'YAML invalid: {e}')
-PY
+### Next step
 ```

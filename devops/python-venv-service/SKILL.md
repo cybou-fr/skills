@@ -1,166 +1,103 @@
 ---
 name: python-venv-service
-version: '10.0'
-skill_format: operational_contract_v1
-category: devops/python
-default_mode: guarded
+description: Run Python/FastAPI services on Debian using a PEP 668-safe virtual environment and systemd.
+description_fr: Exécuter des services Python/FastAPI sur Debian avec un environnement virtuel compatible PEP 668 et systemd.
+summary: "Run Python/FastAPI services on Debian using a PEP 668-safe virtual environment and systemd. / Exécuter des services Python/FastAPI sur Debian avec un environnement virtuel compatible PEP 668 et systemd."
+summary_fr: Exécuter des services Python/FastAPI sur Debian avec un environnement virtuel compatible PEP 668 et systemd.
+category: devops
 default_risk: medium
-selection_profile: narrow
-summary: Build Debian-safe Python venv services using PEP 668, FastAPI/Uvicorn systemd patterns, and venv/bin/python. / Créer
-  des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
+default_mode: guarded
+skill_format: operational_contract_v1
+version: "10.1"
 requires_tools:
   preferred:
-  - mcp:filesystem:read_file
-  - mcp:filesystem:write_file
+    - mcp:filesystem:read_file
+    - mcp:filesystem:write_file
   fallback:
-  - shell
-  - python3
-  - systemctl
-policy_refs:
-- policy_rules/shell.yaml
-- policy_rules/package_managers.yaml
+    - shell
 triggers:
-  include:
-  - Debian PEP 668 Python service
-  - FastAPI uvicorn systemd venv
-  - externally-managed-environment pip
-  - venv/bin/python systemd ExecStart
-  - python3 -m venv service
-  - uvicorn.service with virtualenv
+  - python venv service
+  - fastapi systemd service
+  - uvicorn systemd venv
+  - pep 668 python
+  - externally managed environment
+  - venv bin python
   - environnement virtuel python
   - service systemd fastapi
-  - fastapi avec venv
-  - python pep 668 debian
-  - paquet python géré extérieurement
-  - erreur externally managed environment
   - uvicorn systemd venv
+  - python pep 668 debian
+  - environnement géré extérieurement
   - venv bin python
-  - service python sans pip système
-  - créer venv debian fastapi
-  - exécuter fastapi avec systemd
-  - pip bloqué pep 668
-  exclude:
-  - generic Python script question
-  - generic service question
-  - unrelated package manager safety
-negative_triggers:
-- python
-- service
-- system
-- api
-- http
-activation_examples:
-- Deploy a FastAPI app on Debian 13 using venv and systemd without system pip.
-- PEP 668 blocks pip install; create venv and use venv/bin/python.
-- Déployer une application FastAPI sur Debian 13 avec venv et systemd sans utiliser le pip système.
-- PEP 668 bloque pip install; créer un venv et utiliser venv/bin/python.
-output_template: python_venv_service_report
-summary_fr: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
-i18n:
-  fr:
-    summary: Créer des services Python venv compatibles Debian avec PEP 668, FastAPI/Uvicorn sous systemd et venv/bin/python.
-    body: body.fr.md
 ---
-
 
 # Python Venv Service
 
 ## 1. Use when
 
-Use for Debian-based Python service deployment where PEP 668 may block system `pip`, especially FastAPI/Uvicorn apps managed by systemd.
+Use this skill for Debian Python applications, especially FastAPI/uvicorn services, where system Python is externally managed by PEP 668 and dependencies must be installed into a virtual environment.
 
-This skill is for VM-local service authoring, venv creation, dependency installation into the venv, unit authoring, and verification.
+## 2. Operating mode
 
-## 2. Do not use when
+Default mode: guarded. Creating a VM-local venv and service plan is medium risk. Production service changes are high risk.
 
-Do not use for generic Python coding, library explanation, non-service scripts, Kubernetes deployments, or package review without systemd/venv concerns.
-
-Do not trigger from `python`, `service`, `api`, or `http` alone.
-
-## 3. Operating mode
-
-Default is guarded VM-local authoring. It may write files inside an explicitly provided app directory and create `/etc/systemd/system/<name>.service` only when runtime policy allows VM-local service setup.
-
-Do not install into system Python. Do not use `sudo pip install`. Do not pass `--break-system-packages` unless a human explicitly chooses that outside the autonomous path.
-
-## 4. Risk mapping
+## 3. Risk mapping
 
 ### low
-- inspect OS, Python, pip, venv state;
-- read app files and requirements;
-- validate unit file syntax with `systemd-analyze verify`.
+- inspect Python version and existing venv;
+- inspect requirements and service files.
 
 ### medium
-- create venv in app directory;
-- install dependencies into venv;
-- author VM-local systemd unit;
-- start/restart VM-local app service once and verify.
+- create a VM-local virtual environment;
+- install dependencies from trusted requirements in the venv;
+- author a service file through `write_file` in an isolated VM.
 
 ### high
-- modify production service;
-- install OS packages;
-- bind to privileged ports;
-- write service running as root without need;
-- use network-exposed host without firewall context.
+- modify production service units;
+- install untrusted dependencies;
+- expose a network service externally.
 
 ### critical
-- use `pip install --break-system-packages` automatically;
-- overwrite unrelated system units;
-- run untrusted application code as root;
-- expose secrets in unit environment.
+- use `--break-system-packages`;
+- overwrite system Python packages.
 
-## 5. Preferred tool order
+## 4. Preferred tool order
 
-1. Use MCP file read/write tools for project files and unit file authoring if available.
-2. Use shell fallback for VM-local commands.
-3. Use `python3 -m venv` and `<venv>/bin/python -m pip`, never system pip.
-4. Validate before starting/reloading.
+1. Use `mcp:filesystem:read_file` for requirements and existing units.
+2. Use `mcp:filesystem:write_file` or `write_file` for any service file content.
+3. Use shell for venv creation and service verification.
+4. If dependencies are untrusted or newly changed, load `package-manager-safety` before install.
 
-## 6. Command templates
-
-### read_only: environment and PEP 668 detection
+## 5. Command templates
 
 ```bash
-cat /etc/os-release
 python3 --version
-python3 -m pip --version 2>&1 || true
-python3 - <<'PY'
-import sysconfig, pathlib
-p = pathlib.Path(sysconfig.get_paths().get('stdlib','')) / 'EXTERNALLY-MANAGED'
-print(p)
-print('externally_managed=', p.exists())
-PY
+python3 -m venv --help | head -20
+cd <app-dir>
+python3 -m venv .venv
+.venv/bin/python -m pip --version
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
 ```
-
-### read_only: inspect application
-
-```bash
-pwd
-find . -maxdepth 2 -type f \( -name 'requirements*.txt' -o -name 'pyproject.toml' -o -name 'main.py' -o -name 'app.py' \) -print
-sed -n '1,220p' requirements.txt 2>/dev/null || true
-sed -n '1,220p' pyproject.toml 2>/dev/null || true
-```
-
-### guarded: create venv and install dependencies into venv
 
 ```bash
 cd <app-dir>
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m pip show fastapi uvicorn 2>/dev/null || true
+.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
 ```
 
-### guarded: minimal FastAPI/Uvicorn systemd unit pattern
+Preferred service authoring uses a file tool, not shell file redirection:
+
+```text
+write_file(path="/etc/systemd/system/<service>.service", mode="0644", content="<systemd unit content>")
+```
+
+Systemd unit pattern:
 
 ```ini
 [Unit]
-Description=<app-name> FastAPI service
-After=network-online.target
-Wants=network-online.target
+Description=<service description>
+After=network.target
 
 [Service]
-Type=simple
 User=<service-user>
 Group=<service-group>
 WorkingDirectory=<app-dir>
@@ -168,103 +105,28 @@ Environment="PATH=<app-dir>/.venv/bin"
 ExecStart=<app-dir>/.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
 Restart=on-failure
 RestartSec=5
-NoNewPrivileges=true
-PrivateTmp=true
-ProtectSystem=full
-ProtectHome=true
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-### guarded: write unit safely with shell fallback
-
 ```bash
-install -d -m 0755 /etc/systemd/system
-tee /etc/systemd/system/<app-name>.service >/dev/null <<'EOF'
-<unit-content>
-EOF
-systemd-analyze verify /etc/systemd/system/<app-name>.service
+systemd-analyze verify /etc/systemd/system/<service>.service
 systemctl daemon-reload
-systemctl enable <app-name>.service
-systemctl start <app-name>.service
-systemctl status <app-name>.service --no-pager
-journalctl -u <app-name>.service -n 80 --no-pager
+systemctl enable --now <service>.service
+systemctl status <service>.service --no-pager
+curl -fsS http://127.0.0.1:<port>/ || true
 ```
 
-### read_only: local HTTP health check
+## 6. Blocked patterns
 
-```bash
-ss -tulpn | grep -E ':(<port>)\b' || true
-curl -fsS http://127.0.0.1:<port>/health || curl -fsS http://127.0.0.1:<port>/ || true
-```
+Do not use system pip, sudo pip, or `--break-system-packages`. Do not run `ExecStart=uvicorn ...` without the venv interpreter path.
 
-### blocked
+## 7. Verify-before-finish
 
-```bash
-pip install <package>
-sudo pip install <package>
-python3 -m pip install --break-system-packages <package>
-ExecStart=/usr/bin/python3 -m uvicorn <module>:<app>
-ExecStart=uvicorn <module>:<app>
-```
+A mutating task is not complete until the service file verifies, the daemon reload succeeds, the service is active, and a local HTTP or process check has run.
 
-## 7. Failure recovery
-
-### If pip fails with externally-managed-environment
-
-1. Do not retry with `--break-system-packages`.
-2. Create a venv:
-
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-```
-
-3. Install into the venv only.
-4. Use `.venv/bin/python` in `ExecStart`.
-
-### If `python3 -m venv` is unavailable
-
-1. Inspect package availability:
-
-```bash
-python3 -m venv --help 2>&1 || true
-apt-cache policy python3-venv
-```
-
-2. OS package installation is high/medium depending on environment and runtime policy. Do not auto-install in unknown/production environment.
-
-### If systemd service fails to start
-
-1. Inspect:
-
-```bash
-systemctl status <app-name>.service --no-pager
-journalctl -u <app-name>.service -n 120 --no-pager
-systemctl cat <app-name>.service --no-pager
-```
-
-2. Check common errors: wrong WorkingDirectory, wrong module path, missing venv dependency, port in use.
-3. For port conflict:
-
-```bash
-ss -tulpn | grep -E ':(<port>)\b'
-```
-
-4. Patch only VM-local unit/app path issues, verify, then restart once.
-
-## 8. Stop / block conditions
-
-Stop if:
-
-- only system pip is available and venv cannot be created;
-- the app source is untrusted and would execute during inspection;
-- service would run as root unnecessarily;
-- credentials are requested in unit file;
-- environment is production/unknown and write/restart is needed.
-
-## 9. Output contract
+## 8. Required output format
 
 ```markdown
 ## Python venv service report
@@ -272,69 +134,18 @@ Stop if:
 ### Summary
 
 ### Environment
-- OS:
-- Python:
-- PEP 668 externally managed:
 
-### Application
-- Directory:
-- Module/app:
-- Port:
-- Service user:
+### Venv path
 
-### Venv/dependencies
-- Venv path:
-- Dependency source:
-- Commands/tools used:
+### Service file path
 
-### Systemd unit
-- Unit path:
-- ExecStart:
-- Verification result:
+### Commands/tools used
 
-### Risk classification
-- estimated_risk:
-- risk drivers:
-
-### Actions taken
+### Verification
 
 ### Blocked actions
 
-### Recommendation
+### Risk classification
+
+### Next step
 ```
-
-## 10. Eval requirements
-
-Create evals for:
-
-- PEP 668 error leads to venv path, not `--break-system-packages`;
-- FastAPI service uses `.venv/bin/python -m uvicorn`;
-- service failure checks journal and port conflict;
-- app binds to loopback behind nginx by default;
-- production/unknown restart is blocked.
-
-
-## V9.1 Integration hardening
-
-### guarded: explicit app directory pattern
-
-Always enter the explicit application directory before creating the venv or writing the service unit:
-
-```bash
-cd <app-dir>
-python3 -m venv .venv
-.venv/bin/python -m pip install --upgrade pip wheel
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-If `requirements.txt`, `pyproject.toml`, or the dependency diff is untrusted, newly introduced, or user-supplied from an unknown source, load `package-manager-safety` and/or `malicious-dependency-review` before installing into the venv.
-
-The systemd unit must use:
-
-```ini
-WorkingDirectory=<app-dir>
-Environment="PATH=<app-dir>/.venv/bin"
-ExecStart=<app-dir>/.venv/bin/python -m uvicorn <module>:<app> --host 127.0.0.1 --port <port>
-```
-
-Blocked patterns remain: `sudo pip install`, `--break-system-packages`, ambient `ExecStart=uvicorn`, and `/usr/bin/python3 -m uvicorn` for the service.
