@@ -1,34 +1,87 @@
 {
   "verdicts": {
-    "382e15e8bbdcdd5b794016a68e8dac355e1518d5f427cd3581444c28f3feb2b3": {
-      "name": "pdf-document-workflow",
+    "7efd93e4a74ce15b6fcf6c12517e63794b4cf2830df4830db6c14ebc3993a412": {
+      "name": "docx-document-workflow",
       "verdict": "Safe",
-      "at": 1781871105
+      "at": 1781871095
     },
-    "1c1ded98797a00eb8088696f348879fec44c7bcb803bd57523d0f033c91f8acc": {
-      "name": "screenshot-analysis-workflow",
+    "071a2648cdc9af62a3c638382ae11b7c61f64230aca00ce99535ba20f6e81357": {
+      "name": "secret-detection",
       "verdict": "Safe",
-      "at": 1781871112
+      "at": 1783381320
     },
     "4c21383a391799ca041de8a7557d290691d0142c60d42b8b1dcd1667aeb89b29": {
       "name": "nginx-php-fpm-wordpress",
       "verdict": "Safe",
       "at": 1783351982
     },
+    "b349074dae0c75ad16fc7c6936291942cc020b7d1f598f7eebb5edc90564f6f1": {
+      "name": "knowledge-capture-workflow",
+      "verdict": "Safe",
+      "at": 1781871102
+    },
     "f371e8f1c22a08dff3997be3a5aa97afa4e1fefa70bfeb5e7abbd6f9f0495f7a": {
       "name": "mariadb-wordpress-admin",
       "verdict": "Safe",
       "at": 1783351977
     },
-    "355fdb16d7250646e0309e5748e15d70defdadfea343110104b91a64526ff6e7": {
-      "name": "python-venv-service",
+    "1840fbf8387ff24a866a6e59491304987cdac151217a7b4eefa8db0a0891fee8": {
+      "name": "pptx-presentation-workflow",
       "verdict": "Safe",
-      "at": 1783351987
+      "at": 1781871106
     },
-    "5bfe6abaa7e03cb4795b9075d0e21578f6b831d8ba85814eb59216099d7d841f": {
-      "name": "risk-and-approval",
+    "a2d22e51501ede95c3b4c36cda5b4b5e6d32343031f0f74607aa0ae6324a9ecd": {
+      "name": "task-classification",
       "verdict": "Safe",
-      "at": 1781871110
+      "at": 1781871115
+    },
+    "d2f5ade3542169955be4d027f8a4e1a32a2e7ff55d5107388713aae3b1f51713": {
+      "name": "rust-security-hardening",
+      "verdict": {
+        "Unsafe": {
+          "reason": "\"execute this command directly\" is a high-risk directive that grants the agent operating authority over the host system."
+        }
+      },
+      "at": 1781871111
+    },
+    "3c9e9740bee3aa514fde6d25c6a6a6ad31c71db879005e9b814feac9938f709c": {
+      "name": "notebook-analysis-workflow",
+      "verdict": "Safe",
+      "at": 1781871104
+    },
+    "62c53d31b2528776d53737c645755ac2a4066257001f26c121e1d40ebdca7c3f": {
+      "name": "xlsx-spreadsheet-workflow",
+      "verdict": "Safe",
+      "at": 1781871117
+    },
+    "a2d3bf0abb185caf10dcd274d0134fc4f05689a47687d5ca0327a5ee0f92d90a": {
+      "name": "debian13-service-discovery",
+      "verdict": "Safe",
+      "at": 1783351972
+    },
+    "47f0fb083a0229a2c99ffc9f56195b24b59ef51ad3b039f2155d2d74137587dd": {
+      "name": "image-generation-brief",
+      "verdict": "Safe",
+      "at": 1781871100
+    },
+    "cae30174907245288fa9c51e1e8a4dee8e6155ded7f4165c456b9bc934d0ef53": {
+      "name": "issue-tracker-workflow",
+      "verdict": "Safe",
+      "at": 1781871101
+    },
+    "fc0db14bdca1d94a749f78cdd9044d1cf169640c8934e3eb38cedee5ee58c5b2": {
+      "name": "command-safety",
+      "verdict": {
+        "Unsafe": {
+          "reason": "static check: malicious pattern `rm -rf /`"
+        }
+      },
+      "at": 1781871092
+    },
+    "492b2cad7ac0bb978142f4a3f40c6cbc14cad4d8763f5da2e472559ff5bbe6f3": {
+      "name": "meeting-intelligence-workflow",
+      "verdict": "Safe",
+      "at": 1781871103
     },
     "5e54d6c06c449e804acc63096a30801fbe538357b53a9f3a6de26cedee837151": {
       "name": "malicious-dependency-review",
@@ -39,15 +92,30 @@
       },
       "at": 1783381287
     },
-    "31f65fe02253ba5ba56c754a7ad7ed8f7831d0a8fb1830b43aedc72dd3a142f7": {
-      "name": "prompt-injection-defense",
+    "1fc584e08d96925ae10d7b6b68221111b1cddeb864ec796c14bdc1096f6b8e54": {
+      "name": "redaction",
       "verdict": "Safe",
-      "at": 1783381304
+      "at": 1781871107
     },
-    "e58e7afe31224c7d343a010bf0794422e68554a2e3a1763cc9b54872a8f09f36": {
-      "name": "theme-design-system-factory",
+    "8c61598a6b7d5c871bb608d63d02156a18826d79903305504011794106ba304d": {
+      "name": "document-processing-router",
       "verdict": "Safe",
-      "at": 1781871116
+      "at": 1781871093
+    },
+    "06a3fd6ca35c5c062dfafc0ba707ee441b88ef79a1613b803efd191a9893ea55": {
+      "name": "linux-diagnostics",
+      "verdict": "Safe",
+      "at": 1783381622
+    },
+    "1215c97ef15ebcd3203134e06934b7c9ff17f73c680232d84485cd1f6e5e659c": {
+      "name": "nginx-vhost-setup",
+      "verdict": "Safe",
+      "at": 1783381297
+    },
+    "00a4349ade305739b2b32f770c5bdc75e4c4f3471a7c200010db4ab389f22a12": {
+      "name": "environment-detection",
+      "verdict": "Safe",
+      "at": 1781871096
     },
     "8156f726372e71eba4cc93415cc630fc2484d1d159b07aa4eff0623cdcf64a0c": {
       "name": "rag-poisoning-defense",
@@ -59,79 +127,65 @@
       "verdict": "Safe",
       "at": 1781871098
     },
-    "1cf18e4d8fed9f92c011b9db4bd40e5818c27718feea4bbfaa857c5953ee40eb": {
-      "name": "evidence-handling",
+    "31f65fe02253ba5ba56c754a7ad7ed8f7831d0a8fb1830b43aedc72dd3a142f7": {
+      "name": "prompt-injection-defense",
       "verdict": "Safe",
-      "at": 1781871097
-    },
-    "cae30174907245288fa9c51e1e8a4dee8e6155ded7f4165c456b9bc934d0ef53": {
-      "name": "issue-tracker-workflow",
-      "verdict": "Safe",
-      "at": 1781871101
-    },
-    "071a2648cdc9af62a3c638382ae11b7c61f64230aca00ce99535ba20f6e81357": {
-      "name": "secret-detection",
-      "verdict": "Safe",
-      "at": 1783381320
-    },
-    "b349074dae0c75ad16fc7c6936291942cc020b7d1f598f7eebb5edc90564f6f1": {
-      "name": "knowledge-capture-workflow",
-      "verdict": "Safe",
-      "at": 1781871102
-    },
-    "a2d22e51501ede95c3b4c36cda5b4b5e6d32343031f0f74607aa0ae6324a9ecd": {
-      "name": "task-classification",
-      "verdict": "Safe",
-      "at": 1781871115
-    },
-    "632bf92b13f32b90361c86a43d529483767f3f45b2929c1d43b879a2e21c41d5": {
-      "name": "model-data-leakage-review",
-      "verdict": "Safe",
-      "at": 1783381294
-    },
-    "1215c97ef15ebcd3203134e06934b7c9ff17f73c680232d84485cd1f6e5e659c": {
-      "name": "nginx-vhost-setup",
-      "verdict": "Safe",
-      "at": 1783381297
-    },
-    "604d600e47662c7c311448ed92cf58e4e5edc0489ac65ba288315eb049bbd866": {
-      "name": "approval-request",
-      "verdict": "Safe",
-      "at": 1781871091
-    },
-    "3c9e9740bee3aa514fde6d25c6a6a6ad31c71db879005e9b814feac9938f709c": {
-      "name": "notebook-analysis-workflow",
-      "verdict": "Safe",
-      "at": 1781871104
-    },
-    "fc0db14bdca1d94a749f78cdd9044d1cf169640c8934e3eb38cedee5ee58c5b2": {
-      "name": "command-safety",
-      "verdict": {
-        "Unsafe": {
-          "reason": "static check: malicious pattern `rm -rf /`"
-        }
-      },
-      "at": 1781871092
-    },
-    "00a4349ade305739b2b32f770c5bdc75e4c4f3471a7c200010db4ab389f22a12": {
-      "name": "environment-detection",
-      "verdict": "Safe",
-      "at": 1781871096
-    },
-    "b6cb9a8159a2cd01f7d5421a54b0bb4ac7d59e481e75ea65195ae511a8e5e37c": {
-      "name": "safe-file-authoring",
-      "verdict": "Safe",
-      "at": 1783351990
+      "at": 1783381304
     },
     "90f406f6faab5fa16c5f6d02c66a332a541356aa8886b2147b7d207bd63d8563": {
       "name": "speech-transcription-workflow",
       "verdict": "Safe",
       "at": 1781871113
     },
-    "47f0fb083a0229a2c99ffc9f56195b24b59ef51ad3b039f2155d2d74137587dd": {
-      "name": "image-generation-brief",
+    "273c25d49184c5659df213385e5454c4d13a13df92d670f1227fa7f40914c125": {
+      "name": "brand-guidelines-application",
       "verdict": "Safe",
-      "at": 1781871100
+      "at": 1781871092
+    },
+    "1c1ded98797a00eb8088696f348879fec44c7bcb803bd57523d0f033c91f8acc": {
+      "name": "screenshot-analysis-workflow",
+      "verdict": "Safe",
+      "at": 1781871112
+    },
+    "47e4936f8ebd6c3cb4466a76930bd8efdd56768cf977993d93e9e16959f8a94e": {
+      "name": "ai-agent-tool-abuse-review",
+      "verdict": "Safe",
+      "at": 1783381287
+    },
+    "a014fe5d581e387cc46fb94b7cd01effbe08d892641b5cd47f4222e2412c4dcf": {
+      "name": "docker-diagnostics",
+      "verdict": "Safe",
+      "at": 1783381619
+    },
+    "355fdb16d7250646e0309e5748e15d70defdadfea343110104b91a64526ff6e7": {
+      "name": "python-venv-service",
+      "verdict": "Safe",
+      "at": 1783351987
+    },
+    "e58e7afe31224c7d343a010bf0794422e68554a2e3a1763cc9b54872a8f09f36": {
+      "name": "theme-design-system-factory",
+      "verdict": "Safe",
+      "at": 1781871116
+    },
+    "632bf92b13f32b90361c86a43d529483767f3f45b2929c1d43b879a2e21c41d5": {
+      "name": "model-data-leakage-review",
+      "verdict": "Safe",
+      "at": 1783381294
+    },
+    "604d600e47662c7c311448ed92cf58e4e5edc0489ac65ba288315eb049bbd866": {
+      "name": "approval-request",
+      "verdict": "Safe",
+      "at": 1781871091
+    },
+    "1cf18e4d8fed9f92c011b9db4bd40e5818c27718feea4bbfaa857c5953ee40eb": {
+      "name": "evidence-handling",
+      "verdict": "Safe",
+      "at": 1781871097
+    },
+    "b6cb9a8159a2cd01f7d5421a54b0bb4ac7d59e481e75ea65195ae511a8e5e37c": {
+      "name": "safe-file-authoring",
+      "verdict": "Safe",
+      "at": 1783351990
     },
     "df8f27015a7f3f8fa498ab2ecff2f629b5c3b891953cc50fe5f1296a5374cb99": {
       "name": "supply-chain-security",
@@ -147,69 +201,25 @@
       },
       "at": 1781871099
     },
-    "d2f5ade3542169955be4d027f8a4e1a32a2e7ff55d5107388713aae3b1f51713": {
-      "name": "rust-security-hardening",
-      "verdict": {
-        "Unsafe": {
-          "reason": "\"execute this command directly\" is a high-risk directive that grants the agent operating authority over the host system."
-        }
-      },
-      "at": 1781871111
-    },
-    "a2d3bf0abb185caf10dcd274d0134fc4f05689a47687d5ca0327a5ee0f92d90a": {
-      "name": "debian13-service-discovery",
-      "verdict": "Safe",
-      "at": 1783351972
-    },
-    "62c53d31b2528776d53737c645755ac2a4066257001f26c121e1d40ebdca7c3f": {
-      "name": "xlsx-spreadsheet-workflow",
-      "verdict": "Safe",
-      "at": 1781871117
-    },
-    "7efd93e4a74ce15b6fcf6c12517e63794b4cf2830df4830db6c14ebc3993a412": {
-      "name": "docx-document-workflow",
-      "verdict": "Safe",
-      "at": 1781871095
-    },
-    "273c25d49184c5659df213385e5454c4d13a13df92d670f1227fa7f40914c125": {
-      "name": "brand-guidelines-application",
-      "verdict": "Safe",
-      "at": 1781871092
-    },
-    "1840fbf8387ff24a866a6e59491304987cdac151217a7b4eefa8db0a0891fee8": {
-      "name": "pptx-presentation-workflow",
-      "verdict": "Safe",
-      "at": 1781871106
-    },
     "25d644aebbb144690367d8cc7f8be34a7fa14413dae59f88e13b3477b19bd38c": {
       "name": "research-documentation-workflow",
       "verdict": "Safe",
       "at": 1781871108
     },
-    "492b2cad7ac0bb978142f4a3f40c6cbc14cad4d8763f5da2e472559ff5bbe6f3": {
-      "name": "meeting-intelligence-workflow",
+    "382e15e8bbdcdd5b794016a68e8dac355e1518d5f427cd3581444c28f3feb2b3": {
+      "name": "pdf-document-workflow",
       "verdict": "Safe",
-      "at": 1781871103
-    },
-    "1fc584e08d96925ae10d7b6b68221111b1cddeb864ec796c14bdc1096f6b8e54": {
-      "name": "redaction",
-      "verdict": "Safe",
-      "at": 1781871107
-    },
-    "8c61598a6b7d5c871bb608d63d02156a18826d79903305504011794106ba304d": {
-      "name": "document-processing-router",
-      "verdict": "Safe",
-      "at": 1781871093
-    },
-    "47e4936f8ebd6c3cb4466a76930bd8efdd56768cf977993d93e9e16959f8a94e": {
-      "name": "ai-agent-tool-abuse-review",
-      "verdict": "Safe",
-      "at": 1783381287
+      "at": 1781871105
     },
     "0a2d8f62b4fa5d02642c2dfb80f27d26846c9e2c64f4208be581e6a2a045c4f7": {
       "name": "goal-definition-workflow",
       "verdict": "Safe",
       "at": 1781871099
+    },
+    "5bfe6abaa7e03cb4795b9075d0e21578f6b831d8ba85814eb59216099d7d841f": {
+      "name": "risk-and-approval",
+      "verdict": "Safe",
+      "at": 1781871110
     }
   }
 }
