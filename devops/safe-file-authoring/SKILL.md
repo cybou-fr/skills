@@ -89,6 +89,7 @@ systemd-analyze verify <target-path>
 nginx -t
 python3 -m json.tool <target-path>
 python3 -m py_compile <target-path>
+php -l <target-path>
 ```
 
 ## 7. Blocked patterns

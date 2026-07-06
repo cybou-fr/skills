@@ -66,6 +66,8 @@ server {
     root <wordpress-root>;
     index index.php index.html;
 
+    client_max_body_size 64M;
+
     location = /xmlrpc.php {
         deny all;
         access_log off;
@@ -83,9 +85,17 @@ server {
 }
 ```
 
-## 7. Séquence de rechargement
+## 7. Séquence de rechargement & Configuration de PHP-FPM
 
 ```bash
+# Découverte et mise à jour des limites d'upload de php.ini FPM
+PHP_INI=$(find /etc/php/ -path '*/fpm/php.ini' | head -n 1)
+if [ -n "$PHP_INI" ]; then
+    sed -i 's/upload_max_filesize =.*/upload_max_filesize = 64M/' "$PHP_INI"
+    sed -i 's/post_max_size =.*/post_max_size = 64M/' "$PHP_INI"
+    systemctl restart php*-fpm
+fi
+
 ln -sfn /etc/nginx/sites-available/<site> /etc/nginx/sites-enabled/<site>
 nginx -t
 systemctl reload nginx
