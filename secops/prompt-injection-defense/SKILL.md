@@ -1,5 +1,7 @@
 ---
 name: prompt-injection-defense
+description: Review untrusted inputs, RAG contexts, and documents for prompt injection, jailbreaks, or developer override commands.
+description_fr: Inspecter les entrées non sécurisées, les contextes RAG et les documents à la recherche d'injections de prompt, de jailbreaks ou de commandes de contournement.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops

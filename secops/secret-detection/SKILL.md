@@ -1,5 +1,7 @@
 ---
 name: secret-detection
+description: Review code, logs, and configurations for credentials, tokens, API keys, private keys, or PII.
+description_fr: Rechercher des identifiants, jetons, clés API, cookies de session ou données sensibles (PII) dans le code, les logs ou les configurations.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops
