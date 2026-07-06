@@ -5770,6 +5770,30 @@ skills:
   - suppressing alerts
   - destructive forensic collection without approval
   autonomy_level: 1
+- id: nginx-vhost-setup
+  path: devops/nginx-vhost-setup/SKILL.md
+  category: devops
+  triggers:
+  - nginx
+  - vhost
+  - virtualhost
+  - site
+  - sites-enabled
+  - sites-available
+  - port
+  - proxy
+  default_risk: medium
+  default_mode: guarded
+  requires_tools: []
+  input_types:
+  - user_request
+  output_template: generic_task_report
+  related_skills:
+  - debian-packages
+  - nginx-php-fpm-wordpress
+  do_not_use_for:
+  - general education
+  autonomy_level: 1
 activity_policies:
   penetration_testing: activity_policies/penetration_testing.yaml
   ai_security_assessment: activity_policies/ai_security_assessment.yaml
