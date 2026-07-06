@@ -1,5 +1,7 @@
 ---
 name: rag-poisoning-defense
+description: Scan RAG retrieval sources, embeddings, and vector store data for content injection, corrupted chunks, or adversarial payload attacks.
+description_fr: Analyser les sources de récupération RAG, les embeddings et les bases vectorielles à la recherche d'injections de contenu, de blocs corrompus ou d'attaques par charge utile.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops

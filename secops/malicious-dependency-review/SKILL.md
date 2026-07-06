@@ -1,5 +1,7 @@
 ---
 name: malicious-dependency-review
+description: Evaluate third-party package dependency specifications and install scripts for typosquatting, malware, or suspicious download-and-execute triggers.
+description_fr: Évaluer les spécifications de dépendances tierces et les scripts d'installation à la recherche de typosquattage, de logiciels malveillants ou de téléchargements suspects.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops

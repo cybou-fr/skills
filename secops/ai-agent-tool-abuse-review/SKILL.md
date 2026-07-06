@@ -1,5 +1,7 @@
 ---
 name: ai-agent-tool-abuse-review
+description: Audit agent tool calls, execution logs, and sandbox limits to prevent unauthorized command execution, privilege escalation, or resource abuse.
+description_fr: Auditer les appels d'outils des agents, les journaux d'exécution et les limites du bac à sable (sandbox) pour empêcher l'exécution de commandes non autorisées, l'escalade de privilèges ou l'abus de ressources.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops

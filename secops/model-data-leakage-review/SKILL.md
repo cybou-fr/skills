@@ -1,5 +1,7 @@
 ---
 name: model-data-leakage-review
+description: Review datasets, model weights, API requests, and prompts to identify and redact sensitive training data, credentials, and corporate secrets.
+description_fr: Inspecter les ensembles de données, les poids des modèles, les requêtes API et les prompts pour identifier et masquer les données sensibles, identifiants ou secrets industriels.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops

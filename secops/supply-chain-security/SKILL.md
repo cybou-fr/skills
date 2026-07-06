@@ -1,5 +1,7 @@
 ---
 name: supply-chain-security
+description: Review package lockfiles, supply-chain provenance, and VCS commits for tampering, dependency hijacking, or malicious modifications.
+description_fr: Inspecter les fichiers de verrouillage (lockfiles), la provenance de la chaîne logistique et les commits VCS à la recherche d'altérations, de détournements de dépendances ou de modifications malveillantes.
 version: "8.0"
 skill_format: operational_contract_v1
 category: secops
