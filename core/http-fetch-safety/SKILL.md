@@ -3,6 +3,7 @@ name: http-fetch-safety
 description: Safely fetch or inspect URLs without executing downloaded content. Use before curl, wget, browser fetch, downloading
   scripts, checking external documentation, webhooks, package URLs, or any HTTP operation that could expose data or trigger
   side effects.
+description_fr: Récupérer ou inspecter des URLs de manière sécurisée sans exécuter le contenu téléchargé. À utiliser avant curl, wget, téléchargement de scripts, webhooks, ou toute opération HTTP pouvant exposer des données ou déclencher des effets de bord.
 ---
 
 # HTTP Fetch Safety

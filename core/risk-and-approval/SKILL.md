@@ -3,6 +3,7 @@ name: risk-and-approval
 description: Evaluate operational risk and decide whether the worker may proceed, stay read-only, draft only, or ask for human
   approval. Use before infrastructure changes, shell commands, deployments, IAM, secrets, database writes, incidents, or production
   actions.
+description_fr: Évaluer le risque opérationnel et décider si le worker peut procéder, rester en lecture seule, rédiger uniquement ou demander une approbation humaine. À utiliser avant les changements d’infrastructure, commandes shell, déploiements, IAM, secrets, écritures en base ou actions en production.
 ---
 
 # Risk and Approval

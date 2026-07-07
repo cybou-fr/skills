@@ -2,6 +2,7 @@
 name: evidence-handling
 description: Preserve and summarize evidence for DevOps or SecOps incidents without destroying logs or modifying state. Use
   for outages, suspected breaches, suspicious activity, leaked secrets, forensic review, or audit preparation.
+description_fr: Préserver et résumer les preuves lors d’incidents DevOps ou SecOps sans détruire les journaux ni modifier l’état. À utiliser pour les pannes, violations suspectes, activités anormales, secrets divulgués ou audits.
 ---
 
 # Evidence Handling

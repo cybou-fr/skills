@@ -3,6 +3,7 @@ name: redaction
 description: Redact secrets, credentials, tokens, PII, customer data, and sensitive operational output before summarizing,
   logging, or displaying results. Use for logs, files, CI output, secret scans, environment variables, database rows, and
   incident reports.
+description_fr: Masquer les secrets, identifiants, tokens, données personnelles (PII) et sorties opérationnelles sensibles avant résumé, journalisation ou affichage. À utiliser pour les journaux, fichiers, sorties CI, scans de secrets et rapports d’incidents.
 ---
 
 # Redaction

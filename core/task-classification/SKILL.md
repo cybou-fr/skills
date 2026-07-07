@@ -3,6 +3,7 @@ name: task-classification
 description: Classify DevOps or SecOps requests, select candidate skills, determine default mode, and identify risk signals
   before execution. Use for ambiguous operational tasks, infrastructure, security, CI/CD, logs, incidents, deployments, cloud,
   database, network, or repository requests.
+description_fr: Classer les requêtes DevOps ou SecOps, sélectionner les compétences candidates, déterminer le mode par défaut et identifier les signaux de risque avant l'exécution.
 ---
 
 # Task Classification

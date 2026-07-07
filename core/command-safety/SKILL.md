@@ -3,6 +3,7 @@ name: command-safety
 description: Prepare, review, and safely handle shell or CLI commands. Use whenever the worker is asked to run, generate,
   explain, or approve terminal commands, kubectl, docker, terraform, git, database, package manager, cloud CLI, or HTTP fetch
   operations.
+description_fr: Préparer, examiner et exécuter des commandes shell ou CLI en toute sécurité. À utiliser pour les commandes terminal, kubectl, docker, terraform, git, gestionnaires de paquets, CLI cloud ou requêtes HTTP.
 ---
 
 # Command Safety

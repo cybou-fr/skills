@@ -3,6 +3,7 @@ name: approval-request
 description: Create precise human approval requests for risky DevOps/SecOps actions. Use when the worker proposes production
   changes, deployments, restarts, IAM changes, secret rotation, database writes, firewall changes, destructive commands, restore
   operations, or external messages.
+description_fr: Formuler des demandes d’approbation humaine précises pour les actions DevOps/SecOps risquées. À utiliser pour les changements en production, déploiements, redémarrages, IAM, rotation de secrets, écritures en base, ou commandes destructrices.
 ---
 
 # Approval Request

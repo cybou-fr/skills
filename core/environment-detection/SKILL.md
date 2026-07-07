@@ -2,6 +2,7 @@
 name: environment-detection
 description: Determine whether the worker is operating in local, development, staging, production, customer, or unknown environment.
   Use before deployments, restarts, database work, Kubernetes, cloud, IAM, or any write action.
+description_fr: Déterminer si le worker opère dans un environnement local, développement, staging, production, client ou inconnu avant toute action d'écriture.
 ---
 
 # Environment Detection
