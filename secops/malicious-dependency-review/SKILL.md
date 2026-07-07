@@ -142,21 +142,25 @@ apt list --upgradable 2>/dev/null
 ### read_only: suspicious script and binary indicators
 
 ```bash
-rg -n -i "(postinstall|preinstall|install|curl .*\|.*sh|wget .*\|.*sh|base64 -d|chmod \+x|/tmp/|powershell|Invoke-WebRequest|child_process|eval\(|exec\(|spawn\()" package.json setup.py pyproject.toml Cargo.toml go.mod .github/workflows 2>/dev/null
+# Check for suspicious install hooks and binary indicators
+rg -n -i "(postinstall|preinstall|install|base64 -d|chmod \+x|/tmp/|powershell|Invoke-WebRequest|child_process|eval\(|exec\(|spawn\()" \
+    package.json setup.py pyproject.toml Cargo.toml go.mod .github/workflows 2>/dev/null
+
+# Check for download-and-execute patterns (curl/wget piped into shell)
+rg -n -i "curl .* \| .*sh|wget .* \| .*sh" \
+    package.json setup.py pyproject.toml Cargo.toml go.mod .github/workflows 2>/dev/null
+
 find . -type f \( -perm -111 -o -name '*.so' -o -name '*.dll' -o -name '*.dylib' -o -name '*.node' \) -print | head -100
 ```
 
 ### blocked
 
-```text
-npm install <untrusted-package>
-python setup.py install
-pip install <untrusted-package> only to inspect it
-cargo build for untrusted code
-curl <url> | sh
-wget <url> -O- | bash
-execute postinstall/build scripts
-```
+Never execute the following during a review task:
+- Installing untrusted packages (`npm install <untrusted>`, `pip install <untrusted>`) without sandbox isolation
+- Running `python setup.py install` on untrusted code
+- Piping a remote URL response directly into a shell interpreter
+- Executing postinstall or preinstall build scripts from unreviewed packages
+- Running `cargo build` on untrusted Rust code
 
 ## 7. Failure recovery
 

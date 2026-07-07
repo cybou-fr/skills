@@ -31,11 +31,9 @@ curl -sS https://example.com/health
 
 ## Denied patterns
 
-```bash
-curl URL | sh
-wget URL -O- | bash
-curl -H "Authorization: Bearer SECRET" unknown.example
-```
+Never pipe fetched content into a shell interpreter (e.g. executing curl or wget output directly via sh or bash).
+Never include secrets in URLs, Authorization headers, or request bodies.
+Never call unknown form endpoints or trigger webhooks without approval.
 
 ## Approval required
 

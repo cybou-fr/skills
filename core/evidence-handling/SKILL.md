@@ -2,57 +2,147 @@
 name: evidence-handling
 description: Preserve and summarize evidence for DevOps or SecOps incidents without destroying logs or modifying state. Use
   for outages, suspected breaches, suspicious activity, leaked secrets, forensic review, or audit preparation.
-description_fr: Préserver et résumer les preuves lors d’incidents DevOps ou SecOps sans détruire les journaux ni modifier l’état. À utiliser pour les pannes, violations suspectes, activités anormales, secrets divulgués ou audits.
+description_fr: Préserver et résumer les preuves lors d'incidents DevOps ou SecOps sans détruire les journaux ni modifier l'état. À utiliser pour les pannes, violations suspectes, activités anormales, secrets divulgués ou audits.
+category: core
+default_risk: low
+default_mode: read_only
+skill_format: operational_contract_v1
+version: "10.1"
+requires_tools:
+  preferred:
+    - mcp:filesystem:read_file
+    - shell
+  fallback:
+    - shell
+triggers:
+  - evidence handling
+  - incident evidence
+  - forensic review
+  - audit preparation
+  - preserve logs
+  - chain of custody
+  - collecte de preuves
+  - gestion des preuves
+  - préserver journaux
+  - revue forensique
 ---
 
 # Evidence Handling
 
-## Rules
+## 1. Use when
 
-1. Do not delete logs.
-2. Do not purge queues.
-3. Do not modify evidence files.
-4. Never run cleanup before evidence collection.
-5. Prefer copy/snapshot/export.
-6. Record time zone.
-7. Record command used to collect evidence.
-8. Redact secrets before sharing.
-9. Keep original order of events.
-10. If compromise is suspected, avoid state-modifying commands unless necessary and approved.
+Use this skill during or after any DevOps or SecOps incident — outage, suspected breach, suspicious activity, leaked secret, data exfiltration, unauthorized access, or audit — to collect, preserve, and summarize evidence without corrupting the incident record.
 
-## Evidence summary
+## 2. Operating mode
 
-```md
-## Evidence collected
-- Source:
-- Time window:
-- Collection method:
-- Integrity concerns:
-- Redaction applied:
+Default mode: read_only. Evidence collection must never mutate logs, delete files, or modify system state. Any cleanup must wait until evidence is fully collected and secured.
+
+## 3. Risk mapping
+
+### low
+- read logs with `journalctl`, `tail`, `cat`, `grep`;
+- export/copy evidence to a secure location;
+- compute file hashes (`sha256sum`).
+
+### medium
+- snapshot a running process or container state;
+- export database query results to a file;
+- capture network state (`ss -tlnp`, `netstat`, `tcpdump` read-only).
+
+### high
+- isolate a service or container to prevent further damage (approved only);
+- rotate a compromised credential (approved only).
+
+### critical
+- delete, purge, or overwrite logs;
+- run cleanup scripts before evidence collection is complete.
+
+## 4. Preservation rules
+
+1. **Do not delete logs** — ever, before evidence is secured.
+2. **Do not purge queues** — preserve message order.
+3. **Do not modify evidence files** — read-only copies only.
+4. **Never run cleanup before evidence collection.**
+5. Prefer `cp`, `rsync`, snapshot, or export — never move originals.
+6. Always record the **timezone** of collection.
+7. Always record **the exact command** used to collect evidence.
+8. **Redact secrets** before sharing or logging evidence summaries.
+9. Preserve the **original order of events** in timelines.
+10. If compromise is suspected, avoid state-modifying commands unless approved.
+
+## 5. Collection commands
+
+```bash
+# System logs
+journalctl -u <service> --since "2h ago" --no-pager | head -500
+journalctl -p err..crit --since "4h ago" --no-pager | head -200
+
+# Auth and access logs
+tail -n 500 /var/log/auth.log
+tail -n 500 /var/log/syslog
+grep -i "failed\|invalid\|unauthorized" /var/log/auth.log | tail -100
+
+# Process snapshot
+ps aux --sort=-%cpu | head -30
+ss -tlnp
+
+# File integrity
+sha256sum <file>
+stat -c '%y %a %U %G %n' <file>
+
+# Active network connections
+ss -antp
 ```
 
-## Chain-of-custody-lite
+## 6. Chain-of-custody record
 
-Record:
-- who collected;
-- when;
-- from where;
-- how;
-- where stored;
-- hash if applicable.
+```markdown
+## Chain of custody
 
-## Required output
+- Collected by: <worker | operator name>
+- Collected at: <ISO 8601 timestamp with timezone>
+- From: <host / service / container>
+- Method: <exact commands used>
+- Stored at: <path or location>
+- SHA256: <hash of collected file if applicable>
+- Integrity concerns: <none | describe anomalies>
+```
 
-End with:
-- summary;
-- evidence;
-- risk level;
-- actions taken;
-- recommended next steps;
-- approval required, if any.
+## 7. Stop / block conditions
 
-## Safety notes
+- Stop if the next planned step is a cleanup, log rotation, or purge before collection is complete.
+- Stop if a command would overwrite or truncate a log file.
+- Do not share evidence that contains unredacted credentials.
 
-If the task touches production, secrets, IAM, data deletion, database writes, firewall rules, external communication, or destructive commands, stop before write actions and request approval.
+## 8. Verify-before-finish
 
-If a tool policy conflicts with this skill, the tool policy wins.
+A task is not complete until:
+- all relevant logs are copied or exported;
+- chain-of-custody record is filled;
+- hashes are computed for key evidence files;
+- secrets in the evidence are redacted before any summary is shared.
+
+## 9. Required output format
+
+```markdown
+## Evidence handling report
+
+### Incident summary
+
+### Time window
+
+### Evidence collected
+
+| Source | Method | Hash | Timezone |
+|---|---|---|---|
+
+### Chain of custody
+
+### Redaction applied
+
+### Integrity concerns
+
+### Recommended next steps
+
+### Risk classification
+```

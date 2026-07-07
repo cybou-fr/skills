@@ -3,70 +3,117 @@ name: approval-request
 description: Create precise human approval requests for risky DevOps/SecOps actions. Use when the worker proposes production
   changes, deployments, restarts, IAM changes, secret rotation, database writes, firewall changes, destructive commands, restore
   operations, or external messages.
-description_fr: Formuler des demandes d’approbation humaine précises pour les actions DevOps/SecOps risquées. À utiliser pour les changements en production, déploiements, redémarrages, IAM, rotation de secrets, écritures en base, ou commandes destructrices.
+description_fr: Formuler des demandes d'approbation humaine précises pour les actions DevOps/SecOps risquées. À utiliser pour les changements en production, déploiements, redémarrages, IAM, rotation de secrets, écritures en base, ou commandes destructrices.
+category: core
+default_risk: low
+default_mode: read_only
+skill_format: operational_contract_v1
+version: "10.1"
+requires_tools:
+  preferred:
+    - mcp:filesystem:read_file
+  fallback:
+    - shell
+triggers:
+  - approval request
+  - human approval
+  - request confirmation
+  - demande d'approbation
+  - confirmation humaine
+  - attente validation
+  - approbation opérateur
 ---
 
 # Approval Request
 
-## Approval scope
+## 1. Use when
 
-Approval must be scoped:
+Use this skill to generate a human approval request whenever the `risk-and-approval` skill classifies an action as **high** or **critical**, or when the environment is unknown/production and the next step is mutating.
 
-- one command only;
-- one task only;
-- time-bounded approval;
-- environment-specific approval.
+## 2. Operating mode
 
-Do not treat vague approval as broad permission.
+Default mode: read_only. Generating an approval request never modifies state — it only pauses execution until explicit confirmation is received.
 
-## Template
+## 3. Risk mapping
 
-```md
-## Approval required
+### low
+- drafting and displaying an approval request without executing anything.
 
-Target:
-...
+### critical
+- proceeding with a high/critical action before receiving explicit approval.
 
-Proposed action:
-...
+## 4. Approval scope rules
 
-Approval scope:
-...
+A valid approval grants permission for **exactly one** of:
+- one specific command on one specific target;
+- one defined task in one defined environment;
+- a time-bounded window for a specific operation.
 
-Reason:
-...
+**Do not treat vague or broad approvals as blanket permission.**
 
-Evidence:
-...
+Examples of invalid approvals:
+- "Go ahead" (no target specified)
+- "Do what you need to" (no scope)
+- "Yes" (after multiple pending questions)
 
-Risk:
-...
+Examples of valid approvals:
+- "Yes, run `kubectl rollout restart deployment/api -n production` only."
+- "Confirmed: create the MariaDB database `wp_prod` on the guest VM."
 
-Rollback:
-...
+## 5. Approval request template
 
-Safer alternative:
-...
+```markdown
+## ⚠️ Approval required
 
-Please confirm explicitly before I proceed.
+**Target**: <host / cluster / database / service>
+
+**Proposed action**:
+```bash
+<exact command or set of commands>
 ```
 
-## Good approval request
+**Scope**: <this command only / this task only / time-bounded: X minutes>
 
-> Please confirm whether I may run `kubectl rollout restart deployment/api -n production`. Approval applies only to this command.
+**Reason**: <why this action is needed>
 
-## Required output
+**Evidence**: <what was observed or diagnosed>
 
-End with:
-- summary;
-- evidence;
-- risk level;
-- actions taken;
-- recommended next steps;
-- approval required, if any.
+**Risk**: <high / critical — explanation>
 
-## Safety notes
+**Rollback**: <how to undo if something goes wrong>
 
-If the task touches production, secrets, IAM, data deletion, database writes, firewall rules, external communication, or destructive commands, stop before write actions and request approval.
+**Safer alternative** (if any): <lower-risk option>
 
-If a tool policy conflicts with this skill, the tool policy wins.
+Please confirm explicitly with the exact command before I proceed.
+```
+
+## 6. Stop / block conditions
+
+- Do NOT execute until the operator's reply contains the exact proposed command or an unambiguous confirmation of it.
+- If the operator says "yes" without specifying the target, re-ask with the target spelled out.
+- If 5 minutes pass with no reply, escalate with a reminder — do not proceed autonomously.
+
+## 7. Verify-before-finish
+
+After receiving approval and executing the action:
+- confirm the result;
+- confirm rollback path is still available;
+- include both the approval received and the outcome in the final report.
+
+## 8. Required output format
+
+```markdown
+## Approval request report
+
+### Action proposed
+
+### Approval received
+
+### Approval scope validated
+
+### Execution result
+
+### Rollback availability
+
+### Risk classification
+```
